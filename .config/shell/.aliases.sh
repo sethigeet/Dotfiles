@@ -33,4 +33,4 @@ alias mv="mv -i"
 alias rm="rm -i"
 
 # bare repo for dotfiles
-alias config="git --git-dir=$HOME/Dotfiles --work-tree=$HOME"
+alias config="git --git-dir=$HOME/Dotfiles.git --work-tree=$HOME"
