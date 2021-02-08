@@ -5,7 +5,7 @@
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id picom
-exec_always --no-startup-id feh --bg-scale ~/Downloads/Themes/wallpaper-dark.jpg
+exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id numlockx on
 
 
