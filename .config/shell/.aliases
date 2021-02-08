@@ -1,11 +1,13 @@
+#!/bin/sh
+
 # Android emulator
-alias start-android-emulator="~/Android/Sdk/emulator/emulator -avd Pixel_3_API_30 -qemu -enable-kvm"
+alias start-android-emulator="$HOME/Android/Sdk/emulator/emulator -avd Pixel_3_API_30 -qemu -enable-kvm"
 
 # vim
 alias vim="nvim"
 
 # vifm
-alias vifm="~/.config/vifm/scripts/vifmrun"
+alias vifm="$HOME/.config/vifm/scripts/vifmrun"
 
 # Changing "ls" to "exa"
 alias ls="exa --color=always"
@@ -16,7 +18,7 @@ alias l="exa -lah --color=always"    # all files and dirs in long format
 alias lt="exa -aT --color=always"   # tree listing
 
 # Change grep to use ripgrep
-alias grep="rg"
+# alias grep="rg"
 
 # Change find to use fd
 alias find="fd"
@@ -34,3 +36,6 @@ alias rm="rm -i"
 
 # bare repo for dotfiles
 alias config="git --git-dir=$HOME/Dotfiles.git --work-tree=$HOME"
+
+# to find the size of a dir
+alias csize="du -hs"

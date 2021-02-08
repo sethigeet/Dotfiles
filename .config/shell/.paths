@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# LOCAL BIN
+export PATH="$PATH:$HOME/.local/bin"
+
+# ANACONDA
+export PROMPT_COMMAND="conda_auto_env;$PROMPT_COMMAND"
+
+# ANDROID STUDIO
+export ANDROID_SDK="$HOME/Android/Sdk"
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+
+# FLUTTER
+export PATH="$PATH:$HOME/snap/flutter/common/flutter/bin"
+
+# YARN
+export PATH="$PATH:$HOME/.yarn/bin"
+
+# DENO
+export PATH="$PATH:$HOME/.deno/bin"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# GO
+export PATH="$PATH:/usr/local/go/bin"
+
+# PYENV
+export PATH="$PATH:$HOME/.pyenv/bin"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+
+# JULIA
+export PATH="$PATH:$HOME/julia/julia-1.5.3/bin"
+
+# RUST
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# Doom Emacs
+export PATH="$PATH:$HOME/.emacs.d/bin"
