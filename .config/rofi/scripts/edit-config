@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+configs="
+"
+
+SELECTED_CONFIG="$(echo "$configs" | rofi -dmenu -p "Edit a config: ")"
+
+if [[ -z "${TMUX_SESSION}" ]]; then
+  echo "Cancel"
+else
+  rofi-sensible-terminal -e nvim "${TMUX_SESSION}" &
+fi

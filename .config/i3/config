@@ -1,7 +1,5 @@
 # vim: filetype=i3config
 
-# This config file will use environment variables such as $BROWSER and $TERMINAL.
-
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id picom
@@ -17,8 +15,8 @@ set $outer_gaps 0
 set $term --no-startup-id alacritty
 set $mod Mod4
 set $alt Mod1
-set $shutdown sudo shutdown now
-set $reboot sudo reboot
+set $shutdown shutdown now
+set $reboot reboot
 set $lock dm-tool lock
 set $suspend sudo systemctl suspend
 set $hibernate sudo -A systemctl hibernate
@@ -43,36 +41,24 @@ bindsym $mod+Shift+Escape	       exec --no-startup-id $hibernate
 bindsym $mod+space 			         exec --no-startup-id rofi -show drun
 
 # #---Letter Key Bindings---# #
-bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
-
-# w
-bindsym $mod+w 			            exec --no-startup-id brave-browser
-
-# c
-bindsym $mod+c 			            exec --no-startup-id $lock
-bindsym $mod+Shift+c		        exec --no-startup-id $suspend
-
-# e
-bindsym $mod+e 			            exec --no-startup-id nautilus
-bindsym $mod+Shift+e		        exec --no-startup-id code
-
-# r
-bindsym $mod+r 			            exec $term -e ranger
-
-# t
-bindsym $mod+b 			            exec $term -e /home/kcsuser3/.local/bin/bpytop
-bindsym $mod+Shift+t            focus mode_toggle
-
-# u
-bindsym $mod+u                  [urgent=latest] focus
 
 # a
 bindsym $mod+a		              exec $term -e alsamixer
 
-# s
-bindsym $mod+s        			    sticky toggle;
-bindsym $mod+Shift+s			      split toggle
+# b
+bindsym $mod+b 			            exec $term -e bpytop
+
+# c
+bindsym $mod+c 			            exec --no-startup-id ~/.config/rofi/scripts/edit-config
+bindsym $mod+Ctrl+c 			      exec --no-startup-id $lock
+bindsym $mod+Shift+c		        exec --no-startup-id $suspend
+
+# d
+# --- NONE ---
+
+# e
+bindsym $mod+e 			            exec --no-startup-id nautilus
+bindsym $mod+Shift+e		        exec --no-startup-id code
 
 # f
 bindsym $mod+f			            fullscreen toggle
@@ -86,6 +72,9 @@ bindsym $mod+Shift+g		        gaps inner current set 0; gaps outer current set 0
 bindsym $mod+h			            focus left
 bindsym $mod+Ctrl+h	   	        move left 30
 bindsym $mod+Shift+h            resize shrink width 5 px or 5 ppt
+
+# i
+# --- NONE ---
 
 # j
 bindsym $mod+j			            focus down
@@ -102,19 +91,48 @@ bindsym $mod+l			            focus right
 bindsym $mod+Ctrl+l 		        move right 30
 bindsym $mod+Shift+l            resize grow width 5 px or 5 ppt
 
-# z
-bindsym $mod+z			            exec --no-startup-id $term -e nvim ~/.zshrc
+# m
+# --- NONE ---
 
-# x
-bindsym $mod+x	                exec --no-startup-id prompt "Reboot computer?" $reboot
-bindsym $mod+Shift+x	          exec --no-startup-id prompt "Shutdown computer?" $shutdown
+# n
+bindsym $mod+n			            exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
+
+# o
+# --- NONE ---
 
 # p
 bindsym $mod+p			            exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
 bindsym $mod+Shift+p		        exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
 
-# n
-bindsym $mod+n			            exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
+# q
+bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
+bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+
+# r
+bindsym $mod+r 			            exec $term -e ranger
+
+# s
+bindsym $mod+s        			    sticky toggle;
+bindsym $mod+Shift+s			      split toggle
+
+# t
+bindsym $mod+Shift+t            focus mode_toggle
+
+# u
+bindsym $mod+u                  [urgent=latest] focus
+
+# v
+# --- NONE ---
+
+# w
+bindsym $mod+w 			            exec --no-startup-id brave-browser
+
+# x
+bindsym $mod+x	                exec --no-startup-id prompt "Reboot computer?" $reboot
+bindsym $mod+Shift+x	          exec --no-startup-id prompt "Shutdown computer?" $shutdown
+
+# z
+bindsym $mod+z			            exec --no-startup-id $term -e nvim ~/.zshrc
 
 
 # #---Workspace Bindings---# #
