@@ -45,13 +45,12 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -location 3 \
 -columns 1 \
 -show-icons -icon-theme "Papirus" \
--font "Noto Sans 9" \
 -color-enabled true \
 -color-window "$BACKGROUND,$BORDER,$SEPARATOR" \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-active "$BACKGROUND,$MAGENTA,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-urgent "$BACKGROUND,$YELLOW,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< ">> Lock|>> Logout|>> Reboot|>> Shutdown")"
+<<< " Lock| Logout| Reboot| Shutdown")"
 case "$MENU" in
   *Lock) dm-tool lock;;
   *Logout) sudo /etc/init.d/gdm3 restart;;

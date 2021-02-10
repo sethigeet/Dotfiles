@@ -52,8 +52,6 @@ bindsym $mod+b 			             exec $term -e bpytop
 
 # C
 bindsym $mod+c 			             exec --no-startup-id ~/.config/rofi/scripts/edit-config
-bindsym $mod+Ctrl+c 			       exec --no-startup-id $lock
-bindsym $mod+Shift+c		         exec --no-startup-id $suspend
 
 # D
 # --- NONE ---
@@ -131,8 +129,7 @@ bindsym $mod+v 			             exec $term -e vifm
 bindsym $mod+w 			             exec --no-startup-id brave-browser
 
 # X
-bindsym $mod+x	                 exec --no-startup-id prompt "Reboot computer?" $reboot
-bindsym $mod+Shift+x	           exec --no-startup-id prompt "Shutdown computer?" $shutdown
+bindsym $mod+x	                 exec --no-startup-id ~/.config/rofi/scripts/sysmenu
 
 # Y
 # --- NONE ---
