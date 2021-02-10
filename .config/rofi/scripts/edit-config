@@ -1,12 +1,30 @@
 #!/usr/bin/env bash
 
-configs="
-"
+CONFIGS="$HOME/.zshrc
+$HOME/.bashrc
+$HOME/.bash_profile
+$HOME/.bash_prompt
+$HOME/.doom.d/config.el
+$HOME/.tmux.conf
+$HOME/.vimrc
+$HOME/.config/alacritty/alacritty.yml
+$HOME/.config/i3/config
+$HOME/.config/nvim/init.vim
+$HOME/.config/picom/picom.conf
+$HOME/.config/rofi/config.rasi
+$HOME/.config/polybar/config.ini
+$HOME/.config/shell/aliases
+$HOME/.config/shell/paths
+$HOME/.config/shell/varExports
+$HOME/.config/shell/condaInit
+$HOME/.config/vifm/vifmrc
+$HOME/.config/zsh/.p10k.zsh"
 
-SELECTED_CONFIG="$(echo "$configs" | rofi -dmenu -p "Edit a config: ")"
+SELECTED_CONFIG="$(echo "$CONFIGS" | sort | rofi -dmenu -p "Edit a config: ")"
 
-if [[ -z "${TMUX_SESSION}" ]]; then
+if [[ -z "${SELECTED_CONFIG}" ]]; then
   echo "Cancel"
 else
-  rofi-sensible-terminal -e nvim "${TMUX_SESSION}" &
+  echo "\"$SELECTED_CONFIG\"" 
+  rofi-sensible-terminal -e nvim "$SELECTED_CONFIG" &
 fi
