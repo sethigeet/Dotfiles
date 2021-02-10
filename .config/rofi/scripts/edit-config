@@ -1,30 +1,134 @@
 #!/usr/bin/env bash
 
-CONFIGS="$HOME/.zshrc
-$HOME/.bashrc
-$HOME/.bash_profile
-$HOME/.bash_prompt
-$HOME/.doom.d/config.el
-$HOME/.tmux.conf
-$HOME/.vimrc
-$HOME/.config/alacritty/alacritty.yml
-$HOME/.config/i3/config
-$HOME/.config/nvim/init.vim
-$HOME/.config/picom/picom.conf
-$HOME/.config/rofi/config.rasi
-$HOME/.config/polybar/config.ini
-$HOME/.config/shell/aliases
-$HOME/.config/shell/paths
-$HOME/.config/shell/varExports
-$HOME/.config/shell/condaInit
-$HOME/.config/vifm/vifmrc
-$HOME/.config/zsh/.p10k.zsh"
+# function to join an array with strings
+function join() {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
 
-SELECTED_CONFIG="$(echo "$CONFIGS" | sort | rofi -dmenu -p "Edit a config: ")"
+# define the file paths
+CONFIG_FILE_PATHS=(
+  "$HOME/.zshrc"
+  "$HOME/.bashrc"
+  "$HOME/.bash_profile"
+  "$HOME/.bash_prompt"
+  "$HOME/.doom.d/config.el"
+  "$HOME/.tmux.conf"
+  "$HOME/.vimrc"
+  "$HOME/.config/alacritty/alacritty.yml"
+  "$HOME/.config/i3/config"
+  "$HOME/.config/nvim/init.vim"
+  "$HOME/.config/picom/picom.conf"
+  "$HOME/.config/rofi/config.rasi"
+  "$HOME/.config/polybar/config.ini"
+  "$HOME/.config/shell/aliases"
+  "$HOME/.config/shell/paths"
+  "$HOME/.config/shell/varExports"
+  "$HOME/.config/shell/condaInit"
+  "$HOME/.config/vifm/vifmrc"
+  "$HOME/.config/zsh/.p10k.zsh"
+)
 
-if [[ -z "${SELECTED_CONFIG}" ]]; then
+# define the file icons
+CONFIG_FILE_ICONS=(
+  ""
+  ""
+  ""
+  ""
+  ""
+  "節"
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+  ""
+)
+
+# sort the files
+SORTED_CONFIG_FILE_PATHS=($(sort <<<"${CONFIG_FILE_PATHS[*]}"))
+
+# add icons to all the file names and convert them into a single string for rofi
+CONFIG_NAMES_TO_SHOW=""
+for i in ${!SORTED_CONFIG_FILE_PATHS[@]}; do
+  # get the path of the config from the paths
+  path=${SORTED_CONFIG_FILE_PATHS[$i]}
+
+  # check if the config file is in the .config dir
+  pathInConfig=$(grep "/.config/" <<<"$path")
+  name=""
+
+  # check if the pathInConfig is empty or not
+  if [[ -z "${pathInConfig}" ]]; then
+    # select only the name of the file
+    name=$(grep -o "/[^/]*$" <<<"$path" | sed "s/\///g")
+  else
+    # select the name of the file along with the directory it is in
+    name=$(grep -o "/.config/[^/]*/[^/]*$" <<<"$path" | sed "s/^\/.config\///g")
+  fi
+
+  # select the icon it is in
+  icon=${CONFIG_FILE_ICONS[$i]}
+
+  # combine the icon and the name
+  nameWithIcon="$icon $name"
+
+  # check if the CONFIG_NAMES_TO_SHOW is empty
+  if [[ -z "${CONFIG_NAMES_TO_SHOW}" ]]; then
+    # change the CONFIG_NAMES_TO_SHOW in place with the nameWithIcon
+    CONFIG_NAMES_TO_SHOW="$nameWithIcon"
+  else
+    # add the nameWithIcon to CONFIG_NAMES_TO_SHOW
+    CONFIG_NAMES_TO_SHOW="$CONFIG_NAMES_TO_SHOW
+$nameWithIcon"
+  fi
+
+  # unset the variables that are no longer required
+  unset path
+  unset pathInConfig
+  unset name
+  unset icon
+  unset nameWithIcon
+
+done
+
+# let the user select the config through rofi
+SELECTED_CONFIG_NAME="$(echo "$CONFIG_NAMES_TO_SHOW" | sort | rofi -dmenu -p "Edit a config: ")"
+
+# check if the user selected any config
+if [[ -z "${SELECTED_CONFIG_NAME}" ]]; then
+  # if the user did not select any config, cancel the operation
   echo "Cancel"
 else
-  echo "\"$SELECTED_CONFIG\"" 
-  rofi-sensible-terminal -e nvim "$SELECTED_CONFIG" &
+  # join the array for grep to search in
+  SORTED_CONFIG_FILE_PATHS_JOINED=$(join "
+  " ${SORTED_CONFIG_FILE_PATHS[@]})
+
+  # remove the icon from the selected name for grep to search
+  NAME_TO_SEARCH_FOR=$(echo "$SELECTED_CONFIG_NAME" | cut -c5-)
+
+  # search for the full path through grep
+  SELECTED_CONFIG_PATH=$(echo "$SORTED_CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR")
+
+  # open the config in the configured editor
+  rofi-sensible-terminal -e $EDITOR "$SELECTED_CONFIG_PATH" &
+
+  # unset the variables that are no longer required
+  unset SORTED_CONFIG_FILE_PATHS_JOINED
+  unset NAME_TO_SEARCH_FOR
+  unset SELECTED_CONFIG_PATH
 fi
+
+# unset all the set variables
+unset CONFIG_FILE_PATHS
+unset CONFIG_FILE_ICONS
+unset SELECTED_CONFIG_NAME
+unset SORTED_CONFIG_FILE_PATHS
