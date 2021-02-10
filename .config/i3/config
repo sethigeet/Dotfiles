@@ -51,7 +51,7 @@ bindsym $mod+a		               exec $term -e alsamixer
 bindsym $mod+b 			             exec $term -e bpytop
 
 # C
-bindsym $mod+c 			             exec --no-startup-id ~/.config/rofi/scripts/edit-config
+bindsym $mod+c 			             exec --no-startup-id ~/Scripts/rofi/edit-config
 
 # D
 # --- NONE ---
@@ -129,7 +129,7 @@ bindsym $mod+v 			             exec $term -e vifm
 bindsym $mod+w 			             exec --no-startup-id brave-browser
 
 # X
-bindsym $mod+x	                 exec --no-startup-id ~/.config/rofi/scripts/sysmenu
+bindsym $mod+x	                 exec --no-startup-id ~/Scripts/rofi/sysmenu
 
 # Y
 # --- NONE ---
