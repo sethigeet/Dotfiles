@@ -63,16 +63,18 @@ for i in ${!SORTED_CONFIG_FILE_PATHS[@]}; do
   path=${SORTED_CONFIG_FILE_PATHS[$i]}
 
   # check if the config file is in the .config dir
-  pathInConfig=$(grep "/.config/" <<<"$path")
+  pathInConfig=$(grep "/\..*/" <<<"$path")
   name=""
 
   # check if the pathInConfig is empty or not
   if [[ -z "${pathInConfig}" ]]; then
     # select only the name of the file
     name=$(grep -o "/[^/]*$" <<<"$path" | sed "s/\///g")
-  else
+  elif [[ -z $(echo "$pathInConfig" | grep -o ".doom.d") ]]; then
     # select the name of the file along with the directory it is in
-    name=$(grep -o "/.config/[^/]*/[^/]*$" <<<"$path" | sed "s/^\/.config\///g")
+    name=$(grep -o "\/\..*" <<<"$path" | sed "s/^\/\.[^/]*\///g")
+  else
+    name=$(grep -o "\/\..*" <<<"$path" | sed "s/^\/\.[^/]*\//.doom.d\//g")
   fi
 
   # select the icon it is in
