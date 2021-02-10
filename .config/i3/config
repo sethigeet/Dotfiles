@@ -1,163 +1,156 @@
 # vim: filetype=i3config
 
+# --- Initial Setup --- #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id numlockx on
 
-
-# #---Basic Definitions---# #
+# --- Basic Definitions --- #
 smart_gaps on
 smart_borders on
 set $inner_gaps 10
 set $outer_gaps 0
-set $term --no-startup-id alacritty
-set $mod Mod4
-set $alt Mod1
-set $shutdown shutdown now
-set $reboot reboot
-set $lock dm-tool lock
-set $suspend sudo systemctl suspend
-set $hibernate sudo -A systemctl hibernate
+set $term       --no-startup-id alacritty
+set $mod        Mod4
+set $alt        Mod1
+set $shutdown   shutdown now
+set $reboot     reboot
+set $lock       dm-tool lock
+set $suspend    sudo systemctl suspend
+set $hibernate  sudo -A systemctl hibernate
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+# Use Mouse + $mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# #---Gaps---# #
+# --- Define Gaps --- #
 for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
-# #---Basic Bindings---# #
+# --- Basic Key Bindings --- #
+
+# Return
 bindsym $mod+Return 		         exec $term
 bindsym $mod+Shift+Return	       exec $term --working-directory  $(xcwd)
 
+# Escape
 bindsym $mod+Escape	             exec --no-startup-id dm-tool switch-to-greeter
 bindsym $mod+Shift+Escape	       exec --no-startup-id $hibernate
 
-
-# space
+# Space
 bindsym $mod+space 			         exec --no-startup-id rofi -show drun
 
-# #---Letter Key Bindings---# #
+# --- Letter Key Bindings --- #
 
-# a
-bindsym $mod+a		              exec $term -e alsamixer
+# A
+bindsym $mod+a		               exec $term -e alsamixer
 
-# b
-bindsym $mod+b 			            exec $term -e bpytop
+# B
+bindsym $mod+b 			             exec $term -e bpytop
 
-# c
-bindsym $mod+c 			            exec --no-startup-id ~/.config/rofi/scripts/edit-config
-bindsym $mod+Ctrl+c 			      exec --no-startup-id $lock
-bindsym $mod+Shift+c		        exec --no-startup-id $suspend
+# C
+bindsym $mod+c 			             exec --no-startup-id ~/.config/rofi/scripts/edit-config
+bindsym $mod+Ctrl+c 			       exec --no-startup-id $lock
+bindsym $mod+Shift+c		         exec --no-startup-id $suspend
 
-# d
+# D
 # --- NONE ---
 
-# e
-bindsym $mod+e 			            exec --no-startup-id nautilus
-bindsym $mod+Shift+e		        exec --no-startup-id code
+# E
+bindsym $mod+e 			             exec --no-startup-id nautilus
+bindsym $mod+Shift+e		         exec --no-startup-id code
 
-# f
-bindsym $mod+f			            fullscreen toggle
-bindsym $mod+Shift+f 	          floating toggle
+# F
+bindsym $mod+f			             fullscreen toggle
+bindsym $mod+Shift+f 	           floating toggle
 
-# g
-bindsym $mod+g		              gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
-bindsym $mod+Shift+g		        gaps inner current set 0; gaps outer current set 0
+# G
+bindsym $mod+g		               gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
+bindsym $mod+Shift+g		         gaps inner current set 0; gaps outer current set 0
 
-# h
-bindsym $mod+h			            focus left
-bindsym $mod+Ctrl+h	   	        move left 30
-bindsym $mod+Shift+h            resize shrink width 5 px or 5 ppt
+# H
+bindsym $mod+h			             focus left
+bindsym $mod+Ctrl+h	   	         move left 30
+bindsym $mod+Shift+h             resize shrink width 5 px or 5 ppt
 
-# i
+# I
 # --- NONE ---
 
-# j
-bindsym $mod+j			            focus down
-bindsym $mod+Ctrl+j		          move down 30
-bindsym $mod+Shift+j            resize shrink height 5 px or 5 ppt
+# J
+bindsym $mod+j			             focus down
+bindsym $mod+Ctrl+j		           move down 30
+bindsym $mod+Shift+j             resize shrink height 5 px or 5 ppt
 
-# k
-bindsym $mod+k			            focus up
-bindsym $mod+Ctrl+k		          move up 30
-bindsym $mod+Shift+k            resize grow height 5 px or 5 ppt
+# K
+bindsym $mod+k			             focus up
+bindsym $mod+Ctrl+k		           move up 30
+bindsym $mod+Shift+k             resize grow height 5 px or 5 ppt
 
-# l
-bindsym $mod+l			            focus right
-bindsym $mod+Ctrl+l 		        move right 30
-bindsym $mod+Shift+l            resize grow width 5 px or 5 ppt
+# L
+bindsym $mod+l			             focus right
+bindsym $mod+Ctrl+l 		         move right 30
+bindsym $mod+Shift+l             resize grow width 5 px or 5 ppt
 
-# m
+# M
+bindsym $mod+m			             layout toggle
+
+# N
+bindsym $mod+n			             exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
+
+# O
 # --- NONE ---
 
-# n
-bindsym $mod+n			            exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
+# P
+bindsym $mod+p			             exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
+bindsym $mod+Shift+p		         exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
 
-# o
+# Q
+bindsym $mod+q			             [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
+bindsym $mod+Shift+q		         [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+
+# R
 # --- NONE ---
 
-# p
-bindsym $mod+p			            exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
-bindsym $mod+Shift+p		        exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
+# S
+bindsym $mod+s        			     sticky toggle
+bindsym $mod+Shift+s			       split toggle
 
-# q
-bindsym $mod+q			            [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-bindsym $mod+Shift+q		        [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+# T
+bindsym $mod+t 			             layout toggle tabbed 
+bindsym $mod+Shift+t             focus mode_toggle
 
-# r
-bindsym $mod+r 			            exec $term -e ranger
+# U
+bindsym $mod+u                   [urgent=latest] focus
 
-# s
-bindsym $mod+s        			    sticky toggle;
-bindsym $mod+Shift+s			      split toggle
+# V
+bindsym $mod+v 			             exec $term -e vifm
 
-# t
-bindsym $mod+Shift+t            focus mode_toggle
+# W
+bindsym $mod+w 			             exec --no-startup-id brave-browser
 
-# u
-bindsym $mod+u                  [urgent=latest] focus
+# X
+bindsym $mod+x	                 exec --no-startup-id prompt "Reboot computer?" $reboot
+bindsym $mod+Shift+x	           exec --no-startup-id prompt "Shutdown computer?" $shutdown
 
-# v
+# Y
 # --- NONE ---
 
-# w
-bindsym $mod+w 			            exec --no-startup-id brave-browser
-
-# x
-bindsym $mod+x	                exec --no-startup-id prompt "Reboot computer?" $reboot
-bindsym $mod+Shift+x	          exec --no-startup-id prompt "Shutdown computer?" $shutdown
-
-# z
-bindsym $mod+z			            exec --no-startup-id $term -e nvim ~/.zshrc
+# Z
+bindsym $mod+z			             exec --no-startup-id $term -e nvim ~/.zshrc
 
 
-# #---Workspace Bindings---# #
-bindsym $mod+Tab		            workspace next
-bindsym $mod+Shift+Tab          workspace prev
-bindsym $mod+apostrophe		      split horizontal ;; exec $term
-bindsym $mod+slash		          split vertical ;; exec $term
-bindsym $mod+Shift+slash	      kill
-bindsym $mod+backslash		      workspace back_and_forth
+# --- Workspace Key Bindings --- #
+bindsym $mod+Tab		             workspace next
+bindsym $mod+Shift+Tab           workspace prev
+bindsym $mod+apostrophe		       split horizontal ;; exec $term
+bindsym $mod+slash		           split vertical ;; exec $term
+bindsym $mod+Shift+slash	       kill
+bindsym $mod+backslash		       workspace back_and_forth
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
-# Assign Workspaces:
-# assign [class="Alacritty"] $ws1
-# assign [class="Google-chrome"] $ws2
-# assign [class="Code"] $ws3
+# --- Number Key Bindings --- #
 
 # switch to workspace
 bindsym $mod+1		workspace $ws1
@@ -172,48 +165,80 @@ bindsym $mod+9		workspace $ws9
 bindsym $mod+0		workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1	move container to workspace $ws1
-bindsym $mod+Shift+2	move container to workspace $ws2
-bindsym $mod+Shift+3	move container to workspace $ws3
-bindsym $mod+Shift+4	move container to workspace $ws4
-bindsym $mod+Shift+5	move container to workspace $ws5
-bindsym $mod+Shift+6	move container to workspace $ws6
-bindsym $mod+Shift+7	move container to workspace $ws7
-bindsym $mod+Shift+8	move container to workspace $ws8
-bindsym $mod+Shift+9	move container to workspace $ws9
-bindsym $mod+Shift+0	move container to workspace $ws10
-
-for_window [window_role="GtkFileChooserDialog"] resize set 800 600
-for_window [window_role="GtkFileChooserDialog"] move position center
-for_window [title="^Android Emulator -"] floating enable
-for_window [title="*Zoom*"] floating enable
-for_window [title="^Participants*"] floating enable
-# for_window [title="^Chat*"] floating enable
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 
-# #---Function Buttons---# #
+# --- Function Buttons --- #
 bindsym $mod+F1		        restart
 
-# #---Arrow Keys---# #
+
+# --- Arrow Keys --- #
+
+# Left
 bindsym $mod+Left		      focus left
 bindsym $mod+Shift+Left   resize shrink width 5 px or 5 ppt
 bindsym $mod+Ctrl+Left		move workspace to output right
-bindsym $mod+Down		      focus down
-bindsym $mod+Shift+Down   resize shrink height 5 px or 5 ppt
-bindsym $mod+Ctrl+Down		move workspace to output up
-bindsym $mod+Up			      focus up
-bindsym $mod+Shift+Up     resize grow height 5 px or 5 ppt
-bindsym $mod+Ctrl+Up		  move workspace to output down
+
+# Right
 bindsym $mod+Right 		    focus right
 bindsym $mod+Shift+Right  resize grow width 5 px or 5 ppt
 bindsym $mod+Ctrl+Right		move workspace to output left
+
+# Down
+bindsym $mod+Down		      focus down
+bindsym $mod+Shift+Down   resize shrink height 5 px or 5 ppt
+bindsym $mod+Ctrl+Down		move workspace to output up
+
+# Up
+bindsym $mod+Up			      focus up
+bindsym $mod+Shift+Up     resize grow height 5 px or 5 ppt
+bindsym $mod+Ctrl+Up		  move workspace to output down
+
+
+# --- Media Key Bindings --- #
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% #decrease sound volume
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
-# Window borders
+
+# --- Workspace Settings --- #
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+
+# Assign Workspaces to particular apps
+# assign [class="Alacritty"] $ws1
+# assign [class="Google-chrome"] $ws2
+# assign [class="Code"] $ws3
+
+# Set particular settings for particular apps
+for_window [window_role="GtkFileChooserDialog"] resize set 800 600
+for_window [window_role="GtkFileChooserDialog"] move position center
+for_window [title="^Android Emulator -"]        floating enable
+for_window [title="*Zoom*"]                     floating enable
+for_window [title="^Participants*"]             floating enable
+
+
+# --- Window borders --- #
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #FFCC66 #1F2430 #FFFFFF #FFCC66   #FFCC66
 client.focused_inactive #FFD580 #1F2430 #FFFFFF #5F676A   #5F676A
