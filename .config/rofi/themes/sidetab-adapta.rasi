@@ -36,7 +36,7 @@ configuration {
 }
 
 #window {
-  font: "Hack Bold 13";
+  font: "MesloLGS NF Bold 14";
   location: 0;
   background-color: @backgroundcolor;
   border-color: @accentcolor;

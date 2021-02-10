@@ -11,10 +11,10 @@
   
   background-color: transparent;
   text-color: @foregroundcolor;
+  font: "MesloLGS NF Bold 14";
 }
 
 #window {
-  font: "Hack Bold 10";
   location: 0;
   background-color: @backgroundcolor;
   border-color: @accentcolor;
