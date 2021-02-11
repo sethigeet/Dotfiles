@@ -121,7 +121,7 @@ else
   SELECTED_CONFIG_PATH=$(echo "$SORTED_CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR")
 
   # open the config in the configured editor
-  rofi-sensible-terminal -e $EDITOR "$SELECTED_CONFIG_PATH" &
+  rofi-sensible-terminal -e nvim "$SELECTED_CONFIG_PATH" &
 
   # unset the variables that are no longer required
   unset SORTED_CONFIG_FILE_PATHS_JOINED
