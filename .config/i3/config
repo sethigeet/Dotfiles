@@ -3,9 +3,7 @@
 # --- Initial Setup --- #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id picom
-exec_always --no-startup-id ~/.fehbg
-exec_always --no-startup-id numlockx on
+exec_always --no-startup-id ~/Scripts/wm/autostart
 
 # --- Basic Definitions --- #
 smart_gaps on
