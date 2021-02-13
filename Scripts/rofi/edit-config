@@ -9,61 +9,41 @@ function join() {
 
 # define the file paths
 CONFIG_FILE_PATHS=(
-  "~/.zshrc"
-  "~/.bashrc"
-  "~/.bash_profile"
-  "~/.bash_prompt"
-  "~/.doom.d/config.el"
-  "~/.tmux.conf"
-  "~/.vimrc"
-  "~/.config/alacritty/alacritty.yml"
-  "~/.config/i3/config"
-  "~/.config/nvim/init.vim"
-  "~/.config/picom/picom.conf"
-  "~/.config/rofi/config.rasi"
-  "~/.config/polybar/config.ini"
-  "~/.config/shell/aliases"
-  "~/.config/shell/paths"
-  "~/.config/shell/varExports"
-  "~/.config/shell/condaInit"
-  "~/.config/vifm/vifmrc"
-  "~/.config/zsh/.p10k.zsh"
+  " ~/.zshrc"
+  " ~/.bashrc"
+  " ~/.bash_profile"
+  " ~/.bash_prompt"
+  " ~/.doom.d/config.el"
+  "節 ~/.tmux.conf"
+  " ~/.vimrc"
+  " ~/.config/alacritty/alacritty.yml"
+  " ~/.config/i3/config"
+  " ~/.config/nvim/init.vim"
+  " ~/.config/picom/picom.conf"
+  " ~/.config/rofi/config.rasi"
+  " ~/.config/polybar/config.ini"
+  " ~/.config/shell/aliases"
+  " ~/.config/shell/paths"
+  " ~/.config/shell/varExports"
+  " ~/.config/shell/condaInit"
+  " ~/.config/vifm/vifmrc"
+  " ~/.config/zsh/.p10k.zsh"
 )
-
-# define the file icons
-CONFIG_FILE_ICONS=(
-  ""
-  ""
-  ""
-  ""
-  ""
-  "節"
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-  ""
-)
-
-# sort the files
-SORTED_CONFIG_FILE_PATHS=($(sort <<<"${CONFIG_FILE_PATHS[*]}"))
 
 # add icons to all the file names and convert them into a single string for rofi
 CONFIG_NAMES_TO_SHOW=""
-for i in ${!SORTED_CONFIG_FILE_PATHS[@]}; do
+for i in ${!CONFIG_FILE_PATHS[@]}; do
   # get the path of the config from the paths
-  path=${SORTED_CONFIG_FILE_PATHS[$i]}
+  path=${CONFIG_FILE_PATHS[$i]}
+
+  # select the icon that the file has
+  icon=$(echo "$path" | cut -c-3)
+
+  # remove the icon from the file path
+  path=$(echo "$path" | cut -c5-)
 
   # remove the home part from the path
-  pathFromHome=$(echo "$path" | sed "s/~\///g")
+  pathFromHome=$(echo "$path" | sed "s+~/++g")
 
   # check if the config file is in the .config dir
   pathInSubDir=$(echo "$pathFromHome" | grep "/")
@@ -75,11 +55,8 @@ for i in ${!SORTED_CONFIG_FILE_PATHS[@]}; do
     name="$pathFromHome"
   else
     # select the name of the file along with the directory it is in
-    name=$(echo "$pathFromHome" | awk -F '/' '{print $2"/"$3"/"$4}' | sed "s/\/$//g" | sed "s/\.config\///g")
+    name=$(echo "$pathFromHome" | awk -F '/' '{print $1"/"$2"/"$3}' | sed "s+/$++g" | sed "s+\.config/++g")
   fi
-
-  # select the icon it is in
-  icon=${CONFIG_FILE_ICONS[$i]}
 
   # combine the icon and the name
   nameWithIcon="$icon $name"
@@ -96,6 +73,7 @@ $nameWithIcon"
 
   # unset the variables that are no longer required
   unset path
+  unset pathFromHome
   unset pathInSubDir
   unset name
   unset icon
@@ -112,20 +90,20 @@ if [[ -z "${SELECTED_CONFIG_NAME}" ]]; then
   echo "Cancel"
 else
   # join the array for grep to search in
-  SORTED_CONFIG_FILE_PATHS_JOINED=$(join "
-  " ${SORTED_CONFIG_FILE_PATHS[@]})
+  CONFIG_FILE_PATHS_JOINED=$(join "
+  " ${CONFIG_FILE_PATHS[@]})
 
   # remove the icon from the selected name for grep to search
   NAME_TO_SEARCH_FOR=$(echo "$SELECTED_CONFIG_NAME" | cut -c5-)
 
   # search for the full path through grep
-  SELECTED_CONFIG_PATH=$(echo "$SORTED_CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR")
+  SELECTED_CONFIG_PATH=$(echo "$CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR" | sed "s+~+$HOME+g")
 
   # open the config in the configured editor
   rofi-sensible-terminal -e nvim "$SELECTED_CONFIG_PATH" &
 
   # unset the variables that are no longer required
-  unset SORTED_CONFIG_FILE_PATHS_JOINED
+  unset CONFIG_FILE_PATHS_JOINED
   unset NAME_TO_SEARCH_FOR
   unset SELECTED_CONFIG_PATH
 fi
@@ -134,4 +112,3 @@ fi
 unset CONFIG_FILE_PATHS
 unset CONFIG_FILE_ICONS
 unset SELECTED_CONFIG_NAME
-unset SORTED_CONFIG_FILE_PATHS
