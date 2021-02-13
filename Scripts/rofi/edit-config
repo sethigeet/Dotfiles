@@ -9,25 +9,25 @@ function join() {
 
 # define the file paths
 CONFIG_FILE_PATHS=(
-  "$HOME/.zshrc"
-  "$HOME/.bashrc"
-  "$HOME/.bash_profile"
-  "$HOME/.bash_prompt"
-  "$HOME/.doom.d/config.el"
-  "$HOME/.tmux.conf"
-  "$HOME/.vimrc"
-  "$HOME/.config/alacritty/alacritty.yml"
-  "$HOME/.config/i3/config"
-  "$HOME/.config/nvim/init.vim"
-  "$HOME/.config/picom/picom.conf"
-  "$HOME/.config/rofi/config.rasi"
-  "$HOME/.config/polybar/config.ini"
-  "$HOME/.config/shell/aliases"
-  "$HOME/.config/shell/paths"
-  "$HOME/.config/shell/varExports"
-  "$HOME/.config/shell/condaInit"
-  "$HOME/.config/vifm/vifmrc"
-  "$HOME/.config/zsh/.p10k.zsh"
+  "~/.zshrc"
+  "~/.bashrc"
+  "~/.bash_profile"
+  "~/.bash_prompt"
+  "~/.doom.d/config.el"
+  "~/.tmux.conf"
+  "~/.vimrc"
+  "~/.config/alacritty/alacritty.yml"
+  "~/.config/i3/config"
+  "~/.config/nvim/init.vim"
+  "~/.config/picom/picom.conf"
+  "~/.config/rofi/config.rasi"
+  "~/.config/polybar/config.ini"
+  "~/.config/shell/aliases"
+  "~/.config/shell/paths"
+  "~/.config/shell/varExports"
+  "~/.config/shell/condaInit"
+  "~/.config/vifm/vifmrc"
+  "~/.config/zsh/.p10k.zsh"
 )
 
 # define the file icons
@@ -62,19 +62,20 @@ for i in ${!SORTED_CONFIG_FILE_PATHS[@]}; do
   # get the path of the config from the paths
   path=${SORTED_CONFIG_FILE_PATHS[$i]}
 
+  # remove the home part from the path
+  pathFromHome=$(echo "$path" | sed "s/~\///g")
+
   # check if the config file is in the .config dir
-  pathInConfig=$(grep "/\..*/" <<<"$path")
+  pathInSubDir=$(echo "$pathFromHome" | grep "/")
   name=""
 
-  # check if the pathInConfig is empty or not
-  if [[ -z "${pathInConfig}" ]]; then
+  # check if the pathInSubDir is empty or not
+  if [[ -z "${pathInSubDir}" ]]; then
     # select only the name of the file
-    name=$(grep -o "/[^/]*$" <<<"$path" | sed "s/\///g")
-  elif [[ -z $(echo "$pathInConfig" | grep -o ".doom.d") ]]; then
-    # select the name of the file along with the directory it is in
-    name=$(grep -o "\/\..*" <<<"$path" | sed "s/^\/\.[^/]*\///g")
+    name="$pathFromHome"
   else
-    name=$(grep -o "\/\..*" <<<"$path" | sed "s/^\/\.[^/]*\//.doom.d\//g")
+    # select the name of the file along with the directory it is in
+    name=$(echo "$pathFromHome" | awk -F '/' '{print $2"/"$3"/"$4}' | sed "s/\/$//g" | sed "s/\.config\///g")
   fi
 
   # select the icon it is in
@@ -95,7 +96,7 @@ $nameWithIcon"
 
   # unset the variables that are no longer required
   unset path
-  unset pathInConfig
+  unset pathInSubDir
   unset name
   unset icon
   unset nameWithIcon
