@@ -1,33 +1,55 @@
 #!/bin/sh
 
 # Android emulator
-alias start-android-emulator="$HOME/Android/Sdk/emulator/emulator -avd Pixel_3_API_30 -qemu -enable-kvm"
+if [ -d "$HOME/Android/Sdk" ]; then
+  alias start-android-emulator="$HOME/Android/Sdk/emulator/emulator -avd Pixel_3_API_30 -qemu -enable-kvm"
+fi
 
 # vim
-alias vim="nvim"
+if type nvim &> /dev/null; then
+  alias vim="nvim"
+fi
 
 # vifm
-alias vifm="$HOME/.config/vifm/scripts/vifmrun"
+if type vifm &> /dev/null; then
+  alias vifm="$HOME/.config/vifm/scripts/vifmrun"
+fi
 
 # Changing "ls" to "exa"
-alias ls="exa --color=always"
-alias la="exa -ah --color=always"    # all files and dirs
-alias ll="exa -lh --color=always"    # long format
-alias lla="exa -lah --color=always"  # all files and dirs in long format
-alias l="exa -lah --color=always"    # all files and dirs in long format
-alias lt="exa -aT --color=always"   # tree listing
+if type exa &> /dev/null; then
+  alias ls="exa --color=always"
+  alias la="exa -ah --color=always"    # all files and dirs
+  alias ll="exa -lh --color=always"    # long format
+  alias lla="exa -lah --color=always"  # all files and dirs in long format
+  alias l="exa -lah --color=always"    # all files and dirs in long format
+  alias lt="exa -aT --color=always"   # tree listing
+else
+  alias ls="ls --color=auto"
+  alias la="ls -ah --color=auto"    # all files and dirs
+  alias ll="ls -lh --color=auto"    # long format
+  alias lla="ls -lah --color=auto"  # all files and dirs in long format
+  alias l="ls -lah --color=auto"    # all files and dirs in long format
+fi
 
 # Change grep to use ripgrep
-# alias grep="rg"
+if type rg &> /dev/null; then
+  # alias grep="rg"
+fi
 
 # Change find to use fd
-alias find="fd"
+if type fd &> /dev/null; then
+  alias find="fd"
+fi
 
 # Change cat to use bat
-alias cat="bat"
+if type bat &> /dev/null; then
+  alias cat="bat"
+fi
 
 # Change ps to use procs
-alias ps="procs"
+if type procs &> /dev/null; then
+  alias ps="procs"
+fi
 
 # confirm before overwriting something
 alias cp="cp -i"
@@ -35,7 +57,9 @@ alias mv="mv -i"
 alias rm="rm -i"
 
 # bare repo for dotfiles
-alias config="git --git-dir=$HOME/Dotfiles.git --work-tree=$HOME"
+if [ -d "$HOME/Dotfiles.git" ]; then 
+  alias config="git --git-dir=$HOME/Dotfiles.git --work-tree=$HOME"
+fi
 
 # to find the size of a dir
 alias csize="du -hs"

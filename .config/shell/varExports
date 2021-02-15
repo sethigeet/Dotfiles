@@ -7,7 +7,13 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Change the editor to nvim
-export EDITOR=nvim
+if type nvim &> /dev/null; then
+  export EDITOR=nvim
+elif type vim &> /dev/null; then
+  export EDITOR=vim
+else
+  export EDITOR=vi
+fi
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -17,5 +23,14 @@ export EDITOR=nvim
 # fi
 
 # Change the man cmd to use bat to print out coloured output
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+if type bat &> /dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
 
+# Ignore some commands from history
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+
+# Anaconda auto completion
+if type conda_auto_env &> /dev/null; then
+  export PROMPT_COMMAND="conda_auto_env;$PROMPT_COMMAND"
+fi

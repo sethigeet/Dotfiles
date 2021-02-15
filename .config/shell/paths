@@ -1,42 +1,66 @@
 #!/bin/sh
 
-# LOCAL BIN
-export PATH="$PATH:$HOME/.local/bin"
+# HOME BIN
+if [ -d "$HOME/.bin" ]; then 
+    export PATH="$HOME/.bin:$PATH"
+fi
 
-# ANACONDA
-export PROMPT_COMMAND="conda_auto_env;$PROMPT_COMMAND"
+# LOCAL BIN
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # ANDROID STUDIO
-export ANDROID_SDK="$HOME/Android/Sdk"
-export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+if [ -d "$HOME/Android/Sdk" ]; then
+  export ANDROID_SDK="$HOME/Android/Sdk"
+  export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+fi
 
 # FLUTTER
-export PATH="$PATH:$HOME/snap/flutter/common/flutter/bin"
+if [ -d "$HOME/snap/flutter" ]; then
+  export PATH="$PATH:$HOME/snap/flutter/common/flutter/bin"
+fi
 
 # YARN
-export PATH="$PATH:$HOME/.yarn/bin"
+if [ -d "$HOME/.yarn" ]; then
+  export PATH="$PATH:$HOME/.yarn/bin"
+fi
 
 # DENO
-export PATH="$PATH:$HOME/.deno/bin"
+if [ -d "$HOME/.deno" ]; then
+  export PATH="$PATH:$HOME/.deno/bin"
+fi
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d "$HOME/.nvm" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
 
 # GO
-export PATH="$PATH:/usr/local/go/bin"
+if [ -d "/usr/local/go" ]; then
+  export PATH="$PATH:/usr/local/go/bin"
+fi
 
 # PYENV
-export PATH="$PATH:$HOME/.pyenv/bin"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+if [ -d "$HOME/.pyenv" ]; then
+  export PATH="$PATH:$HOME/.pyenv/bin"
+  #eval "$(pyenv init -)"
+  #eval "$(pyenv virtualenv-init -)"
+fi
 
 # JULIA
-export PATH="$PATH:$HOME/julia/julia-1.5.3/bin"
+if [ -d "$HOME/julia" ]; then
+  export PATH="$PATH:$HOME/julia/julia-1.5.3/bin"
+fi
 
 # RUST
-export PATH="$PATH:$HOME/.cargo/bin"
+if [ -d "$HOME/.cargo" ]; then
+  export PATH="$PATH:$HOME/.cargo/bin"
+fi
 
 # Doom Emacs
-export PATH="$PATH:$HOME/.emacs.d/bin"
+if [ -d "$HOME/.emacs.d" ]; then
+  export PATH="$PATH:$HOME/.emacs.d/bin"
+fi
