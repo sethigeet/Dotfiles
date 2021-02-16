@@ -2,7 +2,6 @@ from .clock import clock
 from .current_layout import current_layout, current_layout_icon
 from .group_box import groupBox
 from .logo import logo
-from .memory import memory
 from .net import net
 from .seperator import seperator
 from .systray import systray
