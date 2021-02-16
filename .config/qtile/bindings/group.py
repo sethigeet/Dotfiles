@@ -1,0 +1,25 @@
+from libqtile.config import Key
+from libqtile.lazy import lazy
+
+from constants import mod
+from groups import group_names
+
+group_key_bindings = [
+    Key([mod], "backslash", lazy.screen.toggle_group(),
+        desc="Switch to the last visited group"),
+    Key([mod], "Tab", lazy.screen.next_group(),
+        desc="Switch to the next group"),
+    Key([mod, "shift"], "Tab", lazy.screen.prev_group(),
+        desc="Switch to the previous group"),
+]
+
+for i, item in enumerate(group_names, 1):
+    name = item[0]
+
+    # Switch to another group
+    group_key_bindings.append(
+        Key([mod], str(i), lazy.group[name].toscreen(), desc=f"Switch to group {i}"))
+
+    # Send the focused window to another group
+    group_key_bindings.append(Key([mod, "shift"], str(i), lazy.window.togroup(
+        name), desc=f"Move focused window to group {i}"))
