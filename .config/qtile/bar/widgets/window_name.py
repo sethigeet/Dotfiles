@@ -30,7 +30,7 @@ class WindowName(widget.WindowName):
         self.bar.draw()
 
 
-def windowName():
+def window_name():
     return WindowName(
         foreground=colors["panel"]["windowName"],
         background=colors["panel"]["bg"],

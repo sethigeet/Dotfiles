@@ -3,7 +3,7 @@ from libqtile import widget
 from defaults.colors import colors
 
 
-def groupBox():
+def group_box():
     return widget.GroupBox(
         fontsize=16,
         padding_x=5,

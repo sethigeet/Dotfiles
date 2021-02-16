@@ -3,7 +3,7 @@ from libqtile import widget
 from defaults.colors import colors
 
 
-def textBoxSeperator():
+def text_box_seperator():
     return widget.TextBox(
         text=' | ',
         background=colors["widget"]["bg"],

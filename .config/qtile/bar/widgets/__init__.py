@@ -1,33 +1,33 @@
 from .clock import clock
 from .current_layout import current_layout, current_layout_icon
-from .group_box import groupBox
+from .group_box import group_box
 from .logo import logo
 from .net import net
 from .seperator import seperator
 from .systray import systray
-from .text_box_seperator import textBoxSeperator
+from .text_box_seperator import text_box_seperator
 from .volume import volume
-from .window_name import windowName
+from .window_name import window_name
 from .spacer import spacer
 from .power_menu import power_menu
 
 widgets = [
     logo(),
-    groupBox(),
+    group_box(),
     spacer(),
-    windowName(),
+    window_name(),
     spacer(),
     net(),
-    textBoxSeperator(),
+    text_box_seperator(),
     volume(),
-    textBoxSeperator(),
+    text_box_seperator(),
     current_layout_icon(),
     current_layout(),
-    textBoxSeperator(),
+    text_box_seperator(),
     clock(),
-    textBoxSeperator(),
+    text_box_seperator(),
     power_menu(),
-    textBoxSeperator(),
+    text_box_seperator(),
     seperator(),
     systray()
 ]
