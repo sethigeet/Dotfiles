@@ -1,5 +1,4 @@
 # Load dotfiles:
-for file in ~/.{path,bash_prompt,condaInit,aliases}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
+file="$HOME/.config/shell/init_shell"
+[ -r "$file" ] && [ -f "$file" ] && source "$file";
 unset file;

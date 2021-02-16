@@ -67,7 +67,6 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # Load dotfiles:
-for file in ~/.config/shell/{paths,condaInit,varExports,aliases}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
+file="$HOME/.config/shell/init_shell"
+[ -r "$file" ] && [ -f "$file" ] && source "$file";
 unset file;

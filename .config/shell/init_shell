@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Load dotfiles:
+for file in ~/.config/shell/*; do
+  if [ -r "$file" ] && [ -f "$file" ] && [ "$file" != "$0" ]; then
+    source "$file";
+  fi
+done;
+
