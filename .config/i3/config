@@ -13,11 +13,6 @@ set $outer_gaps 0
 set $term       --no-startup-id alacritty
 set $mod        Mod4
 set $alt        Mod1
-set $shutdown   shutdown now
-set $reboot     reboot
-set $lock       dm-tool lock
-set $suspend    sudo systemctl suspend
-set $hibernate  sudo -A systemctl hibernate
 
 # Use Mouse + $mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -34,8 +29,7 @@ bindsym $mod+Return 		         exec $term
 bindsym $mod+Shift+Return	       exec $term --working-directory  $(xcwd)
 
 # Escape
-bindsym $mod+Escape	             exec --no-startup-id dm-tool switch-to-greeter
-bindsym $mod+Shift+Escape	       exec --no-startup-id $hibernate
+# --- NONE ---
 
 # Space
 bindsym $mod+space 			         exec --no-startup-id rofi -show drun
@@ -133,7 +127,7 @@ bindsym $mod+x	                 exec --no-startup-id ~/Scripts/rofi/sysmenu
 # --- NONE ---
 
 # Z
-bindsym $mod+z			             exec --no-startup-id $term -e nvim ~/.zshrc
+# --- NONE ---
 
 
 # --- Workspace Key Bindings --- #
