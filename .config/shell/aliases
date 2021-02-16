@@ -32,9 +32,9 @@ else
 fi
 
 # Change grep to use ripgrep
-if type rg &> /dev/null; then
+# if type rg &> /dev/null; then
   # alias grep="rg"
-fi
+# fi
 
 # Change find to use fd
 if type fd &> /dev/null; then
