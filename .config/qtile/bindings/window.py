@@ -43,12 +43,16 @@ window_key_bindings = [
         desc="Toggle between layouts"),
 
     # Toggle maximized
-    Key([mod], "f", lazy.window.toggle_maximize(),
+    Key([mod, "control"], "f", lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen"),
+
+    # Toggle maximized
+    Key([mod], "f", lazy.window.toggle_maximize(),
+        desc="Toggle maximized"),
 
     # Toggle minimized
     Key([mod], "m", lazy.window.toggle_minimize(),
-        desc="Toggle fullscreen"),
+        desc="Toggle minimized"),
 
     # Toggle floating
     Key([mod, "shift"], "f", lazy.window.toggle_floating(),
