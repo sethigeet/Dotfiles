@@ -1,5 +1,5 @@
 * {
-  background-color:           #1F2430;
+  background-color:           #1F243080;
   text-color:                 #ffffff;
   accent-color:               #ffcc66;
   hover-color:                #39454b;
@@ -20,14 +20,6 @@
   active-foreground:          @text-color;
   selected-active-background: @hover-color;
   active-background:          @accent-color;
-
-  background:                 #24334Aff;
-  background-alt:             #29384Fff;
-  foreground:                 #FEFFF1ff;
-  border:               			#3A6081ff;
-  border-alt:               	#715979ff;
-  selected:               		#C46C854C;
-  urgent:                     #DA4453FF;
 }
 
 /* vim: ft=css

@@ -5,8 +5,8 @@ configuration {
 
 @import "colors.rasi"
 
-#window {
-  font: "Nunito Nerd Font Bold 14";
+window {
+  font: "Nunito Nerd Font Bold 15";
   location: 0;
   background-color: @backgroundcolor;
   border-color: @accentcolor;
@@ -16,7 +16,7 @@ configuration {
   width: 640;
 }
 
-#mainbox {
+mainbox {
   children: [ entry, listview, mode-switcher ];
 }
 
