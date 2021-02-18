@@ -16,7 +16,7 @@ general_key_bindings = [
         desc="Show the edit-config launcher"),
 
     # Show power menu
-    Key([mod], "x", lazy.spawn(scripts_dir + "rofi/sysmenu"),
+    Key([mod], "x", lazy.spawn(scripts_dir + "rofi/power-menu"),
         desc="Show the power menu"),
 
     # Media keys

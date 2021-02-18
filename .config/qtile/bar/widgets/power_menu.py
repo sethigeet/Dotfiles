@@ -12,6 +12,6 @@ def power_menu():
         fontsize=20,
         padding=5,
         mouse_callbacks={
-            'Button1': lambda: qtile.cmd_spawn(scripts_dir + "rofi/sysmenu")
+            'Button1': lambda: qtile.cmd_spawn(scripts_dir + "rofi/power-menu")
         }
     )

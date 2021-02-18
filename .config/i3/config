@@ -121,7 +121,7 @@ bindsym $mod+v 			             exec $term -e vifm
 bindsym $mod+w 			             exec --no-startup-id brave-browser
 
 # X
-bindsym $mod+x	                 exec --no-startup-id ~/Scripts/rofi/sysmenu
+bindsym $mod+x	                 exec --no-startup-id ~/Scripts/rofi/power-menu
 
 # Y
 # --- NONE ---
