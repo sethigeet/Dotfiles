@@ -1,10 +1,10 @@
 * {
-  background-color:           #1F243080;
-  text-color:                 #ffffff;
-  accent-color:               #ffcc66;
-  hover-color:                #39454b;
-  urgent-color:               #ff5252;
-  window-color:               #ffffff;
+  background-color:           #1F2430;
+  text-color:                 #FFFFFF;
+  accent-color:               #FFCC66;
+  hover-color:                #39454B;
+  urgent-color:               #FF5252;
+  window-color:               #FFFFFF;
 
   selected-normal-foreground: @window-color;
   normal-foreground:          @text-color;
