@@ -1,10 +1,10 @@
 
 let g:startify_custom_header = [
-        \ '        _   ___    ________          __   ',
-        \ '       / | / / |  / / ____/___  ____/ /__ ',
-        \ '      /  |/ /| | / / /   / __ \/ __  / _ \',
-        \ '     / /|  / | |/ / /___/ /_/ / /_/ /  __/',
-        \ '    /_/ |_/  |___/\____/\____/\__,_/\___/ ',
+        \ '       ______          __ _          _   ___    ________  ___',
+        \ '      / ____/__  ___  / /( )_____   / | / / |  / /  _/  |/  /',
+        \ '     / / __/ _ \/ _ \/ __/// ___/  /  |/ /| | / // // /|_/ /',
+        \ '    / /_/ /  __/  __/ /_  (__  )  / /|  / | |/ // // /  / /',
+        \ '    \____/\___/\___/\__/ /____/  /_/ |_/  |___/___/_/  /_/',
         \]
                                       
 let g:startify_session_dir = '~/.config/nvim/session'
@@ -33,10 +33,10 @@ function! StartifyEntryFormat()
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'z': '~/.zshrc' },
-            \ { 'a': '~/.config/shell/.aliases.sh' },
-            \ { 'p': '~/.config/shell/.paths.sh' },
-            \ { 'c': '~/.config/shell/.condaInit.sh' },
-            \ { 'v': '~/.config/shell/.varExports.sh' },
+            \ { 'a': '~/.config/shell/aliases' },
+            \ { 'p': '~/.config/shell/paths' },
+            \ { 'c': '~/.config/shell/conda_init' },
+            \ { 'v': '~/.config/shell/var_exports' },
             \ ]
 
 let g:startify_enable_special = 0
