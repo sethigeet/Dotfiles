@@ -12,13 +12,17 @@ general_key_bindings = [
     Key([mod], "space", lazy.spawn("rofi -show drun"),
         desc="Show the run launcher"),
 
-    # Show edit-config launcher
+    # Show the edit-config launcher
     Key([mod], "c", lazy.spawn(scripts_dir + "rofi/edit-config"),
         desc="Show the edit-config launcher"),
 
-    # Show power menu
+    # Show the power menu
     Key([mod], "x", lazy.spawn(scripts_dir + "rofi/power-menu"),
         desc="Show the power menu"),
+
+    # Show the file browser
+    Key([mod], "z", lazy.spawn(scripts_dir + "rofi/file-browser"),
+        desc="Show the file browser"),
 
     # Display the keybindings
     Key([mod], "F1", lazy.function(display_kb),
