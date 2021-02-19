@@ -63,11 +63,11 @@ configuration {
   //	matching-negate-char: '-' /* unsupported ;*/
   //	cache-dir: ;
   //	pid: "/run/user/1000/rofi.pid";
-  display-window: "Windows";
+  display-window: "  Windows";
   //	display-windowcd: ;
-  display-run: "Run";
+  display-run: "  Run";
   display-ssh: "SSH";
-  display-drun: "Applications";
+  display-drun: "  Apps";
   display-combi: "All";
   display-keys: "Keys";
   display-file-browser: "Files";
