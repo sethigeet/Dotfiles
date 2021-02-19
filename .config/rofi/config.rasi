@@ -70,6 +70,7 @@ configuration {
   display-drun: "Applications";
   display-combi: "All";
   display-keys: "Keys";
+  display-file-browser: "Files";
   //	kb-primary-paste: "Control+V,Shift+Insert";
   //	kb-secondary-paste: "Control+v,Insert";
   //	kb-clear-line: "Control+w";

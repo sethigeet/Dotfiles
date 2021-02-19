@@ -77,6 +77,10 @@ element alternate.active {
   text-color:       @active-foreground;
 }
 
+element-icon {
+  size: 2ch;
+}
+
 button {
   padding: 8px;
 }
