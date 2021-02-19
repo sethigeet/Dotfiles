@@ -1,6 +1,7 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
 
+from utils.display_kb import display_kb
 from constants import mod, terminal, scripts_dir
 
 general_key_bindings = [
@@ -18,6 +19,10 @@ general_key_bindings = [
     # Show power menu
     Key([mod], "x", lazy.spawn(scripts_dir + "rofi/power-menu"),
         desc="Show the power menu"),
+
+    # Display the keybindings
+    Key([mod], "F1", lazy.function(display_kb),
+        desc="Display all the keybindings"),
 
     # Media keys
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%"),

@@ -28,7 +28,7 @@ if type bat &> /dev/null; then
 fi
 
 # Ignore some commands from history
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
 # Anaconda auto completion
 if type conda_auto_env &> /dev/null; then

@@ -5,11 +5,11 @@ from constants import mod, terminal
 
 apps_key_bindings = [
     # alsa mixer
-    Key([mod], "a", lazy.spawn(terminal + " -e alsamixer"),
+    Key([mod], "a", lazy.spawn([terminal, "-e", "alsamixer"]),
         desc="Run alsamixer"),
 
     # bpytop
-    Key([mod], "b", lazy.spawn(terminal + " -e bpytop"),
+    Key([mod], "b", lazy.spawn([terminal, "-e", "bpytop"]),
         desc="Run bpytop"),
 
     # graphical file manager
@@ -17,7 +17,7 @@ apps_key_bindings = [
         desc="Run nautilus"),
 
     # terminal file manager
-    Key([mod], "v", lazy.spawn("vifm"),
+    Key([mod], "v", lazy.spawn([terminal, "-e", "vifm"]),
         desc="Run vifm"),
 
     # code editor
