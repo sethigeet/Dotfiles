@@ -29,5 +29,6 @@ widgets = [
     power_menu(),
     text_box_seperator(),
     seperator(),
-    systray()
+    systray(),
+    seperator()
 ]
