@@ -7,15 +7,15 @@ configuration {
 @import "colors.rasi"
 
 window {
-    transparency:       "real";
-    background-color:   @background-color;
-    text-color:         @text-color;
-    border-radius:      25px;
-    height:             28.5%;
-    width:              50%;
-    location:           center;
-    x-offset:           0;
-    y-offset:           0;
+  transparency:         "real";
+  background-color:     @background-color;
+  text-color:           @text-color;
+  border-radius:        25px;
+  height:               28.5%;
+  width:                50%;
+  location:             center;
+  x-offset:             0;
+  y-offset:             0;
 }
 
 prompt {
