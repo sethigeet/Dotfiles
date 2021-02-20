@@ -32,6 +32,10 @@ def display_kb(qtile):
         keySym = keySym.replace("Tab", "\uf811")
         keySym = keySym.replace("Return", "\uf810")
         keySym = keySym.replace("backslash", "\\")
+        keySym = keySym.replace("Left", "\ue344")
+        keySym = keySym.replace("Down", "\ue340")
+        keySym = keySym.replace("Up", "\ue353")
+        keySym = keySym.replace("Right", "\ue349")
         keySym = keySym.upper()
 
         mod = key_binding[mod_range[0]:mod_range[1]

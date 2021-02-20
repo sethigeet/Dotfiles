@@ -4,36 +4,6 @@ from libqtile.lazy import lazy
 from constants import mod
 
 window_key_bindings = [
-    # Switch focus between windows
-    Key([mod], "h", lazy.layout.left(),
-        desc="Move focus to the left window"),
-    Key([mod], "j", lazy.layout.down(),
-        desc="Move focus to the down window"),
-    Key([mod], "k", lazy.layout.up(),
-        desc="Move focus to the up window"),
-    Key([mod], "l", lazy.layout.right(),
-        desc="Move focus to the right window"),
-
-    # Move windows
-    Key([mod, "control"], "h", lazy.layout.shuffle_left(),
-        desc="Move window left"),
-    Key([mod, "control"], "j", lazy.layout.shuffle_down(),
-        desc="Move window down"),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up(),
-        desc="Move window up"),
-    Key([mod, "control"], "l", lazy.layout.shuffle_right(),
-        desc="Move window right"),
-
-    # Change the size of the windows
-    Key([mod, "shift"], "h", lazy.layout.grow_left(), lazy.layout.shrink(),
-        desc="Increase the size of the windows in the left direction"),
-    Key([mod, "shift"], "j", lazy.layout.grow_down(), lazy.layout.shrink(),
-        desc="Increase the size of the windows in the down direction"),
-    Key([mod, "shift"], "k", lazy.layout.grow_up(),  lazy.layout.grow(),
-        desc="Increase the size of the windows in the up direction"),
-    Key([mod, "shift"], "l", lazy.layout.grow_right(), lazy.layout.grow(),
-        desc="Increase the size of the windows in the right direction"),
-
     # Toggle the spilt between the windows
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between vertical and horizontal splits"),
@@ -61,3 +31,67 @@ window_key_bindings = [
     # Kill the focused window
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
 ]
+
+# Add keybindings for left keys
+for key in ["h", "Left"]:
+    window_key_bindings.extend([
+        # Switch focus between windows
+        Key([mod], key, lazy.layout.left(),
+            desc="Move focus to the left window"),
+
+        # Move windows
+        Key([mod, "control"], key, lazy.layout.shuffle_left(),
+            desc="Move window left"),
+
+        # Change the size of the windows
+        Key([mod, "shift"], key, lazy.layout.grow_left(), lazy.layout.shrink(),
+            desc="Increase the size of the windows in the left direction"),
+    ])
+
+# Add keybindings for down keys
+for key in ["j", "Down"]:
+    window_key_bindings.extend([
+        # Switch focus between windows
+        Key([mod], key, lazy.layout.down(),
+            desc="Move focus to the down window"),
+
+        # Move windows
+        Key([mod, "control"], key, lazy.layout.shuffle_down(),
+            desc="Move window down"),
+
+        # Change the size of the windows
+        Key([mod, "shift"], key, lazy.layout.grow_down(), lazy.layout.shrink(),
+            desc="Increase the size of the windows in the down direction"),
+    ])
+
+# Add keybindings for up keys
+for key in ["k", "Up"]:
+    window_key_bindings.extend([
+        # Switch focus between windows
+        Key([mod], key, lazy.layout.up(),
+            desc="Move focus to the up window"),
+
+        # Move windows
+        Key([mod, "control"], key, lazy.layout.shuffle_up(),
+            desc="Move window up"),
+
+        # Change the size of the windows
+        Key([mod, "shift"], key, lazy.layout.grow_up(),  lazy.layout.grow(),
+            desc="Increase the size of the windows in the up direction"),
+    ])
+
+# Add keybindings for right keys
+for key in ["l", "Right"]:
+    window_key_bindings.extend([
+        # Switch focus between windows
+        Key([mod], key, lazy.layout.right(),
+            desc="Move focus to the right window"),
+
+        # Move windows
+        Key([mod, "control"], key, lazy.layout.shuffle_right(),
+            desc="Move window right"),
+
+        # Change the size of the windows
+        Key([mod, "shift"], key, lazy.layout.grow_right(), lazy.layout.grow(),
+            desc="Increase the size of the windows in the right direction"),
+    ])
