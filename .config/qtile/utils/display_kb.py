@@ -53,12 +53,14 @@ def display_kb(qtile):
 
         kb_for_rofi = ""
 
+        key_binding_markup_start = '<span bgcolor="#29384F">'
+        key_binding_markup_end = "</span>"
         if mod != "":
-            kb_for_rofi = f"{mod} + {keySym}"
+            kb_for_rofi = f"{key_binding_markup_start} {mod} + {keySym} {key_binding_markup_end}"
         else:
-            kb_for_rofi = f"{keySym}"
+            kb_for_rofi = f"{key_binding_markup_start} {keySym} {key_binding_markup_end}"
 
-        while len(kb_for_rofi) <= keySym_lenght:
+        while len(kb_for_rofi) - len(key_binding_markup_start) - len(key_binding_markup_end) <= keySym_lenght:
             kb_for_rofi += " "
 
         kb_for_rofi += f"{desc}\n"

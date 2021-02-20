@@ -12,8 +12,10 @@ group_key_bindings = [
     Key([mod, "shift"], "Tab", lazy.screen.prev_group(),
         desc="Switch to the previous group"),
 
-    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("terminal")),
-    Key([mod], "0", lazy.group["scratchpad"].dropdown_toggle("terminal")),
+    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle(
+        "terminal"), desc="Toggle the scratchpad with the terminal"),
+    Key([mod], "0", lazy.group["scratchpad"].dropdown_toggle(
+        "terminal"), desc="Toggle the scratchpad with the terminal"),
 ]
 
 for i, item in enumerate(group_names, 1):
