@@ -15,7 +15,7 @@ fi
 # Options
 screen=""
 area=""
-window=""
+window=""
 
 # Variable passed to rofi
 options="$screen|$area|$window"
