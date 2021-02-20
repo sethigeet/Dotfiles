@@ -24,12 +24,6 @@ apps_key_bindings = [
     Key([mod, "shift"], "e", lazy.spawn("code"),
         desc="Run VS Code"),
 
-    # screenshot tool
-    Key([mod], "p", lazy.spawn("flameshot gui"),
-        desc="Run flameshot and show the gui"),
-    Key([mod, "shift"], "p", lazy.spawn("flameshot full"),
-        desc="Run flameshot and take the screenshot of the whole screen"),
-
     # terminal file manager
     Key([mod], "w", lazy.spawn("brave-browser"),
         desc="Run the Brave Browser"),

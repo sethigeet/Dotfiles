@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+# Error msg
+msg() {
+	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+}
+
+IMG_PATH="$HOME/Pictures/Screenshots"
+TIME=3000 #Miliseconds notification should remain visible
+
+if [ ! -d "$IMG_PATH" ]; then
+  mkdir -p "$IMG_PATH"
+fi
+
+# Options
+screen=""
+area=""
+window=""
+
+# Variable passed to rofi
+options="$screen|$area|$window"
+
+selected="$(rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i \
+-theme "$HOME/.config/rofi/themes/screenshot.rasi" \
+<<< "$options")"
+
+cd "$IMG_PATH"
+
+case "$selected" in
+  $screen)
+    if type scrot &> /dev/null; then
+      sleep 1;
+      flameshot full -p "$IMG_PATH";
+    elif type scrot &> /dev/null; then
+      sleep 1;
+      scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
+      notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the whole screen has been taken!';
+    else
+      msg "scrot/flameshot";
+    fi
+    ;;
+  $area)
+    if type flameshot &> /dev/null; then
+      sleep 1;
+      flameshot gui -p "$IMG_PATH";
+    elif type scrot &> /dev/null; then
+      sleep 1;
+      scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
+      notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the selected section has been taken!';
+    else
+      msg "scrot/flameshot";
+    fi
+    ;;
+  $window)
+    if type scrot &> /dev/null; then
+      sleep 1;
+      scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
+      notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the focued window has been taken!';
+    else
+      msg "scrot"
+    fi
+    ;;
+esac
+
