@@ -1,17 +1,27 @@
 #!/bin/bash
 
-MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
--lines 4 \
--line-padding 10 \
--padding 20 \
--width 15 \
--xoffset -10 -yoffset 40 \
--location 3 \
-<<< " Lock| Logout| Reboot| Shutdown")"
-case "$MENU" in
-  *Lock) dm-tool lock;;
-  *Logout) sudo /etc/init.d/gdm3 restart;;
-  *Reboot) reboot ;;
-  *Shutdown) shutdown now
+# Find the uptime of the machine
+uptime=$(uptime -p | sed -e 's/up //g')
+
+# Options (using Feather fonts)
+lock=""
+logout=""
+sleep=""
+reboot=""
+shutdown=""
+
+# Variable passed to rofi
+options="$lock|$logout|$sleep|$reboot|$shutdown"
+
+selected="$(rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i -p "Uptime :  $uptime" \
+-theme "$HOME/.config/rofi/themes/power_menu.rasi" \
+<<< "$options")"
+
+case "$selected" in
+  $lock) dm-tool lock ;;
+  $logout) sudo /etc/init.d/gdm3 restart ;;
+  $sleep) sudo pm-suspend ;;
+  $reboot) reboot ;;
+  $shutdown) shutdown now
 esac
 

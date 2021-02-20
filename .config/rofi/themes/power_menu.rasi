@@ -1,0 +1,107 @@
+configuration {
+	font:							    "Nunito Nerd Font 12";
+  show-icons:           false;
+	sidebar-mode: 				false;
+}
+
+@import "colors.rasi"
+
+window {
+    transparency:       "real";
+    background-color:   @background-color;
+    text-color:         @text-color;
+    border-radius:      25px;
+    height:             28.5%;
+    width:              50%;
+    location:           center;
+    x-offset:           0;
+    y-offset:           0;
+}
+
+prompt {
+  enabled: 						  true;
+  padding:              0.5% 0.5% 0.5% 0%;
+	background-color: 		@background-color-alt;
+	text-color: 					@text-color;
+}
+
+textbox-prompt-colon {
+	expand: 						  false;
+	str: 							    "System |";
+	background-color: 		@background-color-alt;
+	text-color: 					@text-color;
+  padding:              0.5% 0.5% 0.5% 0%;
+}
+
+inputbar {
+	children: 						[ textbox-prompt-colon, prompt ];
+  background-color:     @background-color-alt;
+  text-color:           @text-color;
+  expand:               false;
+  border:               0% 0.2% 0.2% 0%;
+  border-radius:        0% 100% 100% 100%;
+  margin:               0% 21.3% 0% 0%;
+  padding:              0.5% 0.5% 0.5% 1%;
+  position:             center;
+}
+
+listview {
+  background-color:    @background-color;
+  margin:              0% 0% 0% 0%;
+  spacing:             2%;
+  cycle:               true;
+  dynamic:             true;
+  layout:              horizontal;
+}
+
+mainbox {
+  background-color:    @background-color;
+  children:            [ inputbar, listview ];
+  spacing:             3.5%;
+  padding:             4% 0% 0% 2%;
+}
+
+element {
+  background-color:    @background-color-alt;
+  text-color:          @text-color;
+  orientation:         horizontal;
+  border-radius:       100%;
+}
+
+element-text {
+	font:							   "Nunito Nerd Font 32";
+  expand:              true;
+  horizontal-align:    0.5;
+  vertical-align:      0.5;
+  margin:              4.5% 2.7% 7.5% 2.7%;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color:    @urgent-color;
+  text-color:          @text-color;
+  border-radius:       0.2%;
+}
+
+element normal.active,
+element alternate.active {
+  background-color:    @background-color-alt;
+  text-color:          @text-color;
+}
+
+element selected {
+  background-color:    @accent-color;
+  text-color:          @text-color;
+}
+
+element selected.urgent {
+  background-color:    @urgent-color;
+  text-color:          @text-color;
+}
+
+element selected.active {
+  background-color:    @background-color-alt;
+  color:               @text-color;
+}
+
+/* vim: ft=css
