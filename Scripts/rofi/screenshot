@@ -8,9 +8,7 @@ msg() {
 IMG_PATH="$HOME/Pictures/Screenshots"
 TIME=3000 #Miliseconds notification should remain visible
 
-if [ ! -d "$IMG_PATH" ]; then
-  mkdir -p "$IMG_PATH"
-fi
+[ -d "$IMG_PATH" ] || mkdir -p "$IMG_PATH"
 
 # Options
 screen=""
@@ -20,7 +18,7 @@ window=""
 # Variable passed to rofi
 options="$screen|$area|$window"
 
-selected="$(rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i \
+selected="$(rofi -no-lazy-grab -selected-row 1 -sep "|" -dmenu -i \
 -theme "$HOME/.config/rofi/themes/screenshot.rasi" \
 <<< "$options")"
 
@@ -40,10 +38,10 @@ case "$selected" in
     fi
     ;;
   $area)
-    if type flameshot &> /dev/null; then
+    if command -v flameshot &> /dev/null; then
       sleep 1;
       flameshot gui -p "$IMG_PATH";
-    elif type scrot &> /dev/null; then
+    elif command -v scrot &> /dev/null; then
       sleep 1;
       scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
       notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the selected section has been taken!';
@@ -52,7 +50,7 @@ case "$selected" in
     fi
     ;;
   $window)
-    if type scrot &> /dev/null; then
+    if command -v scrot &> /dev/null; then
       sleep 1;
       scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
       notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the focued window has been taken!';

@@ -69,3 +69,4 @@ def display_kb(qtile):
 
     # Open the formatted keybindings in rofi
     qtile.cmd_spawn([scripts_dir + "rofi/display-kb", kbs_for_rofi])
+

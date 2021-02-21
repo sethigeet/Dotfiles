@@ -5,8 +5,7 @@ SESSIONNAME="portal"
 # Check if the session already exists
 tmux has-session -t $SESSIONNAME &> /dev/null
 
-if [ $? != 0 ]
-then
+if [ $? != 0 ]; then
   tmux new-session -s $SESSIONNAME -n "docker" -d
   tmux send-keys -t $SESSIONNAME "docker start redis postgresql" C-m
 
