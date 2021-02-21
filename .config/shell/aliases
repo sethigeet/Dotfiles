@@ -6,17 +6,17 @@ if [ -d "$HOME/Android/Sdk" ]; then
 fi
 
 # vim
-if type nvim &> /dev/null; then
+if command -v nvim &> /dev/null; then
   alias vim="nvim"
 fi
 
 # vifm
-if type vifm &> /dev/null; then
+if command -v vifm &> /dev/null; then
   alias vifm="$HOME/.config/vifm/scripts/vifmrun"
 fi
 
 # Changing "ls" to "exa"
-if type exa &> /dev/null; then
+if command -v exa &> /dev/null; then
   alias ls="exa --color=always"
   alias la="exa -ah --color=always"    # all files and dirs
   alias ll="exa -lh --color=always"    # long format
@@ -32,22 +32,22 @@ else
 fi
 
 # Change grep to use ripgrep
-# if type rg &> /dev/null; then
-  # alias grep="rg"
-# fi
+if command -v rg &> /dev/null; then
+  alias grep="rg"
+fi
 
 # Change find to use fd
-if type fd &> /dev/null; then
+if command -v fd &> /dev/null; then
   alias find="fd"
 fi
 
 # Change cat to use bat
-if type bat &> /dev/null; then
+if command -v bat &> /dev/null; then
   alias cat="bat"
 fi
 
 # Change ps to use procs
-if type procs &> /dev/null; then
+if command -v procs &> /dev/null; then
   alias ps="procs"
 fi
 
