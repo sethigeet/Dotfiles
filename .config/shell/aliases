@@ -17,12 +17,12 @@ fi
 
 # Changing "ls" to "exa"
 if command -v exa &> /dev/null; then
-  alias ls="exa --color=always"
-  alias la="exa -ah --color=always"    # all files and dirs
-  alias ll="exa -lh --color=always"    # long format
-  alias lla="exa -lah --color=always"  # all files and dirs in long format
-  alias l="exa -lah --color=always"    # all files and dirs in long format
-  alias lt="exa -aT --color=always"   # tree listing
+  alias ls="exa --icons --color=auto"
+  alias la="exa -ah --icons --color=auto"    # all files and dirs
+  alias ll="exa -lh --icons --color=auto"    # long format
+  alias lla="exa -lah --icons --color=auto"  # all files and dirs in long format
+  alias l="exa -lah --icons --color=auto"    # all files and dirs in long format
+  alias lt="exa -aT --icons --color=auto"   # tree listing
 else
   alias ls="ls --color=auto"
   alias la="ls -ah --color=auto"    # all files and dirs
