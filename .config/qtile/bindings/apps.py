@@ -25,6 +25,6 @@ apps_key_bindings = [
         desc="Run VS Code"),
 
     # terminal file manager
-    Key([mod], "w", lazy.spawn("brave-browser"),
+    Key([mod], "w", lazy.spawn("brave"),
         desc="Run the Brave Browser"),
 ]

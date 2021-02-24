@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Error msg
+msg() {
+	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e "ï”§ Not Implemented Yet."
+}
+
 # Find the uptime of the machine
 uptime=$(uptime -p | sed -e 's/up //g')
 
@@ -19,8 +24,8 @@ selected="$(rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i -p "Uptime : î
 
 case "$selected" in
   $lock) dm-tool lock ;;
-  $logout) sudo /etc/init.d/gdm3 restart ;;
-  $sleep) sudo pm-suspend ;;
+  $logout) dm-tool switch-to-greeter ;;
+  $sleep) msg ;;
   $reboot) reboot ;;
   $shutdown) shutdown now
 esac

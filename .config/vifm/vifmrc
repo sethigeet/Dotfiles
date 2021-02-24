@@ -213,10 +213,10 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
-        \ {Open with emacs}
-        \ emacsclient -c %c &,
         \ {Open with vim}
         \ vim %c &,
+        \ {Open with emacs}
+        \ emacsclient -c %c &,
         \ {Open with dwb}
         \ dwb %f %i &,
         \ {Open with firefox}
@@ -350,7 +350,7 @@ filextype *.pro qtcreator %f &
 " Directories
 filextype */
         \ {View in thunar}
-        \ Thunar %f &
+        \ nautilus %f &
 
 " Syntax highlighting in preview
 
