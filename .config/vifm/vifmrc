@@ -13,6 +13,9 @@ set vicmd=nvim
 
 set syscalls
 
+" Show all the dotfiles
+set dotfiles
+
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to
 " the trash directory.  If you change this you will not be able to move
