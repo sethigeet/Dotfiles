@@ -57,8 +57,8 @@ alias mv="mv -i"
 alias rm="rm -i"
 
 # bare repo for dotfiles
-if [ -d "$HOME/Dotfiles.git" ]; then 
-  alias config="git --git-dir=$HOME/Dotfiles.git --work-tree=$HOME"
+if [ -d "$HOME/Dotfiles" ]; then 
+  alias config="git --git-dir=$HOME/Dotfiles --work-tree=$HOME"
 fi
 
 # to find the size of a dir
