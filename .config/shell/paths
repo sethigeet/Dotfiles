@@ -39,8 +39,8 @@ if [ -d "$HOME/.nvm" ]; then
 fi
 
 # GO
-if [ -d "/usr/local/go" ]; then
-  export PATH="$PATH:/usr/local/go/bin"
+if [ -d "$HOME/go" ]; then
+  export PATH="$PATH:$HOME/go/bin"
 fi
 
 # PYENV
