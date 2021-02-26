@@ -6,7 +6,7 @@
 * TABLE OF CONTENTS :toc:
 - [[#about-this-config][ABOUT THIS CONFIG]]
 - [[#bookmarks-and-buffers][BOOKMARKS AND BUFFERS]]
-- [[#Centaur-Tabs][CENTAUR-TABS]]
+- [[#centaur-tabs][CENTAUR-TABS]]
 - [[#dired][DIRED]]
 - [[#doom-theme][DOOM THEME]]
 - [[#elfeed][ELFEED]]
@@ -26,6 +26,7 @@
 - [[#shells][SHELLS]]
 - [[#splits][SPLITS]]
 - [[#winner-mode][WINNER MODE]]
+- [[#misc-keybindings][MISC KEYBINDINGS]]
 
 * ABOUT THIS CONFIG
   :PROPERTIES:
@@ -274,8 +275,8 @@ Settings related to fonts within Doom Emacs:
 + 'font-lock-keyword-face' -- for keywords with special significance, like ‘for’ and ‘if’ in C.
 
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Fira Code" :size 15)
-      doom-variable-pitch-font (font-spec :family "Nunitio" :size 15)
+(setq doom-font (font-spec :family "Fira Code" :size 18)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 18)
       doom-big-font (font-spec :family "Fira Code" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -559,14 +560,13 @@ Settings for the various shells and terminal emulators within Emacs.
 + 'eshell-aliases-file' -- sets an aliases file for the eshell.
 
 #+BEGIN_SRC emacs-lisp
-(setq shell-file-name "/bin/fish"
-      eshell-aliases-file "~/.doom.d/aliases"
+(setq shell-file-name "/bin/zsh"
       eshell-history-size 5000
       eshell-buffer-maximum-lines 5000
       eshell-hist-ignoredups t
       eshell-scroll-to-bottom-on-input t
       eshell-destroy-buffer-when-process-dies t
-      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh")
+      eshell-visual-commands'("bash" "htop" "ssh" "top" "zsh")
       vterm-max-scrollback 5000)
 (map! :leader
       :desc "Counsel eshell history"
@@ -602,4 +602,15 @@ Winner mode has been included with GNU Emacs since version 20.  This is a global
       :leader
       :desc "Winner undo"
       "w <left>" #'winner-undo)
+#+END_SRC
+
+* MISC KEYBINDINGS
+  :PROPERTIES:
+  :CUSTOM_ID: misc-keybindings
+  :END:
+  Some of the keybindings I like
+
+#+BEGIN_SRC emacs-lisp
+(map! "C-s" #'save-buffer
+      :desc "Save the current buffer")
 #+END_SRC
