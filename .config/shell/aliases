@@ -62,4 +62,4 @@ if [ -d "$HOME/Dotfiles" ]; then
 fi
 
 # to find the size of a dir
-alias csize="du -hs"
+alias hsize="du -hs"

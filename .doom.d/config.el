@@ -198,12 +198,12 @@
 
 (after! org
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  (setq org-directory "~/Org/"
-        org-agenda-files '("~/Org/agenda.org")
+  (setq org-directory "~/Documents/Org/"
+        org-agenda-files '("~/Documents/Org/agenda.org")
         org-default-notes-file (expand-file-name "notes.org" org-directory)
         org-ellipsis " ▼ "
         org-log-done 'time
-        org-journal-dir "~/Org/journal/"
+        org-journal-dir "~/Documents/Org/journal/"
         org-journal-date-format "%B %d, %Y (%A) "
         org-journal-file-format "%Y-%m-%d.org"
         org-hide-emphasis-markers t
@@ -217,6 +217,7 @@
           '((sequence
              "TODO(t)"           ; A task that is ready to be tackled
              "PROJ(p)"           ; A project that contains other tasks
+             "EXAM(e)"           ; An examination that is yet to be given
              "WAIT(w)"           ; Something is holding up this task
              "|"                 ; The pipe necessary to separate "active" states and "inactive" states
              "DONE(d)"           ; Task has been completed
