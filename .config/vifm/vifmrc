@@ -16,6 +16,9 @@ set syscalls
 " Show all the dotfiles
 set dotfiles
 
+" Set the graphicsdelay to 0 for fast previews
+set previewoptions=graphicsdelay:0
+
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to
 " the trash directory.  If you change this you will not be able to move
