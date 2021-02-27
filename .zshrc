@@ -1,3 +1,5 @@
+neofetch
+
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -46,13 +48,11 @@ plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	colorize
-	django
 	extract
-	history
 	sudo
   conda-zsh-completion
   vi-mode
+	web-search
 )
 
 bindkey -v 'jk' vi-cmd-mode
