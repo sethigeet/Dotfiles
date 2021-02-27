@@ -58,49 +58,6 @@
       :desc "Load new theme"
       "h t" #'counsel-load-theme)
 
-(custom-set-variables
- '(elfeed-feeds
-   (quote
-    (("https://www.reddit.com/r/linux.rss" reddit linux)
-     ("https://www.gamingonlinux.com/article_rss.php" gaming linux)
-     ("https://hackaday.com/blog/feed/" hackaday linux)
-     ("https://opensource.com/feed" opensource linux)
-     ("https://linux.softpedia.com/backend.xml" softpedia linux)
-     ("https://itsfoss.com/feed/" itsfoss linux)
-     ("https://www.zdnet.com/topic/linux/rss.xml" zdnet linux)
-     ("https://www.phoronix.com/rss.php" phoronix linux)
-     ("http://feeds.feedburner.com/d0od" omgubuntu linux)
-     ("https://www.computerworld.com/index.rss" computerworld linux)
-     ("https://www.networkworld.com/category/linux/index.rss" networkworld linux)
-     ("https://www.techrepublic.com/rssfeeds/topic/open-source/" techrepublic linux)
-     ("https://betanews.com/feed" betanews linux)
-     ("http://lxer.com/module/newswire/headlines.rss" lxer linux)
-     ("https://distrowatch.com/news/dwd.xml" distrowatch linux)))))
-
-(emms-all)
-(emms-default-players)
-(emms-mode-line 1)
-(emms-playing-time 1)
-(setq emms-source-file-default-directory "~/Music/Non-Classical/70s-80s/"
-      emms-playlist-buffer-name "*Music*"
-      emms-info-asynchronously t
-      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
-(map! :leader
-      :desc "Go to emms playlist"
-      "a a" #'emms-playlist-mode-go
-      :leader
-      :desc "Emms pause track"
-      "a x" #'emms-pause
-      :leader
-      :desc "Emms stop track"
-      "a s" #'emms-stop
-      :leader
-      :desc "Emms play previous track"
-      "a p" #'emms-previous
-      :leader
-      :desc "Emms play next track"
-      "a n" #'emms-next)
-
 (map! :leader
       :desc "Evaluate elisp in buffer"
       "e b" #'eval-buffer
@@ -186,9 +143,6 @@
       :leader
       :desc "Edit doom config.org"
       "- c" #'(lambda () (interactive) (find-file "~/.doom.d/config.org"))
-      :leader
-      :desc "Edit eshell aliases"
-      "- e" #'(lambda () (interactive) (find-file "~/.doom.d/aliases"))
       :leader
       :desc "Edit doom init.el"
       "- i" #'(lambda () (interactive) (find-file "~/.doom.d/init.el"))
