@@ -101,7 +101,7 @@ bindsym $mod+q			             [con_id="__focused__" instance="^(?!dropdown_).*$"
 bindsym $mod+Shift+q		         [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
 # R
-# --- NONE ---
+bindsym $mod+Ctrl+r		           restart
 
 # S
 bindsym $mod+s        			     sticky toggle
@@ -118,7 +118,7 @@ bindsym $mod+u                   [urgent=latest] focus
 bindsym $mod+v 			             exec $term -e vifm
 
 # W
-bindsym $mod+w 			             exec --no-startup-id brave-browser
+bindsym $mod+w 			             exec --no-startup-id brave
 
 # X
 bindsym $mod+x	                 exec --no-startup-id ~/Scripts/rofi/power-menu
@@ -164,10 +164,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-
-
-# --- Function Buttons --- #
-bindsym $mod+F1		        restart
 
 
 # --- Arrow Keys --- #
