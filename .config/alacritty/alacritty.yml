@@ -1,7 +1,7 @@
 # Colors (Ayu Mirage)
 colors:
   primary:
-    background: "#202734"
+    background: "#1F2430"
     foreground: "#CBCCC6"
 
   # Normal colors
