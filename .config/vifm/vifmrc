@@ -352,8 +352,10 @@ filetype *.tudu tudu -f %c
 filextype *.pro qtcreator %f &
 
 " Directories
+fileviewer */
+        \ exa -T %f
 filextype */
-        \ {View in thunar}
+        \ {View in nautilus}
         \ nautilus %f &
 
 " Syntax highlighting in preview
