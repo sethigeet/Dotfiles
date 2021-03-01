@@ -6,7 +6,7 @@ from defaults.colors import colors
 
 def logo():
     return widget.TextBox(
-        text="",
+        text="",
         foreground=colors["widget"]["color"]["text"],
         background=colors["widget"]["accentBg"],
         fontsize=20,
