@@ -39,7 +39,7 @@ set nofollowlinks
 " With this option turned on you can run partially entered commands with
 " unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
 
-" set fastrun
+set fastrun
 
 " Natural sort of (version) numbers within text.
 
@@ -89,15 +89,13 @@ set ignorecase
 set smartcase
 
 " Don't highlight search results automatically
-
 set nohlsearch
 
 " Use increment searching (search while typing)
 set incsearch
 
 " Try to leave some space from cursor to upper/lower border in lists
-
-set scrolloff=4
+set scrolloff=3
 
 " Don't do too many requests to slow file systems
 
@@ -440,6 +438,9 @@ nnoremap S :sort<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
+" Previews
+nnoremap W :!bat %f<cr>
+
 " Open file in existing instance of nvim
 nnoremap o :!nvim --remote-tab-silent %f<cr>
 " Open file in new instance of nvim
@@ -472,20 +473,25 @@ endif
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
+nnoremap r cw
+
+" File operators
+nnoremap mf :touch<space>
+nnoremap md :mkdir<space>
+
+" Toggle selection with space
+nnoremap <space> :select<cr>
 
 " Open console in current directory
-nnoremap ,t :!xterm &<cr>
+nnoremap t :!alacritty &<cr>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart<cr>
-" Open gvim to edit vifmrc
-nnoremap ,C :!gvim --remote-tab-silent $MYVIFMRC &<cr>
 
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
 
 " Example of standard two-panel file managers mappings
-nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
 nnoremap <f5> :copy<cr>
 nnoremap <f6> :move<cr>
