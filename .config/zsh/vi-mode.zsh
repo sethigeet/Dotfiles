@@ -1,3 +1,5 @@
+# THIS FILE USES FUNCTIONS DEFINED IN OTHER FILES!
+
 # Initialize vi mode
 bindkey -v
 
@@ -19,12 +21,12 @@ bindkey -M menuselect 'right' vi-forward-char
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
+    change-cursor block
   elif [[ ${KEYMAP} == main ]] ||
        [[ ${KEYMAP} == viins ]] ||
        [[ ${KEYMAP} = '' ]] ||
        [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
+    change-cursor beam
   fi
 }
 zle -N zle-keymap-select
@@ -49,15 +51,15 @@ done
 
 # Initialize the first prompt
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
+  zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+  change-cursor beam
 }
 zle -N zle-line-init
 
 # Use beam shape cursor on startup
-echo -ne '\e[5 q'
+change-cursor beam
 
 # Use beam shape cursor for each new prompt
 precmd() {
-  echo -ne '\e[5 q';
+  change-cursor beam
 }

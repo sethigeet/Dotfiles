@@ -1,5 +1,5 @@
 # Load dotfiles:
-for file in ~/.config/shell/{paths.sh,var_exports.sh,aliases.sh,conda_init.sh}; do
+for file in ~/.config/shell/{paths.sh,var_exports.sh,aliases.sh,conda_init.sh,functions.sh}; do
   source "$file";
 done;
 
