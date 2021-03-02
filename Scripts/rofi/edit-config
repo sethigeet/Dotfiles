@@ -30,7 +30,6 @@ CONFIG_FILE_PATHS=(
   " ~/.config/bash/bash_prompt"
   " ~/.config/bash/init_bash"
   " ~/.config/vifm/vifmrc"
-  " ~/.config/zsh/.p10k.zsh"
 )
 
 # add icons to all the file names and convert them into a single string for rofi
