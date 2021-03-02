@@ -51,22 +51,13 @@ plugins=(
 	extract
 	sudo
   conda-zsh-completion
-  vi-mode
 	web-search
 )
-
-bindkey -v 'jk' vi-cmd-mode
-bindkey -v 'kj' vi-cmd-mode
 
 # Config for plugins
 ZSH_COLORIZE_STYLE="colorful"
 
 source $ZSH/oh-my-zsh.sh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-# Load dotfiles:
-file="$HOME/.config/shell/init_shell"
-[ -r "$file" ] && [ -f "$file" ] && source "$file";
-unset file;
+# Source the dotfiles
+[[ ! -f ~/.config/zsh/init_zsh.zsh ]] || source ~/.config/zsh/init_zsh.zsh
