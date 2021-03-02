@@ -352,11 +352,21 @@ filetype *.tudu tudu -f %c
 filextype *.pro qtcreator %f &
 
 " Directories
+fileviewer .*/
+        \ exa --color always -T %f
 fileviewer */
-        \ exa -T %f
+        \ exa --color always -T %f
 filextype */
         \ {View in nautilus}
         \ nautilus %f &
+
+fileviewer *
+        \ env -uCOLORTERM bat --color always --wrap never --pager never %c
+fileviewer *.*
+        \ env -uCOLORTERM bat --color always --wrap never --pager never %c
+fileviewer .*
+        \ env -uCOLORTERM bat --color always --wrap never --pager never %c
+
 
 " Syntax highlighting in preview
 
