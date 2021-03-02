@@ -57,6 +57,14 @@ alias rm="rm -i"
 # bare repo for dotfiles
 if [ -d "$HOME/Dotfiles" ]; then 
   alias config="git --git-dir=$HOME/Dotfiles --work-tree=$HOME"
+
+  alias cs="config status"
+  alias ca="config add"
+  alias cau="config add -u"
+  alias ccm="config commit -m"
+  alias cca="config commit --amend"
+  alias ccan="config commit --amend --no-edit"
+  alias cpush="config push origin master"
 fi
 
 # to find the size of a dir
