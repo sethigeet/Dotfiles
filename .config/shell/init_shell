@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# Load dotfiles:
-for file in ~/.config/shell/{paths,var_exports,aliases,conda_init}; do
-  source "$file";
-done;
-

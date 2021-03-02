@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # export KEYTIMEOUT=1
 
 # Set the encodings

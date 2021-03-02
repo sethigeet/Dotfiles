@@ -52,6 +52,7 @@ plugins=(
 	sudo
   conda-zsh-completion
 	web-search
+	command-not-found
 )
 
 # Config for plugins
@@ -60,4 +61,6 @@ ZSH_COLORIZE_STYLE="colorful"
 source $ZSH/oh-my-zsh.sh
 
 # Source the dotfiles
-[[ ! -f ~/.config/zsh/init_zsh.zsh ]] || source ~/.config/zsh/init_zsh.zsh
+file="$HOME/.config/zsh/init_zsh.zsh"
+[[ ! -f "$file" ]] || source "$file"
+unset file;

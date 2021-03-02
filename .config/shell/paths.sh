@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # HOME BIN
 if [ -d "$HOME/.bin" ]; then 
     export PATH="$HOME/.bin:$PATH"

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-for file in ~/.config/bash/bash_prompt; do
-  source "$file"
-done;
-

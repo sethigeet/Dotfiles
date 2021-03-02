@@ -1,9 +1,7 @@
-# Load common dotfiles:
 file="$HOME/.config/shell/init_shell.sh"
 [ -r "$file" ] && [ -f "$file" ] && source "$file";
 
-# Load zsh dotfiles:
-for file in ~/.config/zsh/{p10k.zsh,vi-mode.zsh}; do
+for file in $HOME/config/bash/bash_prompt.bash; do
   source "$file"
 done;
 
