@@ -6,7 +6,8 @@ msg() {
 }
 
 IMG_PATH="$HOME/Pictures/Screenshots"
-TIME=3000 #Miliseconds notification should remain visible
+TIME=3000 # Miliseconds notification should remain visible
+ICON="camera" # The icon to be shown in the notification
 
 [ -d "$IMG_PATH" ] || mkdir -p "$IMG_PATH"
 
@@ -32,7 +33,7 @@ case "$selected" in
     elif type scrot &> /dev/null; then
       sleep 1;
       scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
-      notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the whole screen has been taken!';
+      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the whole screen has been taken!';
     else
       msg "scrot/flameshot";
     fi
@@ -44,7 +45,7 @@ case "$selected" in
     elif command -v scrot &> /dev/null; then
       sleep 1;
       scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
-      notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the selected section has been taken!';
+      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the selected section has been taken!';
     else
       msg "scrot/flameshot";
     fi
@@ -53,7 +54,7 @@ case "$selected" in
     if command -v scrot &> /dev/null; then
       sleep 1;
       scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
-      notify-send -u low -t $TIME 'Screenshot' 'Screenshot of the focued window has been taken!';
+      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the focued window has been taken!';
     else
       msg "scrot"
     fi
