@@ -53,10 +53,14 @@ plugins=(
   conda-zsh-completion
 	web-search
 	command-not-found
+	vi-mode
 )
 
 # Config for plugins
 ZSH_COLORIZE_STYLE="colorful"
+
+# Change the cursor style according to the vi mode
+VI_MODE_SET_CURSOR=true
 
 source $ZSH/oh-my-zsh.sh
 
