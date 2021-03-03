@@ -1,0 +1,21 @@
+[user]
+	email = geetsethi05@gmail.com
+	name = Geet Sethi
+
+[alias]
+  patch = !git --no-pager diff --no-color
+
+[core]
+	editor = nvim
+
+[github]
+	user = sethigeet
+
+[hub]
+	protocol = https
+
+[color]
+	ui = true
+
+; [credential "https://github.com"]
+; 	helper = !gh auth git-credential
