@@ -73,6 +73,7 @@ window:
 
 cursor:
   style: Beam
+  vi_mode_style: Block
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
