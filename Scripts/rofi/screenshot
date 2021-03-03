@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Error msg
+# Display Error msg
 msg() {
 	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
 }

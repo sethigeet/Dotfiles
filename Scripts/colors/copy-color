@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Display Error msg
+msg() {
+	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+}
+
+TIME=3000 # Miliseconds notification should remain visible
+ICON="edit-paste-symbolic" # The icon to be shown in the notification
+
+if command -v colorpicker &> /dev/null; then
+  selected_color=$(colorpicker --one-shot --preview)
+  color_to_copy=$(echo "$selected_color" | grep -o "#[^#]*$")
+  greenclip print "$color_to_copy"
+  notify-send -u low -t $TIME -i $ICON 'HEX Color Copied' "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard";
+else
+  msg "colorpicker"
+fi
+
