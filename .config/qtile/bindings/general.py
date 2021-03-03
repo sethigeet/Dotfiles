@@ -26,7 +26,11 @@ general_key_bindings = [
 
     # screenshot tool
     Key([mod], "p", lazy.spawn(scripts_dir + "rofi/screenshot"),
-        desc="Run the screenshot launcher"),
+        desc="run the screenshot launcher"),
+
+    # clipboard tool
+    Key([mod, "shift"], "v", lazy.spawn(scripts_dir + "rofi/clipboard"),
+        desc="run the clipboard manager"),
 
     # Display the keybindings
     Key([mod], "F1", lazy.function(display_kb),
