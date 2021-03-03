@@ -65,6 +65,8 @@ if [ -d "$HOME/Dotfiles" ]; then
   alias cca="config commit --amend"
   alias ccan="config commit --amend --no-edit"
   alias cpush="config push origin master"
+  alias cr="config restore"
+  alias crs="config restore --staged"
 fi
 
 # to find the size of a dir
