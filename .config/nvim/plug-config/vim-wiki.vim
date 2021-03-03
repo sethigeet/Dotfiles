@@ -13,11 +13,7 @@
     \   'mouse': 1,
     \ }
 
-" Filetypes enabled for
-let g:vimwiki_filetypes = ['markdown']
-
-let g:vimwiki_list = [{'path': '~/.config/nvim/wiki',
-                      \ 'syntax': 'markdown', 'ext': '.md', 'exclude_files': ['**/README.md', '**/Readme.md'] }]
+let g:vimwiki_list = [{'path': '~/Documents/VimWiki'}]
 
 " let g:vimwiki_auto_header = 0
 " let g:vimwiki_markdown_header_style = 1
@@ -49,9 +45,6 @@ let g:vimwiki_list = [{'path': '~/.config/nvim/wiki',
 " let g:vimwiki_listsyms = '✗○◐●✓'
 " let g:vimwiki_global_ext = 1
 " let g:vimwiki_hl_cb_checked = 0
-
-
-
 
 let g:vimwiki_diary_months = {
       \ 1: 'January', 2: 'February', 3: 'March',

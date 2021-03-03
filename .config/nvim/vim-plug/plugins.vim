@@ -153,7 +153,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Files
     " Plug 'tpope/vim-eunuch'
     " Vim Wiki
-    " Plug 'https://github.com/vimwiki/vimwiki.git'
+    Plug 'vimwiki/vimwiki'
     " Better Comments
     Plug 'jbgutierrez/vim-better-comments'
     " Echo doc
