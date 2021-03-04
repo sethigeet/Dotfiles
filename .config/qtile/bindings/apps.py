@@ -17,7 +17,7 @@ apps_key_bindings = [
         desc="Run nautilus"),
 
     # terminal file manager
-    Key([mod], "v", lazy.spawn([terminal, "-e", f"{home_dir}/.config/vifm/scripts/vifmrun"]),
+    Key([mod], "v", lazy.spawn([terminal, "-e", "zsh", "-c", f'source <(awk \'NR!=1\' {home_dir}/.zshrc); {home_dir}/.config/vifm/scripts/vifmrun']),
         desc="Run vifm"),
 
     # code editor
