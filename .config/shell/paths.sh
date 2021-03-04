@@ -1,32 +1,32 @@
 # HOME BIN
 if [ -d "$HOME/.bin" ]; then 
-    export PATH="$HOME/.bin:$PATH"
+    PATH="$HOME/.bin:$PATH"
 fi
 
 # LOCAL BIN
 if [ -d "$HOME/.local/bin" ]; then
-  export PATH="$HOME/.local/bin:$PATH"
+  PATH="$HOME/.local/bin:$PATH"
 fi
 
 # ANDROID STUDIO
 if [ -d "$HOME/Android/Sdk" ]; then
   export ANDROID_SDK="$HOME/Android/Sdk"
-  export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+  PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 fi
 
 # FLUTTER
 if [ -d "$HOME/snap/flutter" ]; then
-  export PATH="$PATH:$HOME/snap/flutter/common/flutter/bin"
+  PATH="$PATH:$HOME/snap/flutter/common/flutter/bin"
 fi
 
 # YARN
 if [ -d "$HOME/.yarn" ]; then
-  export PATH="$PATH:$HOME/.yarn/bin"
+  PATH="$PATH:$HOME/.yarn/bin"
 fi
 
 # DENO
 if [ -d "$HOME/.deno" ]; then
-  export PATH="$PATH:$HOME/.deno/bin"
+  PATH="$PATH:$HOME/.deno/bin"
 fi
 
 # NVM
@@ -38,27 +38,32 @@ fi
 
 # GO
 if [ -d "$HOME/go" ]; then
-  export PATH="$PATH:$HOME/go/bin"
+  PATH="$PATH:$HOME/go/bin"
 fi
 
 # PYENV
 if [ -d "$HOME/.pyenv" ]; then
-  export PATH="$PATH:$HOME/.pyenv/bin"
+  PATH="$PATH:$HOME/.pyenv/bin"
   #eval "$(pyenv init -)"
   #eval "$(pyenv virtualenv-init -)"
 fi
 
 # JULIA
 if [ -d "$HOME/julia" ]; then
-  export PATH="$PATH:$HOME/julia/julia-1.5.3/bin"
+  PATH="$PATH:$HOME/julia/julia-1.5.3/bin"
 fi
 
 # RUST
 if [ -d "$HOME/.cargo" ]; then
-  export PATH="$PATH:$HOME/.cargo/bin"
+  PATH="$PATH:$HOME/.cargo/bin"
 fi
 
 # Doom Emacs
 if [ -d "$HOME/.emacs.d" ]; then
-  export PATH="$PATH:$HOME/.emacs.d/bin"
+  PATH="$PATH:$HOME/.emacs.d/bin"
 fi
+
+# Custom scripts
+PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
+
+export PATH
