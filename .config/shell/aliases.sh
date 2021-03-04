@@ -40,9 +40,9 @@ fi
 # fi
 
 # Change cat to use bat
-# if command -v bat &> /dev/null; then
-#   alias cat="bat"
-# fi
+if command -v bat &> /dev/null; then
+  alias cat="bat"
+fi
 
 # Change ps to use procs
 # if command -v procs &> /dev/null; then
