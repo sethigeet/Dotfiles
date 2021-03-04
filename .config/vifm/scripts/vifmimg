@@ -43,6 +43,21 @@ if [ -e "$FIFO_UEBERZUG" ]; then
                            [path]="/tmp${PWD}/$6.png") \
             > "$FIFO_UEBERZUG"
 
+    elif [[ "$1" == "fontpreview" ]]; then
+        echo -e "Loading preview..\nFile: $6"
+
+        file="/tmp$PWD/$6.png"
+        [[ ! -d "$file/" ]] && mkdir -p "/tmp${PWD}/$6/"
+        [[ ! -f "$file" ]] && convert -size "800x800" xc:"#1F2430" -fill "#FFFFFF" \
+                -pointsize "72" -font "$6" -gravity center \
+                -annotate +0+0 "ABCDEFGHIJKLM\nNOPQRSTUVWXYZ\n\
+abcdefghijklm\nnopqrstuvwxyz\n1234567890\n!@#$\%^&*,.;:\n_-=+'\"|\\(){}[]" "$file"
+        
+        declare -p -A cmd=([action]=add [identifier]="$ID_PREVIEW"
+                           [x]="$2" [y]="$3" [width]="$4" [height]="$5" \
+                           [path]="$file") \
+            > "$FIFO_UEBERZUG"
+
     elif [[ "$1" == "clear" ]]; then
         declare -p -A cmd=([action]=remove [identifier]="$ID_PREVIEW") \
             > "$FIFO_UEBERZUG"

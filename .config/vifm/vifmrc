@@ -172,6 +172,12 @@ fileviewer *.pdf
         \ vifmimg clear
         " \ pdftotext -nopgbrk %c -
 
+" Fonts
+fileviewer *.ttf
+        \ vifmimg fontpreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
         \ {View in zathura}
