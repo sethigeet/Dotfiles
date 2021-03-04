@@ -11,9 +11,6 @@
 [github]
 	user = sethigeet
 
-[hub]
-	protocol = https
-
 [color]
 	ui = true
 
