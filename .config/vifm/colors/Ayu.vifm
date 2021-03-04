@@ -10,9 +10,10 @@
 " COLORS
 "  -1 = Default                     (transparent)
 "   0 = Black
-" 221 = Ayu mirage primary color    (yellow)
+"  11 = Ayu mirage primary color    (yellow)
 " 110 = Ayu mirage modified color   (blue)
 " 210 = Ayu mirage markup color     (red)
+" 238 = Gray
 
 " FORMAT
 " highlight group cterm=attrs ctermfg=foreground_color ctermbg=background_color
@@ -40,14 +41,14 @@ highlight TabLineSel cterm=bold,reverse ctermfg=-1 ctermbg=-1
 " highlight OddLine cterm=bold,reverse ctermfg=-1 ctermbg=-1
 highlight TopLine cterm=none ctermfg=white ctermbg=238
 highlight TopLineSel cterm=bold ctermfg=white ctermbg=-1
-highlight CmdLine cterm=none ctermfg=221 ctermbg=black
+highlight CmdLine cterm=none ctermfg=11 ctermbg=black
 highlight StatusLine cterm=bold ctermfg=white ctermbg=238
 highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
 highlight CurrLine cterm=bold,reverse ctermfg=110 ctermbg=black
 
 " DIRECTORIES/FILES
-highlight Directory cterm=none ctermfg=221 ctermbg=-1
-highlight LineNr cterm=none ctermfg=221 ctermbg=-1
+highlight Directory cterm=none ctermfg=11 ctermbg=-1
+highlight LineNr cterm=none ctermfg=11 ctermbg=-1
 
 " LINKS
 highlight Link cterm=bold ctermfg=-1 ctermbg=-1
@@ -57,7 +58,7 @@ highlight BrokenLink cterm=bold ctermfg=210 ctermbg=-1
 " DIFFERENT FILES
 highlight Socket cterm=bold ctermfg=110 ctermbg=-1
 highlight Device cterm=bold ctermfg=210 ctermbg=-1
-highlight Fifo cterm=bold ctermfg=221 ctermbg=-1
+highlight Fifo cterm=bold ctermfg=11 ctermbg=-1
 highlight Executable cterm=bold ctermfg=210 ctermbg=-1
 
 " SELECTED FILE
