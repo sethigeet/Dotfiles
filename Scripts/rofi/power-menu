@@ -24,7 +24,7 @@ selected="$(rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i -p "Uptime : î
 
 case "$selected" in
   $lock) dm-tool lock ;;
-  $logout) dm-tool switch-to-greeter ;;
+  $logout) loginctl kill-session self ;;
   $sleep) msg ;;
   $reboot) reboot ;;
   $shutdown) shutdown now
