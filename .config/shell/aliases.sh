@@ -30,24 +30,24 @@ else
 fi
 
 # Change grep to use ripgrep
-if command -v rg &> /dev/null; then
-  alias grep="rg"
-fi
+# if command -v rg &> /dev/null; then
+#   alias grep="rg"
+# fi
 
 # Change find to use fd
-if command -v fd &> /dev/null; then
-  alias find="fd"
-fi
+# if command -v fd &> /dev/null; then
+#   alias find="fd"
+# fi
 
 # Change cat to use bat
-if command -v bat &> /dev/null; then
-  alias cat="bat"
-fi
+# if command -v bat &> /dev/null; then
+#   alias cat="bat"
+# fi
 
 # Change ps to use procs
-if command -v procs &> /dev/null; then
-  alias ps="procs"
-fi
+# if command -v procs &> /dev/null; then
+#   alias ps="procs"
+# fi
 
 # confirm before overwriting something
 alias cp="cp -i"
