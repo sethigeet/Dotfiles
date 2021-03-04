@@ -7,9 +7,9 @@ let g:which_key_timeout = 100
 
 let g:which_key_display_names = {'<CR>': '↵', '<TAB>': '⇆'}
 
-" Map leader to which_key
-nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+" Map Leader to which_key
+nnoremap <silent> <Space> :silent <c-u> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <Space> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
 " Create map to add keys to
 let g:which_key_map =  {}
@@ -18,7 +18,7 @@ let g:which_key_sep = '→'
 " set timeoutlen=100
 
 " Coc Search & refactor
-nnoremap <leader>? CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>? CocSearch <C-R>=expand("<cword>")<CR><CR>
 let g:which_key_map['?'] = 'search word'
 
 " Not a fan of floating windows for this
@@ -45,14 +45,12 @@ let g:which_key_map['='] = [ '<C-W>='                                          ,
 let g:which_key_map['e'] = [ ':CocCommand explorer --toggle --sources=file+'   , 'explorer' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['o'] = [ ':RnvimrToggle'                                   , 'open' ]
 let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
 let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
 let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'               , 'move window' ]
-let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen' ]
 
 " Group mappings
 

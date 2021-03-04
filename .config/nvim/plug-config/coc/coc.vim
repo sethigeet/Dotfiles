@@ -50,7 +50,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
+" nmap <Leader>rn <Plug>(coc-rename)
 
 augroup mygroup
   autocmd!
@@ -61,14 +61,14 @@ augroup mygroup
 augroup end
 
 " Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Example: `<Leader>aap` for current paragraph
+" xmap <Leader>a  <Plug>(coc-codeaction-selected)
+" nmap <Leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
-" nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <Leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-" nmap <leader>qf  <Plug>(coc-fix-current)
+" nmap <Leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -145,7 +145,7 @@ let g:coc_explorer_global_presets = {
 \   }
 \ }
 "nmap <silent> <space>e :CocCommand explorer<CR>
-" nnoremap <silent> <leader>e :CocCommand explorer<CR>
+" nnoremap <silent> <Leader>e :CocCommand explorer<CR>
 " nmap <space>f :CocCommand explorer --preset floatingRightside<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 

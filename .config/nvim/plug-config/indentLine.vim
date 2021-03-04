@@ -1,6 +1,6 @@
 " let g:indentLine_showFirstIndentLevel = 1
 " let g:indentLine_fileType = ['javascript', 'c']
-let g:indentLine_fileTypeExclude = ["vimwiki", "coc-explorer", "help", "undotree", "diff"]
+let g:indentLine_fileTypeExclude = ["vimwiki", "coc-explorer", "help", "undotree", "diff", "startify", "coc-explorer"]
 let g:indentLine_bufTypeExclude = ["help", "terminal"]
 " let g:indentLine_bufNameExclude = []
 let g:indentLine_indentLevel = 10
