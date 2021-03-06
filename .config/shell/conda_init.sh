@@ -1,6 +1,11 @@
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+if [ -n "$BASH_VERSION" ]; then
+  shell="bash"
+elif [ -n "$ZSH_VERSION" ]; then
+  shell="zsh"
+fi
+__conda_setup="$("$HOME/anaconda3/bin/conda" "shell.$shell" 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
