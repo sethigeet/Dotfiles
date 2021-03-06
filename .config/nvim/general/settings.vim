@@ -37,18 +37,10 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set relativenumber
 set incsearch
 
-" New stuff
-" set notimeout nottimeout
-" set scrolloff=1
-" set sidescroll=1
-" set sidescrolloff=1
-" set display+=lastline
-" set backspace=eol,start,indent
-" set nostartofline
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" set mmp=1300
-" set autochdir                           " Your working directory will always be the same as your working directory
-" set foldcolumn=2                        " Folding abilities
+if has("persistent_undo")
+  set undodir=$HOME/.undodir
+  set undofile
+endif
 
 " au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
