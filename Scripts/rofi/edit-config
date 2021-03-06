@@ -22,13 +22,8 @@ CONFIG_FILE_PATHS=(
   " ~/.config/picom/picom.conf"
   " ~/.config/rofi/config.rasi"
   " ~/.config/polybar/config.ini"
-  " ~/.config/shell/aliases"
-  " ~/.config/shell/paths"
-  " ~/.config/shell/var_exports"
-  " ~/.config/shell/conda_init"
-  " ~/.config/shell/init_shell"
-  " ~/.config/bash/bash_prompt"
-  " ~/.config/bash/init_bash"
+  " ~/.config/shell/init_shell.sh"
+  " ~/.config/bash/init_bash.bash"
   " ~/.config/vifm/vifmrc"
 )
 
