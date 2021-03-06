@@ -5,7 +5,7 @@ fi
 
 # vim
 if command -v nvim &> /dev/null; then
-  alias vim="nvim"
+  alias v="nvim"
 fi
 
 # vifm
