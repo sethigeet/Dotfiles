@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+alacritty -e zsh -c "source <(awk 'NR!=1' ~/.zshrc); ~/.config/vifm/scripts/vifmrun"
+

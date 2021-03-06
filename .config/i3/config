@@ -8,11 +8,12 @@ exec_always --no-startup-id ~/Scripts/wm/autostart
 # --- Basic Definitions --- #
 smart_gaps on
 smart_borders on
-set $inner_gaps 10
-set $outer_gaps 0
-set $term       --no-startup-id alacritty
-set $mod        Mod4
-set $alt        Mod1
+set $inner_gaps  10
+set $outer_gaps  0
+set $term        --no-startup-id alacritty
+set $mod         Mod4
+set $alt         Mod1
+set $scripts_dir ~/Scripts
 
 # Use Mouse + $mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -43,7 +44,7 @@ bindsym $mod+a		               exec $term -e alsamixer
 bindsym $mod+b 			             exec $term -e bpytop
 
 # C
-bindsym $mod+c 			             exec --no-startup-id ~/Scripts/rofi/edit-config
+bindsym $mod+c 			             exec --no-startup-id $scripts_dir/rofi/edit-config
 
 # D
 # --- NONE ---
@@ -115,19 +116,19 @@ bindsym $mod+Shift+t             focus mode_toggle
 bindsym $mod+u                   [urgent=latest] focus
 
 # V
-bindsym $mod+v 			             exec $term -e vifm
+bindsym $mod+v	                 exec --no-startup-id $scripts_dir/misc/start-vifm
 
 # W
 bindsym $mod+w 			             exec --no-startup-id brave
 
 # X
-bindsym $mod+x	                 exec --no-startup-id ~/Scripts/rofi/power-menu
+bindsym $mod+x	                 exec --no-startup-id $scripts_dir/rofi/power-menu
 
 # Y
 # --- NONE ---
 
 # Z
-# --- NONE ---
+bindsym $mod+z	                 exec --no-startup-id $scripts_dir/rofi/file-browser
 
 
 # --- Workspace Key Bindings --- #

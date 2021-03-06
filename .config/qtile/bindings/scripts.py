@@ -36,4 +36,8 @@ scripts_key_bindings = [
     # Display the keybindings
     Key([mod], "F1", lazy.function(display_kb),
         desc="Display all the keybindings"),
+
+    # terminal file manager
+    Key([mod], "v", lazy.spawn(scripts_dir + "misc/start-vifm"),
+        desc="Run vifm"),
 ]
