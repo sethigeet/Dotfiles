@@ -1,3 +1,10 @@
+# Add color to some shell commands
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+alias ip="ip -color=auto"
+alias dmesg="dmesg --color=auto"
+alias ls='ls --color=auto'
+
 # Android emulator
 if [ -d "$HOME/Android/Sdk" ]; then
   alias start-android-emulator="$HOME/Android/Sdk/emulator/emulator -avd Pixel_3_API_30 -qemu -enable-kvm"
@@ -73,3 +80,4 @@ fi
 
 # to find the size of a dir
 alias hsize="du -hs"
+
