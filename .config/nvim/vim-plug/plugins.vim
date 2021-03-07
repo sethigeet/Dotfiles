@@ -26,7 +26,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'vifm/vifm.vim'
 
     if exists('g:vscode')
-      " Easy motion for VSCode
+      " Highlighting when yanking for VSCode
       Plug 'machakann/vim-highlightedyank'
     endif
 
