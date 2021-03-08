@@ -63,6 +63,9 @@ ZSH_COLORIZE_STYLE="colorful"
 # Change the cursor style according to the vi mode
 VI_MODE_SET_CURSOR=true
 
+# Enable custom completion scripts in oh-my-zsh
+ZSH_DISABLE_COMPFIX=true
+
 source $ZSH/oh-my-zsh.sh
 
 # Source the dotfiles
