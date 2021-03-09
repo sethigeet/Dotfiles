@@ -31,7 +31,7 @@ scripts_key_bindings = [
 
     # color picker
     Key([mod, "shift"], "c", lazy.spawn(scripts_dir + "colors/color-picker"),
-        desc="Run the copy color script"),
+        desc="Run the color picker script"),
 
     # Display the keybindings
     Key([mod], "F1", lazy.function(display_kb),
