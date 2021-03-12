@@ -7,7 +7,7 @@ available_scripts=$(find "$HOME/Scripts" -type f | sed "s+$HOME/Scripts/++g")
 selected_script="$(echo "$available_scripts" | sort | rofi -dmenu -p "Run a script: ")"
 
 # Check if the user selected any config
-if [ -z "${selected_scirpt}" ]; then
+if [ -z "$selected_script" ]; then
   # If the user did not select any config, cancel the operation
   echo "Cancel"
 else
