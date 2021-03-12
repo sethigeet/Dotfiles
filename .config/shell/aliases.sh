@@ -78,9 +78,12 @@ if [ -d "$HOME/Dotfiles" ]; then
   alias crs="config restore --staged"
 fi
 
-# to find the size of a dir
+# find the size of a dir
 alias hsize="du -hs"
 
-# to make a file executable
+# make a file executable
 alias mkexe="chmod +x"
+
+# copy the contents of a file to the clipboard
+alias copy="xclip -selection clipboard < "
 
