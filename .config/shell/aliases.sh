@@ -77,7 +77,6 @@ if [ -d "$HOME/Dotfiles" ]; then
   alias cpush="config push origin master"
   alias cr="config restore"
   alias crs="config restore --staged"
-  alias cdiff="config diff"
 fi
 
 # to find the size of a dir
