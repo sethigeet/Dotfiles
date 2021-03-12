@@ -5,14 +5,13 @@ alias egrep="egrep --color=auto"
 alias diff="diff --color=auto"
 alias ip="ip -color=auto"
 alias dmesg="dmesg --color=auto"
-alias ls='ls --color=auto'
 
 # Android emulator
 if [ -d "$HOME/Android/Sdk" ]; then
   alias start-android-emulator="$HOME/Android/Sdk/emulator/emulator -avd Pixel_3_API_30 -qemu -enable-kvm"
 fi
 
-# vim
+# nvim
 if command -v nvim &> /dev/null; then
   alias v="nvim"
 fi
@@ -29,13 +28,13 @@ if command -v exa &> /dev/null; then
   alias ll="exa -lh --icons --color=auto"    # long format
   alias lla="exa -lah --icons --color=auto"  # all files and dirs in long format
   alias l="exa -lah --icons --color=auto"    # all files and dirs in long format
-  alias lt="exa -aT --icons --color=auto"   # tree listing
+  alias lt="exa -aT --icons --color=auto"    # tree listing
 else
-  alias ls="ls --color=auto"
-  alias la="ls -ah --color=auto"    # all files and dirs
-  alias ll="ls -lh --color=auto"    # long format
-  alias lla="ls -lah --color=auto"  # all files and dirs in long format
-  alias l="ls -lah --color=auto"    # all files and dirs in long format
+  alias ls="ls --color=auto"                 # visible files and dirs
+  alias la="ls -ah --color=auto"             # all files and dirs
+  alias ll="ls -lh --color=auto"             # long format
+  alias lla="ls -lah --color=auto"           # all files and dirs in long format
+  alias l="ls -lah --color=auto"             # all files and dirs in long format
 fi
 
 # Change grep to use ripgrep
@@ -81,4 +80,7 @@ fi
 
 # to find the size of a dir
 alias hsize="du -hs"
+
+# to make a file executable
+alias mkexe="chmod +x"
 
