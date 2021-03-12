@@ -30,8 +30,8 @@ scripts_key_bindings = [
         desc="Run the clipboard manager"),
 
     # color picker
-    Key([mod, "shift"], "c", lazy.spawn(scripts_dir + "colors/color-picker"),
-        desc="Run the color picker script"),
+    Key([mod], "s", lazy.spawn(scripts_dir + "rofi/rofi-bang"),
+        desc="Run the script to run any other script"),
 
     # Display the keybindings
     Key([mod], "F1", lazy.function(display_kb),

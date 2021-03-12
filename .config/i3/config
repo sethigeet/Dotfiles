@@ -105,7 +105,8 @@ bindsym $mod+Shift+q		         [con_id="__focused__" instance="^(?!dropdown_).*$
 bindsym $mod+Ctrl+r		           restart
 
 # S
-bindsym $mod+s        			     sticky toggle
+bindsym $mod+s        			     exec --no-startup-id $scripts_dir/rofi/rofi-bang
+bindsym $mod+Ctrl+s        			 sticky toggle
 bindsym $mod+Shift+s			       split toggle
 
 # T
