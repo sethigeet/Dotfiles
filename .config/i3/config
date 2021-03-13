@@ -222,6 +222,7 @@ for_window [window_role="GtkFileChooserDialog"] move position center
 for_window [title="^Android Emulator -"]        floating enable
 for_window [title="*Zoom*"]                     floating enable
 for_window [title="^Participants*"]             floating enable
+for_window [title="Calculator"]                 floating enable
 for_window [class="kite"]                       floating enable
 
 
