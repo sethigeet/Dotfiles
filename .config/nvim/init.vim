@@ -26,8 +26,7 @@ else
   else
 
     " Themes
-    source ~/.config/nvim/themes/syntax.vim
-    source ~/.config/nvim/themes/ayu.vim
+    source ~/.config/nvim/general/theme.vim
 
     " Plugin Configuration
     source ~/.config/nvim/plugins/config/vim/vim-commentary.vim
