@@ -48,3 +48,12 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Set the timeout length for mappings         By default timeoutlen=1000
 autocmd InsertEnter * set timeoutlen=1000
 autocmd InsertLeave * set timeoutlen=100
+
+" For Folding
+  " Method for folding
+set foldmethod=indent
+  " Open all when entering for the first time
+set foldlevel=20
+  " Save the state for the next time
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent! loadview

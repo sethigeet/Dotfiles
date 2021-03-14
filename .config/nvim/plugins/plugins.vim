@@ -52,8 +52,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'alvan/vim-closetag'
     " Themes
     Plug 'ayu-theme/ayu-vim'
-    " Intellisense
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Status Line
     Plug 'glepnir/galaxyline.nvim'
     " Git
@@ -95,7 +93,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Neovim in Browser
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(1) } }
     " Rainbow brackets
-    Plug 'junegunn/rainbow_parentheses.vim'
+    Plug 'p00f/nvim-ts-rainbow'
     " Plug 'maxmellon/vim-jsx-pretty'
     " Multiple Cursors
     Plug 'terryma/vim-multiple-cursors'
@@ -107,6 +105,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    " Intellisense
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/nvim-compe'
+    Plug 'glepnir/lspsaga.nvim'
+    Plug 'onsails/lspkind-nvim'
+    Plug 'kosayoda/nvim-lightbulb'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " File Explorer
+    Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
 

@@ -17,10 +17,6 @@ let g:which_key_map =  {}
 let g:which_key_sep = '→'
 " set timeoutlen=100
 
-" Coc Search & refactor
-nnoremap <Leader>? CocSearch <C-R>=expand("<cword>")<CR><CR>
-let g:which_key_map['?'] = 'search word'
-
 " Not a fan of floating windows for this
 let g:which_key_use_floating_win = 0
 let g:which_key_max_size = 0
@@ -39,14 +35,16 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 " Single mappings
 let g:which_key_map['/'] = [ ':call Comment()'                                 , 'comment' ]
+let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'comment' ]
 let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     , 'open init' ]
 let g:which_key_map[';'] = [ ':Commands'                                       , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
-let g:which_key_map['e'] = [ ':CocCommand explorer --toggle --sources=file+'   , 'explorer' ]
+let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
-let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
+" TODO fix this to not use coc anymore
+" let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
@@ -58,7 +56,6 @@ let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'               ,
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'c' : [':ColorizerToggle'                        , 'colorizer'],
-      \ 'e' : [':CocCommand explorer'                    , 'explorer'],
       \ 'h' : [':let @/ = ""'                            , 'remove search highlight'],
       \ 'l' : [':Bracey'                                 , 'start live server'],
       \ 'L' : [':BraceyStop'                             , 'stop live server'],
@@ -116,6 +113,21 @@ let g:which_key_map.d = {
       \ 's' : ['<Plug>VimspectorStop'                          , 'stop'],
       \ }
 
+" F is for fold
+let g:which_key_map.F = {
+    \ 'name': '+fold',
+    \ 'O' : [':set foldlevel=20', 'open all'],
+    \ 'C' : [':set foldlevel=0', 'close all'],
+    \ 'c' : [':foldclose', 'close'],
+    \ 'o' : [':foldopen', 'open'],
+    \ '1' : [':set foldlevel=1', 'level1'],
+    \ '2' : [':set foldlevel=2', 'level2'],
+    \ '3' : [':set foldlevel=3', 'level3'],
+    \ '4' : [':set foldlevel=4', 'level4'],
+    \ '5' : [':set foldlevel=5', 'level5'],
+    \ '6' : [':set foldlevel=6', 'level6']
+    \ }
+
 " f is for find and replace
 let g:which_key_map.f = {
       \ 'name' : '+find & replace' ,
@@ -123,23 +135,76 @@ let g:which_key_map.f = {
       \ 'p' : [':Farr --source=rgnvim'                    , 'project'],
       \ }
 
-" k is for task
-let g:which_key_map.k = {
-      \ 'name' : '+task' ,
-      \ 'c' : [':AsyncTask file-compile'                  , 'compile file'],
-      \ 'b' : [':AsyncTask project-build'                 , 'build project'],
-      \ 'e' : [':AsyncTaskEdit'                           , 'edit local tasks'],
-      \ 'f' : [':AsyncTaskFzf'                            , 'find task'],
-      \ 'g' : [':AsyncTaskEdit!'                          , 'edit global tasks'],
-      \ 'h' : [':AsyncTaskList!'                          , 'list hidden tasks'],
-      \ 'l' : [':CocList tasks'                           , 'list tasks'],
-      \ 'm' : [':AsyncTaskMacro'                          , 'macro help'],
-      \ 'o' : [':copen'                                   , 'open task view'],
-      \ 'r' : [':AsyncTask file-run'                      , 'run file'],
-      \ 'p' : [':AsyncTask project-run'                   , 'run project'],
-      \ 'x' : [':cclose'                                  , 'close task view'],
+" g is for git
+let g:which_key_map.g = {
+      \ 'name' : '+git' ,
+      \ 'a' : [':Git add .'                               , 'add all'],
+      \ 'A' : [':CocCommand fzf-preview.GitStatus'        , 'actions'],
+      \ 'b' : [':Git blame'                               , 'blame'],
+      \ 'B' : [':GBrowse'                                 , 'browse'],
+      \ 'c' : [':Git commit'                              , 'commit'],
+      \ 'd' : [':Git diff'                                , 'diff'],
+      \ 'D' : [':Gdiffsplit'                              , 'diff split'],
+      \ 'g' : [':GGrep'                                   , 'git grep'],
+      \ 'G' : [':Gstatus'                                 , 'status'],
+      \ 'h' : [':GitGutterLineHighlightsToggle'           , 'highlight hunks'],
+      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'             , 'preview hunk'],
+      \ 'i' : [':Gist -b'                                 , 'post gist'],
+      \ 'j' : ['<Plug>(GitGutterNextHunk)'                , 'next hunk'],
+      \ 'k' : ['<Plug>(GitGutterPrevHunk)'                , 'prev hunk'],
+      \ 'l' : [':Git log'                                 , 'log'],
+      \ 'm' : ['<Plug>(git-messenger)'                    , 'message'],
+      \ 'p' : [':Git push'                                , 'push'],
+      \ 'P' : [':Git pull'                                , 'pull'],
+      \ 'r' : [':GRemove'                                 , 'remove'],
+      \ 's' : ['<Plug>(GitGutterStageHunk)'               , 'stage hunk'],
+      \ 'S' : [':CocCommand fzf-preview.GitStatus'        , 'status'],
+      \ 't' : [':GitGutterSignsToggle'                    , 'toggle signs'],
+      \ 'u' : ['<Plug>(GitGutterUndoHunk)'                , 'undo hunk'],
+      \ 'v' : [':GV'                                      , 'view commits'],
+      \ 'V' : [':GV!'                                     , 'view buffer commits'],
       \ }
-      " \ 'l' : [':AsyncTaskList'                           , 'list tasks'],
+      " \ 'A' : [':Git add %'                        , 'add current'],
+      " \ 'S' : [':!git status'                      , 'status'],
+
+let g:which_key_map.G = {
+      \ 'name' : '+gist' ,
+      \ 'a' : [':Gist -a'                                 , 'post gist anon'],
+      \ 'b' : [':Gist -b'                                 , 'post gist browser'],
+      \ 'd' : [':Gist -d'                                 , 'delete gist'],
+      \ 'e' : [':Gist -e'                                 , 'edit gist'],
+      \ 'l' : [':Gist -l'                                 , 'list public gists'],
+      \ 's' : [':Gist -ls'                                , 'list starred gists'],
+      \ 'm' : [':Gist -m'                                 , 'post gist all buffers'],
+      \ 'p' : [':Gist -P'                                 , 'post public gist '],
+      \ 'P' : [':Gist -p'                                 , 'post private gist '],
+      \ }
+
+" l is for language server protocol
+let g:which_key_map.l = {
+      \ 'name' : '+lsp' ,
+      \ 'a' : [':Lspsaga code_action'                     , 'code action'],
+      \ 'A' : [':Lspsaga range_code_action'               , 'selected action'],
+      \ 'd' : [':LspDefinition'                           , 'definition'],
+      \ 'D' : [':LspDeclaration'                          , 'workspace_diagnostics'],
+      \ 'f' : [':LspFormatting'                           , 'format'],
+      \ 'h' : [':Lspsaga hover_doc'                       , 'hover_doc'],
+      \ 'H' : [':Lspsaga signature_help'                  , 'signature_help'],
+      \ 'K' : [':LspHover'                                , 'hover'],
+      \ 'i' : [':LspImplementation'                       , 'lsp_info'],
+      \ 'I' : [':LspInfo'                                 , 'lsp_info'],
+      \ 'l' : [':Lspsaga lsp_finder'                      , 'lsp_finder'],
+      \ 'L' : [':Lspsaga show_line_diagnostics'           , 'line_diagnostics'],
+      \ 'n' : [':Lspsaga diagnostic_jump_next'            , 'next_diagnostic'],
+      \ 'p' : [':Lspsaga diagnostic_jump_prev'            , 'prev diagnostic'],
+      \ 'q' : [':Lspsaga code_action'                     , 'quickfix'],
+      \ 'r' : [':LspReferences'                           , 'references'],
+      \ 'R' : [':LspRename'                               , 'rename'],
+      \ 'T' : [':LspTypeDefinition'                       , 'type defintion'],
+      \ 'x' : [':cclose'                                  , 'close quickfix'],
+      \ 'y' : [':LspDocumentSymbol'                       , 'document symbols'],
+      \ 'Y' : [':LspWorkspaceSymbol'                      , 'workspace symbols'],
+      \ }
 
 " m is for mark
 let g:which_key_map.m = {
@@ -191,17 +256,6 @@ let g:which_key_map.s = {
       \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
       \ 'z' : [':Telescope current_buffer_fuzzy_find'   , 'buf_fuz_find'],
       \ }
-" 
-" :CocCommand fzf-preview.AllBuffers
-" :CocCommand fzf-preview.Changes
-" :CocCommand fzf-preview.Yankround
-" :CocCommand fzf-preview.CocReferences
-" :CocCommand fzf-preview.CocDiagnostics
-" :CocCommand fzf-preview.CocCurrentDiagnostics
-" :CocCommand fzf-preview.CocTypeDefinitions
-" \ 'l' : [':CocCommand fzf-preview.Bookmarks', 'list bookmarks'],
-" $FZF_PREVIEW_PREVIEW_BAT_THEME = 'ansi-dark'
-" 
 
 let g:which_key_map.S = {
       \ 'name' : '+Session',
@@ -211,93 +265,6 @@ let g:which_key_map.S = {
       \ 's' : [':Startify'                                , 'Start Page'],
       \ 'S' : [':SSave'                                   , 'Save Session'],
       \ }
-
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'a' : [':Git add .'                               , 'add all'],
-      \ 'A' : [':CocCommand fzf-preview.GitStatus'        , 'actions'],
-      \ 'b' : [':Git blame'                               , 'blame'],
-      \ 'B' : [':GBrowse'                                 , 'browse'],
-      \ 'c' : [':Git commit'                              , 'commit'],
-      \ 'd' : [':Git diff'                                , 'diff'],
-      \ 'D' : [':Gdiffsplit'                              , 'diff split'],
-      \ 'g' : [':GGrep'                                   , 'git grep'],
-      \ 'G' : [':Gstatus'                                 , 'status'],
-      \ 'h' : [':GitGutterLineHighlightsToggle'           , 'highlight hunks'],
-      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'             , 'preview hunk'],
-      \ 'i' : [':Gist -b'                                 , 'post gist'],
-      \ 'j' : ['<Plug>(GitGutterNextHunk)'                , 'next hunk'],
-      \ 'k' : ['<Plug>(GitGutterPrevHunk)'                , 'prev hunk'],
-      \ 'l' : [':Git log'                                 , 'log'],
-      \ 'm' : ['<Plug>(git-messenger)'                    , 'message'],
-      \ 'p' : [':Git push'                                , 'push'],
-      \ 'P' : [':Git pull'                                , 'pull'],
-      \ 'r' : [':GRemove'                                 , 'remove'],
-      \ 's' : ['<Plug>(GitGutterStageHunk)'               , 'stage hunk'],
-      \ 'S' : [':CocCommand fzf-preview.GitStatus'        , 'status'],
-      \ 't' : [':GitGutterSignsToggle'                    , 'toggle signs'],
-      \ 'u' : ['<Plug>(GitGutterUndoHunk)'                , 'undo hunk'],
-      \ 'v' : [':GV'                                      , 'view commits'],
-      \ 'V' : [':GV!'                                     , 'view buffer commits'],
-      \ }
-      " \ 'A' : [':Git add %'                        , 'add current'],
-      " \ 'S' : [':!git status'                      , 'status'],
-" 
-" 
-" 
-
-let g:which_key_map.G = {
-      \ 'name' : '+gist' ,
-      \ 'a' : [':Gist -a'                                 , 'post gist anon'],
-      \ 'b' : [':Gist -b'                                 , 'post gist browser'],
-      \ 'd' : [':Gist -d'                                 , 'delete gist'],
-      \ 'e' : [':Gist -e'                                 , 'edit gist'],
-      \ 'l' : [':Gist -l'                                 , 'list public gists'],
-      \ 's' : [':Gist -ls'                                , 'list starred gists'],
-      \ 'm' : [':Gist -m'                                 , 'post gist all buffers'],
-      \ 'p' : [':Gist -P'                                 , 'post public gist '],
-      \ 'P' : [':Gist -p'                                 , 'post private gist '],
-      \ }
-
-" l is for language server protocol
-let g:which_key_map.l = {
-      \ 'name' : '+lsp' ,
-      \ '.' : [':CocConfig'                               , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                     , 'refactor'],
-      \ 'a' : ['<Plug>(coc-codeaction)'                   , 'code action'],
-      \ 'A' : ['<Plug>(coc-codeaction-selected)'          , 'selected action'],
-      \ 'b' : [':CocNext'                                 , 'next action'],
-      \ 'B' : [':CocPrev'                                 , 'prev action'],
-      \ 'c' : [':CocList commands'                        , 'commands'],
-      \ 'd' : ['<Plug>(coc-definition)'                   , 'definition'],
-      \ 'D' : ['<Plug>(coc-declaration)'                  , 'declaration'],
-      \ 'e' : [':CocList extensions'                      , 'extensions'],
-      \ 'f' : ['<Plug>(coc-format-selected)'              , 'format selected'],
-      \ 'F' : ['<Plug>(coc-format)'                       , 'format'],
-      \ 'h' : ['<Plug>(coc-float-hide)'                   , 'hide'],
-      \ 'i' : ['<Plug>(coc-implementation)'               , 'implementation'],
-      \ 'I' : [':CocList diagnostics'                     , 'diagnostics'],
-      \ 'j' : ['<Plug>(coc-float-jump)'                   , 'float jump'],
-      \ 'l' : ['<Plug>(coc-codelens-action)'              , 'code lens'],
-      \ 'n' : ['<Plug>(coc-diagnostic-next)'              , 'next diagnostic'],
-      \ 'N' : ['<Plug>(coc-diagnostic-next-error)'        , 'next error'],
-      \ 'o' : [':Vista!!'                                 , 'outline'],
-      \ 'O' : [':CocList outline'                         , 'search outline'],
-      \ 'p' : ['<Plug>(coc-diagnostic-prev)'              , 'prev diagnostic'],
-      \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'        , 'prev error'],
-      \ 'q' : ['<Plug>(coc-fix-current)'                  , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-references)'                   , 'references'],
-      \ 'R' : ['<Plug>(coc-rename)'                       , 'rename'],
-      \ 's' : [':CocList -I symbols'                      , 'references'],
-      \ 'S' : [':CocList snippets'                        , 'snippets'],
-      \ 't' : ['<Plug>(coc-type-definition)'              , 'type definition'],
-      \ 'u' : [':CocListResume'                           , 'resume list'],
-      \ 'U' : [':CocUpdate'                               , 'update CoC'],
-      \ 'z' : [':CocDisable'                              , 'disable CoC'],
-      \ 'Z' : [':CocEnable'                               , 'enable CoC'],
-      \ }
-      " \ 'o' : ['<Plug>(coc-openlink)'                     , 'open link'],
 
 " t is for terminal
 let g:which_key_map.t = {
