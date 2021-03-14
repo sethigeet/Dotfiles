@@ -6,7 +6,7 @@
 
 " General Settings
 if !exists('g:vscode')
-  source ~/.config/nvim/plug-config/polyglot.vim
+  source ~/.config/nvim/plugins/config/vim/polyglot.vim
 endif
 
 source ~/.config/nvim/plugins/plugins.vim
@@ -52,15 +52,14 @@ else
 
   endif
 
-  source ~/.config/nvim/plugins/config/vim/rainbow.vim
   source ~/.config/nvim/plugins/config/vim/indentLine.vim
   source ~/.config/nvim/plugins/config/vim/closetags.vim
   source ~/.config/nvim/keys/which-key.vim
 
   " LSP (refer to: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md)
   luafile ~/.config/nvim/plugins/config/lsp/lsp-kind.lua
-  luafile ~/.config/nvim/plugins/config/lua/compe-config.lua
-  luafile ~/.config/nvim/plugins/config/lua/lspsaga-config.lua
+  luafile ~/.config/nvim/plugins/config/lua/compe.lua
+  luafile ~/.config/nvim/plugins/config/lua/lspsaga.lua
   source ~/.config/nvim/plugins/config/lsp/wrapper/lsp-wrapper.vim
   source ~/.config/nvim/plugins/config/lsp/config/lsp-config.vim
   luafile ~/.config/nvim/plugins/config/lsp/config/lsp-config.lua
