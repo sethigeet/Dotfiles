@@ -32,7 +32,6 @@ else
     " Plugin Configuration
     source ~/.config/nvim/plugins/config/vim/vim-commentary.vim
     source ~/.config/nvim/plugins/config/vim/codi.vim
-    source ~/.config/nvim/plugins/config/vim/vim-wiki.vim
     source ~/.config/nvim/plugins/config/vim/easymotion.vim
     source ~/.config/nvim/plugins/config/vim/vim-rooter.vim
     source ~/.config/nvim/plugins/config/vim/start-screen.vim

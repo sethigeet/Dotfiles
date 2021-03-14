@@ -97,8 +97,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Plug 'maxmellon/vim-jsx-pretty'
     " Multiple Cursors
     Plug 'terryma/vim-multiple-cursors'
-    " Vim Wiki
-    Plug 'vimwiki/vimwiki'
     " Better Comments
     Plug 'jbgutierrez/vim-better-comments'
     " Telescope

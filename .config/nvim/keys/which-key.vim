@@ -286,28 +286,5 @@ let g:which_key_map.t = {
       \ 'v' : [':FloatermNew vifm'                        , 'vifm'],
       \ }
 
-" w is for wiki
-let g:which_key_map.w = {
-      \ 'name' : '+wiki' ,
-      \ 'w' : ['<Plug>VimwikiIndex'                       , 'Index'],
-      \ 'i' : ['<Plug>VimwikiDiaryIndex'                  , 'Diary Index'],
-      \ 's' : ['<Plug>VimwikiUISelect'                    , 'Select UI'],
-      \ 'n' : ['<Plug>(wiki-open)'                        , 'Open'],
-      \ 'j' : ['<Plug>(wiki-journal)'                     , 'Journal'],
-      \ 'R' : ['<Plug>(wiki-reload)'                      , 'Reload'],
-      \ 'c' : ['<Plug>(wiki-code-run)'                    , 'Run Code'],
-      \ 'b' : ['<Plug>(wiki-graph-find-backlinks)'        , 'Graphs Find Backlinks'],
-      \ 'g' : ['<Plug>(wiki-graph-in)'                    , 'Graph In'],
-      \ 'G' : ['<Plug>(wiki-graph-out)'                   , 'Graph Out'],
-      \ 'l' : ['<Plug>(wiki-link-toggle)'                 , 'Toggle Link'],
-      \ 'd' : ['<Plug>(wiki-page-delete)'                 , 'Delete Page'],
-      \ 'r' : ['<Plug>(wiki-page-rename)'                 , 'Rename Page'],
-      \ 't' : ['<Plug>(wiki-page-toc)'                    , 'Page TOC'],
-      \ 'T' : ['<Plug>(wiki-page-toc-local)'              , 'Page TOC Local'],
-      \ 'e' : ['<Plug>(wiki-export)'                      , 'Export'],
-      \ 'u' : ['<Plug>(wiki-list-uniq)'                   , 'List Uniq'],
-      \ 'U' : ['<Plug>(wiki-list-uniq-local)'             , 'List Uniq Local']
-      \ }
-
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
