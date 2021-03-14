@@ -1,4 +1,3 @@
--- commented options are defaults
 require('lspkind').init({
     with_text = false,
     symbol_map = {

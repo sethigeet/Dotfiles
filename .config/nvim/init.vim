@@ -75,8 +75,8 @@ else
   luafile ~/.config/nvim/plugins/config/lsp/language-servers/json.lua
   luafile ~/.config/nvim/plugins/config/lsp/language-servers/vim.lua
   luafile ~/.config/nvim/plugins/config/lsp/language-servers/yaml.lua
+  luafile ~/.config/nvim/plugins/config/lsp/snippets.lua
 endif
-
 
 " Add paths to node and python here
 if !empty(glob("~/.config/nvim/paths.vim"))

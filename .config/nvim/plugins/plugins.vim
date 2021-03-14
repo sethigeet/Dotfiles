@@ -66,7 +66,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " See what keys do like in emacs
     Plug 'liuchengxu/vim-which-key'
     " Snippets
-    Plug 'honza/vim-snippets'
+    Plug 'norcalli/snippets.nvim'
     Plug 'mattn/emmet-vim'
     " Interactive code
     Plug 'metakirby5/codi.vim'
