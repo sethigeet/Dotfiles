@@ -90,9 +90,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'moll/vim-bbye'
     " Smooth scroll
     Plug 'psliwka/vim-smoothie'
-    " async tasks
-    Plug 'skywind3000/asynctasks.vim'
-    Plug 'skywind3000/asyncrun.vim'
     " Swap windows
     Plug 'wesQ3/vim-windowswap'
     " Markdown Preview
@@ -110,6 +107,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'vimwiki/vimwiki'
     " Better Comments
     Plug 'jbgutierrez/vim-better-comments'
+    " Telescope
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
