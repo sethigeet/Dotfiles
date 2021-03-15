@@ -47,7 +47,7 @@ vim.g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git a
 -- vim.g.nvim_tree_width_allow_resize = 1 -- 0 by default, will not resize the tree when opening a file
 vim.g.nvim_tree_disable_netrw = 1 -- 1 by default, disables netrw
 vim.g.nvim_tree_hijack_netrw = 1 -- 1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
-vim.g.nvim_tree_show_icons = {["git"] = 1, ["folders"] = 1, ["files"] = 1}
+vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1}
 -- If 0, do not show the icons for one of 'git' 'folder' and 'files'
 -- 1 by default, notice that if 'files' is 1, it will only display
 -- if nvim-web-devicons is installed and on your runtimepath
@@ -55,20 +55,20 @@ vim.g.nvim_tree_show_icons = {["git"] = 1, ["folders"] = 1, ["files"] = 1}
 -- default will show icon by default if no icon is provided
 -- default shows no icon by default
 vim.g.nvim_tree_icons = {
-    ["default"] = "",
-    ["symlink"] = "",
-    ["git"] = {
-        ["unstaged"] = "✗",
-        ["staged"] = "✓",
-        ["unmerged"] = "",
-        ["renamed"] = "➜",
-        ["untracked"] = "ﭖ"
+    default = "",
+    symlink = "",
+    git = {
+        unstaged = "✗",
+        staged = "✓",
+        unmerged = "",
+        renamed = "➜",
+        untracked = "ﭖ"
     },
-    ["folder"] = {
-        ["default"] = "",
-        ["open"] = "",
-        ["empty"] = "",
-        ["empty_open"] = "",
-        ["symlink"] = ""
+    folder = {
+        default = "",
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = ""
     }
 }
