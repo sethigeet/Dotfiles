@@ -75,13 +75,19 @@ gls.left[2] = {
                                      mode_color[vim.fn.mode()])
             mode = vim.fn.mode()
             if mode == "n" then
-                return "  NORMAL "
+                return "  NORMAL " -- Normal
             elseif mode == "i" then
-                return "  INSERT "
-            elseif mode == "v" then
-                return "  VISUAL "
+                return "  INSERT " -- Insert
             elseif mode == "c" then
-                return "  COMMAND "
+                return "  COMMAND " -- Command
+            elseif mode == "R" then
+                return "  REPLACE " -- Replace
+            elseif mode == "v" then
+                return "  VISUAL " -- Visual
+            elseif mode == "V" then
+                return "  VISUAL " -- Visual Line
+            else
+                return "  VISUAL " -- Visual Block
             end
         end,
         separator = " ",
