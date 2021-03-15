@@ -1,0 +1,5 @@
+require("general.settings")
+require("general.functions")
+require("general.autogroups")
+require("general.paths")
+require("general.theme")

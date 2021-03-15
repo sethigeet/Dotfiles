@@ -1,0 +1,5 @@
+require("plugins.lsp.config")
+require("plugins.lsp.wrapper")
+require("plugins.lsp.language-servers")
+require("plugins.lsp.lsp-kind")
+require("plugins.lsp.snippets")
