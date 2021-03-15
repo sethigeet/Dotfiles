@@ -42,7 +42,7 @@ if has("persistent_undo")
   set undofile
 endif
 
-" au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
+au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Set the timeout length for mappings         By default timeoutlen=1000
