@@ -1,8 +1,7 @@
 -- vim.g.indentLine_showFirstIndentLevel = 1
 -- vim.g.indentLine_fileType = ['javascript', 'c']
 vim.g.indentLine_fileTypeExclude = {
-    "vimwiki", "coc-explorer", "help", "undotree", "diff", "startify",
-    "coc-explorer"
+    "vimwiki", "NvimTree", "help", "undotree", "diff", "startify"
 }
 vim.g.indentLine_bufTypeExclude = {"help", "terminal"}
 -- vim.g.indentLine_bufNameExclude = {}

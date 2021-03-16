@@ -20,6 +20,8 @@ define_augroups({
         {"FileType", "markdown", "set wrap"},
         -- set the timeout length for mappings         By default timeoutlen=1000
         {"InsertEnter", "*", "set timeoutlen=1000"},
-        {"InsertLeave", "*", "set timeoutlen=100"}
+        {"InsertLeave", "*", "set timeoutlen=100"},
+        -- Automatically install plugins when the plugins file is updated
+        {"BufWritePost", "plugins.lua", "PackerCompile"}
     }
 })

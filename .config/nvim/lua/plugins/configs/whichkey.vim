@@ -43,8 +43,6 @@ let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 ,
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
-" TODO fix this to not use coc anymore
-" let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
@@ -96,23 +94,6 @@ let g:which_key_map.b = {
       \ '?' : ['Buffers'                                 , 'fzf-buffer'],
       \ }
 
-" d is for debug
-let g:which_key_map.d = {
-      \ 'name' : '+debug' ,
-      \ 'b' : ['<Plug>VimspectorToggleBreakpoint'              , 'breakpoint'],
-      \ 'B' : ['<Plug>VimspectorToggleConditionalBreakpoint'   , 'conditional breakpoint'],
-      \ 'c' : ['<Plug>VimspectorRunToCursor'                   , 'run to cursor'],
-      \ 'd' : ['<Plug>VimspectorContinue'                      , 'continue'],
-      \ 'f' : ['<Plug>VimspectorAddFunctionBreakpoint'         , 'function breakpoint'],
-      \ 'm' : [':MaximizerToggle'                              , 'maximize window'],
-      \ 'o' : ['<Plug>VimspectorStepOver'                      , 'step over'],
-      \ 'O' : ['<Plug>VimspectorStepOut'                       , 'step out'],
-      \ 'i' : ['<Plug>VimspectorStepInto'                      , 'step into'],
-      \ 'p' : ['<Plug>VimspectorPause'                         , 'pause'],
-      \ 'r' : ['<Plug>VimspectorRestart'                       , 'restart'],
-      \ 's' : ['<Plug>VimspectorStop'                          , 'stop'],
-      \ }
-
 " F is for fold
 let g:which_key_map.F = {
     \ 'name': '+fold',
@@ -139,7 +120,6 @@ let g:which_key_map.f = {
 let g:which_key_map.g = {
       \ 'name' : '+git' ,
       \ 'a' : [':Git add .'                               , 'add all'],
-      \ 'A' : [':CocCommand fzf-preview.GitStatus'        , 'actions'],
       \ 'b' : [':Git blame'                               , 'blame'],
       \ 'B' : [':GBrowse'                                 , 'browse'],
       \ 'c' : [':Git commit'                              , 'commit'],
@@ -158,7 +138,6 @@ let g:which_key_map.g = {
       \ 'P' : [':Git pull'                                , 'pull'],
       \ 'r' : [':GRemove'                                 , 'remove'],
       \ 's' : ['<Plug>(GitGutterStageHunk)'               , 'stage hunk'],
-      \ 'S' : [':CocCommand fzf-preview.GitStatus'        , 'status'],
       \ 't' : [':GitGutterSignsToggle'                    , 'toggle signs'],
       \ 'u' : ['<Plug>(GitGutterUndoHunk)'                , 'undo hunk'],
       \ 'v' : [':GV'                                      , 'view commits'],
@@ -210,19 +189,6 @@ let g:which_key_map.l = {
       " \ 'i' : [':LspImplementation'                     , 'lsp_info'],
       " \ 'h' : [':Lspsaga hover_doc'                     , 'hover_doc'],
       " \ 'K' : [':LspHover'                              , 'hover'],
-
-
-" m is for mark
-let g:which_key_map.m = {
-      \ 'name' : '+mark',
-      \ 'c' : [':CocCommand bookmark.clearForCurrentFile' , 'clear file'],
-      \ 'C' : [':CocCommand bookmark.clearForAllFiles'    , 'clear project'],
-      \ 'j' : [':CocCommand bookmark.next'                , 'next bookmark'],
-      \ 'k' : [':CocCommand bookmark.prev'                , 'prev bookmark'],
-      \ 't' : [':CocCommand bookmark.toggle'              , 'toggle bookmark'],
-      \ }
-      " CoC throws an error
-      " \ 'a' : [':CocCommand bookmark.annotate', 'annotate bookmark'],
 
 " s is for search
 let g:which_key_map.s = {
