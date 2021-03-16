@@ -4,7 +4,7 @@ define_augroups({
     _general_settings = {
         {
             "TextYankPost", "*",
-            'lua require("vim.highlight").on_yank({higroup = "IncSearch", timeout = 200})'
+            'lua require("vim.highlight").on_yank({higroup = "IncSearch", timeout = 500})'
         }, {
             "BufWinEnter", "*",
             "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"

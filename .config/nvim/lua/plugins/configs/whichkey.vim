@@ -40,6 +40,7 @@ let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     ,
 let g:which_key_map[';'] = [ ':Commands'                                       , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
+let g:which_key_map['f'] = [ ':Telescope find_files'                           , 'find files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
 let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
@@ -57,8 +58,7 @@ let g:which_key_map.a = {
       \ 'h' : [':let @/ = ""'                            , 'remove search highlight'],
       \ 'l' : [':Bracey'                                 , 'start live server'],
       \ 'L' : [':BraceyStop'                             , 'stop live server'],
-      \ 'm' : [':MarkdownPreview'                        , 'markdown preview'],
-      \ 'M' : [':MarkdownPreviewStop'                    , 'markdown preview stop'],
+      \ 'm' : [':Glow'                                   , 'markdown preview'],
       \ 'n' : [':set nonumber!'                          , 'line-numbers'],
       \ 's' : [':s/\%V\(.*\)\%V/"\1"/'                   , 'surround'],
       \ 'r' : [':set norelativenumber!'                  , 'relative line nums'],
@@ -109,13 +109,6 @@ let g:which_key_map.F = {
     \ '6' : [':set foldlevel=6', 'level6']
     \ }
 
-" f is for find and replace
-let g:which_key_map.f = {
-      \ 'name' : '+find & replace' ,
-      \ 'f' : [':Farr --source=vimgrep'                   , 'file'],
-      \ 'p' : [':Farr --source=rgnvim'                    , 'project'],
-      \ }
-
 " g is for git
 let g:which_key_map.g = {
       \ 'name' : '+git' ,
@@ -160,7 +153,6 @@ let g:which_key_map.G = {
       \ }
 
 " l is for language server protocol(lsp)
-
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
       \ 'a' : [':Lspsaga code_action'                     , 'quickfix'],
@@ -203,7 +195,7 @@ let g:which_key_map.s = {
       \ 'D' : [':Telescope lsp_workspace_diagnostics'   , 'workspace diagnostics'],
       \ 'c' : [':Telescope git_commits'                 , 'git commits'],
       \ 'f' : [':Telescope find_files'                  , 'files'],
-      \ 'F' : [':Telescope git_files'                   , 'git_files'],
+      \ 'F' : [':Telescope git_files'                   , 'git files'],
       \ 'g' : [':Telescope tags'                        , 'tags'],
       \ 'G' : [':Telescope current_buffer_tags'         , 'buffer_tags'],
       \ 'h' : [':Telescope command_history'             , 'history'],
@@ -212,21 +204,21 @@ let g:which_key_map.s = {
       \ 'k' : [':Telescope keymaps'                     , 'keymaps'],
       \ 'l' : [':Telescope loclist'                     , 'loclist'],
       \ 'm' : [':Telescope marks'                       , 'marks'],
-      \ 'M' : [':Telescope man_pages'                   , 'man_pages'],
-      \ 'o' : [':Telescope vim_options'                 , 'vim_options'],
+      \ 'M' : [':Telescope man_pages'                   , 'man pages'],
+      \ 'o' : [':Telescope vim_options'                 , 'vim options'],
       \ 'O' : [':Telescope oldfiles'                    , 'oldfiles'],
       \ 'p' : [':Telescope fd'                          , 'fd'],
-      \ 'P' : [':Telescope spell_suggest'               , 'spell_suggest'],
-      \ 's' : [':Telescope git_status'                  , 'git_status'],
-      \ 'S' : [':Telescope grep_string'                 , 'grep_string'],
+      \ 'P' : [':Telescope spell_suggest'               , 'spell suggest'],
+      \ 's' : [':Telescope git_status'                  , 'git status'],
+      \ 'S' : [':Telescope grep_string'                 , 'grep string'],
       \ 't' : [':Telescope live_grep'                   , 'text'],
       \ 'y' : [':Telescope symbols'                     , 'symbols'],
-      \ 'Y' : [':Telescope lsp_workspace_symbols'       , 'lsp_workspace_symbols'],
+      \ 'Y' : [':Telescope lsp_workspace_symbols'       , 'lsp workspace symbols'],
       \ 'r' : [':Telescope registers'                   , 'registers'],
       \ 'R' : [':Telescope reloader'                    , 'reloader'],
-      \ 'w' : [':Telescope file_browser'                , 'buf_fuz_find'],
+      \ 'w' : [':Telescope file_browser'                , 'file browser'],
       \ 'u' : [':Telescope colorscheme'                 , 'colorschemes'],
-      \ 'z' : [':Telescope current_buffer_fuzzy_find'   , 'buf_fuz_find'],
+      \ 'z' : [':Telescope current_buffer_fuzzy_find'   , 'buf fuz find'],
       \ }
 
 let g:which_key_map.S = {
