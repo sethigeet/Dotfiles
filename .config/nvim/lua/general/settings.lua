@@ -35,6 +35,8 @@ vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.relativenumber = true
 vim.o.incsearch = true
+vim.cmd('set ts=2') -- Insert 2 spaces for a tab
+vim.cmd('set sw=2') -- Change the number of space characters inserted for indentation
 
 if vim.fn.has("persistent_undo") == 1 then
     vim.o.undodir = vim.fn.expand("~/.undodir")
