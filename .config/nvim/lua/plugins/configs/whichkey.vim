@@ -65,7 +65,6 @@ let g:which_key_map.a = {
       \ 't' : [':FloatermToggle'                         , 'terminal'],
       \ 'v' : [':Codi'                                   , 'virtual repl on'],
       \ 'V' : [':Codi!'                                  , 'virtual repl off'],
-      \ 'w' : [':StripWhitespace'                        , 'strip whitespace'],
       \ }
 
 " b is for buffer
@@ -91,7 +90,6 @@ let g:which_key_map.b = {
       \ 'L' : [':BufferOrderByLanguage'                  , 'order by language'],
       \ 'n' : ['bnext'                                   , 'next-buffer'],
       \ 'p' : ['bprevious'                               , 'previous-buffer'],
-      \ '?' : ['Buffers'                                 , 'fzf-buffer'],
       \ }
 
 " F is for fold
@@ -167,7 +165,7 @@ let g:which_key_map.l = {
       \ 'o' : [':Vista!!'                                 , 'outline'],
       \ 'p' : [':Lspsaga preview_definition'              , 'preview definition'],
       \ 'q' : [':Telescope quickfix'                      , 'quickfix'],
-      \ 'r' : [':LspRename'                               , 'rename'],
+      \ 'r' : [':Lspsaga rename'                          , 'rename'],
       \ 'T' : [':LspTypeDefinition'                       , 'type defintion'],
       \ 'x' : [':cclose'                                  , 'close quickfix'],
       \ 's' : [':Telescope lsp_document_symbols'          , 'document symbols'],
