@@ -143,7 +143,11 @@ return require("packer").startup(function(use)
     use "liuchengxu/vim-which-key"
 
     -- Snippets
-    use "norcalli/snippets.nvim"
+    use {
+        "hrsh7th/vim-vsnip",
+        requires = {"hrsh7th/vim-vsnip-integ"},
+        config = function() require("plugins.configs.vsnip") end
+    }
     use "mattn/emmet-vim"
 
     -- Interactive code

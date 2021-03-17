@@ -28,4 +28,14 @@ function _G.smart_tab()
     return vim.fn.pumvisible() == 1 and t("<C-n>") or t("<Tab>")
 end
 
+function _G.s_tab_complete()
+    if vim.fn.pumvisible() == 1 then
+        return t("<C-p>")
+    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+        return t("<Plug>(vsnip-jump-prev)")
+    else
+        return t("<S-Tab>")
+    end
+end
+
 return define_augroups
