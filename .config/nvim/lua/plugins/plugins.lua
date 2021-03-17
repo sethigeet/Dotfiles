@@ -14,12 +14,12 @@ return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
     -- Easier Comments
-    use {
-        "tpope/vim-commentary",
-        config = function() require("plugins.configs.vim-commentary") end
-    }
     use "suy/vim-context-commentstring" -- Useful for React Commenting
     use "jbgutierrez/vim-better-comments" -- Highlights comments
+    use {
+        "terrortylor/nvim-comment",
+        config = function() require("plugins.configs.comment") end
+    }
 
     -- Indent lines
     use {
@@ -164,6 +164,12 @@ return require("packer").startup(function(use)
     use {
         "romgrk/barbar.nvim",
         config = function() require("plugins.configs.barbar") end
+    }
+
+    -- Better quickfix menu
+    use {
+        "kevinhwang91/nvim-bqf",
+        config = function() require("plugins.configs.bqf") end
     }
 
     -- Intuitive buffer closing
