@@ -116,15 +116,19 @@ return require("packer").startup(function(use)
     }
 
     -- Git
-    use {
-        "airblade/vim-gitgutter",
-        config = function() require("plugins.configs.gitgutter") end
-    }
-    use "tpope/vim-fugitive"
-    use "junegunn/gv.vim"
+    use {"junegunn/gv.vim", requires = {"tpope/vim-fugitive"}}
     use {
         "rhysd/git-messenger.vim",
         config = function() require("plugins.configs.git-messenger") end
+    }
+    use {
+        "lewis6991/gitsigns.nvim",
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function() require("plugins.configs.gitsigns") end
+    }
+    use {
+        "f-person/git-blame.nvim",
+        config = function() require("plugins.configs.git-blame") end
     }
 
     -- Terminal

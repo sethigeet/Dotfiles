@@ -1,7 +1,6 @@
 local lsp_wrapper = {}
 
--- buf
-
+-- buffer
 function lsp_wrapper.add_to_workspace_folder() vim.lsp.buf
     .add_workspace_folder() end
 
@@ -61,7 +60,6 @@ function lsp_wrapper.type_definition() vim.lsp.buf.type_definition() end
 function lsp_wrapper.workspace_symbol() vim.lsp.buf.workspace_symbol() end
 
 -- diagnostic
-
 function lsp_wrapper.get_all() vim.lsp.diagnostic.get_all() end
 
 function lsp_wrapper.get_next() vim.lsp.diagnostic.get_next() end
@@ -75,6 +73,23 @@ function lsp_wrapper.goto_prev() vim.lsp.diagnostic.goto_prev() end
 function lsp_wrapper.show_line_diagnostics()
     vim.lsp.diagnostic.show_line_diagnostics()
 end
+
+-- Gitsigns
+function lsp_wrapper.next_hunk() require("gitsigns").next_hunk() end
+
+function lsp_wrapper.prev_hunk() require("gitsigns").prev_hunk() end
+
+function lsp_wrapper.stage_hunk() require("gitsigns").stage_hunk() end
+
+function lsp_wrapper.undo_stage_hunk() require("gitsigns").undo_stage_hunk() end
+
+function lsp_wrapper.reset_hunk() require("gitsigns").reset_hunk() end
+
+function lsp_wrapper.reset_buffer() require("gitsigns").reset_buffer() end
+
+function lsp_wrapper.preview_hunk() require("gitsigns").preview_hunk() end
+
+function lsp_wrapper.blame_line() require("gitsigns").blame_line() end
 
 -- misc
 
