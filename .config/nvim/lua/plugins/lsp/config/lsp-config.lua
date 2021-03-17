@@ -1,3 +1,20 @@
+vim.fn.sign_define("LspDiagnosticsDefaultError", {
+    texthl = "LspDiagnosticsDefaultError",
+    numhl = "LspDiagnosticsDefaultError"
+})
+vim.fn.sign_define("LspDiagnosticsDefaultWarning", {
+    texthl = "LspDiagnosticsDefaultWarning",
+    numhl = "LspDiagnosticsDefaultWarning"
+})
+vim.fn.sign_define("LspDiagnosticsDefaultInformation", {
+    texthl = "LspDiagnosticsDefaultInformation",
+    numhl = "LspDiagnosticsDefaultInformation"
+})
+vim.fn.sign_define("LspDiagnosticsDefaultHint", {
+    texthl = "LspDiagnosticsDefaultHint",
+    numhl = "LspDiagnosticsDefaultHint"
+})
+
 vim.fn.sign_define("LspDiagnosticsSignError", {
     texthl = "LspDiagnosticsSignError",
     text = "",
@@ -18,11 +35,6 @@ vim.fn.sign_define("LspDiagnosticsSignHint", {
     text = "",
     numhl = "LspDiagnosticsSignHint"
 })
-
-vim.cmd("highlight LspDiagnosticsDefaultError guifg=#FF3333")
-vim.cmd("highlight LspDiagnosticsDefaultWarning guifg=#FFCC66")
-vim.cmd("highlight LspDiagnosticsDefaultInformation guifg=#73D0FF")
-vim.cmd("highlight LspDiagnosticsDefaultHint guifg=#95E6CB")
 
 vim.cmd('nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>')
 vim.cmd('nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>')
