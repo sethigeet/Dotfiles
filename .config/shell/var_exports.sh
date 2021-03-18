@@ -52,3 +52,4 @@ export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|sudo reboot|history|cd -|cd .
 if command -v conda_auto_env &> /dev/null; then
   export PROMPT_COMMAND="conda_auto_env;$PROMPT_COMMAND"
 fi
+

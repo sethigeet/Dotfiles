@@ -39,6 +39,7 @@ fi
 # GO
 if [ -d "$HOME/go" ]; then
   PATH="$PATH:$HOME/go/bin"
+  export GOPATH="$HOME/go"
 fi
 
 # PYENV

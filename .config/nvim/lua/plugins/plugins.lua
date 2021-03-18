@@ -39,12 +39,6 @@ return require("packer").startup(function(use)
         config = function() require("plugins.configs.quickscope") end
     }
 
-    -- highlight all matches under cursor
-    use {
-        "RRethy/vim-illuminate",
-        config = function() require("plugins.configs.illuminate") end
-    }
-
     -- Vifm
     use {
         "vifm/vifm.vim",

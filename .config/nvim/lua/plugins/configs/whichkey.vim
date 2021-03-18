@@ -150,6 +150,7 @@ let g:which_key_map.l = {
       \ 'L' : [':Lspsaga show_line_diagnostics'           , 'line_diagnostics'],
       \ 'o' : [':Vista!!'                                 , 'outline'],
       \ 'p' : [':Lspsaga preview_definition'              , 'preview definition'],
+      \ 'P' : [':call v:lua.PeekDefinition()'             , 'peek definition'],
       \ 'q' : [':Telescope quickfix'                      , 'quickfix'],
       \ 'r' : [':Lspsaga rename'                          , 'rename'],
       \ 'T' : [':LspTypeDefinition'                       , 'type defintion'],
