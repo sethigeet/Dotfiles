@@ -22,8 +22,6 @@ define_augroups({
         {"InsertEnter", "*", "set timeoutlen=1000"},
         {"InsertLeave", "*", "set timeoutlen=100"},
         -- Automatically install plugins when the plugins file is updated
-        {"BufWritePost", "plugins.lua", "PackerCompile"},
-        -- Autoformatting for all files
-        {"BufWritePre", "*.*", "lua vim.lsp.buf.formatting_sync(nil, 100)"}
+        {"BufWritePost", "plugins.lua", "PackerCompile"}
     }
 })

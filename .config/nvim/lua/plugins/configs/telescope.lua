@@ -1,7 +1,8 @@
+require("telescope").load_extension("media_files")
+
 local actions = require("telescope.actions")
 
 -- Global remapping
-require("telescope").load_extension("media_files")
 require("telescope").setup {
     defaults = {
         vimgrep_arguments = {
@@ -59,8 +60,8 @@ require("telescope").setup {
             },
             n = {
                 ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous
-                -- ["<esc>"] = actions.close,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<esc>"] = actions.close
                 -- ["<C-i>"] = my_cool_custom_action,
             }
         }

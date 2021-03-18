@@ -1,7 +1,7 @@
 require("plugins.lsp.language-servers.bash")
 require("plugins.lsp.language-servers.css")
 require("plugins.lsp.language-servers.docker")
-require("plugins.lsp.language-servers.general")
+require("plugins.lsp.language-servers.efm")
 require("plugins.lsp.language-servers.go")
 require("plugins.lsp.language-servers.graphql")
 require("plugins.lsp.language-servers.html")
