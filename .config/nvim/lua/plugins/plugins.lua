@@ -87,6 +87,10 @@ return require("packer").startup(function(use)
         config = function() require("plugins.configs.treesitter") end
     }
     use "nvim-treesitter/playground"
+    -- Automatically close and rename tags
+    use "windwp/nvim-ts-autotag"
+    -- Rainbow brackets
+    use "p00f/nvim-ts-rainbow"
 
     -- Cool Icons
     use "kyazdani42/nvim-web-devicons"
@@ -96,15 +100,15 @@ return require("packer").startup(function(use)
     use "jiangmiao/auto-pairs"
 
     -- Closetags
-    use {
-        "alvan/vim-closetag",
-        config = function() require("plugins.configs.closetags") end
-    }
+    -- use {
+    --     "alvan/vim-closetag",
+    --     config = function() require("plugins.configs.closetags") end
+    -- }
     -- Auto change html tags
-    use {
-        "AndrewRadev/tagalong.vim",
-        config = function() require("plugins.configs.tagalong") end
-    }
+    -- use {
+    --     "AndrewRadev/tagalong.vim",
+    --     config = function() require("plugins.configs.tagalong") end
+    -- }
 
     -- Themes
     use "ayu-theme/ayu-vim"
@@ -129,6 +133,10 @@ return require("packer").startup(function(use)
     use {
         "f-person/git-blame.nvim",
         config = function() require("plugins.configs.git-blame") end
+    }
+    use {
+        "TimUntersberger/neogit",
+        config = function() require("plugins.configs.neogit") end
     }
 
     -- Terminal
@@ -204,8 +212,6 @@ return require("packer").startup(function(use)
 
     }
 
-    -- Rainbow brackets
-    use "p00f/nvim-ts-rainbow"
     -- use "maxmellon/vim-jsx-pretty"
     --
     -- Multiple Cursors
