@@ -4,8 +4,7 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " ..
-                install_path)
+    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     execute "packadd packer.nvim"
 end
 
@@ -16,16 +15,10 @@ return require("packer").startup(function(use)
     -- Easier Comments
     use "suy/vim-context-commentstring" -- Useful for React Commenting
     use "jbgutierrez/vim-better-comments" -- Highlights comments
-    use {
-        "terrortylor/nvim-comment",
-        config = function() require("plugins.configs.comment") end
-    }
+    use {"terrortylor/nvim-comment", config = function() require("plugins.configs.comment") end}
 
     -- Indent lines
-    use {
-        "Yggdroot/indentLine",
-        config = function() require("plugins.configs.indentLine") end
-    }
+    use {"Yggdroot/indentLine", config = function() require("plugins.configs.indentLine") end}
 
     -- Change dates fast
     use "tpope/vim-speeddating"
@@ -34,43 +27,25 @@ return require("packer").startup(function(use)
     use "tpope/vim-repeat"
 
     -- Text Navigation
-    use {
-        "unblevable/quick-scope",
-        config = function() require("plugins.configs.quickscope") end
-    }
+    use {"unblevable/quick-scope", config = function() require("plugins.configs.quickscope") end}
 
     -- Vifm
-    use {
-        "vifm/vifm.vim",
-        config = function() require("plugins.configs.vifm") end
-    }
+    use {"vifm/vifm.vim", config = function() require("plugins.configs.vifm") end}
 
     -- File Explorer
-    use {
-        "kyazdani42/nvim-tree.lua",
-        config = function() require("plugins.configs.nvimtree") end
-    }
+    use {"kyazdani42/nvim-tree.lua", config = function() require("plugins.configs.nvimtree") end}
 
     -- Easymotion
-    use {
-        "easymotion/vim-easymotion",
-        config = function() require("plugins.configs.easymotion") end
-    }
+    use {"easymotion/vim-easymotion", config = function() require("plugins.configs.easymotion") end}
 
     -- Have the file system follow you around
-    use {
-        "airblade/vim-rooter",
-        config = function() require("plugins.configs.vim-rooter") end
-    }
+    use {"airblade/vim-rooter", config = function() require("plugins.configs.vim-rooter") end}
 
     -- auto set indent settings
     use "tpope/vim-sleuth"
 
     -- Better Syntax Support
-    use {
-        "sheerun/vim-polyglot",
-        config = function() require("plugins.configs.polyglot") end
-    }
+    use {"sheerun/vim-polyglot", config = function() require("plugins.configs.polyglot") end}
 
     -- Treesitter
     use {
@@ -96,10 +71,7 @@ return require("packer").startup(function(use)
     use "ayu-theme/ayu-vim"
 
     -- Status Line
-    use {
-        "glepnir/galaxyline.nvim",
-        config = function() require("plugins.configs.galaxyline") end
-    }
+    use {"glepnir/galaxyline.nvim", config = function() require("plugins.configs.galaxyline") end}
 
     -- Git
     use {"junegunn/gv.vim", requires = {"tpope/vim-fugitive"}}
@@ -112,26 +84,14 @@ return require("packer").startup(function(use)
         requires = {'nvim-lua/plenary.nvim'},
         config = function() require("plugins.configs.gitsigns") end
     }
-    use {
-        "f-person/git-blame.nvim",
-        config = function() require("plugins.configs.git-blame") end
-    }
-    use {
-        "TimUntersberger/neogit",
-        config = function() require("plugins.configs.neogit") end
-    }
+    use {"f-person/git-blame.nvim", config = function() require("plugins.configs.git-blame") end}
+    use {"TimUntersberger/neogit", config = function() require("plugins.configs.neogit") end}
 
     -- Terminal
-    use {
-        "voldikss/vim-floaterm",
-        config = function() require("plugins.configs.floaterm") end
-    }
+    use {"voldikss/vim-floaterm", config = function() require("plugins.configs.floaterm") end}
 
     -- Start Screen
-    use {
-        "mhinz/vim-startify",
-        config = function() require("plugins.configs.startify") end
-    }
+    use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
 
     -- See what keys do like in emacs
     use "liuchengxu/vim-which-key"
@@ -145,22 +105,13 @@ return require("packer").startup(function(use)
     use "mattn/emmet-vim"
 
     -- Interactive code
-    use {
-        "metakirby5/codi.vim",
-        config = function() require("plugins.configs.codi") end
-    }
+    use {"metakirby5/codi.vim", config = function() require("plugins.configs.codi") end}
 
     -- Better tabline
-    use {
-        "romgrk/barbar.nvim",
-        config = function() require("plugins.configs.barbar") end
-    }
+    use {"romgrk/barbar.nvim", config = function() require("plugins.configs.barbar") end}
 
     -- Better quickfix menu
-    use {
-        "kevinhwang91/nvim-bqf",
-        config = function() require("plugins.configs.bqf") end
-    }
+    use {"kevinhwang91/nvim-bqf", config = function() require("plugins.configs.bqf") end}
 
     -- Intuitive buffer closing
     use "moll/vim-bbye"
@@ -172,10 +123,7 @@ return require("packer").startup(function(use)
     use "psliwka/vim-smoothie"
 
     -- Swap windows
-    use {
-        "wesQ3/vim-windowswap",
-        config = function() require("plugins.configs.window-swap") end
-    }
+    use {"wesQ3/vim-windowswap", config = function() require("plugins.configs.window-swap") end}
 
     -- Markdown Preview
     use {'npxbr/glow.nvim', run = ':GlowInstall'}
@@ -204,26 +152,17 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = {
             "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim",
-            "nvim-telescope/telescope-media-files.nvim"
+            "nvim-telescope/telescope-media-files.nvim", "nvim-telescope/telescope-fzy-native.nvim"
         },
         config = function() require("plugins.configs.telescope") end
     }
 
     -- Intellisense
     use "neovim/nvim-lspconfig"
-    use {
-        "hrsh7th/nvim-compe",
-        config = function() require("plugins.configs.compe") end
-    }
-    use {
-        "glepnir/lspsaga.nvim",
-        config = function() require("plugins.configs.lspsaga") end
-    }
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.configs.compe") end}
+    use {"glepnir/lspsaga.nvim", config = function() require("plugins.configs.lspsaga") end}
     use "onsails/lspkind-nvim"
-    use {
-        "kosayoda/nvim-lightbulb",
-        config = function() require("plugins.configs.lightbulb") end
-    }
+    use {"kosayoda/nvim-lightbulb", config = function() require("plugins.configs.lightbulb") end}
     use "liuchengxu/vista.vim"
 
     -- Easily change surrounding elements
