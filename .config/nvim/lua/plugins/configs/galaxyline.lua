@@ -1,24 +1,23 @@
--- require("nvim-web-devicons").setup()
 local gl = require("galaxyline")
 local condition = require('galaxyline.condition')
 
 local gls = gl.section
 
 local colors = {
-    bg = "#282c34",
-    yellow = "#fabd2f",
+    bg = "#282C34",
+    yellow = "#FABD2F",
     cyan = "#008080",
     darkblue = "#081633",
     green = "#608B4E",
     orange = "#FF8800",
-    purple = "#5d4d7a",
-    magenta = "#d16d9e",
-    grey = "#c0c0c0",
+    purple = "#5D4D7A",
+    magenta = "#D16D9E",
+    grey = "#C0C0C0",
     blue = "#569CD6",
     red = "#D16969"
 }
 
-gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
+gl.short_line_list = {"NvimTree", "Vista", "DBUI", "Packer"}
 
 gls.left[1] = {
     ViMode = {
@@ -78,7 +77,9 @@ gls.left[1] = {
         separator = " ",
         separator_highlight = {
             colors.yellow, function()
-                if not condition.buffer_not_empty then return colors.bg end
+                if not condition.buffer_not_empty then
+                    return colors.bg
+                end
                 return colors.bg
             end
         },
@@ -88,9 +89,7 @@ gls.left[1] = {
 
 gls.left[2] = {
     GitIcon = {
-        provider = function()
-            return " "
-        end,
+        provider = function() return " " end,
         condition = condition.check_git_workspace,
         highlight = {colors.orange, colors.bg}
     }
@@ -110,7 +109,7 @@ gls.left[4] = {
     DiffAdd = {
         provider = "DiffAdd",
         condition = condition.hide_in_width,
-        icon = '  ',
+        icon = "  ",
         highlight = {colors.green, colors.bg}
     }
 }
@@ -119,7 +118,7 @@ gls.left[5] = {
     DiffModified = {
         provider = "DiffModified",
         condition = condition.hide_in_width,
-        icon = ' 柳',
+        icon = " 柳",
         highlight = {colors.blue, colors.bg}
     }
 }
@@ -128,16 +127,14 @@ gls.left[6] = {
     DiffRemove = {
         provider = "DiffRemove",
         condition = condition.hide_in_width,
-        icon = '  ',
+        icon = "  ",
         highlight = {colors.red, colors.bg}
     }
 }
 
 gls.left[7] = {
     LeftEnd = {
-        provider = function()
-            return " "
-        end,
+        provider = function() return " " end,
         separator = " ",
         separator_highlight = {colors.purple, colors.bg},
         highlight = {colors.purple, colors.bg}
@@ -152,13 +149,7 @@ gls.left[8] = {
     }
 }
 
-gls.left[9] = {
-    Space = {
-        provider = function()
-            return ""
-        end
-    }
-}
+gls.left[9] = {Space = {provider = function() return "" end}}
 
 gls.left[10] = {
     DiagnosticWarn = {
@@ -186,14 +177,14 @@ gls.left[12] = {
 
 gls.right[1] = {
     ShowLspClient = {
-        provider = 'GetLspClient',
+        provider = "GetLspClient",
         condition = function()
-            local tbl = {['dashboard'] = true, [' '] = true}
+            local tbl = {["dashboard"] = true, [" "] = true}
             if tbl[vim.bo.filetype] then return false end
             return true
         end,
         icon = ' ',
-        highlight = {colors.grey, colors.bg, 'bold'}
+        highlight = {colors.grey, colors.bg, "bold"}
     }
 }
 
@@ -224,7 +215,12 @@ gls.right[4] = {
     }
 }
 
-gls.right[5] = {ScrollBar = {provider = "ScrollBar", highlight = {colors.yellow, colors.purple}}}
+gls.right[5] = {
+    ScrollBar = {
+        provider = "ScrollBar",
+        highlight = {colors.yellow, colors.purple}
+    }
+}
 
 gls.short_line_left[1] = {
     BufferType = {
@@ -237,13 +233,13 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
     SFileName = {
-        provider = 'SFileName',
+        provider = "SFileName",
         condition = condition.buffer_not_empty,
-        highlight = {colors.grey, colors.bg, 'bold'}
+        highlight = {colors.grey, colors.bg, "bold"}
     }
 }
 
 gls.short_line_right[1] = {
-    BufferIcon = {provider = 'BufferIcon', highlight = {colors.grey, colors.bg}}
+    BufferIcon = {provider = "BufferIcon", highlight = {colors.grey, colors.bg}}
 }
 

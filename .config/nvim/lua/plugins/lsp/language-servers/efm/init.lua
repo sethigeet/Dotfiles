@@ -1,18 +1,27 @@
 local lspconfig = require("lspconfig")
 
+-- Lua
 local lua_format = require("plugins.lsp.language-servers.efm.lua-format")
+-- Go
 local golint = require("plugins.lsp.language-servers.efm.golint")
 local goimports = require("plugins.lsp.language-servers.efm.goimports")
-local black = require("plugins.lsp.language-servers.efm.black")
-local flake8 = require("plugins.lsp.language-servers.efm.flake8")
-local prettier = require("plugins.lsp.language-servers.efm.prettier")
+-- Python
+local autopep8 = require("plugins.lsp.language-servers.efm.autopep8")
+local pylint = require("plugins.lsp.language-servers.efm.pylint")
+-- JavaScript/TypeScript
 local eslint = require("plugins.lsp.language-servers.efm.eslint")
+-- JavaScript/Flow/TypeScript/CSS/SCSS/Less/JSX/GraphQL/JSON/Markdown
+local prettier = require("plugins.lsp.language-servers.efm.prettier")
+-- Shell
+local shellcheck = require("plugins.lsp.language-servers.efm.shellcheck")
+local shfmt = require("plugins.lsp.language-servers.efm.shfmt")
 
 lspconfig.efm.setup {
     init_options = {documentFormatting = true},
     filetypes = {
         "lua", "go", "python", "typescript", "javascript", "typescriptreact",
-        "javascriptreact", "yaml", "json", "html", "scss", "css", "markdown"
+        "javascriptreact", "yml", "yaml", "json", "html", "scss", "css",
+        "markdown", "sh", "bash", "zsh"
     },
     root_dir = function() return vim.fn.getcwd() end,
     on_attach = function(client, bufnr)
@@ -24,17 +33,21 @@ lspconfig.efm.setup {
         languages = {
             lua = {lua_format},
             go = {golint, goimports},
-            python = {black, flake8},
+            python = {autopep8, pylint},
             typescript = {prettier, eslint},
             javascript = {prettier, eslint},
             typescriptreact = {prettier, eslint},
             javascriptreact = {prettier, eslint},
             yaml = {prettier},
+            yml = {prettier},
             json = {prettier},
             html = {prettier},
             scss = {prettier},
             css = {prettier},
-            markdown = {prettier}
+            markdown = {prettier},
+            sh = {shellcheck, shfmt},
+            bash = {shellcheck, shfmt},
+            zsh = {shellcheck, shfmt}
         }
     }
 }

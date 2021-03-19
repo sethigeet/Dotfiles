@@ -155,6 +155,7 @@ let g:which_key_map.l = {
       \ 'r' : [':Lspsaga rename'                          , 'rename'],
       \ 'T' : [':LspTypeDefinition'                       , 'type defintion'],
       \ 'x' : [':cclose'                                  , 'close quickfix'],
+      \ 'v' : [':LspVirtualTextToggle'                    , 'toggle virtual text'],
       \ 's' : [':Telescope lsp_document_symbols'          , 'document symbols'],
       \ 'S' : [':Telescope lsp_workspace_symbols'         , 'workspace symbols'],
       \ }

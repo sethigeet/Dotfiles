@@ -91,6 +91,13 @@ function lsp_wrapper.preview_hunk() require("gitsigns").preview_hunk() end
 
 function lsp_wrapper.blame_line() require("gitsigns").blame_line() end
 
+local show_virtual_text = true
+function lsp_wrapper.toggle_virtual_text()
+    show_virtual_text = not show_virtual_text
+    vim.lsp.diagnostic.display(vim.lsp.diagnostic.get(0, 1), 0, 1,
+                               {virtual_text = show_virtual_text})
+end
+
 -- misc
 
 -- :lua print(vim.inspect(vim.lsp.buf_get_clients()))

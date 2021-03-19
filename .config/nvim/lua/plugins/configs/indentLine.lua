@@ -12,12 +12,12 @@ vim.g.indentLine_setConceal = 1
 vim.g.indentLine_concealcursor = "incv"
 vim.g.indentLine_conceallevel = 2
 
--- vim.g.indentLine_char = "|"
-vim.g.indentLine_char_list = {"|", "¦", "┆", "┊"}
+vim.g.indentLine_char = "|"
+-- vim.g.indentLine_char_list = {"|", "¦", "┆", "┊"}
 
 -- Leading Space
 vim.g.indentLine_leadingSpaceEnabled = 1
-vim.g.indentLine_leadingSpaceChar = "•"
+-- vim.g.indentLine_leadingSpaceChar = "•"
 
 -- Use Theme Colors
 -- vim.g.indentLine_setColors = 0

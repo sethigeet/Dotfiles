@@ -11,7 +11,7 @@ require("nvim-treesitter.configs").setup(
             persist_queries = false -- Whether the query persists across vim sessions
         },
         rainbow = {enable = true}, -- Rainbow brackets
-        refactor = {highlight_definitions = {enable = true}}, -- Highlight during refactor
+        -- refactor = {highlight_definitions = {enable = true}}, -- Highlight all the occurrences of variables under the cursor
         autotag = {enable = true},
         indent = {enable = true}
     })
