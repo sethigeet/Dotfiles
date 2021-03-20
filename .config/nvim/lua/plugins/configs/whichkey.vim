@@ -43,7 +43,6 @@ let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 ,
 let g:which_key_map['f'] = [ ':Telescope find_files'                           , 'find files' ]
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
 let g:which_key_map['n'] = [ ':let @/ = ""'                                    , 'no highlight' ]
-let g:which_key_map['p'] = [ ':Files'                                          , 'search files' ]
 let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 , 'treesitter highlight' ]
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
@@ -136,7 +135,6 @@ let g:which_key_map.g = {
       " \ 'A' : [':Git add %'                                , 'add current'],
       " \ 'S' : [':!git status'                              , 'status'],
 
-" l is for language server protocol(lsp)
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
       \ 'a' : [':Lspsaga code_action'                     , 'quickfix'],
@@ -167,6 +165,14 @@ let g:which_key_map.l = {
       " \ 'i' : [':LspImplementation'                     , 'lsp_info'],
       " \ 'h' : [':Lspsaga hover_doc'                     , 'hover_doc'],
       " \ 'K' : [':LspHover'                              , 'hover'],
+
+" p is for peekup
+let g:which_key_map.p = {
+      \ 'name' : '+peekup' ,
+      \ 'p' : ['<Plug>PeekupOpen'                         , 'view registers'],
+      \ 'b' : ['<Plug>PeekupPasteBefore'                  , 'view registers & paste before cursor upon selection'],
+      \ 'a' : ['<Plug>PeekupPasteAfter'                   , 'view registers & paste after cursor upon selection'],
+      \ }
 
 " s is for search
 let g:which_key_map.s = {

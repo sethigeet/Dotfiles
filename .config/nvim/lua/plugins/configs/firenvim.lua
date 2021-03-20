@@ -1,6 +1,6 @@
 -- Post install command: nvim --headless "+call firenvim#install(0) | q"
 --
-local define_augroups = require("general.functions")
+local define_augroups = require("general.functions").define_augroups
 
 define_augroups({
     FireNVIM = {

@@ -1,4 +1,4 @@
-local define_augroups = require("general.functions")
+local define_augroups = require("general.functions").define_augroups
 
 define_augroups({
     _general_settings = {

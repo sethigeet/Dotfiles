@@ -38,4 +38,4 @@ function _G.s_tab_complete()
     end
 end
 
-return define_augroups
+return {define_augroups = define_augroups}

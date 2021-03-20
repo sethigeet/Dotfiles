@@ -99,10 +99,14 @@ return require("packer").startup(function(use)
     -- Snippets
     use {
         "hrsh7th/vim-vsnip",
-        requires = {"hrsh7th/vim-vsnip-integ"},
         config = function() require("plugins.configs.vsnip") end
     }
-    use "mattn/emmet-vim"
+    use {"mattn/emmet-vim", config = function() require("plugins.configs.emmet-vim") end}
+    use "xabikos/vscode-javascript"
+    use "cstrap/python-snippets"
+    use "dsznajder/vscode-es7-javascript-react-snippets"
+    use "golang/vscode-go"
+    use "rust-lang/vscode-rust"
 
     -- Interactive code
     use {"metakirby5/codi.vim", config = function() require("plugins.configs.codi") end}
@@ -167,4 +171,7 @@ return require("packer").startup(function(use)
 
     -- Easily change surrounding elements
     use "tpope/vim-surround"
+
+    -- Visually interact with the registers easily
+    use "gennaro-tedesco/nvim-peekup"
 end)
