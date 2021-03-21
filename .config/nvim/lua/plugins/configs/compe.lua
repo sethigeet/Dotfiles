@@ -17,15 +17,18 @@ require("compe").setup {
     documentation = true,
 
     source = {
-        path = true,
-        buffer = true,
-        calc = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        spell = true,
-        tags = true,
-        treesitter = true,
-        vsnip = true
+        path = {kind = "  "},
+        buffer = {kind = "  "},
+        calc = {kind = "  "},
+        vsnip = {kind = "  "},
+        nvim_lsp = {kind = "  "},
+        nvim_lua = {kind = "  "},
+        spell = {kind = "  "},
+        tags = false,
+        snippets_nvim = {kind = "  "},
+        treesitter = {kind = "  "},
+        emoji = {kind = " ﲃ "}
+        -- for emoji press : (idk if that in compe tho)
     }
 }
 
