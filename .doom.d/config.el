@@ -94,6 +94,7 @@
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+(setq global-ligature-mode t)
 
 (setq ivy-posframe-display-functions-alist
       '((swiper                     . ivy-posframe-display-at-point)
