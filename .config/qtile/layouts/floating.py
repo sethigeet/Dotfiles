@@ -13,6 +13,8 @@ float_rules = [
     Match(wm_class="kite"),  # Kite Co pilot
     Match(title="pinentry"),  # GPG key password entry
     Match(title="Calculator"),  # Calculator
+    Match(title="win0"),  # Android Studio startup screen
+    Match(title="^Android Emulator*"),  # Android Emulator
 ]
 
 floating_layout = layout.Floating(float_rules=float_rules, **layout_theme)
