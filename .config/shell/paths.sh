@@ -65,6 +65,12 @@ if [ -d "$HOME/.emacs.d" ]; then
   PATH="$PATH:$HOME/.emacs.d/bin"
 fi
 
+# Java (OpenJDK)
+if [ -d "/usr/lib/jvm/java-15-openjdk" ]; then
+  export JAVA_HOME="/usr/lib/jvm/java-15-openjdk"
+  PATH="$PATH:/usr/lib/jvm/java-15-openjdk/bin"
+fi
+
 # Custom scripts
 PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
 
