@@ -18,6 +18,7 @@ define_augroups({
         -- Vertically center document when entering insert mode
         {"InsertEnter", "*", "norm zz"}
     },
+
     markdown = {
         {
             "FileType", "markdown",
@@ -34,6 +35,7 @@ define_augroups({
         {"FileType", "markdown", "inoremap ,o 1.<Space><CR><++><Esc>1k<S-a>"},
         {"FileType", "markdown", "inoremap ,f +@fig:"}
     },
+
     shell = {
         {"FileType", "sh", "map ,b i#!/usr/bin/env <CR><CR><Esc>2kA"},
         {"FileType", "sh", "inoremap ,f ()<Space>{<CR><Tab><++><CR>}<CR><CR><++><Esc>?()<CR>"}, {

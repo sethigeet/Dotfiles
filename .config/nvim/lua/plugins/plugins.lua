@@ -91,16 +91,14 @@ return require("packer").startup(function(use)
     use {"voldikss/vim-floaterm", config = function() require("plugins.configs.floaterm") end}
 
     -- Start Screen
-    use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
+    use {"glepnir/dashboard-nvim", config = function() require("plugins.configs.dashboard") end}
+    -- use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
 
     -- See what keys do like in emacs
     use "liuchengxu/vim-which-key"
 
     -- Snippets
-    use {
-        "hrsh7th/vim-vsnip",
-        config = function() require("plugins.configs.vsnip") end
-    }
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.configs.vsnip") end}
     use {"mattn/emmet-vim", config = function() require("plugins.configs.emmet-vim") end}
     use "xabikos/vscode-javascript"
     use "cstrap/python-snippets"
@@ -174,4 +172,7 @@ return require("packer").startup(function(use)
 
     -- Visually interact with the registers easily
     use "gennaro-tedesco/nvim-peekup"
+
+    -- Extend increment/decrement functionality
+    use {"monaqa/dial.nvim", config = function() require("plugins.configs.dial") end}
 end)

@@ -77,9 +77,7 @@ gls.left[1] = {
         separator = " ",
         separator_highlight = {
             colors.yellow, function()
-                if not condition.buffer_not_empty then
-                    return colors.bg
-                end
+                if not condition.buffer_not_empty then return colors.bg end
                 return colors.bg
             end
         },
@@ -198,6 +196,16 @@ gls.right[2] = {
 }
 
 gls.right[3] = {
+    Tabstop = {
+        provider = function() return "Spaces: " .. vim.api.nvim_buf_get_option(0, "tabstop") end,
+        condition = condition.hide_in_width,
+        separator = " | ",
+        separator_highlight = {colors.darkblue, colors.bg},
+        highlight = {colors.grey, colors.bg}
+    }
+}
+
+gls.right[4] = {
     LineInfo = {
         provider = "LineColumn",
         separator = " | ",
@@ -206,7 +214,7 @@ gls.right[3] = {
     }
 }
 
-gls.right[4] = {
+gls.right[5] = {
     PerCent = {
         provider = "LinePercent",
         separator = " |",
@@ -215,12 +223,7 @@ gls.right[4] = {
     }
 }
 
-gls.right[5] = {
-    ScrollBar = {
-        provider = "ScrollBar",
-        highlight = {colors.yellow, colors.purple}
-    }
-}
+gls.right[6] = {ScrollBar = {provider = "ScrollBar", highlight = {colors.yellow, colors.purple}}}
 
 gls.short_line_left[1] = {
     BufferType = {
