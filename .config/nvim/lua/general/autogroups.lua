@@ -33,7 +33,8 @@ define_augroups({
         {"FileType", "markdown", "inoremap ,5 #####<Space><CR><CR><++><Esc>2k<S-a>"},
         {"FileType", "markdown", "inoremap ,u +<Space><CR><++><Esc>1k<S-a>"},
         {"FileType", "markdown", "inoremap ,o 1.<Space><CR><++><Esc>1k<S-a>"},
-        {"FileType", "markdown", "inoremap ,f +@fig:"}
+        {"FileType", "markdown", "inoremap ,f +@fig:"}, {'FileType', 'markdown', 'setlocal wrap'},
+        {'FileType', 'markdown', 'setlocal spell'}
     },
 
     shell = {

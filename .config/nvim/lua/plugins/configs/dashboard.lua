@@ -23,7 +23,8 @@ vim.g.dashboard_custom_section = {
 require("general.functions").define_augroups({
     dashboard = {
         {"FileType", "dashboard", "set showtabline=0"},
-        {"WinLeave", "<buffer>", "set showtabline=2"}
+        {"WinLeave", "<buffer>", "set showtabline=2"},
+        {"FileType", "dashboard", "setlocal nocursorline"}
     }
 })
 
