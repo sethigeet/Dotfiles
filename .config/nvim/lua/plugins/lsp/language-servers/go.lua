@@ -1,11 +1,6 @@
--- require("lspconfig").gopls.setup({
---     on_attach = function(client, bufnr)
---         require("plugins.lsp.helpers.document_highlight")(client)
---         require("plugins.lsp.helpers.auto_format")(client, bufnr)
---     end
--- })
+-- ./scripts/install-language-server -n go
 require("lspconfig").gopls.setup({
-    cmd = {"gopls", "serve"},
+    cmd = {require("plugins.lsp.helpers.get_language_server_path")("go", "gopls", "go"), "serve"},
     settings = {gopls = {analyses = {unusedparams = true}, staticcheck = true}},
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)

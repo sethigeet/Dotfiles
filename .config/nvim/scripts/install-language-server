@@ -15,11 +15,20 @@ LANG_SERVERS_DIR="$DATA_PATH/language-servers"
 
 cd "$LANG_SERVERS_DIR" || exit 1
 
-install_server() {
+install_server_using_node() {
 	echo "Installing $1 language server in $LANG_SERVERS_DIR/$1..."
 	mkdir -p "$1" && cd "$1" || exit 1
 	npm init -y
 	npm i $2
+	cd ..
+	echo "Installed $1 language server in $LANG_SERVERS_DIR/$1!"
+}
+
+install_server_using_go() {
+	echo "Installing $1 language server in $LANG_SERVERS_DIR/$1..."
+	mkdir -p "$1" && cd "$1" || exit 1
+	GOPATH=$(pwd) GOBIN=$(pwd) GO111MODULE=on go get -v "$2"
+	GOPATH=$(pwd) GO111MODULE=on go clean -modcache
 	cd ..
 	echo "Installed $1 language server in $LANG_SERVERS_DIR/$1!"
 }
@@ -31,37 +40,43 @@ install_language_server() {
 
 	case "$1" in
 		ts | typescript | js | javascript)
-			install_server "typescript-ls" "typescript typescript-language-server"
+			install_server_using_node "typescript-ls" "typescript typescript-language-server"
 			;;
-		bash)
-			install_server "bash-ls" "bash-language-server"
+		sh | bash)
+			install_server_using_node "bash-ls" "bash-language-server"
 			;;
 		docker)
-			install_server "docker-ls" "dockerfile-language-server-nodejs"
+			install_server_using_node "docker-ls" "dockerfile-language-server-nodejs"
 			;;
-		graphql)
-			install_server "graphql-ls" "graphql-language-service-cli"
+		gql | graphql)
+			install_server_using_node "graphql-ls" "graphql-language-service-cli"
 			;;
 		json)
-			install_server "json-ls" "vscode-json-languageserver"
+			install_server_using_node "json-ls" "vscode-json-languageserver"
 			;;
 		prettier)
-			install_server "prettier-ls" "prettier"
+			install_server_using_node "prettier-ls" "prettier"
 			;;
-		python)
-			install_server "python-ls" "pyright"
+		py | python)
+			install_server_using_node "python-ls" "pyright"
 			;;
-		yaml)
-			install_server "yaml-ls" "yaml-language-server"
+		yml | yaml)
+			install_server_using_node "yaml-ls" "yaml-language-server"
 			;;
 		vim)
-			install_server "vim-ls" "vim-language-server"
+			install_server_using_node "vim-ls" "vim-language-server"
 			;;
 		html)
-			install_server "html-ls" "vscode-html-languageserver-bin"
+			install_server_using_node "html-ls" "vscode-html-languageserver-bin"
 			;;
 		css)
-			install_server "css-ls" "vscode-css-languageserver-bin"
+			install_server_using_node "css-ls" "vscode-css-languageserver-bin"
+			;;
+		efm)
+			install_server_using_go "efm-ls" "github.com/mattn/efm-langserver@latest"
+			;;
+		go | golang)
+			install_server_using_go "go-ls" "golang.org/x/tools/gopls@latest"
 			;;
 	esac
 }
@@ -85,17 +100,19 @@ while test $# -gt 0; do
 			;;
 		-a | --all)
 			echo "Intalling all language servers..."
-			install_server "typescript-ls" "typescript typescript-language-server"
-			install_server "css-ls" "vscode-css-languageserver-bin"
-			install_server "html-ls" "vscode-html-languageserver-bin"
-			install_server "vim-ls" "vim-language-server"
-			install_server "yaml-ls" "yaml-language-server"
-			install_server "python-ls" "pyright"
-			install_server "prettier-ls" "prettier"
-			install_server "json-ls" "vscode-json-languageserver"
-			install_server "graphql-ls" "graphql-language-service-cli"
-			install_server "docker-ls" "dockerfile-language-server-nodejs"
-			install_server "bash-ls" "bash-language-server"
+			install_language_server "typescript"
+			install_language_server "css"
+			install_language_server "html"
+			install_language_server "vim"
+			install_language_server "yaml"
+			install_language_server "pythom"
+			install_language_server "prettier"
+			install_language_server "json"
+			install_language_server "graphql"
+			install_language_server "docker"
+			install_language_server "bash"
+			install_language_server "efm"
+			install_language_server "go"
 			exit 0
 			;;
 		*)

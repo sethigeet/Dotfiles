@@ -1,7 +1,8 @@
--- npm install -g vscode-json-languageserver
+-- ./scripts/install-language-server -n json
 require("lspconfig").jsonls.setup({
     cmd = {
-        require("plugins.lsp.helpers.get_language_server_path")("json", "vscode-json-languageserver"),
+        require("plugins.lsp.helpers.get_language_server_path")("json",
+                                                                "vscode-json-languageserver", "node"),
         "--stdio"
     },
     on_attach = function(client, bufnr)

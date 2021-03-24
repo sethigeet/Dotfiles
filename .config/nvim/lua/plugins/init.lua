@@ -4,4 +4,3 @@ require("plugins.configs.polyglot")
 require("plugins.plugins")
 
 require("plugins.configs")
-require("plugins.lsp")

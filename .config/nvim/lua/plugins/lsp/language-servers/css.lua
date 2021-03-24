@@ -1,7 +1,7 @@
--- npm install -g vscode-css-languageserver-bin
+-- ./scripts/install-language-server -n css
 require("lspconfig").cssls.setup({
     cmd = {
-        require("plugins.lsp.helpers.get_language_server_path")("css", "css-languageserver"),
+        require("plugins.lsp.helpers.get_language_server_path")("css", "css-languageserver", "node"),
         "--stdio"
     },
     on_attach = function(client, bufnr)

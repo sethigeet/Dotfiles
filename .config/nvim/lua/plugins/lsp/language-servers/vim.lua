@@ -1,7 +1,7 @@
--- npm install -g vim-language-server
+-- ./scripts/install-language-server -n vim
 require("lspconfig").vimls.setup({
     cmd = {
-        require("plugins.lsp.helpers.get_language_server_path")("vim", "vim-language-server"),
+        require("plugins.lsp.helpers.get_language_server_path")("vim", "vim-language-server", "node"),
         "--stdio"
     },
     on_attach = function(client, bufnr)

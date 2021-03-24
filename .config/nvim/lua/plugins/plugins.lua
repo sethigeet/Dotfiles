@@ -160,7 +160,7 @@ return require("packer").startup(function(use)
     }
 
     -- Intellisense
-    use "neovim/nvim-lspconfig"
+    use {"neovim/nvim-lspconfig", config = function() require("plugins.lsp") end}
     use {"hrsh7th/nvim-compe", config = function() require("plugins.configs.compe") end}
     use {"glepnir/lspsaga.nvim", config = function() require("plugins.configs.lspsaga") end}
     use "onsails/lspkind-nvim"

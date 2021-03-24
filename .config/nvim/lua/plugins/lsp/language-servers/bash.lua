@@ -1,8 +1,9 @@
--- npm i -g bash-language-server
+-- ./scripts/install-language-server -n bash
 require("lspconfig").bashls.setup({
     cmd = {
-        require("plugins.lsp.helpers.get_language_server_path")("bash", "bash-language-server"),
-        "start"
+        require("plugins.lsp.helpers.get_language_server_path")("bash",
+                                                                "bash-language-server",
+                                                                "node"), "start"
     },
     on_attach = function(client, bufnr)
         require("plugins.lsp.helpers.document_highlight")(client)

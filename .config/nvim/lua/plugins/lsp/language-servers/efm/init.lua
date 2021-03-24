@@ -17,6 +17,7 @@ local shellcheck = require("plugins.lsp.language-servers.efm.shellcheck")
 local shfmt = require("plugins.lsp.language-servers.efm.shfmt")
 
 lspconfig.efm.setup {
+    cmd = {require("plugins.lsp.helpers.get_language_server_path")("efm", "efm-langserver", "go")},
     init_options = {documentFormatting = true},
     filetypes = {
         "lua", "go", "python", "typescript", "javascript", "typescriptreact", "javascriptreact",
