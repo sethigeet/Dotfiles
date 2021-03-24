@@ -19,11 +19,10 @@ local shfmt = require("plugins.lsp.language-servers.efm.shfmt")
 lspconfig.efm.setup {
     init_options = {documentFormatting = true},
     filetypes = {
-        "lua", "go", "python", "typescript", "javascript", "typescriptreact",
-        "javascriptreact", "yml", "yaml", "json", "html", "scss", "css",
-        "markdown", "sh", "bash", "zsh"
+        "lua", "go", "python", "typescript", "javascript", "typescriptreact", "javascriptreact",
+        "yml", "yaml", "json", "html", "scss", "css", "markdown", "sh", "bash", "zsh"
     },
-    root_dir = function() return vim.fn.getcwd() end,
+    root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = true
         require("plugins.lsp.helpers.document_highlight")(client)
