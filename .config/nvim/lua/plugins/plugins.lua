@@ -167,6 +167,13 @@ return require("packer").startup(function(use)
     use {"kosayoda/nvim-lightbulb", config = function() require("plugins.configs.lightbulb") end}
     use "liuchengxu/vista.vim"
 
+    -- Markdown preview
+    use {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        config = function() require("plugins.configs.markdown-preview") end
+    }
+
     -- Easily change surrounding elements
     use "tpope/vim-surround"
 
