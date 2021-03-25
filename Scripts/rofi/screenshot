@@ -6,7 +6,7 @@ msg() {
 }
 
 IMG_PATH="$HOME/Pictures/Screenshots"
-TIME=3000 # Miliseconds notification should remain visible
+TIME=3000     # Miliseconds notification should remain visible
 ICON="camera" # The icon to be shown in the notification
 
 [ -d "$IMG_PATH" ] || mkdir -p "$IMG_PATH"
@@ -20,44 +20,43 @@ window=""
 options="$screen|$area|$window"
 
 selected="$(rofi -no-lazy-grab -selected-row 1 -sep "|" -dmenu -i \
--theme "$HOME/.config/rofi/themes/screenshot.rasi" \
-<<< "$options")"
+	-theme "$HOME/.config/rofi/themes/screenshot.rasi" \
+	<<<"$options")"
 
-cd "$IMG_PATH"
+cd "$IMG_PATH" || exit
 
 case "$selected" in
-  $screen)
-    if type scrot &> /dev/null; then
-      sleep 1;
-      flameshot full -p "$IMG_PATH";
-    elif type scrot &> /dev/null; then
-      sleep 1;
-      scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
-      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the whole screen has been taken!';
-    else
-      msg "scrot/flameshot";
-    fi
-    ;;
-  $area)
-    if command -v flameshot &> /dev/null; then
-      sleep 1;
-      flameshot gui -p "$IMG_PATH";
-    elif command -v scrot &> /dev/null; then
-      sleep 1;
-      scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
-      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the selected section has been taken!';
-    else
-      msg "scrot/flameshot";
-    fi
-    ;;
-  $window)
-    if command -v scrot &> /dev/null; then
-      sleep 1;
-      scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png';
-      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the focued window has been taken!';
-    else
-      msg "scrot"
-    fi
-    ;;
+	"$screen")
+		if type scrot &>/dev/null; then
+			sleep 1
+			flameshot full -p "$IMG_PATH"
+		elif type scrot &>/dev/null; then
+			sleep 1
+			scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
+			notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the whole screen has been taken!'
+		else
+			msg "scrot/flameshot"
+		fi
+		;;
+	"$area")
+		if command -v flameshot &>/dev/null; then
+			sleep 1
+			flameshot gui -p "$IMG_PATH"
+		elif command -v scrot &>/dev/null; then
+			sleep 1
+			scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
+			notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the selected section has been taken!'
+		else
+			msg "scrot/flameshot"
+		fi
+		;;
+	"$window")
+		if command -v scrot &>/dev/null; then
+			sleep 1
+			scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
+			notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the focued window has been taken!'
+		else
+			msg "scrot"
+		fi
+		;;
 esac
-

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --experimental-backends &

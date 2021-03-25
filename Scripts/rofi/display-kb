@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 echo "$1" | rofi -theme "$HOME/.config/rofi/themes/display-kb.rasi" -dmenu -markup-rows -i -p "Keybindings: "
-

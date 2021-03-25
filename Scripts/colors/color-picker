@@ -5,34 +5,33 @@ msg() {
 	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
 }
 
-TIME=3000 # Miliseconds notification should remain visible
+TIME=3000                  # Miliseconds notification should remain visible
 ICON="edit-paste-symbolic" # The icon to be shown in the notification
 
-if command -v colorpicker &> /dev/null; then
-  # Run colorpicker to pick a color
-  selected_color=$(colorpicker --one-shot --preview)
+if command -v colorpicker &>/dev/null; then
+	# Run colorpicker to pick a color
+	selected_color=$(colorpicker --one-shot --preview)
 
-  # Get the hex code of the color
-  if command -v rg &> /dev/null; then
-    color_to_copy=$(rg -o "#[0-9A-F]{6}$" <<< "$selected_color")
-  else
-    color_to_copy=$(grep -o "#[0-9A-F]*$" <<< "$selected_color")
-  fi
+	# Get the hex code of the color
+	if command -v rg &>/dev/null; then
+		color_to_copy=$(rg -o "#[0-9A-F]{6}$" <<<"$selected_color")
+	else
+		color_to_copy=$(grep -o "#[0-9A-F]*$" <<<"$selected_color")
+	fi
 
-  # copy it to the clipboard
-  if command -v greenclip &> /dev/null; then
-    greenclip print "$color_to_copy"
-  elif command -v xclip &> /dev/null; then
-    xclip -r -selection clipboard <<< "$color_to_copy"
-  elif command -v xsel &> /dev/null; then
-    xsel -b <<< "$color_to_copy"
-  else
-    msg "xclip/xsel/greenclip"
-  fi
+	# copy it to the clipboard
+	if command -v greenclip &>/dev/null; then
+		greenclip print "$color_to_copy"
+	elif command -v xclip &>/dev/null; then
+		xclip -r -selection clipboard <<<"$color_to_copy"
+	elif command -v xsel &>/dev/null; then
+		xsel -b <<<"$color_to_copy"
+	else
+		msg "xclip/xsel/greenclip"
+	fi
 
-  # send a notification
-  notify-send -u low -t $TIME -i $ICON 'HEX Color Copied' "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard";
+	# send a notification
+	notify-send -u low -t $TIME -i $ICON 'HEX Color Copied' "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
 else
-  msg "colorpicker"
+	msg "colorpicker"
 fi
-

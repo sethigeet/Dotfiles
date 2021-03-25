@@ -1,11 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 mode_name=" Clipboard"
 
 rofi -modi "$mode_name:greenclip print" \
-  -display-clipboard=" Clipboard" \
-  -show "$mode_name" \
-  -run-command '{cmd}'
+	-display-clipboard=" Clipboard" \
+	-show "$mode_name" \
+	-run-command '{cmd}'
 
 unset mode_name
-

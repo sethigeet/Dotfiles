@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-rofi -no-lazy-grab -modi file-browser -show file-browser -theme "$HOME/.config/rofi/themes/file-browser.rasi" \
+rofi -no-lazy-grab -modi file-browser -show file-browser -theme "$HOME/.config/rofi/themes/file-browser.rasi"
