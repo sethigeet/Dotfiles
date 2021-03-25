@@ -147,6 +147,18 @@
     "when": "inFilesPicker && inQuickOpen"
   },
 
+  //# Terminal
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+
   //* Run code
   //# Code Runner
   {
@@ -170,10 +182,5 @@
   {
     "key": "f7",
     "command": "python.execInTerminal"
-  },
-  {
-    "key": "ctrl+tab",
-    "command": "workbench.action.terminal.focusNext",
-    "when": "terminalFocus"
   }
 ]
