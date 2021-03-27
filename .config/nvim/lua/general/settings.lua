@@ -49,4 +49,4 @@ vim.o.foldmethod = "indent"
 -- Open all when entering for the first time
 vim.o.foldlevel = 20
 
-vim.cmd("au! BufWritePost $MYVIMRC source %") -- auto source when writing to init.vm alternatively you can run :source $MYVIMRC
+vim.cmd("au! BufWritePost $MYVIMRC source %") -- auto source when writing to init.lua alternatively you can run :source $MYVIMRC

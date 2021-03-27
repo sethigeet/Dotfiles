@@ -14,9 +14,7 @@ define_augroups({
         -- set the timeout length for mappings (By default timeoutlen=1000)
         {"InsertEnter", "*", "set timeoutlen=1000"}, {"InsertLeave", "*", "set timeoutlen=100"},
         -- Automatically install plugins when the plugins file is updated
-        {"BufWritePost", "plugins.lua", "PackerCompile"},
-        -- Vertically center document when entering insert mode
-        {"InsertEnter", "*", "norm zz"}
+        {"BufWritePost", "plugins.lua", "PackerCompile"}
     },
 
     markdown = {
