@@ -1,0 +1,126 @@
+[
+  // See the onivim documentation for details on the format:
+  // https://onivim.github.io/docs/configuration/key-bindings
+
+  // Easier Escape
+  {
+    "key": "jk",
+    "command": "vim.esc",
+    "when": "insertMode"
+  },
+  {
+    "key": "kj",
+    "command": "vim.esc",
+    "when": "insertMode"
+  },
+  {
+    "key": "Ctrl+c",
+    "command": "vim.esc"
+  },
+
+  // Window Movements
+  {
+    "key": "Alt+h",
+    "command": "window.moveLeft",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+  {
+    "key": "Alt+j",
+    "command": "window.moveDown",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+  {
+    "key": "Alt+k",
+    "command": "window.moveUp",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+  {
+    "key": "Alt+l",
+    "command": "window.moveRight",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+
+  // Window Resize
+  {
+    "key": "Alt+Left",
+    "command": "vim.increaseWindowSizeLeft",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+  {
+    "key": "Alt+Down",
+    "command": "vim.increaseWindowSizeDown",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+  {
+    "key": "Alt+Up",
+    "command": "vim.increaseWindowSizeUp",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+  {
+    "key": "Alt+Right",
+    "command": "vim.increaseWindowSizeRight",
+    "when": "normalMode || insertMode || visualMode || vimTreeNavigation || terminalFocus"
+  },
+
+  // Easily resize the current editor
+  {
+    "key": "Alt+m",
+    "command": "workbench.action.maximizeEditor",
+    "when": "normalMode"
+  },
+  {
+    "key": "Alt+-",
+    "command": "workbench.action.minimizeEditor",
+    "when": "normalMode"
+  },
+  {
+    "key": "Alt+=",
+    "command": "workbench.action.evenEditorWidths",
+    "when": "normalMode"
+  },
+
+  // Easier splits
+  {
+    "key": "<Leader>sv",
+    "command": "view.splitVertical",
+    "when": "normalMode"
+  },
+  {
+    "key": "<Leader>sh",
+    "command": "view.splitHorizontal",
+    "when": "normalMode"
+  },
+
+  // Navigate lists more easily
+  { "key": "Ctrl+j", "command": "list.focusDown", "when": "listFocus" },
+  { "key": "Ctrl+k", "command": "list.focusUp", "when": "listFocus" },
+
+  // Easily move line up and down
+  {
+    "key": "Shift+k",
+    "command": ":move '<-2<CR>gv=gv",
+    "when": "visualMode"
+  },
+  {
+    "key": "Shift+j",
+    "command": ":move '>+1<CR>gv=gv",
+    "when": "visualMode"
+  },
+
+  // Easily hover over stuff
+  { "key": "Shift+k", "command": "gh", "when": "normalMode" },
+
+  // Easily remove search higlights
+  {
+    "key": "<Leader>ah",
+    "command": ":nohlsearch",
+    "when": "normalMode"
+  },
+
+  // Easily quit
+  {
+    "key": "Ctrl+w",
+    "command": ":q",
+    "when": "normalMode"
+  }
+]
