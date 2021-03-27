@@ -18,7 +18,11 @@ return require("packer").startup(function(use)
     use {"terrortylor/nvim-comment", config = function() require("plugins.configs.comment") end}
 
     -- Indent lines
-    use {"Yggdroot/indentLine", config = function() require("plugins.configs.indentLine") end}
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        branch = "lua",
+        config = function() require("plugins.configs.indent-blankline") end
+    }
 
     -- Change dates fast
     use "tpope/vim-speeddating"
@@ -65,7 +69,7 @@ return require("packer").startup(function(use)
     use "ryanoasis/vim-devicons"
 
     -- Auto pairs for "(" "[" "{"
-    use "jiangmiao/auto-pairs"
+    use {"cohama/lexima.vim", config = function() require("plugins.configs.lexima") end}
 
     -- Themes
     use "ayu-theme/ayu-vim"
@@ -182,4 +186,10 @@ return require("packer").startup(function(use)
 
     -- Extend increment/decrement functionality
     use {"monaqa/dial.nvim", config = function() require("plugins.configs.dial") end}
+
+    -- Better bookmarks
+    use {
+        "MattesGroeger/vim-bookmarks",
+        config = function() require("plugins.configs.vim-bookmarks") end
+    }
 end)
