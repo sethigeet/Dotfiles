@@ -107,9 +107,6 @@
     "when": "visualMode"
   },
 
-  // Easily hover over stuff
-  { "key": "Shift+k", "command": "gh", "when": "normalMode" },
-
   // Easily remove search higlights
   {
     "key": "<Leader>ah",

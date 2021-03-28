@@ -1,5 +1,4 @@
 {
-  // Editor
   "editor.detectIndentation": true,
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
@@ -22,10 +21,8 @@
   "editor.formatOnSave": true,
   "editor.wordWrap": false,
 
-  // Files
   "files.exclude": ["_esy", "node_modules", ".git"],
 
-  // Workbench
   "workbench.colorTheme": "Ayu Mirage Bordered",
   "workbench.activityBar.visible": true,
   "workbench.editor.showTabs": true,
@@ -36,27 +33,26 @@
   "workbench.statusBar.visible": true,
   "workbench.tree.indent": 2,
 
-  // Terminal
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.shell.linux": "zsh",
 
-  // Vim
   "vim.useSystemClipboard": true,
   "vim.leader": "<Space>",
   "vim.highlightedyank.color": "#FFCC66FF",
   "vim.highlightedyank.duration": 500,
 
-  // Experimental
   "experimental.viml": [
     "nnoremap <silent> i zzi",
     "nnoremap <silent> n nzzzv",
     "nnoremap <silent> N Nzzzv",
-
     "tnoremap <silent> <Esc> <C-\\><C-n>",
-
     "nnoremap <silent> Y y$",
-
+    "nnoremap <silent> K gh",
     "cnoreabbrev W! w!",
     "cnoreabbrev Q! q!",
     "cnoreabbrev Qall! qall!",
@@ -69,6 +65,5 @@
     "cnoreabbrev Qall qall"
   ],
 
-  // Kite
   "kite.showWelcomeNotificationOnStartup": false
 }
