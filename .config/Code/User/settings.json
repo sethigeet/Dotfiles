@@ -11,6 +11,7 @@
   "editor.linkedEditing": true,
   "editor.lineNumbers": "relative",
   "editor.semanticHighlighting.enabled": true,
+  "editor.smoothScrolling": true,
 
   //# Window
   "window.zoomLevel": 1,
@@ -225,6 +226,10 @@
     {
       "before": ["<leader>", "s", "="],
       "commands": ["workbench.action.evenEditorWidths"]
+    },
+    {
+      "before": ["i"],
+      "after": ["z", "z", "i"]
     }
   ],
   "vim.handleKeys": {
