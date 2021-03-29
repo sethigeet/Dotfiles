@@ -1,7 +1,5 @@
-vim.fn.sign_define("LspDiagnosticsDefaultError", {
-    texthl = "LspDiagnosticsDefaultError",
-    numhl = "LspDiagnosticsDefaultError"
-})
+vim.fn.sign_define("LspDiagnosticsDefaultError",
+                   {texthl = "LspDiagnosticsDefaultError", numhl = "LspDiagnosticsDefaultError"})
 vim.fn.sign_define("LspDiagnosticsDefaultWarning", {
     texthl = "LspDiagnosticsDefaultWarning",
     numhl = "LspDiagnosticsDefaultWarning"
@@ -10,14 +8,12 @@ vim.fn.sign_define("LspDiagnosticsDefaultInformation", {
     texthl = "LspDiagnosticsDefaultInformation",
     numhl = "LspDiagnosticsDefaultInformation"
 })
-vim.fn.sign_define("LspDiagnosticsDefaultHint", {
-    texthl = "LspDiagnosticsDefaultHint",
-    numhl = "LspDiagnosticsDefaultHint"
-})
+vim.fn.sign_define("LspDiagnosticsDefaultHint",
+                   {texthl = "LspDiagnosticsDefaultHint", numhl = "LspDiagnosticsDefaultHint"})
 
 vim.fn.sign_define("LspDiagnosticsSignError", {
     texthl = "LspDiagnosticsSignError",
-    text = "",
+    text = "",
     numhl = "LspDiagnosticsSignError"
 })
 vim.fn.sign_define("LspDiagnosticsSignWarning", {
@@ -27,7 +23,7 @@ vim.fn.sign_define("LspDiagnosticsSignWarning", {
 })
 vim.fn.sign_define("LspDiagnosticsSignInformation", {
     texthl = "LspDiagnosticsSignInformation",
-    text = "כֿ",
+    text = "",
     numhl = "LspDiagnosticsSignInformation"
 })
 vim.fn.sign_define("LspDiagnosticsSignHint", {
@@ -46,8 +42,7 @@ vim.cmd('nnoremap <silent> K :Lspsaga hover_doc<CR>')
 vim.cmd('nnoremap <silent> <C-p> :Lspsaga diagnostic_jump_prev<CR>')
 vim.cmd('nnoremap <silent> <C-n> :Lspsaga diagnostic_jump_next<CR>')
 -- scroll down hover doc or scroll in definition preview
-vim.cmd(
-    'nnoremap <silent> <C-f> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>')
+vim.cmd('nnoremap <silent> <C-f> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>')
 -- scroll up hover doc
 vim.cmd(
     'nnoremap <silent> <C-b> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>')

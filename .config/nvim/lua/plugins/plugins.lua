@@ -104,11 +104,7 @@ return require("packer").startup(function(use)
     -- Snippets
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.configs.vsnip") end}
     use {"mattn/emmet-vim", config = function() require("plugins.configs.emmet-vim") end}
-    use "xabikos/vscode-javascript"
-    use "cstrap/python-snippets"
-    use "dsznajder/vscode-es7-javascript-react-snippets"
-    use "golang/vscode-go"
-    use "rust-lang/vscode-rust"
+    use "rafamadriz/friendly-snippets"
 
     -- Interactive code
     use {"metakirby5/codi.vim", config = function() require("plugins.configs.codi") end}

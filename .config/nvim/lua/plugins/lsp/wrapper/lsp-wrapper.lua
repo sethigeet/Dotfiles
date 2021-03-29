@@ -1,8 +1,7 @@
 local lsp_wrapper = {}
 
 -- buffer
-function lsp_wrapper.add_to_workspace_folder() vim.lsp.buf
-    .add_workspace_folder() end
+function lsp_wrapper.add_to_workspace_folder() vim.lsp.buf.add_workspace_folder() end
 
 function lsp_wrapper.clear_references() vim.lsp.buf.clear_references() end
 
@@ -32,9 +31,7 @@ function lsp_wrapper.implementation() vim.lsp.buf.implementation() end
 
 function lsp_wrapper.incoming_calls() vim.lsp.buf.incoming_calls() end
 
-function lsp_wrapper.list_workspace_folders()
-    vim.lsp.buf.list_workspace_folders()
-end
+function lsp_wrapper.list_workspace_folders() vim.lsp.buf.list_workspace_folders() end
 
 function lsp_wrapper.outgoing_calls() vim.lsp.buf.outgoing_calls() end
 
@@ -47,9 +44,7 @@ function lsp_wrapper.references()
     vim.lsp.buf.clear_references()
 end
 
-function lsp_wrapper.remove_workspace_folder()
-    vim.lsp.buf.remove_workspace_folder()
-end
+function lsp_wrapper.remove_workspace_folder() vim.lsp.buf.remove_workspace_folder() end
 
 function lsp_wrapper.rename() vim.lsp.buf.rename() end
 
@@ -70,9 +65,7 @@ function lsp_wrapper.goto_next() vim.lsp.diagnostic.goto_next() end
 
 function lsp_wrapper.goto_prev() vim.lsp.diagnostic.goto_prev() end
 
-function lsp_wrapper.show_line_diagnostics()
-    vim.lsp.diagnostic.show_line_diagnostics()
-end
+function lsp_wrapper.show_line_diagnostics() vim.lsp.diagnostic.show_line_diagnostics() end
 
 -- Gitsigns
 function lsp_wrapper.next_hunk() require("gitsigns").next_hunk() end
