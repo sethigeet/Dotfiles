@@ -94,7 +94,7 @@ else
 	NAME_TO_SEARCH_FOR=$(echo "$SELECTED_CONFIG_NAME" | cut -c5-)
 
 	# search for the full path through grep
-	SELECTED_CONFIG_PATH=$(echo "$CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR" | sed "s+~+$HOME+g")
+	SELECTED_CONFIG_PATH=$(echo "$CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR" | sed "s+~+$HOME+g" | cut -c5-)
 	SELECTED_CONFIG_DIR=$(echo "$SELECTED_CONFIG_PATH" | sed 's+/[^/]*$++g')
 
 	# open the config in the configured editor
