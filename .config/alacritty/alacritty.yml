@@ -82,6 +82,6 @@ key_bindings:
   - { key: V, mods: Control|Shift, action: Paste }
   - { key: C, mods: Control|Shift, action: Copy }
   - { key: Key0, mods: Control, action: ResetFontSize }
-  - { key: Plus, mods: Control, action: IncreaseFontSize }
-  - { key: Minus, mods: Control, action: DecreaseFontSize }
-  - { key: N, mods: Control, action: SpawnNewInstance }
+  - { key: K, mods: Control|Shift, action: IncreaseFontSize }
+  - { key: J, mods: Control|Shift, action: DecreaseFontSize }
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
