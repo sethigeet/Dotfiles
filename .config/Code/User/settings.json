@@ -308,5 +308,9 @@
   "auto-close-tag.disableOnLanguage": ["typescript"],
 
   // Live Server
-  "liveServer.settings.donotShowInfoMsg": true
+  "liveServer.settings.donotShowInfoMsg": true,
+
+  // Gitmoji
+  "gitmoji.outputType": "code",
+  "gitmoji.showEmojiCode": true
 }
