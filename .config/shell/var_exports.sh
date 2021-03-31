@@ -62,9 +62,16 @@ if command -v conda_auto_env &>/dev/null; then
 fi
 
 # Other XDG paths
-export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Disable less history
 export LESSHISTFILE="-"
+
+# Fix some paths for programs that do not follow the XDG specs
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+# export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
+# export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
