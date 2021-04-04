@@ -30,15 +30,15 @@ colors:
 
 font:
   normal:
-    family: MesloLGS NF Emojified
+    family: MesloLGS NF
     style: Regular
 
   bold:
-    family: MesloLGS NF Emojified
+    family: MesloLGS NF
     style: Bold
 
   italic:
-    family: MesloLGS NF Emojified
+    family: MesloLGS NF
     style: Italic
 
   size: 15.0

@@ -3,7 +3,7 @@ configuration {
   // width: 50;
   // lines: 15;
   // columns: 1;
-	font: "Nunito Nerd Font Emojified 15";
+	font: "Nunito Nerd Font 15";
   // bw: 1;
   // location: 0;
   // padding: 5;
