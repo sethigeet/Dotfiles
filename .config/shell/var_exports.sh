@@ -54,7 +54,7 @@ fi
 # fi
 
 # Ignore some commands from history
-export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....)"
 
 # Anaconda auto completion
 if command -v conda_auto_env &>/dev/null; then
@@ -67,7 +67,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Disable less history
-export LESSHISTFILE="-"
+export LESSHISTFILE="$XDG_DATA_HOME/less/history"
 
 # Fix some paths for programs that do not follow the XDG specs
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
