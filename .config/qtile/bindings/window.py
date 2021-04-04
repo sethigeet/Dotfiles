@@ -13,12 +13,12 @@ window_key_bindings = [
         desc="Toggle between layouts"),
 
     # Toggle maximized
-    Key([mod, "control"], "f", lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen"),
-
-    # Toggle maximized
     Key([mod], "f", lazy.window.toggle_maximize(),
         desc="Toggle maximized"),
+
+    # Toggle fullscreen
+    Key([mod, "control"], "f", lazy.window.toggle_fullscreen(),
+        desc="Toggle fullscreen"),
 
     # Toggle minimized
     Key([mod], "m", lazy.window.toggle_minimize(),
@@ -76,7 +76,7 @@ for key in ["k", "Up"]:
             desc="Move window up"),
 
         # Change the size of the windows
-        Key([mod, "shift"], key, lazy.layout.grow_up(),  lazy.layout.grow(),
+        Key([mod, "shift"], key, lazy.layout.grow_up(), lazy.layout.grow(),
             desc="Increase the size of the windows in the up direction"),
     ])
 
