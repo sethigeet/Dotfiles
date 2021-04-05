@@ -1,13 +1,19 @@
+#!/bin/sh
+
 # Load dotfiles:
+shell_config="$HOME/.config/shell/init_shell.sh"
 zsh_config="$HOME/.config/zsh/init_zsh.zsh"
 bash_config="$HOME/.config/bash/init_bash.bash"
 
+[ -r "$shell_config" ] && [ -f "$shell_config" ] && source "$shell_config"
+
 # if running zsh
 if [ -n "$ZSH_VERSION" ]; then
-	[ -r "$file" ] && [ -f "$file" ] && source "$zsh_config"
+	file="$zsh_config"
 # if running bash
 elif [ -n "$BASH_VERSION" ]; then
-	[ -r "$file" ] && [ -f "$file" ] && source "$bash_config"
+	file="$bash_config"
 fi
 
+[ -r "$file" ] && [ -f "$file" ] && source "$file"
 unset file
