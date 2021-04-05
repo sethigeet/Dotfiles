@@ -54,7 +54,7 @@ fi
 # fi
 
 # Ignore some commands from history
-export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|cs)"
+export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|cs|cau)"
 
 # Anaconda auto completion
 if command -v conda_auto_env &>/dev/null; then
