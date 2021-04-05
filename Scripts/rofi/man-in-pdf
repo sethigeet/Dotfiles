@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# This script gives you a rofi prompt from which you can select a man page and view it in zathura
+
+man -k . \
+	| rofi -dmenu -i -p "Search in man pages: " \
+	| awk '{print $1}' \
+	| xargs -I {} -r man -Tpdf '{}' \
+	| zathura -
