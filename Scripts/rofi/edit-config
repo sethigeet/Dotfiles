@@ -24,6 +24,7 @@ CONFIG_FILE_PATHS=(
 	" ~/.config/polybar/config.ini"
 	" ~/.config/shell/init_shell.sh"
 	" ~/.config/bash/init_bash.bash"
+	" ~/.config/zsh/init_zsh.zsh"
 	" ~/.config/vifm/vifmrc"
 )
 
