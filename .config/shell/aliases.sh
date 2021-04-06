@@ -23,18 +23,18 @@ fi
 
 # Changing "ls" to "exa"
 if command -v exa &>/dev/null; then
-	alias ls="exa --icons --color=auto"
-	alias la="exa -ah --icons --color=auto"   # all files and dirs
-	alias ll="exa -lh --icons --color=auto"   # long format
-	alias lla="exa -lah --icons --color=auto" # all files and dirs in long format
-	alias l="exa -lah --icons --color=auto"   # all files and dirs in long format
-	alias lt="exa -aT --icons --color=auto"   # tree listing
+	alias ls="exa --icons --color=auto --group-directories-first"
+	alias la="exa -ah --icons --color=auto --group-directories-first"   # all files and dirs
+	alias ll="exa -lh --icons --color=auto --group-directories-first"   # long format
+	alias lla="exa -lah --icons --color=auto --group-directories-first" # all files and dirs in long format
+	alias l="exa -lah --icons --color=auto --group-directories-first"   # all files and dirs in long format
+	alias lt="exa -aT --icons --color=auto"                             # tree listing
 else
-	alias ls="ls --color=auto"       # visible files and dirs
-	alias la="ls -ah --color=auto"   # all files and dirs
-	alias ll="ls -lh --color=auto"   # long format
-	alias lla="ls -lah --color=auto" # all files and dirs in long format
-	alias l="ls -lah --color=auto"   # all files and dirs in long format
+	alias ls="ls --color=auto --group-directories-first"       # visible files and dirs
+	alias la="ls -ah --color=auto --group-directories-first"   # all files and dirs
+	alias ll="ls -lh --color=auto --group-directories-first"   # long format
+	alias lla="ls -lah --color=auto --group-directories-first" # all files and dirs in long format
+	alias l="ls -lah --color=auto --group-directories-first"   # all files and dirs in long format
 fi
 
 # Change grep to use ripgrep
@@ -58,9 +58,12 @@ fi
 # fi
 
 # confirm before overwriting something
-alias cp="cp -i"
-alias mv="mv -i"
-alias rm="rm -i"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
+
+# make direcotries
+alias mkd="mkdir -pv"
 
 # bare repo for dotfiles
 if [ -d "$HOME/Dotfiles" ]; then
@@ -86,3 +89,18 @@ alias mkexe="chmod +x"
 
 # copy the contents of a file to the clipboard
 alias copy="xclip -selection clipboard < "
+
+# use the package manager
+alias pac="sudo pacman"
+
+# systemd commands
+alias SS="sudo systemctl"
+
+# kill programs
+alias ka="killall"
+
+# youtube
+if command -v youtube-dl &>/dev/null; then
+	alias ytd="youtube-dl --add-metadata -c"   # download video with audio
+	alias ytad="youtube-dl --add-metadata -xc" # download audio only
+fi
