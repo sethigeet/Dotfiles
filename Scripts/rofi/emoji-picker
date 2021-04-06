@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Display Error msg
+msg() {
+	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+}
+
+emoji_file="$HOME/.local/share/emojis"
+TIME=3000                  # Miliseconds notification should remain visible
+ICON="edit-paste-symbolic" # The icon to be shown in the notification
+
+# Check if the user selected any config
+if [ -f "$emoji_file" ]; then
+	# If the user did not select any config, cancel the operation
+	selected_emoji="$(cut -d ';' -f1 "$emoji_file" | rofi -dmenu -p "Copy an emoji: ")"
+	selected_emoji="${selected_emoji%% *}"
+
+	[ -z "$selected_emoji" ] && echo "Cancel" && exit 0
+
+	if command -v xclip &>/dev/null; then
+		xclip -r -selection clipboard <<<"$selected_emoji"
+	elif command -v xsel &>/dev/null; then
+		xsel -b <<<"$selected_emoji"
+	else
+		msg "xclip/xsel" && exit 1
+	fi
+
+	# send a notification
+	notify-send -u low -t $TIME -i $ICON "Emoji Copied" "The emoji (\"$selected_emoji\") has been copied to the clipboard"
+else
+	echo "Emoji file not found!" && exit 1
+fi
