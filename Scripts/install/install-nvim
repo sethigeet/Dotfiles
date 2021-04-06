@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+check_for_command() {
+  if command -v "$1" &> /dev/null; then
+    echo "Found '$1'! Continuing installation"
+  else
+    echo "'$1' not found! Please install '$1' first!" && exit 1
+  fi
+}
+
+# Check if nvim is installed
+check_for_command "nvim"
+
+# Check if pip is installed
+check_for_command "pip3"
+
+# Check if npm is installed
+check_for_command "npm"
+
+# Install neovim package for python
+echo "Installing pynvim (python package) using pip3..."
+pip3 install "pynvim"
+echo "Installed pynvim!"
+
+# Install neovim package for node
+echo "Installing neovim (node package) using npm..."
+npm i -g "neovim"
+echo "Installed neovim!"
+

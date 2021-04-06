@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+if command -v zsh &>/dev/null; then
+	echo "Found 'zsh'! Continuing installation"
+else
+	echo "'zsh' not found! Please install 'zsh' first!" && exit 1
+fi
+
+# Install oh-my-zsh plugin manager
+echo "Installing oh-my-zsh (plugin manager)..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Installed oh-my-zsh!"
+
+# Install zsh-syntax-highlighting plugin
+echo "Installing zsh-syntax-highlighting (plugin)..."
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+echo "Installed zsh-syntax-highlighting!"
+
+# Install zsh-autosuggestions plugin
+echo "Installing zsh-autosuggestions (plugin)..."
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+echo "Installed zsh-autosuggestions!"
+
+# Install powerlevel10k theme
+echo "Installing powerlevel10k (theme)..."
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+echo "Installed powerlevel10k theme!"
+
+# Install you-should-use plugin
+echo "Installing you-should-use (plugin)..."
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use"
+echo "Installed you-should-use theme!"
+
+# Install conda-zsh-completion plugin
+echo "Installing conda-zsh-completion (plugin)..."
+git clone https://github.com/esc/conda-zsh-completion "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion"
+echo "Installed conda-zsh-completion!"
