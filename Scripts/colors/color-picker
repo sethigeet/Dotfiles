@@ -31,7 +31,7 @@ if command -v colorpicker &>/dev/null; then
 	fi
 
 	# send a notification
-	notify-send -u low -t $TIME -i $ICON 'HEX Color Copied' "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
+	notify-send -u low -t $TIME -i $ICON "HEX Color Copied" "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
 else
 	msg "colorpicker"
 fi

@@ -29,9 +29,13 @@ scripts_key_bindings = [
     Key([mod, "shift"], "v", lazy.spawn(scripts_dir + "rofi/clipboard"),
         desc="Run the clipboard manager"),
 
-    # color picker
+    # scripts runner
     Key([mod], "s", lazy.spawn(scripts_dir + "rofi/rofi-bang"),
         desc="Run the script to run any other script"),
+
+    # scripts editor
+    Key([mod, "shift"], "s", lazy.spawn(scripts_dir + "rofi/edit-script"),
+        desc="Run the script to edit any other script"),
 
     # Display the keybindings
     Key([mod], "F1", lazy.function(display_kb),
