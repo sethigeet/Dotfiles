@@ -11,5 +11,5 @@ if [ -z "$selected_script" ]; then
 	# If the user did not select any config, cancel the operation
 	echo "Cancel"
 else
-	$EDITOR "$HOME/Scripts/$selected_script"
+	rofi-sensible-terminal -e "$EDITOR" "$HOME/Scripts/$selected_script"
 fi
