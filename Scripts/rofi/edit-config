@@ -8,7 +8,7 @@ join() {
 }
 
 # define the file paths
-CONFIG_FILE_PATHS=(
+config_file_paths=(
 	" ~/.zshrc"
 	" ~/.bashrc"
 	" ~/.bash_profile"
@@ -29,10 +29,10 @@ CONFIG_FILE_PATHS=(
 )
 
 # add icons to all the file names and convert them into a single string for rofi
-CONFIG_NAMES_TO_SHOW=""
-for i in "${!CONFIG_FILE_PATHS[@]}"; do
+config_names_to_show=""
+for i in "${!config_file_paths[@]}"; do
 	# get the path of the config from the paths
-	path=${CONFIG_FILE_PATHS[$i]}
+	path=${config_file_paths[$i]}
 
 	# select the icon that the file has
 	icon=$(echo "$path" | cut -c-3)
@@ -48,7 +48,7 @@ for i in "${!CONFIG_FILE_PATHS[@]}"; do
 	name=""
 
 	# check if the pathInSubDir is empty or not
-	if [ -z "${pathInSubDir}" ]; then
+	if [ -z "$pathInSubDir" ]; then
 		# select only the name of the file
 		name="$pathFromHome"
 	else
@@ -60,12 +60,12 @@ for i in "${!CONFIG_FILE_PATHS[@]}"; do
 	nameWithIcon="$icon $name"
 
 	# check if the CONFIG_NAMES_TO_SHOW is empty
-	if [ -z "${CONFIG_NAMES_TO_SHOW}" ]; then
+	if [ -z "$config_names_to_show" ]; then
 		# change the CONFIG_NAMES_TO_SHOW in place with the nameWithIcon
-		CONFIG_NAMES_TO_SHOW="$nameWithIcon"
+		config_names_to_show="$nameWithIcon"
 	else
 		# add the nameWithIcon to CONFIG_NAMES_TO_SHOW
-		CONFIG_NAMES_TO_SHOW="$CONFIG_NAMES_TO_SHOW
+		config_names_to_show="$config_names_to_show
 $nameWithIcon"
 	fi
 
@@ -80,35 +80,29 @@ $nameWithIcon"
 done
 
 # let the user select the config through rofi
-SELECTED_CONFIG_NAME="$(echo "$CONFIG_NAMES_TO_SHOW" | sort | rofi -dmenu -p "Edit a config: ")"
+selected_config_name="$(echo "$config_names_to_show" | sort | rofi -dmenu -p "Edit a config: ")"
 
 # check if the user selected any config
-if [ -z "${SELECTED_CONFIG_NAME}" ]; then
-	# if the user did not select any config, cancel the operation
-	echo "Cancel"
-else
-	# join the array for grep to search in
-	CONFIG_FILE_PATHS_JOINED=$(join "
-  " "${CONFIG_FILE_PATHS[@]}")
+[ -z "$selected_config_name" ] && echo "Cancel" && exit 0
+# join the array for grep to search in
+config_file_paths_joINED=$(join "
+  " "${config_file_paths[@]}")
 
-	# remove the icon from the selected name for grep to search
-	NAME_TO_SEARCH_FOR=$(echo "$SELECTED_CONFIG_NAME" | cut -c5-)
+# remove the icon from the selected name for grep to search
+name_to_search_for=$(echo "$selected_config_name" | cut -c5-)
 
-	# search for the full path through grep
-	SELECTED_CONFIG_PATH=$(echo "$CONFIG_FILE_PATHS_JOINED" | grep "$NAME_TO_SEARCH_FOR" | sed "s+~+$HOME+g" | cut -c5-)
-	SELECTED_CONFIG_DIR=$(echo "$SELECTED_CONFIG_PATH" | sed 's+/[^/]*$++g')
+# search for the full path through grep
+selected_config_path=$(echo "$config_file_paths_joINED" | grep "$name_to_search_for" | sed "s+~+$HOME+g" | cut -c5-)
+selected_config_dir=$(echo "$selected_config_path" | sed 's+/[^/]*$++g')
 
-	# open the config in the configured editor
-	cd "$SELECTED_CONFIG_DIR" || exit 1
-	rofi-sensible-terminal -e nvim "$SELECTED_CONFIG_PATH" &
-
-	# unset the variables that are no longer required
-	unset CONFIG_FILE_PATHS_JOINED
-	unset NAME_TO_SEARCH_FOR
-	unset SELECTED_CONFIG_PATH
-fi
+# open the config in the configured editor
+cd "$selected_config_dir" || exit 1
+rofi-sensible-terminal -e nvim "$selected_config_path" &
 
 # unset all the set variables
-unset CONFIG_FILE_PATHS
-unset CONFIG_FILE_ICONS
-unset SELECTED_CONFIG_NAME
+unset config_file_paths_joINED
+unset name_to_search_for
+unset selected_config_path
+unset config_file_paths
+unset config_file_icons
+unset selected_config_name

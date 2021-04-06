@@ -27,11 +27,11 @@ if command -v colorpicker &>/dev/null; then
 	elif command -v xsel &>/dev/null; then
 		xsel -b <<<"$color_to_copy"
 	else
-		msg "xclip/xsel/greenclip"
+		msg "xclip/xsel/greenclip" && exit 1
 	fi
 
 	# send a notification
 	notify-send -u low -t $TIME -i $ICON "HEX Color Copied" "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
 else
-	msg "colorpicker"
+	msg "colorpicker" && exit 1
 fi
