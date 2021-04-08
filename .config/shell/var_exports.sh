@@ -1,4 +1,4 @@
-# export KEYTIMEOUT=1
+export KEYTIMEOUT=10
 
 # Set the encodings
 export LC_ALL=en_US.UTF-8
