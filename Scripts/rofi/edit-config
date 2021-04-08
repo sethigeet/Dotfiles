@@ -1,108 +1,37 @@
 #!/usr/bin/env bash
 
-# function to join an array with strings
-join() {
-	local IFS="$1"
-	shift
-	echo "$*"
-}
+declare -A options
+options[ zshrc]="$HOME/.zshrc"
+options[ bashrc]="$HOME/.bashrc"
+options[ bash_profile]="$HOME/.bash_profile"
+options[ doom]="$HOME/.doom.d/config.el"
+options[節tmux]="$HOME/.tmux.conf"
+options[ vim]="$HOME/.vimrc"
+options[ alacritty]="$HOME/.config/alacritty/alacritty.yml"
+options[ i3]="$HOME/.config/i3/config"
+options[ qtile]="$HOME/.config/qtile/config.py"
+options[ vim]="$HOME/.config/nvim/init.vim"
+options[ picom]="$HOME/.config/picom/picom.conf"
+options[ rofi]="$HOME/.config/rofi/config.rasi"
+options[ polybar]="$HOME/.config/polybar/config.ini"
+options[ shell]="$HOME/.config/shell/init_shell.sh"
+options[ bash]="$HOME/.config/bash/init_bash.bash"
+options[ zsh]="$HOME/.config/zsh/init_zsh.zsh"
+options[ vifm]="$HOME/.config/vifm/vifmrc"
 
-# define the file paths
-config_file_paths=(
-	" ~/.zshrc"
-	" ~/.bashrc"
-	" ~/.bash_profile"
-	" ~/.doom.d/config.el"
-	"節 ~/.tmux.conf"
-	" ~/.vimrc"
-	" ~/.config/alacritty/alacritty.yml"
-	" ~/.config/i3/config"
-	" ~/.config/qtile/config.py"
-	" ~/.config/nvim/init.vim"
-	" ~/.config/picom/picom.conf"
-	" ~/.config/rofi/config.rasi"
-	" ~/.config/polybar/config.ini"
-	" ~/.config/shell/init_shell.sh"
-	" ~/.config/bash/init_bash.bash"
-	" ~/.config/zsh/init_zsh.zsh"
-	" ~/.config/vifm/vifmrc"
-)
+selected_config_name=$(printf '%s\n' "${!options[@]}" | rofi -dmenu -i -p "Edit config: ")
 
-# add icons to all the file names and convert them into a single string for rofi
-config_names_to_show=""
-for i in "${!config_file_paths[@]}"; do
-	# get the path of the config from the paths
-	path=${config_file_paths[$i]}
+[ -z "$selected_config_name" ] && echo "Cancelled" && exit 0
 
-	# select the icon that the file has
-	icon=$(echo "$path" | cut -c-3)
+# What to do when/if we choose a file to edit.
+selected_config_path=$(printf '%s\n' "${options["$selected_config_name"]}")
+selected_config_dir="${selected_config_path%/*}"
 
-	# remove the icon from the file path
-	path=$(echo "$path" | cut -c5-)
-
-	# remove the home part from the path
-	pathFromHome=${path//~\//}
-
-	# check if the config file is in the .config dir
-	pathInSubDir=$(echo "$pathFromHome" | grep "/")
-	name=""
-
-	# check if the pathInSubDir is empty or not
-	if [ -z "$pathInSubDir" ]; then
-		# select only the name of the file
-		name="$pathFromHome"
-	else
-		# select the name of the file along with the directory it is in
-		name=$(echo "$pathFromHome" | awk -F '/' '{print $1"/"$2"/"$3}' | sed "s+/$++g" | sed "s+\.config/++g")
-	fi
-
-	# combine the icon and the name
-	nameWithIcon="$icon $name"
-
-	# check if the CONFIG_NAMES_TO_SHOW is empty
-	if [ -z "$config_names_to_show" ]; then
-		# change the CONFIG_NAMES_TO_SHOW in place with the nameWithIcon
-		config_names_to_show="$nameWithIcon"
-	else
-		# add the nameWithIcon to CONFIG_NAMES_TO_SHOW
-		config_names_to_show="$config_names_to_show
-$nameWithIcon"
-	fi
-
-	# unset the variables that are no longer required
-	unset path
-	unset pathFromHome
-	unset pathInSubDir
-	unset name
-	unset icon
-	unset nameWithIcon
-
-done
-
-# let the user select the config through rofi
-selected_config_name="$(echo "$config_names_to_show" | sort | rofi -dmenu -p "Edit a config: ")"
-
-# check if the user selected any config
-[ -z "$selected_config_name" ] && echo "Cancel" && exit 0
-# join the array for grep to search in
-config_file_paths_joINED=$(join "
-  " "${config_file_paths[@]}")
-
-# remove the icon from the selected name for grep to search
-name_to_search_for=$(echo "$selected_config_name" | cut -c5-)
-
-# search for the full path through grep
-selected_config_path=$(echo "$config_file_paths_joINED" | grep "$name_to_search_for" | sed "s+~+$HOME+g" | cut -c5-)
-selected_config_dir=$(echo "$selected_config_path" | sed 's+/[^/]*$++g')
-
-# open the config in the configured editor
 cd "$selected_config_dir" || exit 1
+
 rofi-sensible-terminal -e nvim "$selected_config_path" &
 
-# unset all the set variables
-unset config_file_paths_joINED
-unset name_to_search_for
-unset selected_config_path
-unset config_file_paths
-unset config_file_icons
 unset selected_config_name
+unset selected_config_path
+unset selected_config_dir
+
