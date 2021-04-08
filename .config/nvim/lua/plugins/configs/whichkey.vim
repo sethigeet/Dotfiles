@@ -94,6 +94,15 @@ let g:which_key_map.b = {
       \ 'p' : ['bprevious'                               , 'previous-buffer'],
       \ }
 
+" d is for database
+let g:which_key_map.d = {
+    \ 'name': '+database',
+    \ 't' : [':DBUIToggle'         ,'toggle ui'],
+    \ 'f' : [':DBUIFindBuffer'     ,'find buffer'],
+    \ 'r' : [':DBUIRenameBuffer'   ,'rename buffer'],
+    \ 'i' : [':DBUILastQueryInfo'  ,'last query info'],
+    \ }
+
 " F is for fold
 let g:which_key_map.F = {
     \ 'name': '+fold',

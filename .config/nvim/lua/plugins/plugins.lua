@@ -63,13 +63,15 @@ return require("packer").startup(function(use)
     use "p00f/nvim-ts-rainbow"
     -- Highlight all the occurrences of variables under the cursor
     -- use "nvim-treesitter/nvim-treesitter-refactor"
+    -- Change the comment string according to the location of the cursor in the file
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- Cool Icons
     use "kyazdani42/nvim-web-devicons"
     use "ryanoasis/vim-devicons"
 
     -- Auto pairs for "(" "[" "{"
-    use {"cohama/lexima.vim", config = function() require("plugins.configs.lexima") end}
+    use {"windwp/nvim-autopairs", config = function() require("plugins.configs.autopairs") end}
 
     -- Themes
     use "ayu-theme/ayu-vim"
@@ -188,4 +190,12 @@ return require("packer").startup(function(use)
         "MattesGroeger/vim-bookmarks",
         config = function() require("plugins.configs.vim-bookmarks") end
     }
+
+    -- Interact with databases
+    use "tpope/vim-dadbod"
+    use {"kristijanhusak/vim-dadbod-ui", config = function() require("plugins.configs.dadbod") end}
+    use "kristijanhusak/vim-dadbod-completion"
+
+    -- Jump to lines more interactively
+    use {"nacro90/numb.nvim", config = function() require("plugins.configs.numb") end}
 end)

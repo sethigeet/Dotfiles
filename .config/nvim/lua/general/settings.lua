@@ -28,15 +28,19 @@ vim.o.background = "dark" -- tell vim what the background color looks like
 vim.o.showtabline = 2 -- Always show tabs
 -- vim.g.noshowmode = true -- We don't need to see things like -- INSERT -- anymore
 vim.cmd("set noshowmode")
-vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
+vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.relativenumber = true
 vim.o.incsearch = true
-vim.cmd('set ts=2') -- Insert 2 spaces for a tab
-vim.cmd('set sw=2') -- Change the number of space characters inserted for indentation
+vim.cmd("set ts=2") -- Insert 2 spaces for a tab
+vim.cmd("set sw=2") -- Change the number of space characters inserted for indentation
+vim.cmd("set inccommand=split") -- Make substitution work in realtime
+vim.o.title = true
+-- vim.o.titlestring = "filename nvim"
+vim.o.titlestring = "%F - nvim"
 
 if vim.fn.has("persistent_undo") == 1 then
     vim.o.undodir = vim.fn.expand("~/.undodir")
@@ -49,4 +53,4 @@ vim.o.foldmethod = "indent"
 -- Open all when entering for the first time
 vim.o.foldlevel = 20
 
-vim.cmd("au! BufWritePost $MYVIMRC source %") -- auto source when writing to init.lua alternatively you can run :source $MYVIMRC
+vim.cmd("au! BufWritePost $MYVIMRC luafile %") -- auto source when writing to init.lua alternatively you can run :source $MYVIMRC
