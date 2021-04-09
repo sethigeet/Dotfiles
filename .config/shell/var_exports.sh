@@ -20,6 +20,9 @@ fi
 #   export EDITOR='mvim'
 # fi
 
+# Change the terminal to alacritty
+export TERMINAL="alacritty"
+
 # export LESS_TERMCAP_md=$'\e[01;31m'
 # export LESS_TERMCAP_me=$'\e[0m'
 # export LESS_TERMCAP_se=$'\e[0m'
@@ -75,3 +78,4 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 # export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
 # export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+
