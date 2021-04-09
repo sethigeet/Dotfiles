@@ -1,6 +1,1 @@
-#!/usr/bin/env bash
-
-xset r rate 550 33
-xset s 300 300
-xset dpms 300 300 300
-
+.config/X11/xprofile

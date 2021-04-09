@@ -79,3 +79,6 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 # export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
+# Set the QT Themes
+export QT_QPA_PLATFORMTHEME="qt5ct"
+# export QT_STYLE_OVERRIDE=kvantum
