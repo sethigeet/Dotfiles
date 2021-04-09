@@ -1,0 +1,31 @@
+# Apps
+super + Return
+	alacritty
+
+super + {a,b}
+	alacritty -e {alsamixer,bpytop}
+
+super + {e,w}
+	{nautilus,brave}
+
+super + shift + {e}
+	{code}
+
+# Custom Scripts
+super + space
+	rofi -show drun
+
+super + {c,p,s,x,z}
+	$HOME/Scripts/rofi/{edit-config,screenshot,rofi-bang,power-menu,file-browser}
+
+super + {v}
+	$HOME/Scripts/misc/{start-vifm}
+
+super + shift + {s,v}
+	$HOME/Scripts/rofi/{edit-script,clipboard}
+
+# Media
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle

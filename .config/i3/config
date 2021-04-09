@@ -3,7 +3,6 @@
 # --- Initial Setup --- #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id ~/Scripts/wm/autostart
 
 # --- Basic Definitions --- #
 smart_gaps on
@@ -12,8 +11,6 @@ set $inner_gaps  10
 set $outer_gaps  0
 set $term        --no-startup-id alacritty
 set $mod         Mod4
-set $alt         Mod1
-set $scripts_dir ~/Scripts
 
 # Use Mouse + $mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -23,35 +20,7 @@ for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
-# --- Basic Key Bindings --- #
-
-# Return
-bindsym $mod+Return 		         exec $term
-bindsym $mod+Shift+Return	       exec $term --working-directory  $(xcwd)
-
-# Escape
-# --- NONE ---
-
-# Space
-bindsym $mod+space 			         exec --no-startup-id rofi -show drun
-
 # --- Letter Key Bindings --- #
-
-# A
-bindsym $mod+a		               exec $term -e alsamixer
-
-# B
-bindsym $mod+b 			             exec $term -e bpytop
-
-# C
-bindsym $mod+c 			             exec --no-startup-id $scripts_dir/rofi/edit-config
-
-# D
-# --- NONE ---
-
-# E
-bindsym $mod+e 			             exec --no-startup-id nautilus
-bindsym $mod+Shift+e		         exec --no-startup-id code
 
 # F
 bindsym $mod+f			             fullscreen toggle
@@ -65,9 +34,6 @@ bindsym $mod+Shift+g		         gaps inner current set 0; gaps outer current set 
 bindsym $mod+h			             focus left
 bindsym $mod+Ctrl+h	   	         move left 30
 bindsym $mod+Shift+h             resize shrink width 5 px or 5 ppt
-
-# I
-# --- NONE ---
 
 # J
 bindsym $mod+j			             focus down
@@ -87,16 +53,6 @@ bindsym $mod+Shift+l             resize grow width 5 px or 5 ppt
 # M
 bindsym $mod+m			             layout toggle
 
-# N
-bindsym $mod+n			             exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
-
-# O
-# --- NONE ---
-
-# P
-bindsym $mod+p			             exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
-bindsym $mod+Shift+p		         exec --no-startup-id flameshot full -p ~/Pictures/Screenshots
-
 # Q
 bindsym $mod+q			             [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 bindsym $mod+Shift+q		         [con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
@@ -105,7 +61,6 @@ bindsym $mod+Shift+q		         [con_id="__focused__" instance="^(?!dropdown_).*$
 bindsym $mod+Ctrl+r		           restart
 
 # S
-bindsym $mod+s        			     exec --no-startup-id $scripts_dir/rofi/rofi-bang
 bindsym $mod+Ctrl+s        			 sticky toggle
 bindsym $mod+Shift+s			       split toggle
 
@@ -115,21 +70,6 @@ bindsym $mod+Shift+t             focus mode_toggle
 
 # U
 bindsym $mod+u                   [urgent=latest] focus
-
-# V
-bindsym $mod+v	                 exec --no-startup-id $scripts_dir/misc/start-vifm
-
-# W
-bindsym $mod+w 			             exec --no-startup-id brave
-
-# X
-bindsym $mod+x	                 exec --no-startup-id $scripts_dir/rofi/power-menu
-
-# Y
-# --- NONE ---
-
-# Z
-bindsym $mod+z	                 exec --no-startup-id $scripts_dir/rofi/file-browser
 
 
 # --- Workspace Key Bindings --- #
@@ -189,14 +129,6 @@ bindsym $mod+Ctrl+Down		move workspace to output up
 bindsym $mod+Up			      focus up
 bindsym $mod+Shift+Up     resize grow height 5 px or 5 ppt
 bindsym $mod+Ctrl+Up		  move workspace to output down
-
-
-# --- Media Key Bindings --- #
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% #decrease sound volume
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 
 # --- Workspace Settings --- #

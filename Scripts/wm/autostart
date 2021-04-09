@@ -5,4 +5,5 @@ picom --experimental-backends &
 ~/.fehbg &
 numlockx on &
 greenclip daemon &
+sxhkd &
 

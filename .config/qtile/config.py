@@ -1,6 +1,3 @@
-from libqtile import hook
-import subprocess
-
 import constants
 from bindings import key_bindings, mouse_bindings
 from groups import groups_defn
@@ -44,8 +41,3 @@ wmname = "LG3D"  # ! Required by some Java UI toolkits
 # * DEFINE THE SETTINGS FOR THE FLOATING LAYOUT *
 floating_layout = floating_layout_defn
 
-
-# * CALL THE AUTOSTART SCRIPT *
-@hook.subscribe.startup_once
-def start_once():
-    subprocess.call([constants.scripts_dir + "wm/autostart"])
