@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 declare -A options
-options[ zshrc]="$HOME/.zshrc"
 options[ bashrc]="$HOME/.bashrc"
 options[ bash_profile]="$HOME/.bash_profile"
 options[ doom]="$HOME/.doom.d/config.el"

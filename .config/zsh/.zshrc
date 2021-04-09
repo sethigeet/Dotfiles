@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$XDG_DATA_HOME/zsh/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -66,7 +66,10 @@ VI_MODE_SET_CURSOR=true
 # Enable custom completion scripts in oh-my-zsh
 ZSH_DISABLE_COMPFIX=true
 
-source $ZSH/oh-my-zsh.sh
+# Moved the cache files to XDG specificied directory
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump-$SHORT_HOST-$ZSH_VERSION"
+
+source "$ZSH/oh-my-zsh.sh"
 
 # Source the dotfiles
 file="$HOME/.config/zsh/init_zsh.zsh"
