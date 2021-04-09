@@ -67,10 +67,11 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.smart_tab()",
 -- Save file as sudo when no sudo permissions
 vim.api.nvim_set_keymap("c", "w!!", "w !sudo tee > /dev/null %", {})
 
--- Center the screen when entering inser mode
-vim.api.nvim_set_keymap("n", "i", "zzi", {silent = true, noremap = true})
-
 -- Center the screen after search
 vim.api.nvim_set_keymap("n", "n", "nzzzv", {silent = true, noremap = true})
 vim.api.nvim_set_keymap("n", "N", "Nzzzv", {silent = true, noremap = true})
+
+-- Substitute command shortcut
+vim.api.nvim_set_keymap("n", "S", ":%s//g<Left><Left>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("v", "S", ":s//g<Left><Left>", {silent = true, noremap = true})
 
