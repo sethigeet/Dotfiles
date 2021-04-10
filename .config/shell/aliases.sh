@@ -87,7 +87,11 @@ alias hsize="du -hs"
 alias mkexe="chmod +x"
 
 # copy the contents of a file to the clipboard
-alias copy="xclip -selection clipboard < "
+if command -v xclip &>/dev/null; then
+	alias copy="xclip -selection clipboard < "
+elif command -v xsel &>/dev/null; then
+	alias copy="xsel -b < "
+fi
 
 # use the package manager
 alias pac="sudo pacman"
