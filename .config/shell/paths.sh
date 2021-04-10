@@ -21,8 +21,8 @@ if [ -d "$HOME/snap/flutter" ]; then
 fi
 
 # YARN
-if [ -d "$XDG_DATA_HOME/yarn" ]; then
-	PATH="$PATH:$XDG_DATA_HOME/yarn/bin"
+if [ -d "$HOME/.yarn" ]; then
+	PATH="$PATH:$HOME/.yarn/yarn/bin"
 fi
 
 # DENO

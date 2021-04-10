@@ -2,8 +2,13 @@
 
 # This script gives you a rofi prompt from which you can select a man page and view it in zathura
 
-man -k . \
-	| rofi -dmenu -i -p "Search in man pages:" \
-	| awk '{print $1}' \
-	| xargs -I {} -r man -Tpdf '{}' \
-	| zathura -
+selected_man_page="$(man -k . | rofi -dmenu -i -p "Search in man pages:")"
+
+# if the user does not select any option, exit
+[ -z "$selected_man_page" ] && exit 0
+
+# take out only the name of the man page from the output
+selected_man_page="$(echo "$selected_man_page" | awk '{print $1}')"
+
+# convert the man page into a pdf and display the pdf with zathura
+man -Tpdf "$selected_man_page" | zathura -

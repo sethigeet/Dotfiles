@@ -36,6 +36,10 @@ else
 	alias l="ls -lah --color=auto --group-directories-first"   # all files and dirs in long format
 fi
 
+if command -v yarn &>/dev/null; then
+	alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+fi
+
 # Change grep to use ripgrep
 # if command -v rg &> /dev/null; then
 #   alias grep="rg"

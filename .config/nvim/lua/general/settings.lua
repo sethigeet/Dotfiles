@@ -43,7 +43,7 @@ vim.o.title = true
 vim.o.titlestring = "%F - nvim"
 
 if vim.fn.has("persistent_undo") == 1 then
-    vim.o.undodir = vim.fn.expand("~/.undodir")
+    vim.o.undodir = vim.fn.stdpath("data") .. "/undodir"
     vim.o.undofile = true
 end
 
