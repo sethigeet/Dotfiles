@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Display Error msg
+msg() {
+	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+	exit 1
+}
+
+# Check if qrencode is installed
+command -v qrencode &>/dev/null || msg "qrencode"
+
+# Check if feh is installed
+command -v feh &>/dev/null || msg "feh"
+
+# get the content of the clipboard
+if command -v xclip &>/dev/null; then
+	text_to_encode="$(xclip -o -selection clipboard)"
+elif command -v xsel &>/dev/null; then
+	text_to_encode="$(xsel -o -b)"
+else
+	msg "xclip/xsel"
+fi
+
+qrcode_file="/tmp/qrcode.png"
+
+# create the qr code
+qrencode -m 10 -s 20 -o "$qrcode_file" "$text_to_encode"
+
+# display the image
+feh "$qrcode_file"
