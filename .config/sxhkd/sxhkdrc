@@ -1,3 +1,7 @@
+# SXHKD
+super + ctrl + s; r
+	killall sxhkd && setsid sxhkd
+
 # Apps
 super + Return
 	alacritty
@@ -29,3 +33,4 @@ XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+

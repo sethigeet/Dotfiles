@@ -9,4 +9,5 @@ selected_script="$(echo "$available_scripts" | sort | rofi -dmenu -p "Edit a scr
 # Check if the user selected any config
 [ -z "$selected_script" ] && echo "Cancel" && exit 0
 
+cd "$HOME/Scripts" || exit 1
 rofi-sensible-terminal -e nvim "$HOME/Scripts/$selected_script"
