@@ -72,7 +72,4 @@ if [ -d "/usr/lib/jvm/java-15-openjdk" ]; then
 	PATH="$PATH:/usr/lib/jvm/java-15-openjdk/bin"
 fi
 
-# Custom scripts
-PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
-
 export PATH
