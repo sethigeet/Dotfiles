@@ -2,8 +2,7 @@
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 picom --experimental-backends &
-~/.fehbg &
+set-background -r &
 numlockx on &
 greenclip daemon &
 sxhkd &
-

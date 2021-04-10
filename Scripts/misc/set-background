@@ -4,13 +4,15 @@ help_message="\
 usage: set-background [options]
   options:
     -h, --help                   Shows this help message
-    -p, --pacwall                Generates and sets a wallpaper with pacwall
-    -i, --image [image_path]     Sets the wallpaper as the given image
+    -r, --restore                Restores the last set background
+    -p, --pacwall                Generates and sets the background with pacwall
+    -i, --image [image_path]     Sets the background as the given image
 "
+bg_color='#1F2430'
 
 with_pacwall() {
 	# Generate an image with the solid background
-	convert -size 1920x1080 xc:\#1F2430 /tmp/temp-bg.png
+	convert -size 1920x1080 xc:$bg_color /tmp/temp-bg.png
 
 	# Generate the pacwall image
 	pacwall -k
@@ -28,10 +30,22 @@ from_image() {
 	feh --bg-scale "$1"
 }
 
+restore() {
+	if [ -f "$HOME/.fehbg" ]; then
+		"$HOME/.fehbg"
+	else
+		echo "Please set a background first before trying to restore!"
+	fi
+}
+
 while test $# -gt 0; do
 	case "$1" in
 		-h | --help)
 			echo "$help_message"
+			exit 0
+			;;
+		-r | --restore)
+			restore
 			exit 0
 			;;
 		-p | --pacwall)
