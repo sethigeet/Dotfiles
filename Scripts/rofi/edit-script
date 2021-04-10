@@ -7,7 +7,7 @@ available_scripts=$(find "$HOME/Scripts" -type f | sed "s+$HOME/Scripts/++g")
 selected_script="$(echo "$available_scripts" | sort | rofi -dmenu -p "Edit a script:")"
 
 # Check if the user selected any config
-[ -z "$selected_script" ] && echo "Cancel" && exit 0
+[ -z "$selected_script" ] && exit 0
 
 cd "$HOME/Scripts" || exit 1
-rofi-sensible-terminal -e nvim "$HOME/Scripts/$selected_script"
+rofi-sensible-terminal -e nvim "$HOME/Scripts/$selected_script" &
