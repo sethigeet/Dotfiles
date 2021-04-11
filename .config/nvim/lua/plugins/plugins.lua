@@ -198,4 +198,7 @@ return require("packer").startup(function(use)
 
     -- Jump to lines more interactively
     use {"nacro90/numb.nvim", config = function() require("plugins.configs.numb") end}
+
+    -- Distraction free writing (zen mode)
+    use "junegunn/goyo.vim"
 end)

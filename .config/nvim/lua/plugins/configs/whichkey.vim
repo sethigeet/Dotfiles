@@ -37,7 +37,6 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 let g:which_key_map['/'] = [ ':call v:lua.Comment()'                           , 'comment' ]
 let g:which_key_map[','] = [ '<Plug>(emmet-expand-abbr)'                       , 'expand tags' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile'                               , 'comment' ]
-let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     , 'open init' ]
 let g:which_key_map[';'] = [ ':Commands'                                       , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle'                                 , 'explorer' ]
@@ -49,8 +48,28 @@ let g:which_key_map['T'] = [ ':TSHighlightCapturesUnderCursor'                 ,
 let g:which_key_map['u'] = [ ':UndotreeToggle'                                 , 'undo tree']
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
 let g:which_key_map['W'] = [ ':call WindowSwap#EasyWindowSwap()'               , 'move window' ]
+let g:which_key_map['z'] = [ 'Goyo'                                            , 'zen mode' ]
 
 " Group mappings
+" . is for emmet
+let g:which_key_map['.'] = {
+      \ 'name' : '+emmet' ,
+      \ ',' : ['<Plug>(emmet-expand-abbr)'               , 'expand abbr'],
+      \ ';' : ['<plug>(emmet-expand-word)'               , 'expand word'],
+      \ 'u' : ['<plug>(emmet-update-tag)'                , 'update tag'],
+      \ 'd' : ['<plug>(emmet-balance-tag-inward)'        , 'balance tag in'],
+      \ 'D' : ['<plug>(emmet-balance-tag-outward)'       , 'balance tag out'],
+      \ 'n' : ['<plug>(emmet-move-next)'                 , 'move next'],
+      \ 'N' : ['<plug>(emmet-move-prev)'                 , 'move prev'],
+      \ 'i' : ['<plug>(emmet-image-size)'                , 'image size'],
+      \ '/' : ['<plug>(emmet-toggle-comment)'            , 'toggle comment'],
+      \ 'j' : ['<plug>(emmet-split-join-tag)'            , 'split join tag'],
+      \ 'k' : ['<plug>(emmet-remove-tag)'                , 'remove tag'],
+      \ 'a' : ['<plug>(emmet-anchorize-url)'             , 'anchorize url'],
+      \ 'A' : ['<plug>(emmet-anchorize-summary)'         , 'anchorize summary'],
+      \ 'm' : ['<plug>(emmet-merge-lines)'               , 'merge lines'],
+      \ 'c' : ['<plug>(emmet-code-pretty)'               , 'code pretty'],
+      \ }
 
 " a is for actions
 let g:which_key_map.a = {

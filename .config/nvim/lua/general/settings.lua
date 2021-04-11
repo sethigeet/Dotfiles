@@ -23,6 +23,7 @@ vim.o.smartindent = true -- Makes indenting smart
 vim.o.autoindent = true -- Good auto indent
 vim.o.laststatus = 2 -- Always display the status line
 vim.wo.number = true -- Line numbers
+vim.wo.relativenumber = true -- Relative Line numbers
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.background = "dark" -- tell vim what the background color looks like
 vim.o.showtabline = 2 -- Always show tabs
@@ -39,8 +40,8 @@ vim.cmd("set ts=2") -- Insert 2 spaces for a tab
 vim.cmd("set sw=2") -- Change the number of space characters inserted for indentation
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.o.title = true
--- vim.o.titlestring = "filename nvim"
 vim.o.titlestring = "%F - nvim"
+-- vim.cmd("set guifont=FiraCode Nerd Font:15")
 
 if vim.fn.has("persistent_undo") == 1 then
     vim.o.undodir = vim.fn.stdpath("data") .. "/undodir"
@@ -53,4 +54,3 @@ vim.o.foldmethod = "indent"
 -- Open all when entering for the first time
 vim.o.foldlevel = 20
 
-vim.cmd("au! BufWritePost $MYVIMRC luafile %") -- auto source when writing to init.lua alternatively you can run :source $MYVIMRC

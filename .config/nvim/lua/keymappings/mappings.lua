@@ -42,8 +42,8 @@ vim.api.nvim_set_keymap("i", "kj", "<Esc>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("i", "<C-c>", "<Esc>", {noremap = true, silent = true})
 
 -- Easy CAPS
-vim.api.nvim_set_keymap("i", "<C-u>", "<Esc>viwUi", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-u>", "viwU<Esc>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("i", "<M-u>", "<Esc>viwUi", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<M-u>", "viwU<Esc>", {noremap = true, silent = true})
 
 -- TAB in general mode will move to text buffer
 vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", {noremap = true, silent = true})
