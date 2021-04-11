@@ -26,6 +26,8 @@ entry {
   margin: 8px;
 }
 
+@import "with-prompt.rasi"
+
 element {
   padding: 8px;
 }

@@ -20,7 +20,7 @@ options[ bash]="$HOME/.config/bash/init_bash.bash"
 options[ zsh]="$HOME/.config/zsh/init_zsh.zsh"
 options[ vifm]="$HOME/.config/vifm/vifmrc"
 
-selected_config_name=$(printf '%s\n' "${!options[@]}" | rofi -dmenu -i -p "Edit config:")
+selected_config_name=$(printf '%s\n' "${!options[@]}" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Edit config:")
 
 [ -z "$selected_config_name" ] && exit 0
 

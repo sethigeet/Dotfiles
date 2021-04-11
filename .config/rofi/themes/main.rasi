@@ -18,21 +18,12 @@ window {
 }
 
 mainbox {
-  children: [ inputbar, listview, mode-switcher ];
-}
-
-inputbar {
-  children: [ prompt, entry ];
-  vertical-align: 0;
-}
-
-prompt {
-  margin: 2px;
+  children: [ entry, listview, mode-switcher ];
 }
 
 entry {
-  expand: true;
-  margin: 2px;
+  expand: false;
+  margin: 8px;
 }
 
 element {

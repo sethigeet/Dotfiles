@@ -1,0 +1,21 @@
+@import "main.rasi"
+
+mainbox {
+  children: [ inputbar, listview, mode-switcher ];
+}
+
+inputbar {
+  children: [ prompt, entry ];
+  vertical-align: 0;
+}
+
+prompt {
+  margin: 2px;
+}
+
+entry {
+  expand: true;
+  margin: 2px;
+}
+
+/* vim: ft=css

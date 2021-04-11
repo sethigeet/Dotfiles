@@ -2,7 +2,7 @@
 
 # This script gives you a rofi prompt from which you can select a man page and view it in zathura
 
-selected_man_page="$(man -k . | rofi -dmenu -i -p "Search in man pages:")"
+selected_man_page="$(man -k . | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Search in man pages:")"
 
 # if the user does not select any option, exit
 [ -z "$selected_man_page" ] && exit 0
