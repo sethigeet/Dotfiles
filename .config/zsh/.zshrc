@@ -57,9 +57,6 @@ plugins=(
 	vi-mode
 )
 
-# Config for plugins
-ZSH_COLORIZE_STYLE="colorful"
-
 # Change the cursor style according to the vi mode
 VI_MODE_SET_CURSOR=true
 
