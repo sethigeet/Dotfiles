@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Display Error msg
 msg() {
@@ -19,18 +19,17 @@ window=""
 # Variable passed to rofi
 options="$screen|$area|$window"
 
-selected="$(rofi -no-lazy-grab -selected-row 1 -sep "|" -dmenu -i \
-	-theme "$HOME/.config/rofi/themes/screenshot.rasi" \
-	<<<"$options")"
+selected="$(echo "$options" | rofi -no-lazy-grab -selected-row 1 -sep "|" -dmenu -i \
+	-theme "$HOME/.config/rofi/themes/screenshot.rasi")"
 
 cd "$IMG_PATH" || exit
 
 case "$selected" in
 	"$screen")
-		if type scrot &>/dev/null; then
+		if command -v flameshot >/dev/null 2>&1; then
 			sleep 1
 			flameshot full -p "$IMG_PATH"
-		elif type scrot &>/dev/null; then
+		elif command -v scrot >/dev/null 2>&1; then
 			sleep 1
 			scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
 			notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the whole screen has been taken!'
@@ -39,10 +38,10 @@ case "$selected" in
 		fi
 		;;
 	"$area")
-		if command -v flameshot &>/dev/null; then
+		if command -v flameshot >/dev/null 2>&1; then
 			sleep 1
 			flameshot gui -p "$IMG_PATH"
-		elif command -v scrot &>/dev/null; then
+		elif command -v scrot >/dev/null 2>&1; then
 			sleep 1
 			scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
 			notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the selected section has been taken!'
@@ -51,7 +50,7 @@ case "$selected" in
 		fi
 		;;
 	"$window")
-		if command -v scrot &>/dev/null; then
+		if command -v scrot >/dev/null 2>&1; then
 			sleep 1
 			scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
 			notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the focued window has been taken!'

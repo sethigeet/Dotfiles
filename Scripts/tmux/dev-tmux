@@ -1,34 +1,32 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 SESSIONNAME="portal"
 
 # Check if the session already exists
-tmux has-session -t $SESSIONNAME &>/dev/null
-
-if [ $? != 0 ]; then
+if ! tmux has-session -t $SESSIONNAME >/dev/null 2>&1; then
 	tmux new-session -s $SESSIONNAME -n "docker" -d
 	tmux send-keys -t $SESSIONNAME "docker start redis postgresql" C-m
 
 	tmux new-window -n "server"
-	tmux send-keys -t $SESSIONNAME "cd /home/kcsuser3/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/server" C-m
+	tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/server" C-m
 	tmux send-keys -t $SESSIONNAME "yarn dev"
 
 	tmux new-window -n "controller"
-	tmux send-keys -t $SESSIONNAME "cd /home/kcsuser3/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/controller" C-m
+	tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/controller" C-m
 	tmux send-keys -t $SESSIONNAME "yarn dev"
 
 	tmux new-window -n "common"
-	tmux send-keys -t $SESSIONNAME "cd /home/kcsuser3/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/common" C-m
+	tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/common" C-m
 	tmux send-keys -t $SESSIONNAME "yarn dev"
 
 	tmux new-window -n "web"
-	tmux send-keys -t $SESSIONNAME "cd /home/kcsuser3/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/web" C-m
+	tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/web" C-m
 	tmux send-keys -t $SESSIONNAME "yarn start"
 
 	# tmux split-window -h
 
 	tmux new-window -n "misc"
-	tmux send-keys -t $SESSIONNAME "cd /home/kcsuser3/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal" C-m
+	tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal" C-m
 fi
 
 tmux attach -t $SESSIONNAME

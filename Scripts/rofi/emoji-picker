@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Display Error msg
 msg() {
@@ -11,17 +11,17 @@ ICON="edit-paste-symbolic" # The icon to be shown in the notification
 
 # Check if the user selected any config
 if [ -f "$emoji_file" ]; then
-	selected_emoji="$(cut -d ';' -f1 "$emoji_file" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -p "Copy an emoji:")"
+	selected_emoji="$(cut -d ';' -f 1 "$emoji_file" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -p "Copy an emoji:")"
 	selected_emoji="${selected_emoji%% *}" # remove the description of the emoji
 
 	# If the user did not select any config, cancel the operation
 	[ -z "$selected_emoji" ] && exit 0
 
 	# copy the emoji to the clipboard
-	if command -v xclip &>/dev/null; then
-		xclip -r -selection clipboard <<<"$selected_emoji"
-	elif command -v xsel &>/dev/null; then
-		xsel -b <<<"$selected_emoji"
+	if command -v xclip >/dev/null 2>&1; then
+		echo "$selected_emoji" | xclip -r -selection clipboard
+	elif command -v xsel >/dev/null 2>&1; then
+		echo "$selected_emoji" | xsel -b
 	else
 		msg "xclip/xsel" && exit 1
 	fi

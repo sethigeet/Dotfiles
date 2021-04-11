@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Error msg
 msg() {
@@ -18,9 +18,8 @@ shutdown=""
 # Variable passed to rofi
 options="$lock|$logout|$sleep|$reboot|$shutdown"
 
-selected="$(rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i -p "Uptime :  $uptime" \
-	-theme "$HOME/.config/rofi/themes/power-menu.rasi" \
-	<<<"$options")"
+selected="$(echo "$options" | rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i -p "Uptime :  $uptime" \
+	-theme "$HOME/.config/rofi/themes/power-menu.rasi")"
 
 case "$selected" in
 	"$lock") dm-tool lock ;;
