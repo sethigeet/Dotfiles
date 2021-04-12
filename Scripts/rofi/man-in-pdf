@@ -11,4 +11,4 @@ selected_man_page="$(man -k . | rofi -theme "$HOME/.config/rofi/themes/with-prom
 selected_man_page="$(echo "$selected_man_page" | awk '{print $1}')"
 
 # convert the man page into a pdf and display the pdf with zathura
-man -T pdf "$selected_man_page" | zathura -
+man -Tpdf "$selected_man_page" | zathura -

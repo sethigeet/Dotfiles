@@ -1,35 +1,30 @@
 -- show chapters and their time at the bottom left corner
 -- the timings get proportionally adjusted at different speeds
-
 ----------------------------------------
 CHAPTERS_TO_SHOW = 10
 HOTKEY = 'Meta+c'
 
-FONT_SCALE = 80         -- in % from osd-font-size
+FONT_SCALE = 80 -- in % from osd-font-size
 FONT_SCALE_inactive_chapters = 75
 FONT_ALPHA_inactive_chapters = 60
 
-AUTOSTART_IN_PATHS = {
-    "^edl://",
-    "/med/p/podcasts",
-    "/abooks/"
-}
+AUTOSTART_IN_PATHS = {"^edl://", "/med/p/podcasts", "/abooks/"}
 ----------------------------------------
 
 local assdraw = require('mp.assdraw')
 
 function disp_time(time)
-    local hours = math.floor(time/3600)
-    local minutes = math.floor((time % 3600)/60)
+    local hours = math.floor(time / 3600)
+    local minutes = math.floor((time % 3600) / 60)
     local seconds = math.floor(time % 60)
-    
+
     return string.format("%02d:%02d:%02d", hours, minutes, seconds)
 end
 
 function time_2_seconds(time)
-    h,m,s = time:match('(.*):(.*):(.*)$')
-    
-    return h*3600 + m*60 + s
+    h, m, s = time:match('(.*):(.*):(.*)$')
+
+    return h * 3600 + m * 60 + s
 end
 
 function show_chapters()
@@ -62,19 +57,13 @@ function show_chapters()
             start_from = -1
         end
 
-        if shift < 0 then
-            start_from = shift
-        end
+        if shift < 0 then start_from = shift end
 
         for i_ch = start_from, CHAPTERS_TO_SHOW + start_from do
-            if tonumber(ch_total) == ch_index + i_ch then
-                break
-            end
-            
+            if tonumber(ch_total) == ch_index + i_ch then break end
+
             -- from overshooting backwards
-            if ch_index + i_ch < 0 then
-                goto continue
-            end
+            if ch_index + i_ch < 0 then goto continue end
 
             title = mp.get_property_osd("chapter-list/" .. tostring(ch_index + i_ch) .. "/title")
             time = mp.get_property_osd("chapter-list/" .. tostring(ch_index + i_ch) .. "/time")
@@ -92,17 +81,13 @@ function show_chapters()
             end
 
             -- removing paths
-            if string.sub(title, 1, 1) == '/' then
-                title = title:match('.+/(.*)$')
-            end
+            if string.sub(title, 1, 1) == '/' then title = title:match('.+/(.*)$') end
 
             speed = mp.get_property_number("speed")
-            if speed ~= 1.0 then
-                time = disp_time(time_2_seconds(time) / speed)
-            end
+            if speed ~= 1.0 then time = disp_time(time_2_seconds(time) / speed) end
 
             ass:append('[' .. time .. "]  " .. title)
-            
+
             ::continue::
         end
     end
@@ -112,33 +97,31 @@ end
 
 function started()
     local pth = mp.get_property("path")
-    
-    if pth == nil then
-        return
-    end
+
+    if pth == nil then return end
 
     for i, i_path in pairs(AUTOSTART_IN_PATHS) do
-		if pth:find(i_path) then
+        if pth:find(i_path) then
             running = true
             show_chapters()
-			return
-		end
+            return
+        end
     end
 end
 
 function show_hide()
-	if running == true then
+    if running == true then
         running = false
         observation_active = false
         mp.set_osd_ass(0, 0, "{}")
         mp.unobserve_property(show_chapters)
-	else
-		running = true
+    else
+        running = true
         show_chapters()
-	end
+    end
 end
 
 observation_active = false
 
 mp.register_event("file-loaded", started)
-mp.add_forced_key_binding(HOTKEY, 'show_hide', show_hide, {repeatable=true})
+mp.add_forced_key_binding(nil, 'show-hide-chapters', show_hide, {repeatable = true})
