@@ -3,7 +3,7 @@
 declare -A options
 options[ bashrc]="$HOME/.bashrc"
 options[ bash_profile]="$HOME/.bash_profile"
-options[ doom]="$HOME/.doom.d/config.el"
+options[ doom]="$HOME/.config/doom/config.el"
 options[節tmux]="$HOME/.tmux.conf"
 options[ vim]="$HOME/.vimrc"
 options[ alacritty]="$HOME/.config/alacritty/alacritty.yml"
