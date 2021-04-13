@@ -258,13 +258,21 @@
 (map! :leader
       :desc "Clone indirect buffer other window"
       "b c" #'clone-indirect-buffer-other-window)
+(evil-define-key nil 'global
+  (kbd "M-h") 'windmove-left
+  (kbd "M-j") 'windmove-down
+  (kbd "M-k") 'windmove-up
+  (kbd "M-l") 'windmove-right)
 
 (map! :leader
-      :desc "Winner redo"
       "w <right>" #'winner-redo
       :leader
       :desc "Winner undo"
       "w <left>" #'winner-undo)
+
+(evil-define-key 'visual 'global
+  "J" (kbd ":move '>+1 RET gv-gv")
+  "K" (kbd ":move '<-2 RET gv-gv"))
 
 (map! "C-s" #'save-buffer
       :desc "Save the current buffer")

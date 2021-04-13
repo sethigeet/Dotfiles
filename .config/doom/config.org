@@ -24,6 +24,7 @@
 - [[#shells][SHELLS]]
 - [[#splits][SPLITS]]
 - [[#winner-mode][WINNER MODE]]
+- [[#move-blocks-of-code][MOVE BLOCKS OF CODE]]
 - [[#misc-keybindings][MISC KEYBINDINGS]]
 
 * ABOUT THIS CONFIG
@@ -450,6 +451,7 @@ Settings for the various shells and terminal emulators within Emacs.
 
 * SPLITS
 I set splits to default to opening on the right using 'prefer-horizontal-split'.  I set a keybinding for 'clone-indirect-buffer-other-window' for when I want to have the same document in two splits.  The text of the indirect buffer is always identical to the text of its base buffer; changes made by editing either one are visible immediately in the other.  But in all other respects, the indirect buffer and its base buffer are completely separate.  For example, I can fold one split but other will be unfolded.
+I also changed the evil mode bindings from using <C-w>h/j/k/l to just use <C-h/j/k/l>
 
 #+BEGIN_SRC emacs-lisp
 (defun prefer-horizontal-split ()
@@ -459,6 +461,11 @@ I set splits to default to opening on the right using 'prefer-horizontal-split'.
 (map! :leader
       :desc "Clone indirect buffer other window"
       "b c" #'clone-indirect-buffer-other-window)
+(evil-define-key nil 'global
+  (kbd "M-h") 'windmove-left
+  (kbd "M-j") 'windmove-down
+  (kbd "M-k") 'windmove-up
+  (kbd "M-l") 'windmove-right)
 #+END_SRC
 
 * WINNER MODE
@@ -466,12 +473,21 @@ Winner mode has been included with GNU Emacs since version 20. This is a global 
 
 #+BEGIN_SRC emacs-lisp
 (map! :leader
-      :desc "Winner redo"
       "w <right>" #'winner-redo
       :leader
       :desc "Winner undo"
       "w <left>" #'winner-undo)
 #+END_SRC
+
+* MOVE BLOCKS OF CODE
+I like to move selected blocks of code using "J" and "K" instead of M-j and M-k. But this keybinding will only work in visual mode. If you want to move it in any other mode, too bad!
+
+#+BEGIN_SRC emacs-lisp
+(evil-define-key 'visual 'global
+  "J" (kbd ":move '>+1 RET gv-gv")
+  "K" (kbd ":move '<-2 RET gv-gv"))
+#+END_SRC
+
 
 * MISC KEYBINDINGS
   Some of the keybindings I like
