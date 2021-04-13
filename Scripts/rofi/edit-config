@@ -19,6 +19,7 @@ options[ shell]="$HOME/.config/shell/init_shell.sh"
 options[ bash]="$HOME/.config/bash/init_bash.bash"
 options[ zsh]="$HOME/.config/zsh/init_zsh.zsh"
 options[ vifm]="$HOME/.config/vifm/vifmrc"
+options[ X11]="$HOME/.config/X11/xprofile"
 
 selected_config_name=$(printf '%s\n' "${!options[@]}" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Edit config:")
 
