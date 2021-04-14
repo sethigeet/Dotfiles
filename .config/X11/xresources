@@ -2,9 +2,7 @@
 *.alpha: 0.95
 
 !! Set a default font and font size as below:
-*.font: MesloLGS NF:pixelsize=21:antialias=true:autohint=true
-*.fontalt0: Noto Color Emoji:pixelsize=15:antialias=true:autohint=true
-*.fontalt1: JoyPixels:pixelsize=15:antialias=true:autohint=true
+*.font: mono:pixelsize=21:antialias=true:autohint=true
 
 *.background: 	#1F2430
 *.foreground: 	#CBCCC6
