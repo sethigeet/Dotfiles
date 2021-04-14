@@ -38,7 +38,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # export QT_STYLE_OVERRIDE=kvantum
 
 # Ignore some commands from history
-export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|cs|cau)"
+export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|cs|cau|gst|ga .|ga -u)"
 
 # Add Custom scripts to the path for easier access in other configs
 PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
