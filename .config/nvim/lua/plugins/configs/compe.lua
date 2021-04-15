@@ -1,8 +1,8 @@
 vim.cmd("set shortmess+=c")
 vim.o.completeopt = "menuone,noselect"
 
-require("compe").setup {
-    enabled = true,
+require("compe").setup({
+    enabled = Opts.auto_complete,
     autocomplete = true,
     debug = false,
     min_length = 1,
@@ -30,7 +30,7 @@ require("compe").setup {
         emoji = {kind = " ﲃ "}
         -- for emoji press : (idk if that in compe tho)
     }
-}
+})
 
 vim.g["compe.source.vim_dadbod_completion"] = true
 

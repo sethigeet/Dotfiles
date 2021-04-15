@@ -1,8 +1,10 @@
-function AutoFormat(client, bufnr)
-    vim.cmd("augroup Format")
-    vim.cmd("autocmd! * <buffer>")
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()")
-    vim.cmd("augroup END")
+function AutoFormat(lang, client)
+    if Opts.lsp[lang].autoformat and client.resolved_capabilities.document_formatting then
+        vim.cmd("augroup Format")
+        vim.cmd("autocmd! * <buffer>")
+        vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()")
+        vim.cmd("augroup END")
+    end
 end
 
 return AutoFormat

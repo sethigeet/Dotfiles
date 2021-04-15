@@ -30,9 +30,6 @@ return require("packer").startup(function(use)
     -- Repeat stuff
     use "tpope/vim-repeat"
 
-    -- Text Navigation
-    use {"unblevable/quick-scope", config = function() require("plugins.configs.quickscope") end}
-
     -- Vifm
     use {"vifm/vifm.vim", config = function() require("plugins.configs.vifm") end}
 
@@ -48,15 +45,11 @@ return require("packer").startup(function(use)
     -- auto set indent settings
     use "tpope/vim-sleuth"
 
-    -- Better Syntax Support
-    use {"sheerun/vim-polyglot", config = function() require("plugins.configs.polyglot") end}
-
     -- Treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
         config = function() require("plugins.configs.treesitter") end
     }
-    use "nvim-treesitter/playground"
     -- Automatically close and rename tags
     use "windwp/nvim-ts-autotag"
     -- Rainbow brackets
@@ -166,7 +159,6 @@ return require("packer").startup(function(use)
     use {"hrsh7th/nvim-compe", config = function() require("plugins.configs.compe") end}
     use {"glepnir/lspsaga.nvim", config = function() require("plugins.configs.lspsaga") end}
     use "onsails/lspkind-nvim"
-    use {"kosayoda/nvim-lightbulb", config = function() require("plugins.configs.lightbulb") end}
     use "liuchengxu/vista.vim"
 
     -- Markdown preview

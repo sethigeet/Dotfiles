@@ -1,4 +1,4 @@
-vim.g.gitblame_enabled = 0
+vim.g.gitblame_enabled = Opts.git.show_blame and 1 or 0
 
 -- Available options for message template
 -- <author>, <committer>, <date>, <committer-date>, <summary>, <sha>

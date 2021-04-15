@@ -1,4 +1,3 @@
 require("plugins.lsp.wrapper.lsp-wrapper")
 
-vim.cmd("source " .. vim.fn.stdpath("config") ..
-            "/lua/plugins/lsp/wrapper/lsp-wrapper.vim")
+vim.cmd("source " .. CONFIG_PATH .. "/lua/plugins/lsp/wrapper/lsp-wrapper.vim")

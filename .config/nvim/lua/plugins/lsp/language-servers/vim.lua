@@ -6,6 +6,10 @@ require("lspconfig").vimls.setup({
     },
     on_attach = function(client, bufnr)
         require("plugins.lsp.helpers.document_highlight")(client)
-        require("plugins.lsp.helpers.auto_format")(client, bufnr)
-    end
+        require("plugins.lsp.helpers.auto_format")("vim", client)
+    end,
+    handlers = {
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "vim")
+    }
 })

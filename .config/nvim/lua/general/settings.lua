@@ -3,7 +3,7 @@ vim.cmd("set formatoptions-=cro") -- Stop newline continution of comments
 
 vim.cmd("syntax enable") -- Enables syntax highlighing
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
-vim.wo.wrap = false -- Display long lines as just one line
+vim.wo.wrap = Opts.wrap_lines -- Display long lines as just one line
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.o.encoding = "utf-8" -- The encoding displayed
 vim.o.pumheight = 10 -- Makes popup menu smaller
@@ -22,8 +22,8 @@ vim.o.expandtab = true -- Converts tabs to spaces
 vim.o.smartindent = true -- Makes indenting smart
 vim.o.autoindent = true -- Good auto indent
 vim.o.laststatus = 2 -- Always display the status line
-vim.wo.number = true -- Line numbers
-vim.wo.relativenumber = true -- Relative Line numbers
+vim.wo.number = Opts.number -- Line numbers
+vim.wo.relativenumber = Opts.relative_number -- Relative Line numbers
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.background = "dark" -- tell vim what the background color looks like
 vim.o.showtabline = 2 -- Always show tabs
@@ -44,7 +44,7 @@ vim.o.titlestring = "%F - nvim"
 -- vim.cmd("set guifont=FiraCode Nerd Font:15")
 
 if vim.fn.has("persistent_undo") == 1 then
-    vim.o.undodir = vim.fn.stdpath("data") .. "/undodir"
+    vim.o.undodir = DATA_PATH .. "/undodir"
     vim.o.undofile = true
 end
 

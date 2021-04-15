@@ -14,6 +14,7 @@ else
 end
 
 require("lspconfig").sumneko_lua.setup {
+    root_dir = require("plugins.lsp.helpers.root_dir"),
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {
@@ -38,6 +39,10 @@ require("lspconfig").sumneko_lua.setup {
     },
     on_attach = function(client, bufnr)
         require("plugins.lsp.helpers.document_highlight")(client)
-        require("plugins.lsp.helpers.auto_format")(client, bufnr)
-    end
+        require("plugins.lsp.helpers.auto_format")("lua", client)
+    end,
+    handlers = {
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "lua")
+    }
 }

@@ -27,7 +27,7 @@ lspconfig.efm.setup {
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = true
         require("plugins.lsp.helpers.document_highlight")(client)
-        require("plugins.lsp.helpers.auto_format")(client, bufnr)
+        require("plugins.lsp.helpers.auto_format")("efm_langserver", client)
     end,
     settings = {
         languages = {

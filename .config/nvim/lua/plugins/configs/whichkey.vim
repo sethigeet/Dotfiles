@@ -104,12 +104,12 @@ let g:which_key_map.b = {
       \ '9' : [':BufferGoto 9'                           , 'buffer 9'],
       \ '0' : [':BufferGoto 0'                           , 'buffer 0'],
       \ 'b' : [':BufferPick'                             , 'pick buffer'],
-      \ 'd' : [':Bdelete'                                , 'delete-buffer'],
+      \ 'd' : [':Bdelete'                                , 'delete buffer'],
       \ 'D' : [':BufferOrderByDirectory'                 , 'order by directory'],
-      \ 'f' : ['bfirst'                                  , 'first-buffer'],
+      \ 'f' : ['bfirst'                                  , 'first buffer'],
       \ 'l' : ['blast'                                   , 'last buffer'],
       \ 'L' : [':BufferOrderByLanguage'                  , 'order by language'],
-      \ 'n' : ['bnext'                                   , 'next-buffer'],
+      \ 'n' : ['bnext'                                   , 'next buffer'],
       \ 'p' : ['bprevious'                               , 'previous-buffer'],
       \ }
 
@@ -126,15 +126,15 @@ let g:which_key_map.d = {
 let g:which_key_map.F = {
     \ 'name': '+fold',
     \ 'O' : [':set foldlevel=20', 'open all'],
-    \ 'C' : [':set foldlevel=0', 'close all'],
-    \ 'c' : [':foldclose', 'close'],
-    \ 'o' : [':foldopen', 'open'],
-    \ '1' : [':set foldlevel=1', 'level1'],
-    \ '2' : [':set foldlevel=2', 'level2'],
-    \ '3' : [':set foldlevel=3', 'level3'],
-    \ '4' : [':set foldlevel=4', 'level4'],
-    \ '5' : [':set foldlevel=5', 'level5'],
-    \ '6' : [':set foldlevel=6', 'level6']
+    \ 'C' : [':set foldlevel=0',  'close all'],
+    \ 'c' : [':foldclose',        'close'],
+    \ 'o' : [':foldopen',         'open'],
+    \ '1' : [':set foldlevel=1',  'level 1'],
+    \ '2' : [':set foldlevel=2',  'level 2'],
+    \ '3' : [':set foldlevel=3',  'level 3'],
+    \ '4' : [':set foldlevel=4',  'level 4'],
+    \ '5' : [':set foldlevel=5',  'level 5'],
+    \ '6' : [':set foldlevel=6',  'level 6']
     \ }
 
 " g is for git
@@ -169,15 +169,15 @@ let g:which_key_map.g = {
 " l is for lsp
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
-      \ 'a' : [':Lspsaga code_action'                     , 'quickfix'],
+      \ 'a' : [':Lspsaga code_action'                     , 'code actions'],
       \ 'A' : [':Lspsaga range_code_action'               , 'selected action'],
       \ 'd' : [':Telescope lsp_document_diagnostics'      , 'document diagnostics'],
       \ 'D' : [':Telescope lsp_workspace_diagnostics'     , 'workspace diagnostics'],
       \ 'f' : [':LspFormatting'                           , 'format'],
       \ 'H' : [':Lspsaga signature_help'                  , 'signature_help'],
-      \ 'I' : [':LspInfo'                                 , 'lsp_info'],
-      \ 'l' : [':Lspsaga lsp_finder'                      , 'lsp_finder'],
-      \ 'L' : [':Lspsaga show_line_diagnostics'           , 'line_diagnostics'],
+      \ 'I' : [':LspInfo'                                 , 'lsp info'],
+      \ 'l' : [':Lspsaga lsp_finder'                      , 'lsp finder'],
+      \ 'L' : [':Lspsaga show_line_diagnostics'           , 'line diagnostics'],
       \ 'o' : [':Vista!!'                                 , 'outline'],
       \ 'p' : [':Lspsaga preview_definition'              , 'preview definition'],
       \ 'P' : [':call v:lua.PeekDefinition()'             , 'peek definition'],
@@ -220,7 +220,7 @@ let g:which_key_map.s = {
       \ 'name' : '+search',
       \ '.' : [':Telescope filetypes'                   , 'filetypes'],
       \ ';' : [':Telescope commands'                    , 'commands'],
-      \ 'a' : [':Telescope lsp_code_actions'            , 'code_actions'],
+      \ 'a' : [':Telescope lsp_code_actions'            , 'code actions'],
       \ 'A' : [':Telescope builtin'                     , 'all'],
       \ 'b' : [':Telescope buffers'                     , 'buffers'],
       \ 'B' : [':Telescope git_branches'                , 'git branches'],

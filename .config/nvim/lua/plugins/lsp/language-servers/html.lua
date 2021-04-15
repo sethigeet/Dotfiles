@@ -10,8 +10,12 @@ require("lspconfig").html.setup({
     },
     on_attach = function(client, bufnr)
         require("plugins.lsp.helpers.document_highlight")(client)
-        require("plugins.lsp.helpers.auto_format")(client, bufnr)
+        require("plugins.lsp.helpers.auto_format")("html", client)
     end,
-    capabilities = capabilities
+    capabilities = capabilities,
+    handlers = {
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "html")
+    }
 })
 
