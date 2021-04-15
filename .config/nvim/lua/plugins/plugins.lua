@@ -37,13 +37,13 @@ return require("packer").startup(function(use)
     use {"vifm/vifm.vim", config = function() require("plugins.configs.vifm") end}
 
     -- File Explorer
-    use {"kyazdani42/nvim-tree.lua", config = function() require("plugins.configs.nvimtree") end}
+    use {"kyazdani42/nvim-tree.lua", config = function() require("plugins.configs.nvim-tree") end}
 
     -- Easymotion
     use {"easymotion/vim-easymotion", config = function() require("plugins.configs.easymotion") end}
 
     -- Have the file system follow you around
-    use {"airblade/vim-rooter", config = function() require("plugins.configs.vim-rooter") end}
+    use {"airblade/vim-rooter", config = function() require("plugins.configs.rooter") end}
 
     -- auto set indent settings
     use "tpope/vim-sleuth"
@@ -105,7 +105,7 @@ return require("packer").startup(function(use)
 
     -- Snippets
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.configs.vsnip") end}
-    use {"mattn/emmet-vim", config = function() require("plugins.configs.emmet-vim") end}
+    use {"mattn/emmet-vim", config = function() require("plugins.configs.emmet") end}
     use "rafamadriz/friendly-snippets"
 
     -- Interactive code
@@ -127,7 +127,7 @@ return require("packer").startup(function(use)
     use "psliwka/vim-smoothie"
 
     -- Swap windows
-    use {"wesQ3/vim-windowswap", config = function() require("plugins.configs.window-swap") end}
+    use {"wesQ3/vim-windowswap", config = function() require("plugins.configs.windowswap") end}
 
     -- Markdown Preview
     use {'npxbr/glow.nvim', run = ':GlowInstall'}
@@ -188,7 +188,7 @@ return require("packer").startup(function(use)
     -- Better bookmarks
     use {
         "MattesGroeger/vim-bookmarks",
-        config = function() require("plugins.configs.vim-bookmarks") end
+        config = function() require("plugins.configs.bookmarks") end
     }
 
     -- Interact with databases
