@@ -5,6 +5,5 @@ end
 
 function _G.PeekDefinition()
     local params = vim.lsp.util.make_position_params()
-    return vim.lsp.buf_request(0, 'textDocument/definition', params,
-                               preview_location_callback)
+    return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
 end

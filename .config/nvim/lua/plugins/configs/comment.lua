@@ -2,13 +2,13 @@ local define_augroups = require("general.functions").define_augroups
 
 define_augroups({
     NerdCommenter = {
-        {"FileType", "javascriptreact,typescriptreact", [[setlocal commentstring={/*\ %s\ */}]]},
-        {"BufRead,BufNewFile", "*.{jsx,js}", "setlocal filetype=javascriptreact"},
-        {"BufRead,BufNewFile", "*.{tsx}", "setlocal filetype=typescriptreact"}
+        { "FileType", "javascriptreact,typescriptreact", [[setlocal commentstring={/*\ %s\ */}]] },
+        { "BufRead,BufNewFile", "*.{jsx,js}", "setlocal filetype=javascriptreact" },
+        { "BufRead,BufNewFile", "*.{tsx}", "setlocal filetype=typescriptreact" }
     }
 })
 
-require('nvim_comment').setup({
+require("nvim_comment").setup({
     -- Linters prefer comment and line to have a space in between markers
     marker_padding = true,
     -- should comment out empty or whitespace only lines
@@ -29,5 +29,5 @@ function _G.Comment()
     end
 end
 
-vim.api.nvim_set_keymap("v", "<space>/", "v:lua.Comment()", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<space>/", "v:lua.Comment()", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<space>/", "v:lua.Comment()", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>/", "v:lua.Comment()", { noremap = true, silent = true })

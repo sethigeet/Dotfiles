@@ -1,5 +1,3 @@
-require("plugins.lsp.helpers.install_langserver")("yaml")
-
 require("lspconfig").yaml.setup({
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
@@ -7,7 +5,7 @@ require("lspconfig").yaml.setup({
         require("plugins.lsp.helpers.auto_format")("yaml", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require(
-            "plugins.lsp.helpers.diagnostics_handler")("yaml")
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "yaml")
     }
 })

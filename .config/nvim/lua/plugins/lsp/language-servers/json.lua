@@ -1,6 +1,5 @@
-require("plugins.lsp.helpers.install_langserver")("json")
-
 require("lspconfig").json.setup({
+    root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
         require("plugins.lsp.helpers.document_highlight")(client)
         require("plugins.lsp.helpers.auto_format")("json", client)
@@ -8,13 +7,13 @@ require("lspconfig").json.setup({
     commands = {
         Format = {
             function()
-                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line("$"), 0})
+                vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
             end
         }
     },
     handlers = {
-        ["textDocument/publishDiagnostics"] = require(
-            "plugins.lsp.helpers.diagnostics_handler")("json")
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "json")
     }
 })
 

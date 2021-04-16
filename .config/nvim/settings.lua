@@ -25,7 +25,7 @@ Opts.treesitter.autotag.enabled = true
 Opts.treesitter.indent.enabled = true
 
 -- Database Interaction
-Opts.database.save_location = DATA_PATH .. '/dadbod.db'
+Opts.database.save_location = DATA_PATH .. "/dadbod.db"
 Opts.database.auto_execute = 1
 
 -- LSP
@@ -54,10 +54,10 @@ Opts.lsp.sh.diagnostics.signs = true
 Opts.lsp.sh.diagnostics.underline = true
 
 -- JavaScript and TypeScript
-Opts.lsp.tsserver.autoformat = true
-Opts.lsp.tsserver.diagnostics.virtual_text = true
-Opts.lsp.tsserver.diagnostics.signs = true
-Opts.lsp.tsserver.diagnostics.underline = true
+Opts.lsp.typescript.autoformat = true
+Opts.lsp.typescript.diagnostics.virtual_text = true
+Opts.lsp.typescript.diagnostics.signs = true
+Opts.lsp.typescript.diagnostics.underline = true
 
 -- JSON
 Opts.lsp.json.autoformat = true
@@ -76,6 +76,12 @@ Opts.lsp.css.autoformat = true
 Opts.lsp.css.diagnostics.virtual_text = true
 Opts.lsp.css.diagnostics.signs = true
 Opts.lsp.css.diagnostics.underline = true
+
+-- Emmet
+Opts.lsp.emmet.autoformat = true
+Opts.lsp.emmet.diagnostics.virtual_text = true
+Opts.lsp.emmet.diagnostics.signs = true
+Opts.lsp.emmet.diagnostics.underline = true
 
 -- Docker
 Opts.lsp.docker.autoformat = true

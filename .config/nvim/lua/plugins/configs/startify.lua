@@ -9,10 +9,10 @@ vim.g.startify_custom_header = {
 vim.g.startify_session_dir = "~/.config/nvim/session"
 
 vim.g.startify_lists = {
-    {type = "files", header = {"   Files"}},
-    {type = "dir", header = {"   Current Directory " .. vim.fn.getcwd()}},
-    {type = "sessions", header = {"   Sessions"}},
-    {type = "bookmarks", header = {"   Bookmarks"}}
+    { type = "files", header = { "   Files" } },
+    { type = "dir", header = { "   Current Directory " .. vim.fn.getcwd() } },
+    { type = "sessions", header = { "   Sessions" } },
+    { type = "bookmarks", header = { "   Bookmarks" } }
 }
 
 vim.g.startify_session_autoload = 1
@@ -30,9 +30,9 @@ endfunction
 ]])
 
 vim.g.startify_bookmarks = {
-    {i = "~/.config/nvim/init.lua"}, {z = "~/.zshrc"},
-    {a = "~/.config/shell/aliases"}, {p = "~/.config/shell/paths"},
-    {c = "~/.config/shell/conda_init"}, {v = "~/.config/shell/var_exports"}
+    { i = "~/.config/nvim/init.lua" }, { z = "~/.zshrc" }, { a = "~/.config/shell/aliases" },
+    { p = "~/.config/shell/paths" }, { c = "~/.config/shell/conda_init" },
+    { v = "~/.config/shell/var_exports" }
 }
 
 vim.g.startify_enable_special = 0

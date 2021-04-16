@@ -1,5 +1,3 @@
-require("plugins.lsp.helpers.install_langserver")("efm")
-
 local lspconfig = require("lspconfig")
 
 -- Lua
@@ -19,11 +17,10 @@ local shellcheck = require("plugins.lsp.language-servers.efm.shellcheck")
 local shfmt = require("plugins.lsp.language-servers.efm.shfmt")
 
 lspconfig.efm.setup {
-    init_options = {documentFormatting = true},
+    init_options = { documentFormatting = true },
     filetypes = {
-        "lua", "go", "python", "typescript", "javascript", "typescriptreact",
-        "javascriptreact", "yml", "yaml", "json", "html", "scss", "css",
-        "markdown", "sh", "bash", "zsh"
+        "lua", "go", "python", "typescript", "javascript", "typescriptreact", "javascriptreact",
+        "yml", "yaml", "json", "html", "scss", "css", "markdown", "sh", "bash", "zsh"
     },
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
@@ -33,23 +30,23 @@ lspconfig.efm.setup {
     end,
     settings = {
         languages = {
-            lua = {lua_format},
-            go = {golint, goimports},
-            python = {autopep8, pylint},
-            typescript = {prettier, eslint},
-            javascript = {prettier, eslint},
-            typescriptreact = {prettier, eslint},
-            javascriptreact = {prettier, eslint},
-            yaml = {prettier},
-            yml = {prettier},
-            json = {prettier},
-            html = {prettier},
-            scss = {prettier},
-            css = {prettier},
-            markdown = {prettier},
-            sh = {shellcheck, shfmt},
-            bash = {shellcheck, shfmt},
-            zsh = {shellcheck, shfmt}
+            lua = { lua_format },
+            go = { golint, goimports },
+            python = { autopep8, pylint },
+            typescript = { prettier, eslint },
+            javascript = { prettier, eslint },
+            typescriptreact = { prettier, eslint },
+            javascriptreact = { prettier, eslint },
+            yaml = { prettier },
+            yml = { prettier },
+            json = { prettier },
+            html = { prettier },
+            scss = { prettier },
+            css = { prettier },
+            markdown = { prettier },
+            sh = { shellcheck, shfmt },
+            bash = { shellcheck, shfmt },
+            zsh = { shellcheck, shfmt }
         }
     }
 }

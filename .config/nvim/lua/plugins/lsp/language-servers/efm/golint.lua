@@ -1,5 +1,1 @@
-return {
-    lintCommand = "golint",
-    lintIgnoreExitCode = true,
-    lintFormats = {"%f:%l:%c: %m"}
-}
+return { lintCommand = "golint", lintIgnoreExitCode = true, lintFormats = { "%f:%l:%c: %m" } }

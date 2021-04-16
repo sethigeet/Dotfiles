@@ -1,15 +1,8 @@
 LspInstall = require("lspinstall")
-InstalledServers = LspInstall.installed_servers()
 
-local function HasValue(tab, val)
-    for _, value in ipairs(tab) do if value == val then return true end end
-
-    return false
-end
-
-local function InstallLangServer(lang)
-    if not HasValue(InstalledServers, lang) then
-        LspInstall.install_server(lang)
+local function InstallLangServer(langs)
+    for _, lang in ipairs(langs) do
+        if not LspInstall.is_server_installed(lang) then LspInstall.install_server(lang) end
     end
 end
 

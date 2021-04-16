@@ -1,5 +1,3 @@
-require("plugins.lsp.helpers.install_langserver")("css")
-
 require("lspconfig").css.setup({
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
@@ -7,7 +5,7 @@ require("lspconfig").css.setup({
         require("plugins.lsp.helpers.auto_format")("css", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require(
-            "plugins.lsp.helpers.diagnostics_handler")("css")
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "css")
     }
 })

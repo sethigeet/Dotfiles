@@ -7,8 +7,7 @@ local actions = require("telescope.actions")
 require("telescope").setup({
     defaults = {
         vimgrep_arguments = {
-            "rg", "--no-heading", "--with-filename", "--line-number",
-            "--column", "--smart-case"
+            "rg", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case"
         },
         prompt_position = "top",
         prompt_prefix = " ",
@@ -18,10 +17,7 @@ require("telescope").setup({
         selection_strategy = "reset",
         sorting_strategy = "descending",
         layout_strategy = "horizontal",
-        layout_defaults = {
-            horizontal = {mirror = false},
-            vertical = {mirror = false}
-        },
+        layout_defaults = { horizontal = { mirror = false }, vertical = { mirror = false } },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
         file_ignore_patterns = {},
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
@@ -32,10 +28,10 @@ require("telescope").setup({
         results_height = 1,
         results_width = 0.8,
         border = {},
-        borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
+        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
         use_less = true,
-        set_env = {COLORTERM = "truecolor"}, -- default = nil,
+        set_env = { COLORTERM = "truecolor" }, -- default = nil,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
@@ -71,12 +67,9 @@ require("telescope").setup({
         media_files = {
             -- filetypes whitelist
             -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-            filetypes = {"png", "webp", "jpg", "jpeg"},
+            filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "rg" -- find command (defaults to `fd`)
         },
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true
-        }
+        fzy_native = { override_generic_sorter = false, override_file_sorter = true }
     }
 })

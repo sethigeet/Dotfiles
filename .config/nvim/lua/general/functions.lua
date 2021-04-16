@@ -12,7 +12,7 @@ local function define_augroups(definitions)
         vim.cmd("autocmd!")
 
         for _, def in pairs(definition) do
-            local command = table.concat(vim.tbl_flatten {"autocmd", def}, " ")
+            local command = table.concat(vim.tbl_flatten { "autocmd", def }, " ")
             vim.cmd(command)
         end
 
@@ -31,11 +31,11 @@ end
 function _G.s_tab_complete()
     if vim.fn.pumvisible() == 1 then
         return t("<C-p>")
-    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
         return t("<Plug>(vsnip-jump-prev)")
     else
         return t("<S-Tab>")
     end
 end
 
-return {define_augroups = define_augroups}
+return { define_augroups = define_augroups }

@@ -17,25 +17,25 @@ require("compe").setup({
     documentation = true,
 
     source = {
-        path = {kind = "  "},
-        buffer = {kind = "  "},
-        calc = {kind = "  "},
-        vsnip = {kind = "  "},
-        nvim_lsp = {kind = "  "},
-        nvim_lua = {kind = "  "},
-        spell = {kind = "  "},
+        path = { kind = "  " },
+        buffer = { kind = "  " },
+        calc = { kind = "  " },
+        vsnip = { kind = "  " },
+        nvim_lsp = { kind = "  " },
+        nvim_lua = { kind = "  " },
+        spell = { kind = "  " },
         tags = false,
-        snippets_nvim = {kind = "  "},
-        treesitter = {kind = "  "},
-        emoji = {kind = " ﲃ "}
+        snippets_nvim = { kind = "  " },
+        treesitter = { kind = "  " },
+        emoji = { kind = " ﲃ " }
         -- for emoji press : (idk if that in compe tho)
     }
 })
 
 vim.g["compe.source.vim_dadbod_completion"] = true
 
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true, silent = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", { expr = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", { expr = true, silent = true })

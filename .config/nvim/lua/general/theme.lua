@@ -1,5 +1,5 @@
 vim.cmd("set termguicolors")
-vim.cmd('let ayucolor="mirage"')
+vim.cmd("let ayucolor=\"mirage\"")
 vim.cmd("colorscheme " .. Opts.colorscheme)
 
 -- Syntax highlighting

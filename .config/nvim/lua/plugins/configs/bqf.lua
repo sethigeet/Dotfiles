@@ -19,7 +19,7 @@ require("bqf").setup({
 
         -- border and scroll bar chars, they respectively represent:
         -- vline, vline, hline, hline, ulcorner, urcorner, blcorner, brcorner, sbar
-        border_chars = {"│", "│", "─", "─", "╭", "╮", "╰", "╯", "█"},
+        border_chars = { "│", "│", "─", "─", "╭", "╮", "╰", "╯", "█" },
 
         -- delay time, to do syntax for previewed buffer, unit is millisecond
         delay_syntax = 50,
@@ -51,7 +51,7 @@ require("bqf").setup({
             },
 
             -- "extra options for fzf",
-            extra_opts = {"--bind", "ctrl-o:toggle-all"}
+            extra_opts = { "--bind", "ctrl-o:toggle-all" }
         }
     }
 })

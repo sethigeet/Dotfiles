@@ -33,10 +33,10 @@ vim.g.nvim_tree_bindings = {
 
 vim.g.nvim_tree_side = "left" -- "left" by default
 vim.g.nvim_tree_width = 30 -- 30 by default
-vim.g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'} -- empty by default
+vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" } -- empty by default
 vim.g.nvim_tree_auto_open = 0 -- 0 by default, opens the tree when typing `vim $DIR` or `vim`
 vim.g.nvim_tree_auto_close = Opts.auto_close_tree and 1 or 0 -- 0 by default, closes the tree when it's the last window
-vim.g.nvim_tree_auto_ignore_ft = {"startify"} -- empty by default, don't auto open tree on specific filetypes.
+vim.g.nvim_tree_auto_ignore_ft = { "startify" } -- empty by default, don't auto open tree on specific filetypes.
 vim.g.nvim_tree_quit_on_open = 0 -- 0 by default, closes the tree when you open a file
 vim.g.nvim_tree_follow = 1 -- 0 by default, this option allows the cursor to be updated when entering a buffer
 -- vim.g.nvim_tree_lsp_diagnostics = 1 -- 0 by default, will show lsp diagnostics in the tree. See :help g:nvim_tree_lsp_diagnostics
@@ -48,7 +48,7 @@ vim.g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git a
 -- vim.g.nvim_tree_width_allow_resize = 1 -- 0 by default, will not resize the tree when opening a file
 vim.g.nvim_tree_disable_netrw = 1 -- 1 by default, disables netrw
 vim.g.nvim_tree_hijack_netrw = 1 -- 1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
-vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1}
+vim.g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1 }
 -- If 0, do not show the icons for one of 'git' 'folder' and 'files'
 -- 1 by default, notice that if 'files' is 1, it will only display
 -- if nvim-web-devicons is installed and on your runtimepath
@@ -58,6 +58,6 @@ vim.g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1}
 vim.g.nvim_tree_icons = {
     default = "",
     symlink = "",
-    git = {unstaged = "", staged = "✓", unmerged = "", renamed = "➜", untracked = "✗"},
-    folder = {default = "", open = "", empty = "", empty_open = "", symlink = ""}
+    git = { unstaged = "", staged = "✓", unmerged = "", renamed = "➜", untracked = "✗" },
+    folder = { default = "", open = "", empty = "", empty_open = "", symlink = "" }
 }

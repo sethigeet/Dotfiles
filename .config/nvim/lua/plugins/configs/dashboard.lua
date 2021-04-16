@@ -1,12 +1,12 @@
 vim.g.dashboard_default_executive = "telescope"
 
 vim.g.dashboard_custom_section = {
-    a = {description = {" Find File          "}, command = "Telescope find_files"},
-    b = {description = {" Recently Used Files"}, command = "Telescope oldfiles"},
-    c = {description = {" Load Last Session  "}, command = "SessionLoad"},
-    d = {description = {" Find Word          "}, command = "Telescope live_grep"},
-    e = {description = {" Marks              "}, command = "Telescope marks"},
-    i = {description = {" Nvim Config        "}, command = "e ~/.config/nvim/init.lua"}
+    a = { description = { " Find File          " }, command = "Telescope find_files" },
+    b = { description = { " Recently Used Files" }, command = "Telescope oldfiles" },
+    c = { description = { " Load Last Session  " }, command = "SessionLoad" },
+    d = { description = { " Find Word          " }, command = "Telescope live_grep" },
+    e = { description = { " Marks              " }, command = "Telescope marks" },
+    i = { description = { " Nvim Config        " }, command = "e ~/.config/nvim/init.lua" }
 }
 
 -- vim.g.file_browser = {description = {" File Browser"}, command = "Telescope find_files"},
@@ -22,9 +22,9 @@ vim.g.dashboard_custom_section = {
 
 require("general.functions").define_augroups({
     dashboard = {
-        {"FileType", "dashboard", "set showtabline=0"},
-        {"WinLeave", "<buffer>", "set showtabline=2"},
-        {"FileType", "dashboard", "setlocal nocursorline"}
+        { "FileType", "dashboard", "set showtabline=0" },
+        { "WinLeave", "<buffer>", "set showtabline=2" },
+        { "FileType", "dashboard", "setlocal nocursorline" }
     }
 })
 

@@ -1,5 +1,3 @@
-require("plugins.lsp.helpers.install_langserver")("vim")
-
 require("lspconfig").vim.setup({
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
@@ -7,7 +5,7 @@ require("lspconfig").vim.setup({
         require("plugins.lsp.helpers.auto_format")("vim", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require(
-            "plugins.lsp.helpers.diagnostics_handler")("vim")
+        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
+            "vim")
     }
 })
