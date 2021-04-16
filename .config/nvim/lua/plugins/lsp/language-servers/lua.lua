@@ -1,21 +1,7 @@
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-USER = vim.fn.expand("$USER")
+require("plugins.lsp.helpers.install_langserver")("lua")
 
-local sumneko_root_path = ""
-local sumneko_binary = ""
-
-if vim.fn.has("unix") == 1 then
-    sumneko_root_path = "/home/" .. USER ..
-                            "/.local/share/nvim/language-servers/lua-language-server"
-    sumneko_binary = "/home/" .. USER ..
-                         "/.local/share/nvim/language-servers/lua-language-server/bin/Linux/lua-language-server"
-else
-    print("Unsupported system for sumneko")
-end
-
-require("lspconfig").sumneko_lua.setup {
+require("lspconfig").lua.setup {
     root_dir = require("plugins.lsp.helpers.root_dir"),
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {
             runtime = {
@@ -42,7 +28,7 @@ require("lspconfig").sumneko_lua.setup {
         require("plugins.lsp.helpers.auto_format")("lua", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
-            "lua")
+        ["textDocument/publishDiagnostics"] = require(
+            "plugins.lsp.helpers.diagnostics_handler")("lua")
     }
 }

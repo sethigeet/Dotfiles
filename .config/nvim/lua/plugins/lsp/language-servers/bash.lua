@@ -1,15 +1,14 @@
--- ./scripts/install-language-server -n bash
-require("lspconfig").bashls.setup({
-    cmd = {
-        require("plugins.lsp.helpers.get_language_server_path")("bash", "bash-language-server",
-                                                                "node"), "start"
-    },
+require("plugins.lsp.helpers.install_langserver")("bash")
+
+require("lspconfig").bash.setup({
+    root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
         require("plugins.lsp.helpers.document_highlight")(client)
         require("plugins.lsp.helpers.auto_format")("sh", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
-            "sh")
-    }
+        ["textDocument/publishDiagnostics"] = require(
+            "plugins.lsp.helpers.diagnostics_handler")("sh")
+    },
+    filetypes = {"sh", "bash", "zsh"}
 })

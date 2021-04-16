@@ -1,3 +1,5 @@
+require("lspinstall").setup()
+
 require("plugins.lsp.language-servers.bash")
 require("plugins.lsp.language-servers.css")
 require("plugins.lsp.language-servers.docker")
@@ -8,6 +10,6 @@ require("plugins.lsp.language-servers.html")
 require("plugins.lsp.language-servers.json")
 require("plugins.lsp.language-servers.lua")
 require("plugins.lsp.language-servers.python")
-require("plugins.lsp.language-servers.tsserver")
+require("plugins.lsp.language-servers.typescript")
 require("plugins.lsp.language-servers.vim")
 require("plugins.lsp.language-servers.yaml")

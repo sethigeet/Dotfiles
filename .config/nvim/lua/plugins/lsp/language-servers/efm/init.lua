@@ -1,3 +1,5 @@
+require("plugins.lsp.helpers.install_langserver")("efm")
+
 local lspconfig = require("lspconfig")
 
 -- Lua
@@ -17,11 +19,11 @@ local shellcheck = require("plugins.lsp.language-servers.efm.shellcheck")
 local shfmt = require("plugins.lsp.language-servers.efm.shfmt")
 
 lspconfig.efm.setup {
-    cmd = {require("plugins.lsp.helpers.get_language_server_path")("efm", "efm-langserver", "go")},
     init_options = {documentFormatting = true},
     filetypes = {
-        "lua", "go", "python", "typescript", "javascript", "typescriptreact", "javascriptreact",
-        "yml", "yaml", "json", "html", "scss", "css", "markdown", "sh", "bash", "zsh"
+        "lua", "go", "python", "typescript", "javascript", "typescriptreact",
+        "javascriptreact", "yml", "yaml", "json", "html", "scss", "css",
+        "markdown", "sh", "bash", "zsh"
     },
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
