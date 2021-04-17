@@ -35,3 +35,5 @@ vim.g.dashboard_preview_file_height = 12
 vim.g.dashboard_preview_file_width = 80
 
 vim.g.dashboard_session_directory = "~/.cache/nvim/session"
+
+vim.g.dashboard_custom_footer = { "by Geet Sethi (sethigeet)" }

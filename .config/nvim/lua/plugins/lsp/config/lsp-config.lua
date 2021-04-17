@@ -1,3 +1,4 @@
+-- Colors for diagnostics
 vim.fn.sign_define("LspDiagnosticsDefaultError",
                    { texthl = "LspDiagnosticsDefaultError", numhl = "LspDiagnosticsDefaultError" })
 vim.fn.sign_define("LspDiagnosticsDefaultWarning", {
@@ -11,6 +12,7 @@ vim.fn.sign_define("LspDiagnosticsDefaultInformation", {
 vim.fn.sign_define("LspDiagnosticsDefaultHint",
                    { texthl = "LspDiagnosticsDefaultHint", numhl = "LspDiagnosticsDefaultHint" })
 
+-- Signs for diagnostics
 vim.fn.sign_define("LspDiagnosticsSignError", {
     texthl = "LspDiagnosticsSignError",
     text = "",
@@ -31,6 +33,35 @@ vim.fn.sign_define("LspDiagnosticsSignHint", {
     text = "",
     numhl = "LspDiagnosticsSignHint"
 })
+
+-- Symbols for autocomplete
+vim.lsp.protocol.CompletionItemKind = {
+    "  ", -- Text
+    "  ", -- Method
+    "  ", -- Function
+    "  ", -- Constructor
+    " ﴲ ", -- Field
+    "[]", -- Variable
+    "  ", -- Class
+    " ﰮ ", -- Interface
+    "  ", -- Module
+    " 襁", -- Property
+    " 塞", -- Unit
+    "  ", -- Value
+    " 練", -- Enum
+    "  ", -- Keyword
+    "  ", -- Snippet
+    "  ", -- Color
+    "  ", -- File
+    "  ", -- Reference
+    "  ", -- Folder
+    "  ", -- EnumMember
+    " ﲀ ", -- Constant
+    "  ", -- Struct
+    "  ", -- Event
+    "  ", -- Operator
+    "  " -- TypeParameter
+}
 
 vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>")
 vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>")

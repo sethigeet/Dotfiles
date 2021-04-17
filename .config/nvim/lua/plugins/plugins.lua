@@ -269,7 +269,6 @@ return require("packer").startup(function(use)
             require("plugins.configs.lspsaga")
         end
     }
-    use "onsails/lspkind-nvim"
     use "liuchengxu/vista.vim"
 
     -- Markdown preview
