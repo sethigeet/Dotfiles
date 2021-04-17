@@ -3,7 +3,7 @@
 	name = Geet Sethi
 
 [alias]
-  patch = !git --no-pager diff --no-color
+	patch = !git --no-pager diff --no-color
 
 [core]
 	editor = nvim
@@ -14,5 +14,5 @@
 [color]
 	ui = true
 
-; [credential "https://github.com"]
-; 	helper = !gh auth git-credential
+;[credential "https://github.com"]
+;	helper = !gh auth git-credential
