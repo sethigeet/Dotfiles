@@ -45,3 +45,6 @@ PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
 
 # Read the xresources file
 xrdb "$XDG_CONFIG_HOME/X11/xresources"
+
+# Start the ssh-agent
+eval "$(ssh-agent -s)"
