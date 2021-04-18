@@ -1,15 +1,31 @@
+!!! VARIABLES !!!
+!! --------------
+!! Font
+#define BIG_MONO monospace:pixelsize=21:antialias=true:autohint=true
+#define SMALL_MONO monospace:pixelsize=18:antialias=true:autohint=true
+
+!! Colors
+#define BG       #1F2430
+#define FG       #CBCCC6
+#define FGAlt    #101521
+#define Primary  #FFCC66
+#define Accent   #BAE67E
+
+!!! GLOBAL SETTINGS !!!
+!! --------------------
 !! Transparency (0-1):
 *.alpha: 0.95
 
-!! Set a default font and font size as below:
-*.font: monospace:pixelsize=21:antialias=true:autohint=true
+!! Font
+*.font: BIG_MONO
 
-*.background: 	#1F2430
-*.foreground: 	#CBCCC6
+!! Colors
+*.background: 	BG
+*.foreground: 	FG
 
-*.color0:				#191E2A
+*.color0:				FGAlt
 *.color1:				#FF3333
-*.color2:				#BAE67E
+*.color2:				Accent
 *.color3:				#FFA759
 *.color4:				#73D0FF
 *.color5:				#FFD580
@@ -18,10 +34,31 @@
 *.color8:				#686868
 *.color9:				#F27983
 *.color10:			#A6CC70
-*.color11:			#FFCC66
+*.color11:			Primary
 *.color12:			#5CCFE6
 *.color13:			#FFEE99
 *.color14:			#95E6CB
 *.color15:			#FFFFFF
 
-*.cursorColor:	#CBCCC6
+*.cursorColor:	FG
+
+!!! DMENU SETTINGS !!!
+!! -------------------
+!! Font
+dmenu.font: SMALL_MONO
+
+!! Colors
+dmenu.background:               BG
+dmenu.foreground:               FG
+
+dmenu.selbackground:            Primary
+dmenu.selforeground:            FGAlt
+
+dmenu.backgroundHighlight:      BG
+dmenu.foregroundHighlight:      Primary
+
+dmenu.selbackgroundHighlight:   Primary
+dmenu.selforegroundHighlight:   BG
+
+dmenu.outbackground:            Accent
+dmenu.outforeground:            FGAlt
