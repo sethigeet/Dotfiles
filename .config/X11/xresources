@@ -2,7 +2,7 @@
 *.alpha: 0.95
 
 !! Set a default font and font size as below:
-*.font: mono:pixelsize=21:antialias=true:autohint=true
+*.font: monospace:pixelsize=21:antialias=true:autohint=true
 
 *.background: 	#1F2430
 *.foreground: 	#CBCCC6
