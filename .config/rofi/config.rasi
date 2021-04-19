@@ -27,9 +27,9 @@ configuration {
   // drun-url-launcher: "xdg-open";
   // disable-history: false;
   // ignored-prefixes: "";
-  sort: true;
-  sorting-method: "fzf";
-  matching: "fuzzy";
+  // sort: true;
+  // sorting-method: "fzf";
+  // matching: "fuzzy";
   // tokenize: true;
   // case-sensitive: false;
   // cycle: true;
