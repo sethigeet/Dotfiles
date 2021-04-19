@@ -15,6 +15,7 @@ float_rules = [
     Match(title="Calculator"),  # Calculator
     Match(title="win0"),  # Android Studio startup screen
     Match(title="^Android Emulator*"),  # Android Emulator
+    Match(title="^Participants*"),  # Zoom meetings
 ]
 
 floating_layout = layout.Floating(float_rules=float_rules, **layout_theme)
