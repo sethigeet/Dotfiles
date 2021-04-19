@@ -5,7 +5,7 @@ vim.g.mkdp_auto_start = 0
 -- set to 1, the nvim will auto close current preview window when change
 -- from markdown buffer to another buffer
 -- default: 1
-vim.g.mkdp_auto_close = 0
+vim.g.mkdp_auto_close = 1
 
 -- set to 1, the vim will refresh markdown when save the buffer or
 -- leave from insert mode, default 0 is auto refresh markdown as you edit or
@@ -21,7 +21,7 @@ vim.g.mkdp_command_for_global = 0
 -- set to 1, preview server available to others in your network
 -- by default, the server listens on localhost (127.0.0.1)
 -- default: 0
-vim.g.mkdp_open_to_the_world = 1
+vim.g.mkdp_open_to_the_world = 0
 
 -- use custom IP to open preview page
 -- useful when you work in remote vim and preview on local browser
