@@ -23,7 +23,7 @@ if command -v colorpicker >/dev/null 2>&1; then
 	if command -v xclip >/dev/null 2>&1; then
 		echo "$color_to_copy" | xclip -r -selection clipboard
 	elif command -v xsel >/dev/null 2>&1; then
-		echo "$color_to_copy" | xsel -b
+		echo "$color_to_copy" | xsel -i -b
 	else
 		msg "xclip/xsel/greenclip" && exit 1
 	fi

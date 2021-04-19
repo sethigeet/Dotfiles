@@ -1,33 +1,108 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+help_message="\
+Usage: Use rofi to pick emoji because that's what this century is about apparently...
+
+Requirements:
+  rofi, xsel, xdotool, curl, xmllint
+
+Usage:
+  1. Download all emoji
+     \$ rofi-emoji --download
+
+  2. Run it!
+     \$ rofi-emoji
+
+Notes:
+  * You'll need a emoji font like 'Noto Emoji' or 'EmojiOne' or 'JoyPixels'.
+  * Confirming an item will automatically paste it WITHOUT writing it to your clipboard.
+  * Ctrl+C will copy it to your clipboard WITHOUT pasting it.
+"
 
 # Display Error msg
 msg() {
 	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
 }
 
-emoji_file="$HOME/.local/share/emojis"
-TIME=3000                  # Miliseconds notification should remain visible
-ICON="edit-paste-symbolic" # The icon to be shown in the notification
+# Where to save the emojis file.
+EMOJI_FILE="$XDG_CACHE_HOME/emojis.txt"
 
-# Check if the user selected any config
-if [ -f "$emoji_file" ]; then
-	selected_emoji="$(cut -d ';' -f 1 "$emoji_file" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -p "Copy an emoji:")"
-	selected_emoji="${selected_emoji%% *}" # remove the description of the emoji
+# Urls of emoji to download.
+# You can remove what you don't need.
+URLS=(
+	'https://emojipedia.org/people/'
+	'https://emojipedia.org/nature/'
+	'https://emojipedia.org/food-drink/'
+	'https://emojipedia.org/activity/'
+	'https://emojipedia.org/travel-places/'
+	'https://emojipedia.org/objects/'
+	'https://emojipedia.org/symbols/'
+	'https://emojipedia.org/flags/'
+)
 
-	# If the user did not select any config, cancel the operation
-	[ -z "$selected_emoji" ] && exit 0
-
-	# copy the emoji to the clipboard
-	if command -v xclip >/dev/null 2>&1; then
-		echo "$selected_emoji" | xclip -r -selection clipboard
-	elif command -v xsel >/dev/null 2>&1; then
-		echo "$selected_emoji" | xsel -b
-	else
-		msg "xclip/xsel" && exit 1
+notify() {
+	if [ "$(command -v notify-send)" ]; then
+		notify-send "Emoji Picker" "$2"
 	fi
+}
 
-	# send a notification
-	notify-send -u low -t $TIME -i $ICON "Emoji Copied" "The emoji (\"$selected_emoji\") has been copied to the clipboard"
-else
-	echo "Emoji file not found!" && exit 1
+download() {
+	notify "Downloading all emojis"
+
+	echo "" >"$EMOJI_FILE"
+
+	for url in "${URLS[@]}"; do
+		echo "Downloading: $url"
+
+		# Download the list of emoji and remove all the junk around it
+		emojis=$(curl -s "$url" | xmllint --html --xpath '//ul[@class="emoji-list"]' - 2>/dev/null)
+
+		# Get rid of starting/closing ul tags
+		emojis=$(echo "$emojis" | head -n -1 | tail -n +1)
+
+		# Extract the emoji and its description
+		emojis=$(echo "$emojis" | sed -rn 's/.*<span class="emoji">(.*)<\/span> (.*)<\/a><\/li>/\1 \2/p')
+
+		echo "$emojis" >>"$EMOJI_FILE"
+	done
+
+	notify "All the emojis have been downloaded!"
+}
+
+display() {
+	available_emojis=$(grep -v '#' "$EMOJI_FILE" | grep -v '^[[:space:]]*$')
+	selected_emoji=$(echo "$available_emojis" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Pick an emoji:" -kb-custom-1 Ctrl+c)
+	exit_code=$?
+
+	# remove the description of the emoji
+	selected_emoji="${selected_emoji%% *}"
+
+	if [ $exit_code == 0 ]; then
+		sleep 0.1 # Delay pasting so the text-entry can come active
+		xdotool type --clearmodifiers "$selected_emoji"
+	elif [ $exit_code == 10 ]; then
+		if command -v xclip &>/dev/null; then
+			echo -n "$selected_emoji" | xclip -r -selection clipboard
+		elif command -v xsel &>/dev/null; then
+			echo -n "$selected_emoji" | xsel -i -b
+		else
+			msg "xclip/xsel"
+		fi
+	fi
+}
+
+# Some simple argparsing
+if [[ $1 =~ -d|--download ]]; then
+	download
+	exit 0
+elif [[ $1 =~ -h|--help ]]; then
+	echo "$help_message"
+	exit 0
 fi
+
+# Download all emoji if they don't exist yet
+if [ ! -f "$EMOJI_FILE" ]; then
+	download
+fi
+
+display
