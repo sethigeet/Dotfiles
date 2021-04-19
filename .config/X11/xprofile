@@ -4,7 +4,4 @@ xset r rate 550 33
 xset s 300 300
 xset dpms 300 300 300
 
-export QT_QPA_PLATFORMTHEME="qt5ct"
-
-$HOME/Scripts/wm/autostart
-
+autostart
