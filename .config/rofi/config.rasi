@@ -27,9 +27,9 @@ configuration {
   // drun-url-launcher: "xdg-open";
   // disable-history: false;
   // ignored-prefixes: "";
-  // sort: true;
-  // sorting-method: "fzf";
-  // matching: "fuzzy";
+  matching: "fuzzy";
+  sorting-method: "fzf";
+  sort: true;
   // tokenize: true;
   // case-sensitive: false;
   // cycle: true;
@@ -80,8 +80,8 @@ configuration {
   kb-primary-paste: "Control+V,Shift+Insert";
   kb-secondary-paste: "Control+v,Insert";
   kb-clear-line: "Control+x";
-  kb-move-front: "Control+a";
-  kb-move-end: "Control+e";
+  kb-move-front: "Control+a,Home,KP_Home";
+  kb-move-end: "Control+e,End,KP_End";
   kb-move-word-back: "Alt+b,Control+Left";
   kb-move-word-forward: "Alt+f,Control+Right";
   kb-move-char-back: "Left,Control+b";
@@ -105,8 +105,8 @@ configuration {
   kb-row-tab: "Tab";
   kb-page-prev: "Page_Up";
   kb-page-next: "Page_Down";
-  kb-row-first: "Home,KP_Home";
-  kb-row-last: "End,KP_End";
+  kb-row-first: "Control+Home,Control+KP_Home";
+  kb-row-last: "Control+End,Control+KP_End";
   kb-row-select: "Control+space";
   kb-screenshot: "Alt+S";
   kb-ellipsize: "Alt+period";
