@@ -1,0 +1,1 @@
+/home/geet/.config/shell/profile
