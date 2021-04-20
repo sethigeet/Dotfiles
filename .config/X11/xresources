@@ -14,7 +14,7 @@
 !!! GLOBAL SETTINGS !!!
 !! --------------------
 !! Transparency (0-1):
-*.alpha: 0.95
+st.alpha: 0.95
 
 !! Font
 *.font: BIG_MONO
