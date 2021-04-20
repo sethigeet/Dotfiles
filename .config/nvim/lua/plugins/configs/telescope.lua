@@ -12,11 +12,11 @@ require("telescope").setup({
         prompt_position = "top",
         -- prompt_prefix = "  ",
         prompt_prefix = "  ",
-        selection_caret = " ",
+        selection_caret = "  ",
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = "descending",
+        sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_defaults = { horizontal = { mirror = false }, vertical = { mirror = false } },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -69,7 +69,7 @@ require("telescope").setup({
             -- filetypes whitelist
             -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
             filetypes = { "png", "webp", "jpg", "jpeg" },
-            find_cmd = "rg" -- find command (defaults to `fd`)
+            find_cmd = "fd" -- find command (defaults to `fd`)
         },
         fzy_native = { override_generic_sorter = false, override_file_sorter = true }
     }

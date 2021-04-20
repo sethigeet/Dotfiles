@@ -1,5 +1,5 @@
 local function RootDir(filename)
-    return "/home/geet/.config/nvim"
+    return vim.fn.getcwd()
 end
 -- require('lspconfig/util').root_pattern("files", ".git", ".")
 
