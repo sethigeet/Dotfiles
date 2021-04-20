@@ -2,34 +2,34 @@
 
 # Display Error msg
 msg() {
-	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
 }
 
 TIME=3000                  # Miliseconds notification should remain visible
 ICON="edit-paste-symbolic" # The icon to be shown in the notification
 
 if command -v colorpicker >/dev/null 2>&1; then
-	# Run colorpicker to pick a color
-	selected_color=$(colorpicker --one-shot --preview)
+  # Run colorpicker to pick a color
+  selected_color=$(colorpicker --one-shot --preview)
 
-	# Get the hex code of the color
-	if command -v rg >/dev/null 2>&1; then
-		color_to_copy=$(echo "$selected_color" | rg -o "#[0-9A-F]{6}$")
-	else
-		color_to_copy=$(echo "$selected_color" | grep -o "#[0-9A-F]*$")
-	fi
+  # Get the hex code of the color
+  if command -v rg >/dev/null 2>&1; then
+    color_to_copy=$(echo "$selected_color" | rg -o "#[0-9A-F]{6}$")
+  else
+    color_to_copy=$(echo "$selected_color" | grep -o "#[0-9A-F]*$")
+  fi
 
-	# copy it to the clipboard
-	if command -v xclip >/dev/null 2>&1; then
-		echo "$color_to_copy" | xclip -r -selection clipboard
-	elif command -v xsel >/dev/null 2>&1; then
-		echo "$color_to_copy" | xsel -i -b
-	else
-		msg "xclip/xsel/greenclip" && exit 1
-	fi
+  # copy it to the clipboard
+  if command -v xclip >/dev/null 2>&1; then
+    echo "$color_to_copy" | xclip -r -selection clipboard
+  elif command -v xsel >/dev/null 2>&1; then
+    echo "$color_to_copy" | xsel -i -b
+  else
+    msg "xclip/xsel/greenclip" && exit 1
+  fi
 
-	# send a notification
-	notify-send -u low -t $TIME -i $ICON "HEX Color Copied" "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
+  # send a notification
+  notify-send -u low -t $TIME -i $ICON "HEX Color Copied" "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
 else
-	msg "colorpicker" && exit 1
+  msg "colorpicker" && exit 1
 fi

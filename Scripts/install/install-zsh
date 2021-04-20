@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
 if command -v zsh &>/dev/null; then
-	echo "Found 'zsh'! Continuing installation"
+  echo "Found 'zsh'! Continuing installation"
 else
-	echo "'zsh' not found! Please install 'zsh' first!" && exit 1
+  echo "'zsh' not found! Please install 'zsh' first!" && exit 1
 fi
 
 # Install oh-my-zsh plugin manager

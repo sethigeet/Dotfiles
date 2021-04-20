@@ -1,11 +1,11 @@
 #!/bin/sh
 
 check_for_command() {
-	if command -v "$1" >/dev/null 2>&1; then
-		echo "Found '$1'! Continuing installation"
-	else
-		echo "'$1' not found! Please install '$1' first!" && exit 1
-	fi
+  if command -v "$1" >/dev/null 2>&1; then
+    echo "Found '$1'! Continuing installation"
+  else
+    echo "'$1' not found! Please install '$1' first!" && exit 1
+  fi
 }
 
 # Check if nvim is installed

@@ -2,7 +2,7 @@
 
 # Error msg
 msg() {
-	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Not Implemented Yet."
+  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Not Implemented Yet."
 }
 
 # Find the uptime of the machine
@@ -19,12 +19,12 @@ shutdown=""
 options="$lock|$logout|$sleep|$reboot|$shutdown"
 
 selected="$(echo "$options" | rofi -no-lazy-grab -selected-row 2 -sep "|" -dmenu -i -p "Uptime :  $uptime" \
-	-theme "$HOME/.config/rofi/themes/power-menu.rasi")"
+  -theme "$HOME/.config/rofi/themes/power-menu.rasi")"
 
 case "$selected" in
-	"$lock") dm-tool lock ;;
-	"$logout") loginctl kill-session self ;;
-	"$sleep") msg ;;
-	"$reboot") reboot ;;
-	"$shutdown") shutdown now ;;
+  "$lock") dm-tool lock ;;
+  "$logout") loginctl kill-session self ;;
+  "$sleep") msg ;;
+  "$reboot") reboot ;;
+  "$shutdown") shutdown now ;;
 esac

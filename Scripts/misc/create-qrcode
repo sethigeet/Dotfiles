@@ -2,8 +2,8 @@
 
 # Display Error msg
 msg() {
-	rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
-	exit 1
+  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+  exit 1
 }
 
 # Check if qrencode is installed
@@ -14,11 +14,11 @@ command -v feh >/dev/null 2>&1 || msg "feh"
 
 # get the content of the clipboard
 if command -v xclip >/dev/null 2>&1; then
-	text_to_encode="$(xclip -o -selection clipboard)"
+  text_to_encode="$(xclip -o -selection clipboard)"
 elif command -v xsel >/dev/null 2>&1; then
-	text_to_encode="$(xsel -o -b)"
+  text_to_encode="$(xsel -o -b)"
 else
-	msg "xclip/xsel"
+  msg "xclip/xsel"
 fi
 
 qrcode_file="/tmp/qrcode.png"

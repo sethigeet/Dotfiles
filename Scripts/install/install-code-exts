@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
-	echo "Please specify an input file!" && exit 1
+  echo "Please specify an input file!" && exit 1
 fi
 
 if ! command -v code &>/dev/null; then
-	echo "Please install code first!" && exit 1
+  echo "Please install code first!" && exit 1
 fi
 
 names=$(cat "$1")
@@ -17,8 +17,8 @@ names=($names) # split to array $names
 IFS=$SAVEIFS   # Restore IFS
 
 for ((i = 0; i < ${#names[@]}; i++)); do
-	echo "Installing ${names[$i]}..."
-	code --install-extension "${names[$i]}"
+  echo "Installing ${names[$i]}..."
+  code --install-extension "${names[$i]}"
 done
 
 echo "Installed all extensions successfully!"
