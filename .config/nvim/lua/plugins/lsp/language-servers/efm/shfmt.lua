@@ -1,1 +1,1 @@
-return { formatCommand = "shfmt -ci -s -bn", formatStdin = true }
+return { formatCommand = "shfmt -ci -i 2 -s -bn", formatStdin = true }
