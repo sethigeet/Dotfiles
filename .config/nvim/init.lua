@@ -12,5 +12,3 @@ require("plugins")
 -- TODO: fix this!
 vim.cmd("source " .. CONFIG_PATH .. "/lua/plugins/configs/whichkey.vim")
 
--- TODO: Add emmet-ls as lsp instead of using emmet-vim plugin
-
