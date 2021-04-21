@@ -1,28 +1,198 @@
 #!/bin/sh
 
-check_for_command() {
-  if command -v "$1" >/dev/null 2>&1; then
-    echo "Found '$1'! Continuing installation"
+set -o nounset # error when referencing undefined variable
+set -o errexit # exit when command fails
+
+# Check the running os
+is_macos="$(test "$(uname)" = "Darwin" && echo "true" || echo "false")"
+is_ubuntu="$( (uname -a | grep -q 'Ubuntu') && echo "true" || echo "false")"
+is_arch="$(test -f "/etc/arch-release" && echo "true" || echo "false")"
+windows_name="MINGW64_NT"
+is_windows="$(test "${"$(uname -s)"#*$windows_name}" != "$(uname -s)" && echo "true" || echo "false")"
+
+# Exit if the os is windows
+if [ "$is_windows" = "true" ]; then
+  echo "Sorry, Windows is not supported yet!"
+  exit 0
+fi
+
+# Helper functions
+check_is_macos() {
+  [ "$is_macos" = "true" ]
+}
+check_is_ubuntu() {
+  [ "$is_ubuntu" = "true" ]
+}
+check_is_arch() {
+  [ "$is_arch" = "true" ]
+}
+
+# Check if the os is recognized
+check_is_macos || check_is_ubuntu || check_is_arch || (echo "The OS was not recognized!" && exit 1)
+
+# Install node.js
+install_node() {
+  # On MacOS
+  install_node_mac() {
+    brew install lua
+    brew install node
+    brew install yarn
+  }
+
+  # On Ubuntu
+  install_node_ubuntu() {
+    sudo apt install nodejs
+    sudo apt install npm
+  }
+
+  # On Arch
+  install_node_arch() {
+    sudo pacman -S nodejs
+    sudo pacman -S npm
+  }
+
+  echo "Node.js was not found"
+  printf "%s" "Would you like to install node now [y/n]?: "
+  read -r answer
+  # If the answer was yes, then install
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo "Installing node..."
+
+    # Check for the os and install accordingly
+    check_is_macos && install_node_mac
+    check_is_ubuntu && install_node_ubuntu
+    check_is_arch && install_node_arch
+
+    echo "Installing the npm package for neovim..."
+    sudo npm i -g neovim
   else
-    echo "'$1' not found! Please install '$1' first!" && exit 1
+    echo "Please install Node.js manually and then run this script again!"
+    exit 0
   fi
 }
 
-# Check if nvim is installed
-check_for_command "nvim"
+# Install Pip
+install_pip() {
+  # On MacOS
+  install_pip_mac() {
+    sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3 get-pip.py
+    rm get-pip.py
+  }
 
-# Check if pip is installed
-check_for_command "pip3"
+  # On Ubuntu
+  install_pip_ubuntu() {
+    sudo apt install python3-pip >/dev/null
+  }
 
-# Check if npm is installed
-check_for_command "npm"
+  # On Arch
+  install_pip_arch() {
+    pacman -S python-pip
+  }
 
-# Install neovim package for python
-echo "Installing pynvim (python package) using pip3..."
-pip3 install "pynvim"
-echo "Installed pynvim!"
+  echo "Pip was not found"
+  printf "%s" "Would you like to install node now [y/n]? "
+  read -r answer
+  # If the answer was yes, then install
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo "Installing pip..."
 
-# Install neovim package for node
-echo "Installing neovim (node package) using npm..."
-npm i -g "neovim"
-echo "Installed neovim!"
+    # Check for the os and install accordingly
+    check_is_macos && install_pip_mac
+    check_is_ubuntu && install_node_ubuntu
+    check_is_arch && install_node_arch
+
+    echo "Installing the pip package for neovim..."
+    pip3 install pynvim --user
+  else
+    echo "Please install Pip manually and then run this script again!"
+    exit 0
+  fi
+}
+
+install_extra() {
+  install_extra_mac() {
+    brew install ripgrep fzf ranger
+    npm install -g tree-sitter-cli
+    pip install ueberzug
+  }
+
+  install_extra_ubuntu() {
+    sudo apt install ripgrep fzf ranger
+    sudo apt install libjpeg8-dev zlib1g-dev python-dev python3-dev libxtst-dev
+    pip3 install ueberzug
+    pip3 install neovim-remote
+  }
+
+  install_extra_arch() {
+    sudo pacman -S ripgrep fzf ranger tree-sitter
+    pip install ueberzug
+    pip install neovim-remote
+  }
+
+  printf "%s" "Would you like to install extra dependencies now [y/n]? "
+  read -r answer
+  # If the answer was yes, then install
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo "Installing extra dependencies..."
+
+    # Check for the os and install accordingly
+    check_is_macos && install_extra_mac
+    check_is_ubuntu && install_extra_ubuntu
+    check_is_arch && install_extra_arch
+  else
+    echo "Please install the extra packages manually and then run this script again!"
+    exit 0
+  fi
+}
+
+# PACKER
+install_packer() {
+  install_packer_unix() {
+    git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+  }
+
+  printf "%s" "Would you like to install packer (plugin manager for nvim) now [y/n]? "
+  read -r answer
+  # If the answer was yes, then install
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo "Installing packer..."
+
+    # Check for the os and install accordingly
+    check_is_macos && install_packer_unix
+    check_is_ubuntu && install_packer_unix
+    check_is_arch && install_packer_unix
+  else
+    echo "Please install packer manually and then run this script again!"
+    exit 0
+  fi
+}
+
+install_plugins() {
+  printf "%s" "Would you like to install all plugins using Packer now [y/n]? "
+  read -r answer
+  # If the answer was yes, then install
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo "Installing all the plugins specified in your config using packer..."
+
+    nvim --headless "+call luaeval(\"require('packer').sync()\") | q"
+  else
+    echo "Please install all the plugins manually!"
+  fi
+}
+
+# Welcome Message
+echo "Installing NeoVim"
+
+# install node and neovim support
+(which node >/dev/null && echo "Node.js is already installed, moving on...") || install_node
+
+# install pip and neovim support
+(which pip3 >/dev/null && echo "Pip is already installed, moving on...") || install_pip
+
+([ -f "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ] && echo "Packer is already installed, moving on...") || install_packer
+
+install_plugins
+
+echo "Neovim has been sucessfully installed with all its dependencies and a plugin manager!"
+echo "I recommend you use my config for neovim from my dotfiles(https://github.com/sethigeet/Dotfiles.git)"
