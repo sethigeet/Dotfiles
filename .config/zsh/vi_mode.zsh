@@ -1,5 +1,3 @@
-# THIS FILE USES FUNCTIONS DEFINED IN OTHER FILES!
-
 # Initialize vi mode
 bindkey -v
 
