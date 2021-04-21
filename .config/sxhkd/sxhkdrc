@@ -9,8 +9,8 @@ super + Return
 super + {a,b}
 	alacritty -e {alsamixer,bpytop}
 
-super + {e,w}
-	{nautilus,brave}
+super + {e,w,i}
+	{nautilus,brave,vimiv}
 
 super + shift + {e}
 	{code}
