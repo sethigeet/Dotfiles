@@ -24,6 +24,7 @@ options[ vifm]="$HOME/.config/vifm/vifmrc"
 options[ vim]="$HOME/.config/vim/vimrc"
 options[ vimiv]="$HOME/.config/vimiv/vimiv.conf"
 options[ X11]="$HOME/.config/X11/xprofile"
+options[牢 Zathura]="$HOME/.config/zathura/zathurarc"
 options[ zsh]="$HOME/.config/zsh/init_zsh.zsh"
 
 selected_config_name=$(printf '%s\n' "${!options[@]}" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Edit config:")
