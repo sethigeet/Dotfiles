@@ -27,7 +27,23 @@ options[ X11]="$HOME/.config/X11/xprofile"
 options[牢 zathura]="$HOME/.config/zathura/zathurarc"
 options[ zsh]="$HOME/.config/zsh/init_zsh.zsh"
 
-selected_config_name=$(printf '%s\n' "${!options[@]}" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Edit config:")
+marked_up_config_names=""
+for config in "${!options[@]}"; do
+  config_name="$config"
+  config_path=${options[$config]}
+
+  marked_up_config_name="$config_name <span font_size='smaller' font_weight='light' style='italic'>(${config_path//\/home\/geet/\~})</span>"
+
+  if [ -z "$marked_up_config_names" ]; then
+    marked_up_config_names="$marked_up_config_name"
+  else
+    marked_up_config_names="$marked_up_config_names
+$marked_up_config_name"
+  fi
+done
+
+selected_config_name=$(echo "$marked_up_config_names" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -markup-rows -dmenu -i -p "Edit config:")
+selected_config_name="${selected_config_name%% <span*}"
 
 [ -z "$selected_config_name" ] && exit 0
 
