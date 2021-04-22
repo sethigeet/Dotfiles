@@ -2,7 +2,7 @@
 
 available_processes=$(ps --user "$(id -u)" -F | tail -n +2)
 
-selected_process=$(echo "$available_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -dmenu -i -p "Kill a process:" | awk '{print $2" "$11}')
+selected_process=$(echo "$available_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -dmenu -no-custom -i -p "Kill a process:" | awk '{print $2" "$11}')
 
 [ -z "$selected_process" ] && exit 0
 
