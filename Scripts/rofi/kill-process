@@ -1,0 +1,21 @@
+#!/bin/sh
+
+available_processes=$(ps --user "$(id -u)" -F | tail -n +2)
+
+selected_process=$(echo "$available_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -dmenu -i -p "Kill a process:" | awk '{print $2" "$11}')
+
+[ -z "$selected_process" ] && exit 0
+
+# What to do when/if we choose a process to kill
+selected_process_id="${selected_process%% *}"
+
+# Confirm that the user wants to kill the process
+answer="$(printf "%s\n%s" "No" "Yes" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Kill $selected_process?")"
+
+# If the answer is not yes, exit
+[ "$answer" != "Yes" ] && exit 0
+
+# Kill the process
+kill -9 "$selected_process_id"
+echo "Process $selected_process has been killed."
+exit 0
