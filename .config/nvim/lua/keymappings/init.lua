@@ -1,2 +1,5 @@
-require("keymappings.mappings")
 require("keymappings.abbreviations")
+require("keymappings.escape")
+require("keymappings.general")
+require("keymappings.misc")
+require("keymappings.movements")
