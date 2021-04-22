@@ -1,16 +1,19 @@
 #!/bin/sh
 
-available_processes=$(ps --user "$(id -u)" -F | tail -n +2)
+marked_up_processes=$(ps --user "$(id -u)" -ww --format '%a <span font_size="smaller" font_weight="light">(Running for: %x, Process ID: %p)</span>' --no-headers | sed -r 's/\s+/ /g')
 
-selected_process=$(echo "$available_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -dmenu -no-custom -i -p "Kill a process:" | awk '{print $2" "$11}')
+selected_process=$(echo "$marked_up_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -markup-rows -dmenu -no-custom -i -p "Kill a process:")
 
 [ -z "$selected_process" ] && exit 0
 
 # What to do when/if we choose a process to kill
-selected_process_id="${selected_process%% *}"
+selected_process_id="$(echo "$selected_process" | grep -oE "Process ID: [0-9]+")"
+selected_process_id="${selected_process_id##*: }"
+
+selected_process_name="${selected_process%% <span*}"
 
 # Confirm that the user wants to kill the process
-answer="$(printf "%s\n%s" "No" "Yes" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Kill $selected_process?")"
+answer="$(printf "%s\n%s" "No" "Yes" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Kill $selected_process_name ($selected_process_id)?")"
 
 # If the answer is not yes, exit
 [ "$answer" != "Yes" ] && exit 0
