@@ -3,6 +3,7 @@
 !! Font
 #define BIG_MONO monospace:pixelsize=21:antialias=true:autohint=true
 #define SMALL_MONO monospace:pixelsize=18:antialias=true:autohint=true
+#define SMALL_SANS sans:pixelsize=18:antialias=true:autohint=true
 
 !! Colors
 #define BG       #1F2430
@@ -45,7 +46,7 @@ st.alpha: 0.95
 !!! DMENU SETTINGS !!!
 !! -------------------
 !! Font
-dmenu.font: SMALL_MONO
+dmenu.font: SMALL_SANS
 
 !! Colors
 dmenu.background:               BG
