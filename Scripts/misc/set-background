@@ -8,7 +8,12 @@ usage: set-background [options]
     -p, --pacwall                Generates and sets the background with pacwall
     -i, --image [image_path]     Sets the background as the given image
 "
-bg_color='#1F2430'
+bg_color="#1F2430"
+
+restore_script_dir="$XDG_DATA_HOME/feh"
+restore_script_path="$restore_script_dir/restore-bg"
+
+[ -d "$restore_script_dir" ] || mkdir -p "$restore_script_dir"
 
 with_pacwall() {
   # Generate an image with the solid background
@@ -23,16 +28,17 @@ with_pacwall() {
   # Merge both the images
   convert "/tmp/temp-bg.png" "$HOME/.cache/pacwall/pacwall.png" -gravity center -compose over -composite "$HOME/.cache/pacwall/pacwall.png"
 
-  feh --bg-center "$HOME/.cache/pacwall/pacwall.png"
+  from_image "$HOME/.cache/pacwall/pacwall.png"
 }
 
 from_image() {
   feh --bg-scale "$1"
+  mv ~/.fehbg "$restore_script_path"
 }
 
 restore() {
-  if [ -f "$HOME/.fehbg" ]; then
-    "$HOME/.fehbg"
+  if [ -f "$restore_script_path" ]; then
+    "$restore_script_path"
   else
     echo "Please set a background first before trying to restore!"
   fi
