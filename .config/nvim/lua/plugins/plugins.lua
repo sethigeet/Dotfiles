@@ -93,12 +93,12 @@ return require("packer").startup(function(use)
     use "ryanoasis/vim-devicons"
 
     -- Auto pairs for "(" "[" "{"
-    -- use {
-    --     "windwp/nvim-autopairs",
-    --     config = function()
-    --         require("plugins.configs.autopairs")
-    --     end
-    -- }
+    use {
+        "windwp/nvim-autopairs",
+        config = function()
+            require("plugins.configs.autopairs")
+        end
+    }
 
     -- Themes
     use "ayu-theme/ayu-vim"
