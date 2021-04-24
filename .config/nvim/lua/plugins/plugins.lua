@@ -274,6 +274,9 @@ return require("packer").startup(function(use)
         "fatih/vim-go",
         config = function()
             require("plugins.configs.vim-go")
+        end,
+        run = function()
+            vim.cmd("GoUpdateBinaries")
         end
     }
 
