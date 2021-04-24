@@ -16,9 +16,7 @@ end
 vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- Use alt + left,down,up,right to resize windows
-vim.api.nvim_set_keymap("n", "<M-Up>", ":resize -2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-Down>", ":resize +2<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-Left>", ":vertical resize -2<CR>",
-                        { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-Right>", ":vertical resize +2<CR>",
-                        { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-K>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-H>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-L>", ":vertical resize +2<CR>", { noremap = true, silent = true })
