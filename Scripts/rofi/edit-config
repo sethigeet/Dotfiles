@@ -32,7 +32,7 @@ for config in "${!options[@]}"; do
   config_name="$config"
   config_path=${options[$config]}
 
-  marked_up_config_name="$config_name <span font_size='smaller' font_weight='light' style='italic'>(${config_path//\/home\/geet/\~})</span>"
+  marked_up_config_name="$config_name <span font_size='smaller' font_weight='light' style='italic'>(${config_path//\/home\/$USER/\~})</span>"
 
   if [ -z "$marked_up_config_names" ]; then
     marked_up_config_names="$marked_up_config_name"
