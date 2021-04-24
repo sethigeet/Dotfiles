@@ -14,9 +14,6 @@
 
 !!! GLOBAL SETTINGS !!!
 !! --------------------
-!! Transparency (0-1):
-st.alpha: 0.95
-
 !! Font
 *.font: BIG_MONO
 
@@ -42,24 +39,3 @@ st.alpha: 0.95
 *.color15:			#FFFFFF
 
 *.cursorColor:	FG
-
-!!! DMENU SETTINGS !!!
-!! -------------------
-!! Font
-dmenu.font: SMALL_SANS
-
-!! Colors
-dmenu.background:               BG
-dmenu.foreground:               FG
-
-dmenu.selbackground:            Primary
-dmenu.selforeground:            FGAlt
-
-dmenu.backgroundHighlight:      BG
-dmenu.foregroundHighlight:      Primary
-
-dmenu.selbackgroundHighlight:   Primary
-dmenu.selforegroundHighlight:   BG
-
-dmenu.outbackground:            Accent
-dmenu.outforeground:            FGAlt
