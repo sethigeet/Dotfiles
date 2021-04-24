@@ -70,7 +70,7 @@ return require("packer").startup(function(use)
     }
 
     -- auto set indent settings
-    -- use "tpope/vim-sleuth"
+    use "tpope/vim-sleuth"
 
     -- Treesitter
     use {
@@ -270,7 +270,12 @@ return require("packer").startup(function(use)
         end
     }
     use "liuchengxu/vista.vim"
-    use "fatih/vim-go"
+    use {
+        "fatih/vim-go",
+        config = function()
+            require("plugins.configs.vim-go")
+        end
+    }
 
     -- Markdown preview
     use {
