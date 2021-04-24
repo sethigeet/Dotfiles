@@ -51,7 +51,6 @@ plugins=(
 	extract
 	sudo
   conda-zsh-completion
-	web-search
 	command-not-found
 	you-should-use
 	vi-mode
