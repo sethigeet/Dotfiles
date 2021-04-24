@@ -33,3 +33,9 @@ XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Mouse Clicks using keyboard!
+Menu
+	xdotool click 3
+ctrl + Menu
+	xdotool click 2
