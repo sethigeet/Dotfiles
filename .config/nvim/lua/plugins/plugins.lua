@@ -70,7 +70,7 @@ return require("packer").startup(function(use)
     }
 
     -- auto set indent settings
-    use "tpope/vim-sleuth"
+    -- use "tpope/vim-sleuth"
 
     -- Treesitter
     use {
@@ -93,12 +93,12 @@ return require("packer").startup(function(use)
     use "ryanoasis/vim-devicons"
 
     -- Auto pairs for "(" "[" "{"
-    use {
-        "windwp/nvim-autopairs",
-        config = function()
-            require("plugins.configs.autopairs")
-        end
-    }
+    -- use {
+    --     "windwp/nvim-autopairs",
+    --     config = function()
+    --         require("plugins.configs.autopairs")
+    --     end
+    -- }
 
     -- Themes
     use "ayu-theme/ayu-vim"
@@ -270,6 +270,7 @@ return require("packer").startup(function(use)
         end
     }
     use "liuchengxu/vista.vim"
+    use "fatih/vim-go"
 
     -- Markdown preview
     use {

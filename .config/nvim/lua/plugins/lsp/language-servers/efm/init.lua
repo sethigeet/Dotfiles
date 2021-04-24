@@ -4,7 +4,7 @@ local lspconfig = require("lspconfig")
 local lua_format = require("plugins.lsp.language-servers.efm.lua-format")
 -- Go
 local golint = require("plugins.lsp.language-servers.efm.golint")
-local goimports = require("plugins.lsp.language-servers.efm.goimports")
+local gofmt = require("plugins.lsp.language-servers.efm.gofmt")
 -- Python
 local autopep8 = require("plugins.lsp.language-servers.efm.autopep8")
 local pylint = require("plugins.lsp.language-servers.efm.pylint")
@@ -19,8 +19,8 @@ local shfmt = require("plugins.lsp.language-servers.efm.shfmt")
 lspconfig.efm.setup {
     init_options = { documentFormatting = true },
     filetypes = {
-        "lua", "go", "python", "typescript", "javascript", "typescriptreact", "javascriptreact",
-        "yml", "yaml", "json", "html", "scss", "css", "markdown", "sh", "bash", "zsh"
+        "lua", "python", "typescript", "javascript", "typescriptreact", "javascriptreact", "yml",
+        "yaml", "json", "html", "scss", "css", "markdown", "sh", "bash", "zsh"
     },
     root_dir = require("plugins.lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
@@ -31,7 +31,7 @@ lspconfig.efm.setup {
     settings = {
         languages = {
             lua = { lua_format },
-            go = { golint, goimports },
+            go = { golint, gofmt },
             python = { autopep8, pylint },
             typescript = { prettier, eslint },
             javascript = { prettier, eslint },
