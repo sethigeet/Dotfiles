@@ -19,11 +19,8 @@ super + shift + {e}
 super + space
 	rofi -show drun
 
-super + {c,p,s,x,z}
-	{edit-config,screenshot,rofi-bang,power-menu,file-browser}
-
-super + {v}
-	$HOME/Scripts/misc/{start-vifm}
+super + {c,p,s,v,x,z}
+	{edit-config,screenshot,rofi-bang,start-vifm,power-menu,file-browser}
 
 super + shift + {s,v}
 	{edit-script,clipboard}
