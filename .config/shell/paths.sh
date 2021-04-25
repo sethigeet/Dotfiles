@@ -40,7 +40,6 @@ fi
 # GO
 if [ -d "$XDG_DATA_HOME/go" ]; then
   PATH="$PATH:$XDG_DATA_HOME/go/bin"
-  export GOPATH="$XDG_DATA_HOME/go"
 fi
 
 # PYENV

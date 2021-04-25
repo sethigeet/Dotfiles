@@ -35,3 +35,7 @@ function web_search() {
   start-lynx "$url"
 }
 
+ec() {
+	$EDITOR "$(which "$1")"
+}
+
