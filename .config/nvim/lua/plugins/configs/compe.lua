@@ -28,7 +28,6 @@ require("compe").setup({
         snippets_nvim = { kind = "  " },
         treesitter = { kind = "  " },
         emoji = { kind = " ﲃ " }
-        -- for emoji press : (idk if that in compe tho)
     }
 })
 
