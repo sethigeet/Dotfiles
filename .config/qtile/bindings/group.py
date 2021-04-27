@@ -16,6 +16,8 @@ group_key_bindings = [
         "terminal"), desc="Toggle the scratchpad with the terminal"),
     Key([mod], "0", lazy.group["scratchpad"].dropdown_toggle(
         "emacs"), desc="Toggle the scratchpad with emacs"),
+    Key([mod, "shift"], "c", lazy.group["scratchpad"].dropdown_toggle(
+        "calculator"), desc="Toggle the scratchpad with the calculator"),
 ]
 
 for i, item in enumerate(group_names, 1):
