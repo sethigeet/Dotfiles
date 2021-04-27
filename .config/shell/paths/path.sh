@@ -72,13 +72,3 @@ if [ -d "/usr/lib/jvm/java-15-openjdk" ]; then
 fi
 
 export PATH
-
-# CDPATH
-# Add the repos
-export CDPATH="$CDPATH:$HOME/Repos:$HOME/Repos/github.com/$GITUSER"
-
-# Add the configs
-export CDPATH="$CDPATH:$XDG_CONFIG_HOME"
-
-# Add the scripts
-export CDPATH="$CDPATH:$HOME/Scripts"

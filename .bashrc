@@ -1,11 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- == *i* ]] || return
 
-# Load dotfiles:
-file="$HOME/.config/shell/init_shell.sh"
-[ -r "$file" ] && [ -f "$file" ] && source "$file"
-
-file="$HOME/.config/bash/init_bash.bash"
+file="$HOME/.config/bash/init.bash"
 [ -r "$file" ] && [ -f "$file" ] && source "$file"
 
 unset file

@@ -1,25 +1,3 @@
-# Add color to some shell commands
-alias grep="grep --color=auto"
-alias egrep="egrep --color=auto"
-alias diff="diff --color=auto"
-alias ip="ip -color=auto"
-alias dmesg="dmesg --color=auto"
-
-# Android emulator
-if [ -d "$HOME/Android/Sdk" ]; then
-  alias start-android-emulator="$HOME/Android/Sdk/emulator/emulator -avd Pixel_4_API_30 -qemu -enable-kvm"
-fi
-
-# nvim
-if command -v nvim &>/dev/null; then
-  alias v="nvim"
-fi
-
-# vifm
-if command -v vifm &>/dev/null; then
-  alias vifm="$HOME/.config/vifm/scripts/vifmrun"
-fi
-
 # Changing "ls" to "exa"
 if command -v exa &>/dev/null; then
   alias ls="exa --icons --color=auto --group-directories-first"
@@ -34,10 +12,6 @@ else
   alias ll="ls -lh --color=auto --group-directories-first"   # long format
   alias lla="ls -lah --color=auto --group-directories-first" # all files and dirs in long format
   alias l="ls -lah --color=auto --group-directories-first"   # all files and dirs in long format
-fi
-
-if command -v yarn &>/dev/null; then
-  alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 fi
 
 # Change grep to use ripgrep
@@ -68,36 +42,11 @@ alias rm="rm -iv"
 # make direcotries
 alias mkd="mkdir -pv"
 
-# bare repo for dotfiles
-if [ -d "$HOME/Dotfiles" ]; then
-  alias config="git --git-dir=$HOME/Dotfiles --work-tree=$HOME"
-  alias c="config"
-
-  alias cs="config status"
-  alias ca="config add"
-  alias cau="config add -u"
-  alias ccm="config commit -m"
-  alias cca="config commit --amend"
-  alias ccan="config commit --amend --no-edit"
-  alias cpush="config push origin master"
-  alias cr="config reset"
-  alias crh="config reset --hard"
-  alias crs="config restore"
-  alias crss="config restore --staged"
-fi
-
 # find the size of a dir
 alias hsize="du -hs"
 
 # make a file executable
 alias mkexe="chmod +x"
-
-# copy the contents of a file to the clipboard
-if command -v xclip &>/dev/null; then
-  alias copy="xclip -selection clipboard < "
-elif command -v xsel &>/dev/null; then
-  alias copy="xsel -b < "
-fi
 
 # use the package manager
 alias pac="sudo pacman"
@@ -107,13 +56,3 @@ alias SS="sudo systemctl"
 
 # kill programs
 alias ka="killall"
-
-# youtube
-if command -v youtube-dl &>/dev/null; then
-  alias ytd="youtube-dl --add-metadata -c"   # download video with audio
-  alias ytad="youtube-dl --add-metadata -xc" # download audio only
-fi
-
-# search on lynx
-alias "?"="web_search ddgl"
-alias "??"="web_search google"

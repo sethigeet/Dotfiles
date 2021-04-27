@@ -68,6 +68,6 @@ ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump-$SHORT_HOST-$ZSH_VERSION"
 source "$ZSH/oh-my-zsh.sh"
 
 # Source the dotfiles
-file="$HOME/.config/zsh/init_zsh.zsh"
+file="$HOME/.config/zsh/init.zsh"
 [[ ! -f "$file" ]] || source "$file"
 unset file;
