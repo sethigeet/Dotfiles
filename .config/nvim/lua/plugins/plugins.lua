@@ -332,4 +332,12 @@ return require("packer").startup(function(use)
 
     -- Distraction free writing (zen mode)
     use "junegunn/goyo.vim"
+
+    -- The emmet plugin for vim
+    use {
+        "mattn/emmet-vim",
+        config = function()
+            require("plugins.configs.emmet")
+        end
+    }
 end)

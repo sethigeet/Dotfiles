@@ -1,8 +1,6 @@
-local custom_lsps = require("plugins.lsp.helpers.install_custom_lsp")
-custom_lsps.Emmet()
-
+-- local custom_lsps = require("plugins.lsp.helpers.install_custom_lsp")
 require("plugins.lsp.helpers.install_langserver")({
-    "bash", "css", "dockerfile", "efm", "emmet", "go", "graphql", "html", "json", "lua", "python",
+    "bash", "css", "dockerfile", "efm", "go", "graphql", "html", "json", "lua", "python",
     "typescript", "vim", "yaml"
 })
 
@@ -12,7 +10,6 @@ require("plugins.lsp.language-servers.bash")
 require("plugins.lsp.language-servers.css")
 require("plugins.lsp.language-servers.docker")
 require("plugins.lsp.language-servers.efm")
-require("plugins.lsp.language-servers.emmet")
 require("plugins.lsp.language-servers.go")
 require("plugins.lsp.language-servers.graphql")
 require("plugins.lsp.language-servers.html")
