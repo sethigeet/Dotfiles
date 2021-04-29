@@ -2,7 +2,7 @@
 
 declare -A options
 options[ alacritty]="$HOME/.config/alacritty/alacritty.yml"
-options[ bash]="$HOME/.config/bash/init_bash.bash"
+options[ bash]="$HOME/.config/bash/init.bash"
 options[ bashrc]="$HOME/.bashrc"
 options[ bash_profile]="$HOME/.bash_profile"
 options[ doom]="$HOME/.config/doom/config.el"
@@ -18,7 +18,7 @@ options[ picom]="$HOME/.config/picom/picom.conf"
 options[ polybar]="$HOME/.config/polybar/config.ini"
 options[ qtile]="$HOME/.config/qtile/config.py"
 options[ rofi]="$HOME/.config/rofi/config.rasi"
-options[ shell]="$HOME/.config/shell/init_shell.sh"
+options[ shell]="$HOME/.config/shell/init.sh"
 options[ sxhkd]="$HOME/.config/sxhkd/sxhkdrc"
 options[節tmux]="$HOME/.config/tmux/tmux.conf"
 options[ vifm]="$HOME/.config/vifm/vifmrc"
@@ -26,7 +26,7 @@ options[ vim]="$HOME/.config/vim/vimrc"
 options[ vimiv]="$HOME/.config/vimiv/vimiv.conf"
 options[ X11]="$HOME/.config/X11/xprofile"
 options[牢 zathura]="$HOME/.config/zathura/zathurarc"
-options[ zsh]="$HOME/.config/zsh/init_zsh.zsh"
+options[ zsh]="$HOME/.config/zsh/init.zsh"
 
 marked_up_config_names=""
 for config in "${!options[@]}"; do
