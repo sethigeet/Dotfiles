@@ -47,6 +47,7 @@ lspconfig.efm.setup {
             sh = { shellcheck, shfmt },
             bash = { shellcheck, shfmt },
             zsh = { shellcheck, shfmt }
-        }
+        },
+        log = "/home/geet/efm_langserver.log"
     }
 }
