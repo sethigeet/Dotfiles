@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+if [[ "$(declare -p options 2>/dev/null)" != "declare -A"* ]]; then
+  # An array of search engines.  You can edit this list to add/remove
+  # search engines. The format must be: "engine_name]="url".
+  # The url format must allow for the search keywords at the end of the url.
+  # For example: https://www.amazon.com/s?k=XXXX searches Amazon for 'XXXX'.
+  declare -A options
+  options[Amazon]='https://www.amazon.com/s?k='
+  options[Arch AUR]='https://aur.archlinux.org/packages/?O=0&K='
+  options[Arch Packages]='https://archlinux.org/packages/?q='
+  options[Arch Wiki]='https://wiki.archlinux.org/index.php?search='
+  options[Debian Packages]='https://packages.debian.org/search?suite=default&section=all&arch=any&searchon=names&keywords='
+  options[DuckDuckGo]='https://duckduckgo.com/?q='
+  options[Github]='https://github.com/search?q='
+  options[Gitlab]='https://gitlab.com/search?search='
+  options[IMDB]='https://www.imdb.com/find?q='
+  options[Odysee]='https://odysee.com/$/search?q='
+  options[Reddit]='https://www.reddit.com/search/?q='
+  options[SourceForge]='https://sourceforge.net/directory/?q='
+  options[StackOverflow]='https://stackoverflow.com/search?q='
+  options[StartPage]='https://www.startpage.com/do/dsearch?query='
+  options[Thesaurus]='https://www.thesaurus.com/misspelling?term='
+  options[Translate]='https://translate.google.com/?sl=auto&tl=en&text='
+  options[Wayback]='https://web.archive.org/web/*/'
+  options[Wikipedia]='https://en.wikipedia.org/wiki/'
+  options[Youtube]='https://www.youtube.com/results?search_query='
+  options[Google]='https://www.google.com/search?q='
+  options[Google Images]='https://www.google.com/search?hl=en&tbm=isch&q='
+  options[Google News]='https://news.google.com/search?q='
+fi
+
+marked_up_search_engine_names=""
+for engine in "${!options[@]}"; do
+  engine_name="$engine"
+  engine_url=${options[$engine]}
+
+  marked_up_search_engine_name="$engine_name <span font_size='smaller' font_weight='light' style='italic'>(${engine_url%/*})</span>"
+
+  if [ -z "$marked_up_search_engine_names" ]; then
+    marked_up_search_engine_names="$marked_up_search_engine_name"
+  else
+    marked_up_search_engine_names="$marked_up_search_engine_names
+$marked_up_search_engine_name"
+  fi
+done
+
+# Choosing  a search engine by name from array above
+selected_engine_name=$(
+  echo "$marked_up_search_engine_names" \
+    | sort \
+    | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" \
+      -markup-rows \
+      -kb-custom-1 Shift+Return \
+      -dmenu -i -p 'Choose a search engine:'
+)
+exit_code=$?
+selected_engine_name="${selected_engine_name%% <span*}"
+
+[ -z "$selected_engine_name" ] && exit 0
+
+# Getting the url of the search engine we chose
+url="${options["${selected_engine_name}"]}"
+
+# Searching the chosen engine
+query=$(echo "" | rofi -dmenu -p "$selected_engine_name:")
+
+[ -z "$query" ] && exit 0
+
+# Decide if we want to use incognito or not
+if [ $exit_code == 0 ]; then
+  browser_mode=""
+elif [ $exit_code == 10 ]; then
+  browser_mode="--incognito"
+fi
+
+# Display search results in web browser
+final_url="'$url$query'"
+echo "$final_url" | xargs -I {} "$BROWSER" "$browser_mode" '{}'
