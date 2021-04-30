@@ -19,10 +19,11 @@ Opts.auto_complete = true
 -- Treesitter
 Opts.treesitter.ensure_installed = "all"
 Opts.treesitter.ignore_install = {}
-Opts.treesitter.highlight.enabled = true
-Opts.treesitter.rainbow.enabled = true
-Opts.treesitter.autotag.enabled = true
-Opts.treesitter.indent.enabled = true
+Opts.treesitter.highlight.enable = true
+Opts.treesitter.rainbow.enable = true
+Opts.treesitter.autotag.enable = true
+Opts.treesitter.indent.enable = true
+Opts.treesitter.autopairs.enable = true
 
 -- Database Interaction
 Opts.database.save_location = DATA_PATH .. "/dadbod.db"

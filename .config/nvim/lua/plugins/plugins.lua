@@ -94,12 +94,12 @@ return require("packer").startup(function(use)
 
     -- Auto pairs for "(" "[" "{"
     -- use {
-    --     "windwp/nvim-autopairs",
-    --     config = function()
-    --         require("plugins.configs.autopairs")
-    --     end
+    -- "windwp/nvim-autopairs",
+    -- config = function()
+    -- require("plugins.configs.autopairs")
+    -- end
     -- }
-    use "cohama/lexima.vim"
+    use "jiangmiao/auto-pairs"
 
     -- Themes
     use "ayu-theme/ayu-vim"
@@ -153,7 +153,14 @@ return require("packer").startup(function(use)
     -- use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
 
     -- See what keys do like in emacs
-    use "liuchengxu/vim-which-key"
+    -- use "liuchengxu/vim-which-key"
+    -- Lua version of vim-which-key
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("plugins.configs.whichkey")
+        end
+    }
 
     -- Snippets
     use {

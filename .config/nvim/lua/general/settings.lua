@@ -49,7 +49,7 @@ end
 
 -- For Folding
 -- Method for folding
-vim.o.foldmethod = "indent"
+vim.o.foldmethod = "manual"
 -- Open all when entering for the first time
-vim.o.foldlevel = 20
+-- vim.o.foldlevel = 20
 

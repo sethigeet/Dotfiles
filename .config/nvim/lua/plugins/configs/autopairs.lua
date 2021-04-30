@@ -1,4 +1,5 @@
 local npairs = require("nvim-autopairs")
+
 npairs.setup({
     check_ts = true,
     ts_config = {
@@ -7,7 +8,6 @@ npairs.setup({
     }
 })
 
--- skip it, if you use another global object
 _G.AutoPairUtils = {}
 
 vim.g.completion_confirm_key = ""
@@ -23,6 +23,5 @@ AutoPairUtils.completion_confirm = function()
     end
 end
 
-vim.api.nvim_set_keymap("i", "<CR>", "v:lua.MUtils.completion_confirm()",
+vim.api.nvim_set_keymap("i", "<CR>", "v:lua.AutoPairUtils.completion_confirm()",
                         { expr = true, noremap = true })
-

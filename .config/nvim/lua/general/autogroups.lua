@@ -11,7 +11,7 @@ define_augroups({
         { "BufWinEnter", "*.*", "silent!", "loadview" }, -- Save the state for the next time
         { "BufWinLeave", "*.*", "mkview" }, -- Save the state for the next time
         -- set the timeout length for mappings (By default timeoutlen=1000)
-        { "InsertEnter", "*", "set timeoutlen=1000" }, { "InsertLeave", "*", "set timeoutlen=100" }
+        { "InsertEnter", "*", "set timeoutlen=1000" }, { "InsertLeave", "*", "set timeoutlen=500" }
     },
     auto_compile = {
         -- Automatically source the vimrc when updated

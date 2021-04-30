@@ -27,7 +27,8 @@ Opts = {
         highlight = { enable = true },
         rainbow = { enable = true },
         autotag = { enable = true },
-        indent = { enable = true }
+        indent = { enable = true },
+        autopairs = { enable = true }
     },
 
     -- Database Interaction

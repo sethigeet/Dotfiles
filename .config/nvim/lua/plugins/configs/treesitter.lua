@@ -7,8 +7,8 @@ require("nvim-treesitter.configs").setup({
     rainbow = { enable = Opts.treesitter.rainbow.enable }, -- Rainbow brackets
     -- refactor = {highlight_definitions = {enable = true}}, -- Highlight all the occurrences of variables under the cursor
     autotag = { enable = Opts.treesitter.autotag.enable },
-    indent = { enable = Opts.treesitter.indent.enable }
-    -- autopairs = { enable = true }
+    indent = { enable = Opts.treesitter.indent.enable },
+    autopairs = { enable = Opts.treesitter.autopairs.enable }
 })
 
 -- vim.cmd("set foldmethod=expr")

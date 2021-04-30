@@ -9,6 +9,3 @@ require("general")
 require("keymappings")
 require("plugins")
 
--- TODO: fix this!
-vim.cmd("source " .. CONFIG_PATH .. "/lua/plugins/configs/whichkey.vim")
-
