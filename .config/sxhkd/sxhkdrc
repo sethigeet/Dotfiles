@@ -20,7 +20,7 @@ super + space
 	rofi -show drun
 
 super + {c,p,s,v,x,z}
-	{edit-config,screenshot,rofi-bang,start-vifm,power-menu,file-browser}
+	{edit-config,screenshot,run-script,start-vifm,power-menu,file-browser}
 
 super + shift + {s,v}
 	{edit-script,clipboard}
