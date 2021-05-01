@@ -10,7 +10,7 @@ wk.setup({
             operators = false, -- adds help for operators like d, y, ...
             motions = false, -- adds help for motions
             text_objects = false, -- help for text objects triggered after entering an operator
-            windows = false, -- default bindings on <c-w>
+            windows = true, -- default bindings on <c-w>
             nav = false, -- misc bindings to work with windows
             z = true, -- bindings for folds, spelling and others prefixed with z
             g = true -- bindings for prefixed with g
@@ -283,3 +283,12 @@ local mappings = {
 
 wk.register(mappings, getOpts("n"))
 wk.register(mappings, getOpts("v"))
+
+wk.register({ j = "which_key_ignore", k = "which_key_ignore" }, {
+    mode = "i",
+    prefix = "",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false -- use `nowait` when creating keymaps
+})
