@@ -33,7 +33,7 @@ vim.cmd("set noshowmode")
 vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.o.updatetime = 300 -- Faster completion
-vim.o.timeoutlen = 100 -- By default timeoutlen is 1000 ms
+vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.relativenumber = true
 vim.o.incsearch = true

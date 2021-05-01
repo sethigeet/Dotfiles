@@ -10,8 +10,8 @@ define_augroups({
         { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufWinEnter", "*.*", "silent!", "loadview" }, -- Save the state for the next time
         { "BufWinLeave", "*.*", "mkview" }, -- Save the state for the next time
-        -- set the timeout length for mappings (By default timeoutlen=1000)
-        { "InsertEnter", "*", "set timeoutlen=1000" }, { "InsertLeave", "*", "set timeoutlen=500" }
+        -- Center the screen when entering insert mode
+        { "InsertEnter", "*", "norm zzi" }
     },
     auto_compile = {
         -- Automatically source the vimrc when updated
