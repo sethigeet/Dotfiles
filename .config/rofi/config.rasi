@@ -1,9 +1,9 @@
 configuration {
-	modi: "drun,run,window,combi";
+  modi: "drun,run,window,combi";
   // width: 50;
   // lines: 15;
   // columns: 1;
-	font: "Nunito Nerd Font 15";
+  font: "Nunito Nerd Font 15";
   // bw: 1;
   // location: 0;
   // padding: 5;
@@ -33,12 +33,12 @@ configuration {
   // tokenize: true;
   // case-sensitive: false;
   // cycle: true;
-	sidebar-mode: true;
+  sidebar-mode: true;
   // eh: 1;
   // auto-select: false;
   // parse-hosts: false;
   // parse-known-hosts: true;
-	combi-modi: "run,drun,window,ssh";
+  combi-modi: "run,drun,window,ssh";
   // m: "-5";
   // line-margin: 2;
   // line-padding: 1;
@@ -55,7 +55,7 @@ configuration {
   // window-format: "{w}    {c}   {t}";
   // click-to-exit: true;
   // show-match: true;
-	theme: "themes/main.rasi";
+  theme: "themes/main.rasi";
   // color-normal: ;
   // color-urgent: ;
   // color-active: ;

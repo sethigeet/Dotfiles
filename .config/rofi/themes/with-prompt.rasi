@@ -17,5 +17,3 @@ entry {
   expand: true;
   margin: 2px;
 }
-
-/* vim: ft=css

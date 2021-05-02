@@ -1,26 +1,26 @@
 * {
-  background-color:           #1F2430;
-  background-color-alt:       #29384F;
-  text-colorsss:                 #FFFFFF;
-  accent-color:               #FFCC66;
-  hover-color:                #39454B;
-  urgent-color:               #FF5252;
-  window-color:               #FFFFFF;
+  background-color: #1f2430;
+  background-color-alt: #29384f;
+  foreground-color: #ffffff;
+  text-color: #ffffff;
+  accent-color: #ffcc66;
+  hover-color: #39454b;
+  urgent-color: #ff5252;
+  window-color: #ffffff;
 
   selected-normal-foreground: @window-color;
-  normal-foreground:          @text-color;
+  normal-foreground: @text-color;
   selected-normal-background: @hover-color;
-  normal-background:          @background-color;
+  normal-background: @background-color;
 
   selected-urgent-foreground: @background-color;
-  urgent-foreground:          @text-color;
+  urgent-foreground: @text-color;
   selected-urgent-background: @urgent-color;
-  urgent-background:          @background-color;
+  urgent-background: @background-color;
 
   selected-active-foreground: @window-color;
-  active-foreground:          @text-color;
+  active-foreground: @text-color;
   selected-active-background: @hover-color;
-  active-background:          @accent-color;
+  active-background: @accent-color;
 }
 
-/* vim: ft=css

@@ -1,5 +1,5 @@
 configuration {
-  show-icons:   true;
+  show-icons: true;
   sidebar-mode: true;
   lines: 10;
 }
@@ -9,6 +9,7 @@ configuration {
 window {
   font: "Nunito Nerd Font Bold 15";
   location: 0;
+  background-color: @background-color;
   background-color: @background-color;
   border-color: @accent-color;
   border: 1;
@@ -32,49 +33,49 @@ element {
 
 element normal.normal {
   background-color: @normal-background;
-  text-color:       @normal-foreground;
+  text-color: @normal-foreground;
 }
 
 element normal.urgent {
   background-color: @urgent-background;
-  text-color:       @urgent-foreground;
+  text-color: @urgent-foreground;
 }
 
 element normal.active {
   background-color: @active-background;
-  text-color:       @active-foreground;
+  text-color: @active-foreground;
 }
 
 element selected.normal {
   background-color: @selected-normal-background;
-  text-color:       @selected-normal-foreground;
-  border:           0 4px solid 0 0;
-  border-color:     @accent-color;
+  text-color: @selected-normal-foreground;
+  border: 0 4px solid 0 0;
+  border-color: @accent-color;
 }
 
 element selected.urgent {
   background-color: @selected-urgent-background;
-  text-color:       @selected-urgent-foreground;
+  text-color: @selected-urgent-foreground;
 }
 
 element selected.active {
   background-color: @selected-active-background;
-  text-color:       @selected-active-foreground;
+  text-color: @selected-active-foreground;
 }
 
 element alternate.normal {
   background-color: @normal-background;
-  text-color:       @normal-foreground;
+  text-color: @normal-foreground;
 }
 
 element alternate.urgent {
   background-color: @urgent-background;
-  text-color:       @urgent-foreground;
+  text-color: @urgent-foreground;
 }
 
 element alternate.active {
   background-color: @active-background;
-  text-color:       @active-foreground;
+  text-color: @active-foreground;
 }
 
 element-icon {
@@ -87,7 +88,5 @@ button {
 
 button selected {
   background-color: @active-background;
-  text-color:       @background-color;
+  text-color: @background-color;
 }
-
-/* vim: ft=css

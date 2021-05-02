@@ -7,5 +7,3 @@ configuration {
 window {
   width: 60%;
 }
-
-/* vim: ft=css

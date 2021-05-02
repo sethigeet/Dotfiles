@@ -18,5 +18,6 @@ define_augroups({
         { "BufWritePost", "$MYVIMRC", "luafile %" },
         -- Automatically install plugins when the plugins file is updated
         { "BufWritePost", "plugins.lua", "PackerCompile" }
-    }
+    },
+    detect_ft = { { "BufEnter", "*.rasi", "set ft=css" } }
 })
