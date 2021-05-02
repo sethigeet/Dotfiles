@@ -9,8 +9,8 @@ configuration {
 window {
   font: "Nunito Nerd Font Bold 15";
   location: 0;
-  background-color: @backgroundcolor;
-  border-color: @accentcolor;
+  background-color: @background-color;
+  border-color: @accent-color;
   border: 1;
   border-radius: 25px;
   padding: 16 14;
