@@ -1,5 +1,5 @@
 -- Lines and numbers
-Opts.wrap_lines = true
+Opts.wrap_lines = false
 Opts.number = true
 Opts.relative_number = true
 
