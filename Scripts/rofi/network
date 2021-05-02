@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+rofi_command="rofi -theme $HOME/.config/rofi/themes/short.rasi"
+
+# Get info
+IFACE="$(nmcli | grep -i interface)"
+IFACE="${IFACE##*: }"
+STATUS="$(nmcli radio wifi)"
+active=""
+urgent=""
+
+if (ping -4 -c 1 google.com || ping -4 -c 1 github.com || ping -4 -c 1 sourceforge.net) &>/dev/null; then
+  if [[ $STATUS == *"enable"* ]]; then
+    if [[ $IFACE == e* ]]; then
+      connected=" Connected To Internet (Wired)"
+      SSID="Ethernet"
+    else
+      connected=" Connected To Internet (Wireless)"
+      SSID="$(iwgetid -r)"
+    fi
+    active="-a 0"
+    PIP="$(wget --timeout=30 http://ipinfo.io/ip -qO -)"
+    LIP="$(for interface in $(nmcli | grep -i interface | awk '/interface/ {print $2}'); do
+      nmcli device show "$interface" | grep 'IP4.ADDRESS' | awk '{print $2}'
+      break
+    done)"
+  fi
+else
+  urgent="-u 0"
+  SSID="Disconnected"
+  PIP="NA"
+  LIP="NA"
+  connected=" / Offline"
+fi
+
+# Icons
+bmon=" Open Bandwidth Monitor"
+launch_cli=" Open Network Manager"
+launch=" Open Connection Editor"
+
+options="$connected\n$bmon\n$launch_cli\n$launch"
+
+# Main
+chosen="$(echo -e "$options" | $rofi_command -p "$SSID ($LIP): $PIP" -dmenu "$active" "$urgent" -selected-row 1)"
+case $chosen in
+  "$connected")
+    if [[ $STATUS == *"enable"* ]]; then
+      nmcli radio wifi off
+    else
+      nmcli radio wifi on
+    fi
+    ;;
+  "$bmon")
+    rofi-sensible-terminal -e bmon
+    ;;
+  "$launch_cli")
+    rofi-sensible-terminal -e nmtui
+    ;;
+  "$launch")
+    nm-connection-editor
+    ;;
+esac
