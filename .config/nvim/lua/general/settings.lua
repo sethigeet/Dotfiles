@@ -1,10 +1,11 @@
 vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
 vim.cmd("set formatoptions-=cro") -- Stop newline continution of comments
-
 vim.cmd("syntax enable") -- Enables syntax highlighing
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.wo.wrap = Opts.wrap_lines -- Display long lines as just one line
+vim.o.scrolloff = Opts.scroll_off -- Minimal number of lines to keep above and below the cursor
 vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd("set matchpairs+=<:>")
 vim.o.encoding = "utf-8" -- The encoding displayed
 vim.o.pumheight = 10 -- Makes popup menu smaller
 vim.o.fileencoding = "utf-8" -- The encoding written to file

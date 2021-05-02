@@ -80,7 +80,7 @@ local mappings = {
     a = {
         name = "Actions",
         c = { ":ColorizerToggle<CR>", "colorizer" },
-        h = { ":let @/ = \"\"<CR>", "remove search highlight" },
+        h = { ":nohl<CR>", "remove search highlight" },
         i = { ":IndentBlanklineToggle<CR>", "toggle indent lines" },
         l = { ":Bracey<CR>", "start live server" },
         L = { ":BraceyStop<CR>", "stop live server" },

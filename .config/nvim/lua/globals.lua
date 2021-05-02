@@ -8,6 +8,9 @@ Opts = {
     number = true,
     relative_number = true,
 
+    -- Min no. of line to keep above and below the cursor
+    scroll_off = 0,
+
     -- Colorscheme
     colorscheme = "ayu",
 
@@ -38,59 +41,115 @@ Opts = {
     lsp = {
         efm_langserver = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         python = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         lua = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         sh = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         typescript = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         json = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         html = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         css = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         emmet = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         docker = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         go = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         graphql = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         vim = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         },
         yaml = {
             autoformat = true,
-            diagnostics = { virtual_text = true, signs = true, underline = true }
+            diagnostics = {
+                virtual_text = { spacing = 0, prefix = "" },
+                signs = true,
+                underline = true
+            }
         }
     },
 
