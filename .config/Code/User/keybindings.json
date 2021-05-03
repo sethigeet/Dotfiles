@@ -1,5 +1,12 @@
 [
   //* VS Code
+
+  //# Editor
+  {
+    "key": "ctrl+l",
+    "command": "editor.action.addSelectionToNextFindMatch"
+  },
+
   //# Explorer
   {
     "key": "r",
@@ -158,6 +165,11 @@
     "command": "workbench.action.terminal.focusPrevious",
     "when": "terminalFocus"
   },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus"
+  },
 
   //* Run code
   //# Code Runner
@@ -182,5 +194,12 @@
   {
     "key": "f7",
     "command": "python.execInTerminal"
+  },
+
+  //* Extensions
+  //# Advanced New File
+  {
+    "key": "ctrl+n",
+    "command": "newFile.createNewFile"
   }
 ]

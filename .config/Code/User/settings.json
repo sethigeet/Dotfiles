@@ -238,7 +238,6 @@
     "<C-w>": false,
     "<C-s>": false,
     "<C-f>": false,
-    "<C-d>": false,
     "<C-z>": false,
     "<C-y>": false
   },
