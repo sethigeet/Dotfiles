@@ -37,7 +37,7 @@ function _G.smart_tab()
     return vim.fn.pumvisible() == 1 and t("<C-n>") or t("<Tab>")
 end
 
-_G.tab_complete = function()
+function _G.tab_complete()
     if vim.fn.pumvisible() == 1 then
         return t("<C-n>")
     elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
@@ -57,6 +57,36 @@ function _G.s_tab_complete()
         return t("<Plug>(vsnip-jump-prev)")
     else
         return t("<S-Tab>")
+    end
+end
+
+function _G.ToggleQFList(global)
+    if global == 1 then
+        if vim.fn.exists("g:quickfix_list_open") == 1 then
+            if vim.g.quickfix_list_open == 1 then
+                vim.g.quickfix_list_open = 0
+                vim.cmd("cclose")
+            else
+                vim.g.quickfix_list_open = 1
+                vim.cmd("copen")
+            end
+        else
+            vim.cmd("let g:quickfix_list_open = 1")
+            vim.cmd("copen")
+        end
+    else
+        if vim.fn.exists("g:location_list_open") == 1 then
+            if vim.g._location_list_open == 1 then
+                vim.g.location_list_open = 0
+                vim.cmd("lclose")
+            else
+                vim.g.location_list_open = 1
+                vim.cmd("lopen")
+            end
+        else
+            vim.cmd("let g:location_list_open = 1")
+            vim.cmd("lopen")
+        end
     end
 end
 

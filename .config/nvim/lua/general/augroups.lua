@@ -9,9 +9,7 @@ define_augroups({
         { "BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" },
         { "BufWinEnter", "*.*", "silent!", "loadview" }, -- Save the state for the next time
-        { "BufWinLeave", "*.*", "mkview" }, -- Save the state for the next time
-        -- Center the screen when entering insert mode
-        { "InsertEnter", "*", "norm zzi" }
+        { "BufWinLeave", "*.*", "mkview" } -- Save the state for the next time
     },
     auto_compile = {
         -- Automatically source the vimrc when updated

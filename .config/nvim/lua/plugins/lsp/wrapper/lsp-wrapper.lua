@@ -117,6 +117,10 @@ function lsp_wrapper.show_line_diagnostics()
     vim.lsp.diagnostic.show_line_diagnostics()
 end
 
+function lsp_wrapper.populate_location_list()
+    vim.lsp.diagnostic.set_loclist({ open_loclist = false })
+end
+
 -- Gitsigns
 function lsp_wrapper.next_hunk()
     require("gitsigns").next_hunk()

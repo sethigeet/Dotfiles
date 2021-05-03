@@ -18,9 +18,6 @@ vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silen
 -- Alternate way to save
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = true })
 
--- Alternate way to quit
-vim.api.nvim_set_keymap("n", "<C-q>", ":wq<CR>", { noremap = true, silent = true })
-
 -- <TAB>: completion.
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.smart_tab()",
                         { silent = true, expr = true, noremap = true })
