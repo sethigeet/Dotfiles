@@ -22,7 +22,7 @@ fi
 
 # YARN
 if [ -d "$HOME/.yarn" ]; then
-  PATH="$PATH:$HOME/.yarn/yarn/bin"
+  PATH="$PATH:$HOME/.yarn/bin"
 fi
 
 # DENO
