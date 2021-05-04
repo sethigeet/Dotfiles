@@ -281,6 +281,7 @@ return require("packer").startup(function(use)
             require("plugins.configs.lspsaga")
         end
     }
+    use { "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } }
     use "liuchengxu/vista.vim"
     use {
         "fatih/vim-go",

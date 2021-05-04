@@ -303,5 +303,3 @@ wk.register({ j = "which_key_ignore", k = "which_key_ignore" }, {
     nowait = false -- use `nowait` when creating keymaps
 })
 
--- Fix the behavior of which-key
-vim.cmd("unmap ca")
