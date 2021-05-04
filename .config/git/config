@@ -14,5 +14,8 @@
 [color]
 	ui = true
 
-;[credential "https://github.com"]
-;	helper = !gh auth git-credential
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+
+[init]
+	defaultBranch = main
