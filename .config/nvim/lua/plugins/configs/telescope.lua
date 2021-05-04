@@ -68,10 +68,11 @@ require("telescope").setup({
             filetypes = { "png", "webp", "jpg", "jpeg" },
             find_cmd = "fd" -- find command (defaults to `fd`)
         },
-        fzy_native = { override_generic_sorter = false, override_file_sorter = true }
+        fzy_native = { override_generic_sorter = false, override_file_sorter = false }
     }
 })
 
+-- Load all the extensions
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("fzy_native")
 
