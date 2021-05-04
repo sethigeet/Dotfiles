@@ -10,7 +10,6 @@ window {
   padding: 25px;
   border: 1px;
   border-radius: 12px;
-  border-color: @accent-color;
   location: center;
   y-offset: -20px;
 }
