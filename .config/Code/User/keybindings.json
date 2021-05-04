@@ -170,6 +170,11 @@
     "command": "workbench.action.terminal.new",
     "when": "terminalFocus"
   },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
 
   //* Run code
   //# Code Runner
@@ -200,6 +205,12 @@
   //# Advanced New File
   {
     "key": "ctrl+n",
-    "command": "newFile.createNewFile"
+    "command": "extension.advancedNewFile",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-extension.advancedNewFile",
+    "when": "!terminalFocus"
   }
 ]

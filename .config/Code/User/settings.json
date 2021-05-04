@@ -12,9 +12,11 @@
   "editor.lineNumbers": "relative",
   "editor.semanticHighlighting.enabled": true,
   "editor.smoothScrolling": true,
+  "editor.rulers": [80],
 
   //# Window
   "window.zoomLevel": 1,
+  "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}${separator}${appName}",
 
   //# Workbench
   "workbench.colorTheme": "Ayu Mirage Bordered",
@@ -226,10 +228,6 @@
     {
       "before": ["<leader>", "s", "="],
       "commands": ["workbench.action.evenEditorWidths"]
-    },
-    {
-      "before": ["i"],
-      "after": ["z", "z", "i"]
     }
   ],
   "vim.handleKeys": {
@@ -311,5 +309,17 @@
 
   // Gitmoji
   "gitmoji.outputType": "code",
-  "gitmoji.showEmojiCode": true
+  "gitmoji.showEmojiCode": true,
+
+  // Advanced New File
+  "advancedNewFile.exclude": {
+    "node_modules": true,
+    "node_modules_electron": true,
+    "dev": true,
+    "dist": true,
+    "build": true,
+    "env": true,
+    "venv": true,
+    ".git": true
+  }
 }
