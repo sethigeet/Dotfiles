@@ -46,6 +46,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
 	git
+	gitignore
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	extract
