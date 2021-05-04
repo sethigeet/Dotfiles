@@ -90,7 +90,6 @@ return require("packer").startup(function(use)
 
     -- Cool Icons
     use "kyazdani42/nvim-web-devicons"
-    use "ryanoasis/vim-devicons"
 
     -- Auto pairs for "(" "[" "{"
     -- use {

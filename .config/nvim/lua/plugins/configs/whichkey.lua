@@ -149,9 +149,15 @@ local mappings = {
     g = {
         name = "Git",
         a = { ":Git add .<CR>", "add all" },
-        b = { ":Git blame<CR>", "blame" },
+        -- b = { ":Git blame<CR>", "blame" },
+        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         B = { ":GBrowse<CR>", "browse" },
-        c = { ":Git commit<CR>", "commit" },
+        c = {
+            name = "Commits",
+            c = { ":Git commit<CR>", "commit" },
+            o = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+            u = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" }
+        },
         d = { ":Git diff<CR>", "diff" },
         D = { ":Gdiffsplit<CR>", "diff split" },
         g = { ":GGrep<CR>", "git grep" },
@@ -168,10 +174,11 @@ local mappings = {
         s = { ":StageHunk<CR>", "stage hunk" },
         t = { ":GitGutterSignsToggle<CR>", "toggle signs" },
         u = { ":UndoStageHunk<CR>", "undo stage hunk" },
+        S = { "<cmd>Telescope git_status<cr>", "Open changed file" },
         v = { ":GV<CR>", "view commits" },
         V = { ":GV!<CR>", "view buffer commits" },
-        A = { ":Git add %<CR>", "add current" },
-        S = { ":!git status<CR>", "status" }
+        A = { ":Git add %<CR>", "add current" }
+        -- S = { ":!git status<CR>", "status" }
     },
 
     -- l is for LSP
