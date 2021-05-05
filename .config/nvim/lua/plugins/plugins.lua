@@ -352,4 +352,17 @@ return require("packer").startup(function(use)
             require("plugins.configs.emmet")
         end
     }
+
+    -- Easily reload nvim
+    use "famiu/nvim-reload"
+
+    -- Run selected blocks of code
+    use {
+        "michaelb/sniprun",
+        run = "bash ./install.sh",
+        config = function()
+            require"sniprun".initial_setup()
+            require("plugins.configs.sniprun")
+        end
+    }
 end)

@@ -230,6 +230,14 @@ local mappings = {
         a = { "<Plug>PeekupPasteAfter<CR>", "view registers & paste after cursor upon selection" }
     },
 
+    r = {
+        name = "Run",
+        r = { "<Plug>SnipRun<CR>", "Run the selected piece of code" },
+        s = { "<Plug>SnipReset<CR>", "Stop the running code" },
+        c = { "<Plug>SnipClose<CR>", "Clear the previous output" },
+        m = { "<Plug>SnipReplMemoryClean<CR>", "Clean the repl memory" }
+    },
+
     -- s is for Search
     s = {
         name = "Search",
