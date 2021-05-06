@@ -74,7 +74,6 @@ local mappings = {
     k = { ":lnext<CR>zz", "next location list item" },
     M = { ":MarkdownPreviewToggle<CR>", "markdown preview" },
     n = { ":let @/ = \"\"<CR>", "no highlight" },
-    q = { ":call v:lua.ToggleQFList(0)", "toggle location list" },
     u = { ":UndotreeToggle<CR>", "undo tree" },
     v = { "<C-W>v", "split right" },
     z = { "Goyo", "zen mode" },
@@ -228,6 +227,16 @@ local mappings = {
         p = { "<Plug>PeekupOpen<CR>", "view registers" },
         b = { "<Plug>PeekupPasteBefore<CR>", "view registers & paste before cursor upon selection" },
         a = { "<Plug>PeekupPasteAfter<CR>", "view registers & paste after cursor upon selection" }
+    },
+
+    -- q is for Quickfix
+    q = {
+        name = "Quickfix",
+        w = { ":LspTrouble lsp_workspace_diagnostics<CR>", "lsp workspace diagnostics" },
+        d = { ":LspTrouble lsp_document_diagnostics<CR>", "lsp document diagnostics" },
+        r = { ":LspTrouble lsp_references<CR>", "lsp references" },
+        q = { ":call v:lua.ToggleQFList(1)<CR>", "quickfix list" },
+        l = { ":call v:lua.ToggleQFList(0)<CR>", "location list" }
     },
 
     r = {

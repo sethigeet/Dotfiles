@@ -65,27 +65,27 @@ function _G.ToggleQFList(global)
         if vim.fn.exists("g:quickfix_list_open") == 1 then
             if vim.g.quickfix_list_open == 1 then
                 vim.g.quickfix_list_open = 0
-                vim.cmd("cclose")
+                vim.cmd("LspTroubleClose")
             else
                 vim.g.quickfix_list_open = 1
-                vim.cmd("copen")
+                vim.cmd("LspTrouble quickfix")
             end
         else
             vim.cmd("let g:quickfix_list_open = 1")
-            vim.cmd("copen")
+            vim.cmd("LspTrouble quickfix")
         end
     else
         if vim.fn.exists("g:location_list_open") == 1 then
             if vim.g._location_list_open == 1 then
                 vim.g.location_list_open = 0
-                vim.cmd("lclose")
+                vim.cmd("LspTroubleClose")
             else
                 vim.g.location_list_open = 1
-                vim.cmd("lopen")
+                vim.cmd("LspTrouble loclist")
             end
         else
             vim.cmd("let g:location_list_open = 1")
-            vim.cmd("lopen")
+            vim.cmd("LspTrouble loclist")
         end
     end
 end

@@ -198,6 +198,12 @@ return require("packer").startup(function(use)
             require("plugins.configs.bqf")
         end
     }
+    use {
+        "folke/lsp-trouble.nvim",
+        config = function()
+            require("plugins.configs.trouble")
+        end
+    }
 
     -- Intuitive buffer closing
     use "moll/vim-bbye"
