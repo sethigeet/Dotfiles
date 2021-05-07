@@ -1,12 +1,31 @@
 [user]
 	email = geetsethi05@gmail.com
 	name = Geet Sethi
+	username = sethigeet
 
 [alias]
 	patch = !git --no-pager diff --no-color
 
 [core]
 	editor = nvim
+
+[diff]
+	tool = nvimdiff
+
+[difftool "nvimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE
+
+[merge]
+	tool = nvimfugitive
+
+[mergetool "nvimmerge"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "nvimfugitive"]
+	cmd = nvim -f -c "Gdiff" "$MERGED"
+
+[pull]
+	rebase = false
 
 [github]
 	user = sethigeet
