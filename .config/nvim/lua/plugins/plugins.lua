@@ -288,7 +288,12 @@ return require("packer").startup(function(use)
         end
     }
     use { "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } }
-    use "liuchengxu/vista.vim"
+    use {
+        "simrat39/symbols-outline.nvim",
+        config = function()
+            require("plugins.configs.symbols-outline")
+        end
+    }
     use {
         "fatih/vim-go",
         config = function()
