@@ -1,32 +1,31 @@
 #!/bin/sh
 
-SESSIONNAME="portal"
+SESSIONNAME="auth-backend"
+
+cd "$HOME/Repos/github.com/sethigeet/gql-go-auth-backend" || exit 1
 
 # Check if the session already exists
 if ! tmux has-session -t $SESSIONNAME >/dev/null 2>&1; then
-  tmux new-session -s $SESSIONNAME -n "docker" -d
-  tmux send-keys -t $SESSIONNAME "docker start redis postgresql" C-m
+  tmux new-session -s $SESSIONNAME -n "git" -d
+  tmux send-keys -t $SESSIONNAME "gst" C-m
 
-  tmux new-window -n "server"
-  tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/server" C-m
-  tmux send-keys -t $SESSIONNAME "yarn dev"
+  tmux new-window -n "code"
+  tmux send-keys -t $SESSIONNAME "v main.go" C-m
 
-  tmux new-window -n "controller"
-  tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/controller" C-m
-  tmux send-keys -t $SESSIONNAME "yarn dev"
+  tmux new-window -n "run"
+  tmux send-keys -t $SESSIONNAME "go run ."
 
-  tmux new-window -n "common"
-  tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/common" C-m
-  tmux send-keys -t $SESSIONNAME "yarn dev"
-
-  tmux new-window -n "web"
-  tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal/packages/web" C-m
-  tmux send-keys -t $SESSIONNAME "yarn start"
+  tmux new-window -n "search"
+  tmux send-keys -t $SESSIONNAME "? "
 
   # tmux split-window -h
 
-  tmux new-window -n "misc"
-  tmux send-keys -t $SESSIONNAME "cd $HOME/Programming/TypeScript/Fullstack/Test\ Case\ Uploader\ Portal" C-m
+  tmux new-window -n "docker"
+  tmux send-keys -t $SESSIONNAME "docker start postgres redis"
 fi
 
-tmux attach -t $SESSIONNAME
+if [ -t 0 ]; then
+  tmux attach -t $SESSIONNAME
+else
+  $TERMINAL -e tmux attach -t $SESSIONNAME
+fi
