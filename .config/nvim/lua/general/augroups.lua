@@ -17,5 +17,5 @@ define_augroups({
         -- Automatically install plugins when the plugins file is updated
         { "BufWritePost", "plugins.lua", "PackerCompile" }
     },
-    detect_ft = { { "BufEnter", "*.rasi", "set ft=css" } }
+    detect_ft = { { "BufEnter", "*.rasi", "set ft=css" }, { "BufEnter", "*.gql", "set ft=graphql" } }
 })
