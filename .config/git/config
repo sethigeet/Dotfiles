@@ -8,6 +8,7 @@
 
 [core]
 	editor = nvim
+	pager = delta
 
 [diff]
 	tool = nvimdiff
@@ -32,6 +33,24 @@
 
 [color]
 	ui = true
+
+[delta]
+	features = side-by-side line-numbers decorations
+	syntax-theme = Dracula
+	plus-style = syntax "#4D5E49"
+	minus-style = syntax "#5C4945"
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+	hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+	line-numbers-left-style = cyan
+	line-numbers-right-style = cyan
+	line-numbers-minus-style = 124
+	line-numbers-plus-style = 28
 
 [credential "https://github.com"]
 	helper = !gh auth git-credential
