@@ -5,7 +5,7 @@ set -o errexit # exit when command fails
 
 # Check the running os
 is_macos="$(test "$(uname)" = "Darwin" && echo "true" || echo "false")"
-is_ubuntu="$( (uname -a | grep -q 'Ubuntu') && echo "true" || echo "false")"
+is_ubuntu="$( grep -q 'Ubuntu' /etc/os-release && echo "true" || echo "false")"
 is_arch="$(test -f "/etc/arch-release" && echo "true" || echo "false")"
 windows_name="MINGW64_NT"
 is_windows="$(test "${"$(uname -s)"#*$windows_name}" != "$(uname -s)" && echo "true" || echo "false")"
