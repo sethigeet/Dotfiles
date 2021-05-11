@@ -3,8 +3,8 @@
 rofi_command="rofi -theme $HOME/.config/rofi/themes/short.rasi"
 
 # Get info
-IFACE="$(nmcli | grep -i interface)"
-IFACE="${IFACE##*: }"
+IFACE="$(nmcli connection show | awk '/^[^docker]/ && (NR>1) {print $NF}')"
+# IFACE="${IFACE##*: }"
 STATUS="$(nmcli radio wifi)"
 active=""
 urgent=""
@@ -20,10 +20,7 @@ if (ping -4 -c 1 google.com || ping -4 -c 1 github.com || ping -4 -c 1 sourcefor
     fi
     active="-a 0"
     PIP="$(wget --timeout=30 http://ipinfo.io/ip -qO -)"
-    LIP="$(for interface in $(nmcli | grep -i interface | awk '/interface/ {print $2}'); do
-      nmcli device show "$interface" | grep 'IP4.ADDRESS' | awk '{print $2}'
-      break
-    done)"
+    LIP="$(nmcli device show "$IFACE" | grep 'IP4.ADDRESS' | awk '{print $2}')"
   fi
 else
   urgent="-u 0"
