@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Check if spotify is running
+SPOTIFY_PID="$(pidof -s spotify || pidof -s .spotify-wrapped)"
+
+if [ -z "$SPOTIFY_PID" ]; then
+  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Spotify is not running"
+  exit 1
+fi
+
+# Find the current playing song
+current_info="$(../media/sp current)"
+current_song="$(echo "$current_info" | grep '^Title' | sed -r 's/Title\s+//g')"
+current_artist="$(echo "$current_info" | grep '^Artist' | sed -r 's/Artist\s+//g')"
+
+current_info_to_display="$current_song"
+current_info_to_display="$current_info_to_display by $current_artist"
+
+# Options (using Feather fonts)
+previous="玲"
+playpuase="懶"
+next="怜"
+
+# Variable passed to rofi
+options="$previous|$playpuase|$next"
+
+selected="$(echo "$options" | rofi -markup -selected-row 1 -sep "|" \
+  -dmenu -i -p "$current_info_to_display" \
+  -theme "$HOME/.config/rofi/themes/spotify-control.rasi")"
+
+case "$selected" in
+  "$playpuase") sp playpuase ;;
+  "$previous") sp prev ;;
+  "$next") sp next ;;
+esac

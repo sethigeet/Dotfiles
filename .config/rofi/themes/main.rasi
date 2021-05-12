@@ -10,7 +10,6 @@ window {
   font: "Nunito Nerd Font Bold 15";
   location: 0;
   background-color: @background-color;
-  background-color: @background-color;
   border-radius: 25px;
   padding: 16px 14px;
   width: 640px;

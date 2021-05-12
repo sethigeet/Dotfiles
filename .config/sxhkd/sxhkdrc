@@ -30,6 +30,12 @@ XF86Audio{Raise,Lower}Volume
 	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioPlay
+	sp playpause
+XF86AudioPrev
+	sp prev
+XF86AudioNext
+	sp next
 
 # Mouse Clicks using keyboard!
 Menu

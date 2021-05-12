@@ -10,6 +10,7 @@ from .volume import volume
 from .window_name import window_name
 from .spacer import spacer
 from .power_menu import power_menu
+from .spotify import spotify
 
 widgets = [
     logo(),
@@ -17,6 +18,8 @@ widgets = [
     spacer(),
     window_name(),
     spacer(),
+    spotify(),
+    text_box_seperator(),
     net(),
     text_box_seperator(),
     volume(),
