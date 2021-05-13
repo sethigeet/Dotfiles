@@ -29,7 +29,7 @@ selected="$(echo "$options" | rofi -markup -selected-row 1 -sep "|" \
   -theme "$HOME/.config/rofi/themes/spotify-control.rasi")"
 
 case "$selected" in
-  "$playpuase") sp playpuase ;;
+  "$playpuase") sp playpause ;;
   "$previous") sp prev ;;
   "$next") sp next ;;
 esac
