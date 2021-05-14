@@ -1,0 +1,46 @@
+#!/bin/sh
+
+help_message="\
+usage: power-saver [options]
+  options:
+    -h, --help                   Shows this help message
+    --on                         Turn the power saver on
+    --off                        Turn the power saver off
+"
+
+turn_on_power_saver() {
+  # turn on the display power saver
+  # ie. turn off the display after 300s (5min)
+  xset s 300 300
+  xset dpms 300 300 300
+}
+
+turn_off_power_saver() {
+  # turn off the display power saver
+  # ie. do not turn off the display after inactivity
+  xset s off off
+  xset -dpms
+}
+
+while test $# -gt 0; do
+  case "$1" in
+    -h | --help)
+      echo "$help_message"
+      exit 0
+      ;;
+    --on)
+      echo "Turning on the power-saver"
+      turn_on_power_saver
+      ;;
+    --off)
+      echo "Turning off the power-saver"
+      turn_off_power_saver
+      ;;
+    *)
+      echo "$help_message"
+      exit 1
+      ;;
+  esac
+done
+
+echo "$help_message" && exit 1
