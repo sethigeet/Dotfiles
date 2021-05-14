@@ -2,7 +2,7 @@ vim.g.gitblame_enabled = Opts.git.show_blame and 1 or 0
 
 -- Available options for message template
 -- <author>, <committer>, <date>, <committer-date>, <summary>, <sha>
-vim.g.gitblame_message_template = "<summary> • <date> • <author>"
+vim.g.gitblame_message_template = "    <summary> • <date> • <author>"
 
 -- Available options for date format
 -- %a	abbreviated weekday name (e.g., Wed)
