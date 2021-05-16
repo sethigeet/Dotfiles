@@ -311,7 +311,7 @@ local mappings = {
 wk.register(mappings, getOpts("n"))
 wk.register(mappings, getOpts("v"))
 
-wk.register({ j = "which_key_ignore", k = "which_key_ignore" }, {
+wk.register({ j = "which_key_ignore", k = "which_key_ignore", ["<Space>"] = "which_key_ignore" }, {
     mode = "i",
     prefix = "",
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings

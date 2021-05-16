@@ -98,12 +98,7 @@ return require("packer").startup(function(use)
     -- require("plugins.configs.autopairs")
     -- end
     -- }
-    use {
-        "jiangmiao/auto-pairs",
-        config = function()
-            vim.g.AutoPairsMapSpace = 0
-        end
-    }
+    use "jiangmiao/auto-pairs"
 
     -- Themes
     use "ayu-theme/ayu-vim"
