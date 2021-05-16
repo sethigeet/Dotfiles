@@ -49,12 +49,19 @@ require("general.functions").define_augroups({
     }
 })
 
-local function getOpts(mode)
+local function getOpts(mode, emptyPrefix)
+    local prefix
+    if emptyPrefix then
+        prefix = ""
+    else
+        prefix = "<leader>"
+    end
+
     return {
         mode = mode, -- NORMAL mode
         -- prefix: use "<leader>f" for example for mapping everything related to finding files
         -- the prefix is prepended to every mapping part of `mappings`
-        prefix = "<leader>",
+        prefix = prefix,
         buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
         silent = true, -- use `silent` when creating keymaps
         noremap = true, -- use `noremap` when creating keymaps
@@ -64,7 +71,7 @@ end
 
 local mappings = {
     ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
-    ["?"] = { ":NvimTreeFindFile<CR>", "comment" },
+    ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
     ["="] = { "<C-W>=", "balance windows" },
     [";"] = { ":Dashboard<CR>", "Show start screen" },
     e = { ":NvimTreeToggle<CR>", "explorer" },
@@ -311,12 +318,5 @@ local mappings = {
 wk.register(mappings, getOpts("n"))
 wk.register(mappings, getOpts("v"))
 
-wk.register({ j = "which_key_ignore", k = "which_key_ignore", ["<Space>"] = "which_key_ignore" }, {
-    mode = "i",
-    prefix = "",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false -- use `nowait` when creating keymaps
-})
-
+wk.register({ j = "which_key_ignore", k = "which_key_ignore", ["<Space>"] = "which_key_ignore" },
+            getOpts("i", true))
