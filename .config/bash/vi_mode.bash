@@ -11,3 +11,6 @@ bind '"kj":vi-movement-mode'
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \e[6 q"
 bind "set vi-cmd-mode-string \e[2 q"
+
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
