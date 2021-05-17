@@ -9,21 +9,8 @@ vim.lsp.handlers["textDocument/implementation"] =
     require("lsputil.locations").implementation_handler
 vim.lsp.handlers["textDocument/documentSymbol"] = require("lsputil.symbols").document_handler
 vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
----------------------------------------------
 
--- Colors for diagnostics
-vim.fn.sign_define("LspDiagnosticsDefaultError",
-                   { texthl = "LspDiagnosticsDefaultError", numhl = "LspDiagnosticsDefaultError" })
-vim.fn.sign_define("LspDiagnosticsDefaultWarning", {
-    texthl = "LspDiagnosticsDefaultWarning",
-    numhl = "LspDiagnosticsDefaultWarning"
-})
-vim.fn.sign_define("LspDiagnosticsDefaultInformation", {
-    texthl = "LspDiagnosticsDefaultInformation",
-    numhl = "LspDiagnosticsDefaultInformation"
-})
-vim.fn.sign_define("LspDiagnosticsDefaultHint",
-                   { texthl = "LspDiagnosticsDefaultHint", numhl = "LspDiagnosticsDefaultHint" })
+---------------------------------------------
 
 -- Signs for diagnostics
 vim.fn.sign_define("LspDiagnosticsSignError", {

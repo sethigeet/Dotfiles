@@ -6,6 +6,10 @@ wk.setup({
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
+        spelling = {
+            enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+            suggestions = 20 -- how many suggestions should be shown in the list?
+        },
         presets = {
             operators = false, -- adds help for operators like d, y, ...
             motions = false, -- adds help for motions
@@ -83,7 +87,7 @@ local mappings = {
     n = { ":let @/ = \"\"<CR>", "no highlight" },
     u = { ":UndotreeToggle<CR>", "undo tree" },
     v = { "<C-W>v", "split right" },
-    z = { "Goyo", "zen mode" },
+    z = { ":ZenMode<CR>", "zen mode" },
 
     -- a is for Action
     a = {
@@ -242,6 +246,7 @@ local mappings = {
         w = { ":LspTrouble lsp_workspace_diagnostics<CR>", "lsp workspace diagnostics" },
         d = { ":LspTrouble lsp_document_diagnostics<CR>", "lsp document diagnostics" },
         r = { ":LspTrouble lsp_references<CR>", "lsp references" },
+        t = { ":TodoTrouble<CR>", "todos" },
         q = { ":call v:lua.ToggleQFList(1)<CR>", "quickfix list" },
         l = { ":call v:lua.ToggleQFList(0)<CR>", "location list" }
     },
@@ -268,7 +273,8 @@ local mappings = {
         c = { ":Telescope git_commits<CR>", "git commits" },
         f = { ":Telescope find_files<CR>", "files" },
         F = { ":Telescope git_files<CR>", "git files" },
-        g = { ":Telescope tags<CR>", "tags" },
+        -- g = { ":Telescope tags<CR>", "tags" },
+        g = { ":Telescope live_grep<CR>", "text" },
         G = { ":Telescope current_buffer_tags<CR>", "buffer_tags" },
         h = { ":Telescope command_history<CR>", "history" },
         H = { ":Telescope help_tags<CR>", "help_tags" },
@@ -283,7 +289,7 @@ local mappings = {
         P = { ":Telescope spell_suggest<CR>", "spell suggest" },
         s = { ":Telescope git_status<CR>", "git status" },
         S = { ":Telescope grep_string<CR>", "grep string" },
-        t = { ":Telescope live_grep<CR>", "text" },
+        t = { ":TodoTelescope<CR>", "todos" },
         y = { ":Telescope symbols<CR>", "symbols" },
         Y = { ":Telescope lsp_workspace_symbols<CR>", "lsp workspace symbols" },
         r = { ":Telescope registers<CR>", "registers" },

@@ -12,7 +12,14 @@ return require("packer").startup(function(use)
     -- Packer can manage itself as an optional plugin
     use "wbthomason/packer.nvim"
 
-    -- Easier Comments
+    -- Better Comments
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("plugins.configs.todo-comments")
+        end
+    }
     use "suy/vim-context-commentstring" -- Useful for React Commenting
     use {
         "terrortylor/nvim-comment",
@@ -299,6 +306,7 @@ return require("packer").startup(function(use)
             vim.cmd("GoUpdateBinaries")
         end
     }
+    use "folke/lsp-colors.nvim"
 
     -- Markdown preview
     use {
@@ -350,7 +358,12 @@ return require("packer").startup(function(use)
     }
 
     -- Distraction free writing (zen mode)
-    use "junegunn/goyo.vim"
+    use {
+        "folke/zen-mode.nvim",
+        config = function()
+            require("plugins.configs.zen-mode")
+        end
+    }
 
     -- The emmet plugin for vim
     use {

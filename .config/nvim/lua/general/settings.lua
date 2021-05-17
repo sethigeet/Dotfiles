@@ -38,6 +38,7 @@ vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.relativenumber = true
 vim.o.incsearch = true
+vim.o.smartcase = true -- Makes searching easier
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.o.title = true
 vim.o.titlestring = "%F - nvim"
