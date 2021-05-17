@@ -31,10 +31,12 @@ while test $# -gt 0; do
     --on)
       echo "Turning on the power-saver"
       turn_on_power_saver
+      exit 0
       ;;
     --off)
       echo "Turning off the power-saver"
       turn_off_power_saver
+      exit 0
       ;;
     *)
       echo "$help_message"
