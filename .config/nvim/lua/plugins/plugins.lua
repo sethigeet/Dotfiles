@@ -14,7 +14,6 @@ return require("packer").startup(function(use)
 
     -- Easier Comments
     use "suy/vim-context-commentstring" -- Useful for React Commenting
-    use "jbgutierrez/vim-better-comments" -- Highlights comments
     use {
         "terrortylor/nvim-comment",
         config = function()
@@ -30,9 +29,6 @@ return require("packer").startup(function(use)
             require("plugins.configs.indent-blankline")
         end
     }
-
-    -- Change dates fast
-    use "tpope/vim-speeddating"
 
     -- Repeat stuff
     use "tpope/vim-repeat"
@@ -50,7 +46,8 @@ return require("packer").startup(function(use)
         "kyazdani42/nvim-tree.lua",
         config = function()
             require("plugins.configs.nvim-tree")
-        end
+        end,
+        requires = "kyazdani42/nvim-web-devicons" -- Cool Icons
     }
 
     -- Easymotion
@@ -77,19 +74,15 @@ return require("packer").startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("plugins.configs.treesitter")
-        end
+        end,
+        -- NOTE: These are actually not required but extend the functionality of treesitter
+        requires = {
+            "windwp/nvim-ts-autotag", -- Automatically close and rename tags
+            "p00f/nvim-ts-rainbow", -- Rainbow brackets
+            -- "nvim-treesitter/nvim-treesitter-refactor", -- Highlight all the occurrences of variables under the cursor
+            "JoosepAlviste/nvim-ts-context-commentstring" -- Change the comment string according to the location of the cursor in the file
+        }
     }
-    -- Automatically close and rename tags
-    use "windwp/nvim-ts-autotag"
-    -- Rainbow brackets
-    use "p00f/nvim-ts-rainbow"
-    -- Highlight all the occurrences of variables under the cursor
-    -- use "nvim-treesitter/nvim-treesitter-refactor"
-    -- Change the comment string according to the location of the cursor in the file
-    use "JoosepAlviste/nvim-ts-context-commentstring"
-
-    -- Cool Icons
-    use "kyazdani42/nvim-web-devicons"
 
     -- Auto pairs for "(" "[" "{"
     -- use {
@@ -112,7 +105,8 @@ return require("packer").startup(function(use)
     }
 
     -- Git
-    use { "junegunn/gv.vim", requires = { "tpope/vim-fugitive" } }
+    use "tpope/vim-fugitive"
+    use { "junegunn/gv.vim", requires = "tpope/vim-fugitive" }
     use {
         "rhysd/git-messenger.vim",
         config = function()
@@ -121,7 +115,7 @@ return require("packer").startup(function(use)
     }
     use {
         "lewis6991/gitsigns.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
+        requires = "nvim-lua/plenary.nvim",
         config = function()
             require("plugins.configs.gitsigns")
         end
@@ -132,7 +126,13 @@ return require("packer").startup(function(use)
             require("plugins.configs.git-blame")
         end
     }
-    -- use {"TimUntersberger/neogit", config = function() require("plugins.configs.neogit") end}
+    -- use {
+    -- "TimUntersberger/neogit",
+    -- requires = "nvim-lua/plenary.nvim",
+    -- config = function()
+    -- require("plugins.configs.neogit")
+    -- end
+    -- }
 
     -- Terminal
     use {
@@ -164,6 +164,7 @@ return require("packer").startup(function(use)
     -- Snippets
     use {
         "hrsh7th/vim-vsnip",
+        requires = "hrsh7th/vim-vsnip-integ",
         config = function()
             require("plugins.configs.vsnip")
         end
@@ -181,6 +182,7 @@ return require("packer").startup(function(use)
     -- Better tabline
     use {
         "romgrk/barbar.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
         config = function()
             require("plugins.configs.barbar")
         end
@@ -195,6 +197,7 @@ return require("packer").startup(function(use)
     }
     use {
         "folke/lsp-trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
         config = function()
             require("plugins.configs.trouble")
         end
@@ -203,7 +206,7 @@ return require("packer").startup(function(use)
     -- Intuitive buffer closing
     use "moll/vim-bbye"
 
-    -- undo time travel
+    -- Undo time travel
     use "mbbill/undotree"
 
     -- Smooth scroll
@@ -240,8 +243,6 @@ return require("packer").startup(function(use)
 
     }
 
-    -- use "maxmellon/vim-jsx-pretty"
-    --
     -- Multiple Cursors
     use "terryma/vim-multiple-cursors"
 
@@ -358,9 +359,6 @@ return require("packer").startup(function(use)
             require("plugins.configs.emmet")
         end
     }
-
-    -- Easily reload nvim
-    use "famiu/nvim-reload"
 
     -- Run selected blocks of code
     use {
