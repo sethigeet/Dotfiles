@@ -1,7 +1,13 @@
 #!/bin/sh
 
+# Set the repeat rate for keyboard
 xset r rate 550 33
+# Set the inactivity timout for the display
 xset s 300 300
 xset dpms 300 300 300
 
+# Read the xresources file
+xrdb "$XDG_CONFIG_HOME/X11/xresources"
+
+# Run the autostart script
 autostart

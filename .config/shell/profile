@@ -48,8 +48,8 @@ PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
 # Use my custom rofi script for asking for a password for sudo
 export SUDO_ASKPASS="$HOME/Scripts/rofi/rofi-pass"
 
-# Read the xresources file
-xrdb "$XDG_CONFIG_HOME/X11/xresources"
-
 # Start the ssh-agent
 eval "$(ssh-agent -s)"
+
+# Set the profile loaded variable to use in other scripts
+export PROFILE_LOADED=true

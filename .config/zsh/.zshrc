@@ -1,3 +1,7 @@
+if [ "$PROFILE_LOADED" != true ]; then
+  source "$HOME/.config/shell/profile"
+fi
+
 colorscript random
 
 # Enable Powerlevel10k instant prompt
