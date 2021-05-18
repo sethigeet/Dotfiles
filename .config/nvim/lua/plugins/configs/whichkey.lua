@@ -74,6 +74,17 @@ local function getOpts(mode, emptyPrefix)
 end
 
 local mappings = {
+    ["1"] = "move to buffer 1",
+    ["2"] = "move to buffer 2",
+    ["3"] = "move to buffer 3",
+    ["4"] = "move to buffer 4",
+    ["5"] = "move to buffer 5",
+    ["6"] = "move to buffer 6",
+    ["7"] = "move to buffer 7",
+    ["8"] = "move to buffer 8",
+    ["9"] = "move to buffer 9",
+    ["<Space>"] = "easymotion prefix",
+
     ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
     ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
     ["="] = { "<C-W>=", "balance windows" },
@@ -95,8 +106,6 @@ local mappings = {
         c = { ":ColorizerToggle<CR>", "colorizer" },
         h = { ":nohl<CR>", "remove search highlight" },
         i = { ":IndentBlanklineToggle<CR>", "toggle indent lines" },
-        l = { ":Bracey<CR>", "start live server" },
-        L = { ":BraceyStop<CR>", "stop live server" },
         m = { ":Glow<CR>", "markdown preview" },
         n = { ":set nonumber!<CR>", "line-numbers" },
         s = { "<Plug>SortMotionVisual", "sort selected text" },
@@ -109,26 +118,11 @@ local mappings = {
     -- b is for Buffer
     b = {
         name = "Buffer",
-        [">"] = { ":BufferMoveNext<CR>", "move next" },
-        ["<"] = { ":BufferMovePrevious<CR>", "move prev" },
-        ["1"] = { ":BufferGoto 1<CR>", "buffer 1" },
-        ["2"] = { ":BufferGoto 2<CR>", "buffer 2" },
-        ["3"] = { ":BufferGoto 3<CR>", "buffer 3" },
-        ["4"] = { ":BufferGoto 4<CR>", "buffer 4" },
-        ["5"] = { ":BufferGoto 5<CR>", "buffer 5" },
-        ["6"] = { ":BufferGoto 6<CR>", "buffer 6" },
-        ["7"] = { ":BufferGoto 7<CR>", "buffer 7" },
-        ["8"] = { ":BufferGoto 8<CR>", "buffer 8" },
-        ["9"] = { ":BufferGoto 9<CR>", "buffer 9" },
-        ["0"] = { ":BufferGoto 0<CR>", "buffer 0" },
-        b = { ":BufferPick<CR>", "pick buffer" },
-        d = { ":Bdelete<CR>", "delete buffer" },
-        D = { ":BufferOrderByDirectory<CR>", "order by directory" },
-        f = { "bfirst", "first buffer" },
-        l = { "blast", "last buffer" },
-        L = { ":BufferOrderByLanguage<CR>", "order by language" },
-        n = { "bnext", "next buffer" },
-        p = { "bprevious", "previous-buffer" }
+        d = { ":bdelete<CR>", "delete buffer" },
+        f = { ":bfirst<CR>", "first buffer" },
+        l = { ":blast<CR>", "last buffer" },
+        n = { ":bnext<CR>", "next buffer" },
+        p = { ":bprevious<CR>", "previous-buffer" }
     },
 
     -- d is for Database
@@ -209,7 +203,6 @@ local mappings = {
         q = { ":Telescope quickfix<CR>", "quickfix" },
         r = { ":Lspsaga rename<CR>", "rename" },
         T = { ":LspTypeDefinition<CR>", "type defintion" },
-        x = { ":cclose<CR>", "close quickfix" },
         v = { ":LspVirtualTextToggle<CR>", "toggle virtual text" },
         s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
         S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" }
@@ -227,9 +220,14 @@ local mappings = {
     -- m is for Mark
     m = {
         name = "Mark",
-        t = { ":BookmarkToggle<CR>", "toggle" },
+        a = { "BookmarkShowAll", "show all" },
+        c = { "BookmarkClear", "clear" },
+        d = { "BookmarkClearAll", "clear all" },
         j = { ":BookmarkNext<CR>", "next mark" },
-        k = { ":BookmarkPrev<CR>", "prev mark" }
+        k = { ":BookmarkPrev<CR>", "prev mark" },
+        l = { "BookmarkLoad", "load" },
+        s = { "BookmarkSave", "save" },
+        t = { ":BookmarkToggle<CR>", "toggle" }
     },
 
     -- p is for Peekup

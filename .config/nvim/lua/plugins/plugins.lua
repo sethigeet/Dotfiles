@@ -106,9 +106,10 @@ return require("packer").startup(function(use)
 
     -- Status Line
     use {
-        "glepnir/galaxyline.nvim",
+        "hoob3rt/lualine.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
         config = function()
-            require("plugins.configs.galaxyline")
+            require("plugins.configs.lualine")
         end
     }
 
@@ -189,10 +190,10 @@ return require("packer").startup(function(use)
 
     -- Better tabline
     use {
-        "romgrk/barbar.nvim",
+        "akinsho/nvim-bufferline.lua",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
-            require("plugins.configs.barbar")
+            require("plugins.configs.bufferline")
         end
     }
 
