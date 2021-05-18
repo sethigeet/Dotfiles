@@ -29,7 +29,6 @@ vim.wo.relativenumber = Opts.relative_number -- Relative Line numbers
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.background = "dark" -- tell vim what the background color looks like
 vim.o.showtabline = 2 -- Always show tabs
--- vim.g.noshowmode = true -- We don't need to see things like -- INSERT -- anymore
 vim.cmd("set noshowmode")
 vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
@@ -38,7 +37,8 @@ vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.relativenumber = true
 vim.o.incsearch = true
-vim.o.smartcase = true -- Makes searching easier
+vim.o.ignorecase = true -- Ignore case while searching (required for smartcase)
+vim.o.smartcase = true -- Ignore case only when search does not include upper case character
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.o.title = true
 vim.o.titlestring = "%F - nvim"
@@ -52,6 +52,4 @@ end
 -- For Folding
 -- Method for folding
 vim.o.foldmethod = "manual"
--- Open all when entering for the first time
--- vim.o.foldlevel = 20
 

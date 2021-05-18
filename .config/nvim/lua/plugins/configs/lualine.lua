@@ -1,5 +1,5 @@
 local function getTabStop()
-    return "Spaces: " .. vim.api.nvim_buf_get_option(0, "tabstop")
+    return " " .. vim.api.nvim_buf_get_option(0, "tabstop") .. " spaces"
 end
 
 local function getLspClient(msg)
@@ -32,7 +32,7 @@ require("lualine").setup({
                 sources = { "nvim_lsp" },
                 sections = { "error", "warn", "info" },
                 symbols = { error = " ", warn = " ", info = " " }
-            }, "filename"
+            }, { "filename", symbols = { modified = "  ", readonly = "  " } }
         },
         lualine_x = { { "filetype", colored = true }, getLspClient },
         lualine_y = { getTabStop },
