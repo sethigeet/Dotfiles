@@ -1,6 +1,5 @@
 " vim: filetype=vim
 
-
 " Vifm supports 256 colors you can use color numbers 0-255
 " (requires properly set up terminal: set your TERM environment variable
 " (directly or using resources) to some color terminal name (e.g.
@@ -8,11 +7,11 @@
 " of colors in your terminal with tput colors command)
 
 " COLORS
-"  -1 = Default                     (transparent)
-"   0 = Black
-"  11 = Ayu mirage primary color    (yellow)
-" 110 = Ayu mirage modified color   (blue)
-" 210 = Ayu mirage markup color     (red)
+"  -1 = Default                       (transparent)
+" 111 = Tokyonight primary color      (blue)
+" 141 = Tokyonight terminal magenta   (purple)
+" 153 = Tokyonight foreground         (light blue)
+" 210 = Tokyonight terminal red       (red)
 " 238 = Gray
 
 " FORMAT
@@ -29,26 +28,26 @@ highlight AuxWin cterm=none ctermfg=-1 ctermbg=-1
 highlight SuggestBox cterm=bold ctermfg=-1 ctermbg=-1
 
 " MENUS
-highlight WildMenu cterm=reverse ctermfg=110 ctermbg=-1
+highlight WildMenu cterm=reverse ctermfg=111 ctermbg=-1
 
 " BORDERS
-highlight Border cterm=none ctermfg=-1 ctermbg=0
+highlight Border cterm=none ctermfg=-1 ctermbg=238
 
 " LINES
 highlight TabLine cterm=none ctermfg=-1 ctermbg=-1
 highlight TabLineSel cterm=bold,reverse ctermfg=-1 ctermbg=-1
 " highlight OtherLine cterm=bold,reverse ctermfg=-1 ctermbg=-1
 " highlight OddLine cterm=bold,reverse ctermfg=-1 ctermbg=-1
-highlight TopLine cterm=none ctermfg=white ctermbg=238
-highlight TopLineSel cterm=bold ctermfg=white ctermbg=-1
-highlight CmdLine cterm=none ctermfg=11 ctermbg=black
-highlight StatusLine cterm=bold ctermfg=white ctermbg=238
-highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
-highlight CurrLine cterm=bold,reverse ctermfg=110 ctermbg=black
+highlight TopLine cterm=none ctermfg=153 ctermbg=238
+highlight TopLineSel cterm=bold ctermfg=153 ctermbg=-1
+highlight CmdLine cterm=none ctermfg=111 ctermbg=238
+highlight StatusLine cterm=bold ctermfg=153 ctermbg=238
+highlight JobLine cterm=bold,reverse ctermfg=238 ctermbg=153
+highlight CurrLine cterm=bold,reverse ctermfg=111 ctermbg=238
 
 " DIRECTORIES/FILES
-highlight Directory cterm=none ctermfg=11 ctermbg=-1
-highlight LineNr cterm=none ctermfg=11 ctermbg=-1
+highlight Directory cterm=none ctermfg=111 ctermbg=-1
+highlight LineNr cterm=none ctermfg=111 ctermbg=-1
 
 " LINKS
 highlight Link cterm=bold ctermfg=-1 ctermbg=-1
@@ -56,17 +55,17 @@ highlight Link cterm=bold ctermfg=-1 ctermbg=-1
 highlight BrokenLink cterm=bold ctermfg=210 ctermbg=-1
 
 " DIFFERENT FILES
-highlight Socket cterm=bold ctermfg=110 ctermbg=-1
+highlight Socket cterm=bold ctermfg=111 ctermbg=-1
 highlight Device cterm=bold ctermfg=210 ctermbg=-1
-highlight Fifo cterm=bold ctermfg=11 ctermbg=-1
+highlight Fifo cterm=bold ctermfg=111 ctermbg=-1
 highlight Executable cterm=bold ctermfg=210 ctermbg=-1
 
 " SELECTED FILE
-highlight Selected cterm=bold ctermfg=110 ctermbg=-1
+highlight Selected cterm=bold ctermfg=111 ctermbg=-1
 
 " ERROR MESSAGE
-highlight ErrorMsg cterm=none ctermfg=210 ctermbg=black
-highlight CmpMismatch cterm=bold ctermfg=white ctermbg=210
+highlight ErrorMsg cterm=none ctermfg=210 ctermbg=238
+highlight CmpMismatch cterm=bold ctermfg=153 ctermbg=210
 
 " USERS
 highlight User1 cterm=bold,underline,reverse,standout,italic ctermfg=-1 ctermbg=-1

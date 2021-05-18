@@ -1,11 +1,11 @@
-primary = "FFCC66"
-danger = "E53935"
-success = "43A047"
-bg = "1F2430"
-altText = "9C9C9C"
-text = "FFFFFF"
-dark_gray = "5F676A"
-light_gray = "757575"
+primary = "#7AA2F7"
+danger = "#F7768E"
+success = "#9ECE6A"
+bg = "#1A1B26"
+altText = "#9C9C9C"
+text = "#FFFFFF"
+dark_gray = "#5F676A"
+light_gray = "#757575"
 
 colors = {
     "window": {

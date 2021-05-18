@@ -8,7 +8,7 @@ usage: set-background [options]
     -p, --pacwall                Generates and sets the background with pacwall
     -i, --image [image_path]     Sets the background as the given image
 "
-bg_color="#1F2430"
+bg_color="#1A1B26"
 
 restore_script_dir="$XDG_DATA_HOME/feh"
 restore_script_path="$restore_script_dir/restore-bg"

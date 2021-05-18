@@ -161,9 +161,9 @@ for_window [class="kite"]                       floating enable
 # --- Window borders --- #
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #FFCC66 #1F2430 #FFFFFF #FFCC66   #FFCC66
-client.focused_inactive #FFD580 #1F2430 #FFFFFF #5F676A   #5F676A
-client.unfocused        #CBCCC6 #1F2430 #FFFFFF #CBCCC6   #CBCCC6
-client.urgent           #FF3333 #1F2430 #FFFFFF #F28779   #F28779
-client.placeholder      #000000 #1F2430 #FFFFFF #000000   #0c0c0c
-client.background       #1F2430
+client.focused          #7AA2F7 #1A1B26 #FFFFFF #7AA2F7   #7AA2F7
+client.focused_inactive #7DCFFF #1A1B26 #FFFFFF #5F676A   #5F676A
+client.unfocused        #A9B1D6 #1A1B26 #FFFFFF #A9B1D6   #A9B1D6
+client.urgent           #F7768E #1A1B26 #FFFFFF #F7768E   #F7768E
+client.placeholder      #414868 #1A1B26 #FFFFFF #414868   #414868
+client.background       #1A1B26
