@@ -35,7 +35,7 @@
 	ui = true
 
 [delta]
-	features = side-by-side line-numbers decorations
+	features = line-numbers decorations
 	syntax-theme = Dracula
 	plus-style = syntax "#4D5E49"
 	minus-style = syntax "#5C4945"

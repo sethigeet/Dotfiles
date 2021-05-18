@@ -101,6 +101,7 @@ return require("packer").startup(function(use)
     use "jiangmiao/auto-pairs"
 
     -- Themes
+    use "folke/tokyonight.nvim"
     use "ayu-theme/ayu-vim"
 
     -- Status Line

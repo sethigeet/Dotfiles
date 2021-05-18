@@ -7,7 +7,7 @@ Opts.relative_number = true
 Opts.scroll_off = 2
 
 -- Colorscheme
-Opts.colorscheme = "ayu"
+Opts.colorscheme = "tokyonight"
 
 -- Tree
 Opts.auto_close_tree = true

@@ -4,7 +4,7 @@ super + ctrl + s; r
 
 # Apps
 super + Return
-	alacritty
+	$TERMINAL
 
 super + {a,b}
 	alacritty -e {alsamixer,bpytop}

@@ -12,7 +12,7 @@ Opts = {
     scroll_off = 0,
 
     -- Colorscheme
-    colorscheme = "ayu",
+    colorscheme = "tokyonight",
 
     -- Tree
     auto_close_tree = 1,
