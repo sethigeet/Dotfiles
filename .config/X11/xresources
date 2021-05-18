@@ -39,3 +39,8 @@
 *.color15:      #C0CAF5
 
 *.cursorColor:	FG
+
+!!! ST SPECIFI SETTINGS !!!
+!! ------------------------
+!! Font
+st.font: MesloLGS NF:pixelsize=21:antialias=true:autohint=true
