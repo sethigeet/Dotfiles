@@ -384,8 +384,5 @@ return require("packer").startup(function(use)
             require("plugins.configs.sniprun")
         end
     }
-
-    -- Sort a block a lines easily
-    use "christoomey/vim-sort-motion"
 end)
 
