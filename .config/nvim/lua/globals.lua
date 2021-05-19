@@ -2,6 +2,11 @@ CONFIG_PATH = vim.fn.stdpath("config")
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
+local defualtLspOpts = {
+    autoformat = true,
+    diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true }
+}
+
 Opts = {
     -- Lines and numbers
     wrap_lines = false,
@@ -39,118 +44,20 @@ Opts = {
 
     -- LSP
     lsp = {
-        efm_langserver = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        python = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        lua = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        sh = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        typescript = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        json = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        html = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        css = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        emmet = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        docker = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        go = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        graphql = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        vim = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        },
-        yaml = {
-            autoformat = true,
-            diagnostics = {
-                virtual_text = { spacing = 0, prefix = "" },
-                signs = true,
-                underline = true
-            }
-        }
+        efm_langserver = defualtLspOpts,
+        python = defualtLspOpts,
+        lua = defualtLspOpts,
+        sh = defualtLspOpts,
+        typescript = defualtLspOpts,
+        json = defualtLspOpts,
+        html = defualtLspOpts,
+        css = defualtLspOpts,
+        emmet = defualtLspOpts,
+        docker = defualtLspOpts,
+        go = defualtLspOpts,
+        graphql = defualtLspOpts,
+        vim = defualtLspOpts,
+        yaml = defualtLspOpts
     },
 
     -- Git
