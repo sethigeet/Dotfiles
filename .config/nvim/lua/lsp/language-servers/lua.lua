@@ -1,5 +1,5 @@
 require("lspconfig").lua.setup {
-    root_dir = require("plugins.lsp.helpers.root_dir"),
+    root_dir = require("lsp.helpers.root_dir"),
     settings = {
         Lua = {
             runtime = {
@@ -10,7 +10,7 @@ require("lspconfig").lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = { "vim" }
+                globals = {"vim"}
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
@@ -22,11 +22,11 @@ require("lspconfig").lua.setup {
         }
     },
     on_attach = function(client, bufnr)
-        require("plugins.lsp.helpers.document_highlight")(client)
-        require("plugins.lsp.helpers.auto_format")("lua", client)
+        require("lsp.helpers.document_highlight")(client)
+        require("lsp.helpers.auto_format")("lua", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require("plugins.lsp.helpers.diagnostics_handler")(
-            "lua")
+        ["textDocument/publishDiagnostics"] = require(
+            "lsp.helpers.diagnostics_handler")("lua")
     }
 }

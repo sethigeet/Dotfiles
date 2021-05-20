@@ -4,7 +4,8 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+    execute("!git clone https://github.com/wbthomason/packer.nvim " ..
+                install_path)
     execute "packadd packer.nvim"
 end
 
@@ -16,25 +17,19 @@ return require("packer").startup(function(use)
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("plugins.configs.todo-comments")
-        end
+        config = function() require("plugins.configs.todo-comments") end
     }
     use "suy/vim-context-commentstring" -- Useful for React Commenting
     use {
         "terrortylor/nvim-comment",
-        config = function()
-            require("plugins.configs.comment")
-        end
+        config = function() require("plugins.configs.comment") end
     }
 
     -- Indent lines
     use {
         "lukas-reineke/indent-blankline.nvim",
         branch = "lua",
-        config = function()
-            require("plugins.configs.indent-blankline")
-        end
+        config = function() require("plugins.configs.indent-blankline") end
     }
 
     -- Repeat stuff
@@ -43,34 +38,26 @@ return require("packer").startup(function(use)
     -- Vifm
     use {
         "vifm/vifm.vim",
-        config = function()
-            require("plugins.configs.vifm")
-        end
+        config = function() require("plugins.configs.vifm") end
     }
 
     -- File Explorer
     use {
         "kyazdani42/nvim-tree.lua",
-        config = function()
-            require("plugins.configs.nvim-tree")
-        end,
+        config = function() require("plugins.configs.nvim-tree") end,
         requires = "kyazdani42/nvim-web-devicons" -- Cool Icons
     }
 
     -- Easymotion
     use {
         "easymotion/vim-easymotion",
-        config = function()
-            require("plugins.configs.easymotion")
-        end
+        config = function() require("plugins.configs.easymotion") end
     }
 
     -- Have the file system follow you around
     use {
         "airblade/vim-rooter",
-        config = function()
-            require("plugins.configs.rooter")
-        end
+        config = function() require("plugins.configs.rooter") end
     }
 
     -- auto set indent settings
@@ -79,9 +66,7 @@ return require("packer").startup(function(use)
     -- Treesitter
     use {
         "nvim-treesitter/nvim-treesitter",
-        config = function()
-            require("plugins.configs.treesitter")
-        end,
+        config = function() require("plugins.configs.treesitter") end,
         -- NOTE: These are actually not required but extend the functionality of treesitter
         requires = {
             "windwp/nvim-ts-autotag", -- Automatically close and rename tags
@@ -108,32 +93,24 @@ return require("packer").startup(function(use)
     use {
         "hoob3rt/lualine.nvim",
         requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("plugins.configs.lualine")
-        end
+        config = function() require("plugins.configs.lualine") end
     }
 
     -- Git
     use "tpope/vim-fugitive"
-    use { "junegunn/gv.vim", requires = "tpope/vim-fugitive" }
+    use {"junegunn/gv.vim", requires = "tpope/vim-fugitive"}
     use {
         "rhysd/git-messenger.vim",
-        config = function()
-            require("plugins.configs.git-messenger")
-        end
+        config = function() require("plugins.configs.git-messenger") end
     }
     use {
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            require("plugins.configs.gitsigns")
-        end
+        config = function() require("plugins.configs.gitsigns") end
     }
     use {
         "f-person/git-blame.nvim",
-        config = function()
-            require("plugins.configs.git-blame")
-        end
+        config = function() require("plugins.configs.git-blame") end
     }
     -- use {
     -- "TimUntersberger/neogit",
@@ -146,17 +123,13 @@ return require("packer").startup(function(use)
     -- Terminal
     use {
         "voldikss/vim-floaterm",
-        config = function()
-            require("plugins.configs.floaterm")
-        end
+        config = function() require("plugins.configs.floaterm") end
     }
 
     -- Start Screen
     use {
         "glepnir/dashboard-nvim",
-        config = function()
-            require("plugins.configs.dashboard")
-        end
+        config = function() require("plugins.configs.dashboard") end
     }
     -- use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
 
@@ -165,51 +138,39 @@ return require("packer").startup(function(use)
     -- Lua version of vim-which-key
     use {
         "folke/which-key.nvim",
-        config = function()
-            require("plugins.configs.whichkey")
-        end
+        config = function() require("plugins.configs.whichkey") end
     }
 
     -- Snippets
     use {
         "hrsh7th/vim-vsnip",
         requires = "hrsh7th/vim-vsnip-integ",
-        config = function()
-            require("plugins.configs.vsnip")
-        end
+        config = function() require("plugins.configs.vsnip") end
     }
     use "rafamadriz/friendly-snippets"
 
     -- Interactive code
     use {
         "metakirby5/codi.vim",
-        config = function()
-            require("plugins.configs.codi")
-        end
+        config = function() require("plugins.configs.codi") end
     }
 
     -- Better tabline
     use {
         "akinsho/nvim-bufferline.lua",
         requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("plugins.configs.bufferline")
-        end
+        config = function() require("plugins.configs.bufferline") end
     }
 
     -- Better quickfix menu
     use {
         "kevinhwang91/nvim-bqf",
-        config = function()
-            require("plugins.configs.bqf")
-        end
+        config = function() require("plugins.configs.bqf") end
     }
     use {
         "folke/lsp-trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("plugins.configs.trouble")
-        end
+        config = function() require("plugins.configs.trouble") end
     }
 
     -- Intuitive buffer closing
@@ -224,31 +185,23 @@ return require("packer").startup(function(use)
     -- Swap windows
     use {
         "wesQ3/vim-windowswap",
-        config = function()
-            require("plugins.configs.windowswap")
-        end
+        config = function() require("plugins.configs.windowswap") end
     }
 
     -- Markdown Preview
-    use { "npxbr/glow.nvim", run = ":GlowInstall" }
+    use {"npxbr/glow.nvim", run = ":GlowInstall"}
 
     -- Colorizer
     use {
         "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("plugins.configs.colorizer")
-        end
+        config = function() require("plugins.configs.colorizer") end
     }
 
     -- Neovim in Browser
     use {
         "glacambre/firenvim",
-        run = function()
-            vim.fn["firenvim#install"](1)
-        end,
-        config = function()
-            require("plugins.configs.firenvim")
-        end
+        run = function() vim.fn["firenvim#install"](1) end,
+        config = function() require("plugins.configs.firenvim") end
 
     }
 
@@ -260,59 +213,36 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = {
             "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim",
-            "nvim-telescope/telescope-media-files.nvim", "nvim-telescope/telescope-fzy-native.nvim"
+            "nvim-telescope/telescope-media-files.nvim",
+            "nvim-telescope/telescope-fzy-native.nvim"
         },
-        config = function()
-            require("plugins.configs.telescope")
-        end
+        config = function() require("plugins.configs.telescope") end
     }
 
     -- Intellisense
-    use {
-        "neovim/nvim-lspconfig",
-        config = function()
-            require("plugins.lsp")
-        end
-    }
-    use {
-        "kabouzeid/nvim-lspinstall",
-        config = function()
-            require("plugins.lsp")
-        end
-    }
+    use {"neovim/nvim-lspconfig"}
+    use {"kabouzeid/nvim-lspinstall"}
     use {
         "hrsh7th/nvim-compe",
-        config = function()
-            require("plugins.configs.compe")
-        end
+        config = function() require("plugins.configs.compe") end
     }
     use {
         "glepnir/lspsaga.nvim",
-        config = function()
-            require("plugins.configs.lspsaga")
-        end
+        config = function() require("plugins.configs.lspsaga") end
     }
-    use { "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } }
+    use {"RishabhRD/nvim-lsputils", requires = {"RishabhRD/popfix"}}
     use {
         "simrat39/symbols-outline.nvim",
-        config = function()
-            require("plugins.configs.symbols-outline")
-        end
+        config = function() require("plugins.configs.symbols-outline") end
     }
     use {
         "fatih/vim-go",
-        config = function()
-            require("plugins.configs.vim-go")
-        end,
-        run = function()
-            vim.cmd("GoUpdateBinaries")
-        end
+        config = function() require("plugins.configs.vim-go") end,
+        run = function() vim.cmd("GoUpdateBinaries") end
     }
     use {
         "ray-x/lsp_signature.nvim",
-        config = function()
-            require("plugins.configs.lsp_signature")
-        end
+        config = function() require("plugins.configs.lsp_signature") end
     }
     use "folke/lsp-colors.nvim"
 
@@ -320,9 +250,7 @@ return require("packer").startup(function(use)
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
-        config = function()
-            require("plugins.configs.markdown-preview")
-        end
+        config = function() require("plugins.configs.markdown-preview") end
     }
 
     -- Easily change surrounding elements
@@ -334,51 +262,39 @@ return require("packer").startup(function(use)
     -- Extend increment/decrement functionality
     use {
         "monaqa/dial.nvim",
-        config = function()
-            require("plugins.configs.dial")
-        end
+        config = function() require("plugins.configs.dial") end
     }
 
     -- Better bookmarks
     use {
         "MattesGroeger/vim-bookmarks",
-        config = function()
-            require("plugins.configs.bookmarks")
-        end
+        config = function() require("plugins.configs.bookmarks") end
     }
 
     -- Interact with databases
     use "tpope/vim-dadbod"
     use {
         "kristijanhusak/vim-dadbod-ui",
-        config = function()
-            require("plugins.configs.dadbod")
-        end
+        config = function() require("plugins.configs.dadbod") end
     }
     use "kristijanhusak/vim-dadbod-completion"
 
     -- Jump to lines more interactively
     use {
         "nacro90/numb.nvim",
-        config = function()
-            require("plugins.configs.numb")
-        end
+        config = function() require("plugins.configs.numb") end
     }
 
     -- Distraction free writing (zen mode)
     use {
         "folke/zen-mode.nvim",
-        config = function()
-            require("plugins.configs.zen-mode")
-        end
+        config = function() require("plugins.configs.zen-mode") end
     }
 
     -- The emmet plugin for vim
     use {
         "mattn/emmet-vim",
-        config = function()
-            require("plugins.configs.emmet")
-        end
+        config = function() require("plugins.configs.emmet") end
     }
 
     -- Run selected blocks of code
