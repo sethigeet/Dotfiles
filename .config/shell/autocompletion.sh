@@ -5,7 +5,7 @@ elif [ -n "$ZSH_VERSION" ]; then
 fi
 
 # 'gh' completion
-enable_gh_completion=false
+enable_gh_completion=true
 if "$enable_gh_completion"; then
   eval "$(gh completion -s $shell)"
 fi
@@ -18,7 +18,7 @@ if "$enable_pip_completion"; then
 fi
 
 # 'kitty' completion
-enable_kitty_completion=false
+enable_kitty_completion=true
 if "$enable_kitty_completion"; then
   kitty + complete setup "$shell" | source /dev/stdin
 fi
