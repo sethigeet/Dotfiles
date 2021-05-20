@@ -8,5 +8,6 @@ vim.cmd("luafile " .. CONFIG_PATH .. "/settings.lua")
 require("general")
 require("keymappings")
 require("plugins")
--- NOTE: Make sure that `lsp` is loaded after plugins as it relies on some plugins
+-- NOTE: Make sure that `lsp` is loaded after `plugins` as it relies on some plugins
 require("lsp")
+
