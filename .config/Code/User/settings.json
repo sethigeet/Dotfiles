@@ -19,7 +19,7 @@
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}${separator}${appName}",
 
   //# Workbench
-  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "workbench.colorTheme": "Tokyo Night",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,
   "workbench.editorAssociations": [
