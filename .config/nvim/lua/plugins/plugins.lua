@@ -308,6 +308,12 @@ return require("packer").startup(function(use)
             vim.cmd("GoUpdateBinaries")
         end
     }
+    use {
+        "ray-x/lsp_signature.nvim",
+        config = function()
+            require("plugins.configs.lsp_signature")
+        end
+    }
     use "folke/lsp-colors.nvim"
 
     -- Markdown preview
