@@ -1,0 +1,43 @@
+#!/bin/sh
+# Using the feature of kitty that allows sending all the content to an external
+# program, give a rofi prompt of recent commands allowing the user to copy the
+# output of one. xsel required for this script.
+
+msg() {
+  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Nothing to copy! Run a command first!"
+  exit 1
+}
+
+# Create a tempfile to store the output
+tmpfile=$(mktemp /tmp/kitty-cmd-output.XXXXXX)
+
+trap 'rm "$tmpfile"' 0 1 15
+
+sed -n "w $tmpfile"
+sed -i 's/\x0//g' "$tmpfile"
+
+ps1="$(grep "\S" "$tmpfile" | tail -n 1 | sed 's/^\s*//' | cut -d' ' -f1)"
+
+options="$(grep -F "$ps1" "$tmpfile" | sed '$ d' | tac)"
+
+[ -z "$options" ] && msg
+
+chosen="$(echo "$options" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Copy which command's output?" | sed 's/[^^]/[&]/g; s/\^/\\^/g')"
+
+eps1="$(echo "$ps1" | sed 's/[^^]/[&]/g; s/\^/\\^/g')"
+
+while getopts "hn" o; do
+  case "${o}" in
+    h) printf 'Required arguments for custom use:\n  -n: number of line of your prompt\n  -h: Show this message\n' && exit 1 ;;
+    n)
+      prompt_length="$(($2 - 1))"
+      if [ "$prompt_length" -gt 0 ]; then
+        to_copy="$(awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile" | head -n -"$prompt_length")"
+      else
+        to_copy="$(awk "/^$chosen$/{p=1;print;next} p&&/$eps1/{p=0};p" "$tmpfile")"
+      fi
+      echo "$to_copy" | xsel -ib
+      ;;
+    *) printf 'Invalid option: -%s\n' "$o" && exit 1 ;;
+  esac
+done
