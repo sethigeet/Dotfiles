@@ -142,6 +142,9 @@
   "Lua.telemetry.enable": false,
   "Lua.window.statusBar": false,
 
+  // CPP
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+
   //# Autocompletion
   // Kite
   "kite.showWelcomeNotificationOnStartup": false,
