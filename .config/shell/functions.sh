@@ -32,7 +32,7 @@ function web_search() {
     url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
   fi
 
-  start-lynx "$url"
+  lynx "$url"
 }
 
 ec() {

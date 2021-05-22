@@ -43,7 +43,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|vicd|cs|cau|gst|ga .|ga -u|v *|\? *|\?\? *)"
 
 # Add Custom scripts to the path for easier access in other configs
-PATH="$PATH$(find "$HOME/Scripts" -type d -printf ":%p")"
+PATH="$(find "$HOME/Scripts" -type d -printf ":%p")$PATH"
 
 # Use my custom rofi script for asking for a password for sudo
 export SUDO_ASKPASS="$HOME/Scripts/rofi/rofi-pass"
