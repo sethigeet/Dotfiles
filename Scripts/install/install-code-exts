@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 if [ -z "$1" ]; then
   echo "Please specify an input file!" && exit 1

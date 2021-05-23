@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # This is sp, the command-line Spotify controller. It talks to a running
 # instance of the Spotify Linux client over dbus, providing an interface not

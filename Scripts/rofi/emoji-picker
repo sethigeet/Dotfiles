@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 help_message="\
 Usage: Use rofi to pick emoji because that's what this century is about apparently...

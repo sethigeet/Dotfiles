@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 if [[ "$(declare -p options 2>/dev/null)" != "declare -A"* ]]; then
   # An array of search engines.  You can edit this list to add/remove

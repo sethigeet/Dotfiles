@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 help_message="\
 usage: print-colors [options]
