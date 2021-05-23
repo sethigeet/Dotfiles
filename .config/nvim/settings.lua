@@ -33,7 +33,7 @@ Opts.database.save_location = DATA_PATH .. "/dadbod.db"
 Opts.database.auto_execute = 1
 
 -- LSP
--- EFM Language Server (Multipurpose language server being used mainly for formatiing right now)
+-- EFM Language Server (Multipurpose language server being used mainly for formatting right now)
 Opts.lsp.efm_langserver.autoformat = true
 Opts.lsp.efm_langserver.diagnostics.virtual_text = { spacing = 0, prefix = "" }
 Opts.lsp.efm_langserver.diagnostics.signs = true
