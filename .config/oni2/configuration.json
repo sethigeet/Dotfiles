@@ -1,8 +1,10 @@
 {
+  "ui.zoom": 1.2,
+  "workbench.colorTheme": "Tokyo Night Storm",
   "editor.detectIndentation": true,
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.fontSize": 16,
+  "editor.fontSize": 15,
   "editor.largeFileOptimizations": true,
   "editor.highlightActiveIndentGuide": true,
   "editor.indentSize": 2,
@@ -14,16 +16,19 @@
   "editor.minimap.showSlider": true,
   "editor.renderIndentGuides": true,
   "editor.renderWhitespace": "none",
-  "editor.rulers": [],
+  "editor.rulers": [
+    80
+  ],
   "editor.tabSize": 2,
   "editor.zenMode.hideTabs": false,
   "editor.zenMode.singleFile": false,
   "editor.formatOnSave": true,
   "editor.wordWrap": false,
-
-  "files.exclude": ["_esy", "node_modules", ".git"],
-
-  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "files.exclude": [
+    "_esy",
+    "node_modules",
+    ".git"
+  ],
   "workbench.activityBar.visible": true,
   "workbench.editor.showTabs": true,
   "workbench.editor.enablePreview": true,
@@ -32,20 +37,16 @@
   "workbench.sideBar.visible": true,
   "workbench.statusBar.visible": true,
   "workbench.tree.indent": 2,
-
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
   "terminal.integrated.fontFamily": "MesloLGS NF",
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontSize": 15,
   "terminal.integrated.shell.linux": "zsh",
-
   "vim.useSystemClipboard": true,
   "vim.leader": "<Space>",
-  "vim.highlightedyank.color": "#FFCC66FF",
+  "vim.highlightedyank.color": "#7AA2F7FF",
   "vim.highlightedyank.duration": 500,
-
   "experimental.viml": [
     "nnoremap <silent> i zzi",
     "nnoremap <silent> n nzzzv",
@@ -64,6 +65,5 @@
     "cnoreabbrev Q q",
     "cnoreabbrev Qall qall"
   ],
-
-  "kite.showWelcomeNotificationOnStartup": false
+  "kite.showWelcomeNotificationOnStartup": false,
 }
