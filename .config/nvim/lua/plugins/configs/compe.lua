@@ -31,6 +31,7 @@ require("compe").setup({
     }
 })
 
+-- Dadbod completion
 vim.g["compe.source.vim_dadbod_completion"] = true
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })

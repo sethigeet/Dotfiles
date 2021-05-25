@@ -5,10 +5,10 @@ set -o errexit # exit when command fails
 
 # Check the running os
 is_macos="$(test "$(uname)" = "Darwin" && echo "true" || echo "false")"
-is_ubuntu="$( grep -q 'Ubuntu' /etc/os-release && echo "true" || echo "false")"
+is_ubuntu="$(grep -q 'Ubuntu' /etc/os-release && echo "true" || echo "false")"
 is_arch="$(test -f "/etc/arch-release" && echo "true" || echo "false")"
-windows_name="MINGW64_NT"
-is_windows="$(test "${"$(uname -s)"#*$windows_name}" != "$(uname -s)" && echo "true" || echo "false")"
+os_dets="$(uname -s)"
+is_windows="$(test "${os_dets#*MINGW64_NT}" != "$(uname -s)" && echo "true" || echo "false")"
 
 # Exit if the os is windows
 if [ "$is_windows" = "true" ]; then
@@ -29,6 +29,12 @@ check_is_arch() {
 
 # Check if the os is recognized
 check_is_macos || check_is_ubuntu || check_is_arch || (echo "The OS was not recognized!" && exit 1)
+
+if check_is_macos; then
+  nvim_data_path="$HOME/AppData/Local/nvim"
+else
+  nvim_data_path="$HOME/.local/share/nvim"
+fi
 
 # Install node.js
 install_node() {
@@ -52,7 +58,7 @@ install_node() {
   }
 
   echo "Node.js was not found"
-  printf "%s" "Would you like to install node now [y/n]?: "
+  printf "Would you like to install node now [y/n]?: "
   read -r answer
   # If the answer was yes, then install
   if [ "$answer" != "${answer#[Yy]}" ]; then
@@ -91,7 +97,7 @@ install_pip() {
   }
 
   echo "Pip was not found"
-  printf "%s" "Would you like to install node now [y/n]? "
+  printf "Would you like to install node now [y/n]? "
   read -r answer
   # If the answer was yes, then install
   if [ "$answer" != "${answer#[Yy]}" ]; then
@@ -130,7 +136,7 @@ install_extra() {
     pip install neovim-remote
   }
 
-  printf "%s" "Would you like to install extra dependencies now [y/n]? "
+  printf "Would you like to install extra dependencies now [y/n]? "
   read -r answer
   # If the answer was yes, then install
   if [ "$answer" != "${answer#[Yy]}" ]; then
@@ -146,10 +152,34 @@ install_extra() {
   fi
 }
 
+# Word list
+install_wordlist() {
+  if ! command -v wget >/dev/null 2>&1; then
+    echo "command wget not found!"
+    exit 1
+  fi
+
+  install_wordlist_unix() {
+    url="https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english.txt"
+    wget "$url" -O "$nvim_data_path/wordlist_en.txt" || (echo "Unable to download the wordlist" && exit 1)
+  }
+
+  printf "Would you like to download the english wordlist now [y/n]? "
+  read -r answer
+  # If the answer was yes, then install
+  if [ "$answer" != "${answer#[Yy]}" ]; then
+    echo "Downloading the wordlist now..."
+
+    install_wordlist_unix
+  else
+    echo "Please install the wordlist manually!"
+  fi
+}
+
 # PACKER
 install_packer() {
   install_packer_unix() {
-    git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+    git clone "https://github.com/wbthomason/packer.nvim" "$nvim_data_path/site/pack/packer/start/packer.nvim"
   }
 
   printf "%s" "Would you like to install packer (plugin manager for nvim) now [y/n]? "
@@ -190,7 +220,8 @@ echo "Installing NeoVim"
 # install pip and neovim support
 (which pip3 >/dev/null && echo "Pip is already installed, moving on...") || install_pip
 
-([ -f "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ] && echo "Packer is already installed, moving on...") || install_packer
+[ -d "$nvim_data_path/site/pack/packer/start/packer.nvim" ] && echo "true with var"
+([ -f "$nvim_data_path/wordlist_en.txt" ] && echo "Word list is already present, moving on...") || install_wordlist
 
 install_plugins
 
