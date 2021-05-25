@@ -10,4 +10,4 @@ selected_script="$(echo "$available_scripts" | sort | rofi -theme "$HOME/.config
 [ -z "$selected_script" ] && exit 0
 
 cd "$HOME/Scripts" || exit 1
-rofi-sensible-terminal -e nvim "$HOME/Scripts/$selected_script" &
+$TERMINAL -e nvim "$HOME/Scripts/$selected_script" &

@@ -55,4 +55,4 @@ selected_config_dir="${selected_config_path%/*}"
 
 cd "$selected_config_dir" || exit 1
 
-rofi-sensible-terminal -e nvim "$selected_config_path" &
+$TERMINAL -e nvim "$selected_config_path" &

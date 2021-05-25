@@ -48,10 +48,10 @@ case $chosen in
     fi
     ;;
   "$bmon")
-    rofi-sensible-terminal -e bmon
+    $TERMINAL -e bmon
     ;;
   "$launch_cli")
-    rofi-sensible-terminal -e nmtui
+    $TERMINAL -e nmtui
     ;;
   "$launch")
     nm-connection-editor
