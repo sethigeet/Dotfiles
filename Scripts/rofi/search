@@ -50,9 +50,12 @@ selected_engine_name=$(
   echo "$marked_up_search_engine_names" \
     | sort \
     | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" \
+      -markup \
       -markup-rows \
       -kb-custom-1 Shift+Return \
-      -dmenu -i -p "Choose a search engine"
+      -dmenu -i -p "Choose a search engine" \
+      -mesg "Press <b>Enter</b> to search in <b><i>normal</i></b> mode
+Press <b>Shift + Enter</b> to search in <b><i>incognito</i></b> mode"
 )
 exit_code=$?
 selected_engine_name="${selected_engine_name%% <span*}"
@@ -62,17 +65,20 @@ selected_engine_name="${selected_engine_name%% <span*}"
 # Getting the url of the search engine we chose
 url="${options["${selected_engine_name}"]}"
 
-# Searching the chosen engine
-query=$(echo "" | rofi -dmenu -p "$selected_engine_name")
-
-[ -z "$query" ] && exit 0
-
 # Decide if we want to use incognito or not
 if [ $exit_code == 0 ]; then
   browser_mode=""
+  search_mode_to_display="normal"
 elif [ $exit_code == 10 ]; then
   browser_mode="--incognito"
+  search_mode_to_display="incognito"
 fi
+
+
+# Searching the chosen engine
+query=$(echo "" | rofi -lines 0 -dmenu -markup -mesg "Enter a query to search on <b>$selected_engine_name</b> in <b><i>$search_mode_to_display</i></b> mode")
+
+[ -z "$query" ] && exit 0
 
 # Display search results in web browser
 final_url="'$url$query'"

@@ -71,7 +71,14 @@ download() {
 
 display() {
   available_emojis=$(grep -v '#' "$EMOJI_FILE" | grep -v '^[[:space:]]*$')
-  selected_emoji=$(echo "$available_emojis" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -i -p "Pick an emoji" -kb-custom-1 Ctrl+c)
+  selected_emoji=$(
+    echo "$available_emojis" | rofi \
+      -theme "$HOME/.config/rofi/themes/with-prompt.rasi" \
+      -dmenu -i -p "Pick an emoji" \
+      -kb-custom-1 Ctrl+c \
+      -mesg "Press <b><i>Enter</i></b> to enter the emoji right now
+Press <b><i>Ctrl + c</i></b> to copy the emoji to the clipboard"
+  )
   exit_code=$?
 
   # remove the description of the emoji

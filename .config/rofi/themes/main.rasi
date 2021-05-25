@@ -16,12 +16,26 @@ window {
 }
 
 mainbox {
-  children: [ entry, listview, mode-switcher ];
+  children: [ entry, message, listview, mode-switcher ];
 }
 
 entry {
   expand: false;
   margin: 8px;
+}
+
+message {
+  children: [ textbox ];
+  background-color: @message-background;
+  border-radius: 7px;
+  margin: 0px 0px 5px 0px;
+}
+
+textbox {
+  background-color: @message-background;
+  padding: 7px;
+  font: "Nunito Nerd Font 12";
+  vertical-align: 0.5;
 }
 
 element {

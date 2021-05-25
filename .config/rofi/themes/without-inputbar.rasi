@@ -1,0 +1,5 @@
+@import "main.rasi"
+
+mainbox {
+  children: [ message, listview, mode-switcher ];
+}

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-rofi_command="rofi -theme $HOME/.config/rofi/themes/short.rasi"
-
 # Get info
 IFACE="$(nmcli connection show | awk '/^[^docker]/ && (NR>1) {print $NF}')"
 # IFACE="${IFACE##*: }"
@@ -38,7 +36,19 @@ launch=" Open Connection Editor"
 options="$connected\n$bmon\n$launch_cli\n$launch"
 
 # Main
-chosen="$(echo -e "$options" | $rofi_command -p "$SSID ($LIP): $PIP" -dmenu "$active" "$urgent" -selected-row 1)"
+chosen="$(
+  echo -e "$options" | rofi \
+    -theme "$HOME/.config/rofi/themes/without-inputbar.rasi" \
+    -lines 4 \
+    -markup \
+    -dmenu \
+    -mesg "SSID: <b>$SSID</b> 
+Local IP:  <b>$LIP</b>
+Public IP: <b>$PIP</b>" \
+    "$active" "$urgent" \
+    -selected-row 1
+)"
+
 case $chosen in
   "$connected")
     if [[ $STATUS == *"enable"* ]]; then

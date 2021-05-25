@@ -1,12 +1,13 @@
 * {
-  background-color: #1A1B26;
+  background-color: #1a1b26;
+  background-color-light: #212230;
   background-color-alt: #414868;
-  foreground-color: #FFFFFF;
-  text-color: #FFFFFF;
-  accent-color: #7AA2F7;
+  foreground-color: #ffffff;
+  text-color: #ffffff;
+  accent-color: #7aa2f7;
   hover-color: #414868;
-  urgent-color: #F7768E;
-  window-color: #C0CAF5;
+  urgent-color: #f7768e;
+  window-color: #c0caf5;
 
   selected-normal-foreground: @window-color;
   normal-foreground: @text-color;
@@ -23,7 +24,8 @@
   selected-active-background: @hover-color;
   active-background: @accent-color;
 
-  with-prompt-input: #212230;
+  with-prompt-input: @background-color-light;
   with-prompt-prompt: #2f324d;
-}
 
+  message-background: @background-color-light;
+}

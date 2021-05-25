@@ -1,6 +1,0 @@
-configuration {
-  lines: 4;
-}
-
-@import "with-prompt.rasi"
-
