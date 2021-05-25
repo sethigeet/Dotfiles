@@ -52,7 +52,7 @@ selected_engine_name=$(
     | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" \
       -markup-rows \
       -kb-custom-1 Shift+Return \
-      -dmenu -i -p 'Choose a search engine:'
+      -dmenu -i -p "Choose a search engine"
 )
 exit_code=$?
 selected_engine_name="${selected_engine_name%% <span*}"
@@ -63,7 +63,7 @@ selected_engine_name="${selected_engine_name%% <span*}"
 url="${options["${selected_engine_name}"]}"
 
 # Searching the chosen engine
-query=$(echo "" | rofi -dmenu -p "$selected_engine_name:")
+query=$(echo "" | rofi -dmenu -p "$selected_engine_name")
 
 [ -z "$query" ] && exit 0
 

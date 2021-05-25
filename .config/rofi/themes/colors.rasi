@@ -22,5 +22,8 @@
   active-foreground: @text-color;
   selected-active-background: @hover-color;
   active-background: @accent-color;
+
+  with-prompt-input: #212230;
+  with-prompt-prompt: #2f324d;
 }
 

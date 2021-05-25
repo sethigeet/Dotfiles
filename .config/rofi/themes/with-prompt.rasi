@@ -7,13 +7,21 @@ mainbox {
 inputbar {
   children: [ prompt, entry ];
   vertical-align: 0;
+  background-color: @with-prompt-input;
+  border-radius: 6px 6px 6px 6px;
+  margin: 0px 0px 5px 0px;
 }
 
 prompt {
-  margin: 2px;
+  margin: 2px 0px 2px 2px;
+  background-color: @with-prompt-prompt;
+  padding: 5px 9px 5px 9px;
+  border-radius: 6px 6px 6px 6px;
 }
 
 entry {
   expand: true;
-  margin: 2px;
+  margin: 2px 2px 2px 0px;
+  padding: 5px 9px 5px 9px;
+  background-color: @with-prompt-input;
 }

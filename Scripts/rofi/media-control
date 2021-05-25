@@ -26,9 +26,7 @@ next="怜"
 # Variable passed to rofi
 options="$previous|$playpuase|$next"
 
-selected="$(echo "$options" | rofi -markup -selected-row 1 -sep "|" \
-  -dmenu -i -p "$current_info" \
-  -theme "$HOME/.config/rofi/themes/media-control.rasi")"
+selected="$(echo "$options" | rofi -markup -selected-row 1 -sep "|" -dmenu -i -p "$current_info" -theme "$HOME/.config/rofi/themes/media-control.rasi")"
 
 case "$selected" in
   "$playpuase") playerctl play-pause ;;

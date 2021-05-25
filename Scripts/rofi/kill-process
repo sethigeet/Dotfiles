@@ -2,7 +2,7 @@
 
 marked_up_processes=$(ps --user "$(id -u)" -ww --format '%a <span font_size="smaller" font_weight="light">(Running for: %x, Process ID: %p)</span>' --no-headers | sed -r 's/\s+/ /g')
 
-selected_process=$(echo "$marked_up_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -markup-rows -dmenu -no-custom -i -p "Kill a process:")
+selected_process=$(echo "$marked_up_processes" | rofi -theme "$HOME/.config/rofi/themes/wide.rasi" -markup-rows -dmenu -no-custom -i -p "Kill a process")
 
 [ -z "$selected_process" ] && exit 0
 

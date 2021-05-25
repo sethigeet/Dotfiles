@@ -1,6 +1,6 @@
 configuration {
   show-icons: true;
-  sidebar-mode: true;
+  sidebar-mode: false;
   lines: 10;
 }
 
@@ -26,6 +26,7 @@ entry {
 
 element {
   padding: 8px;
+  border-radius: 7px 0px 0px 7px;
 }
 
 element normal.normal {
@@ -77,10 +78,12 @@ element alternate.active {
 
 element-icon {
   size: 2ch;
+  border-radius: 7px;
 }
 
 button {
   padding: 8px;
+  border-radius: 7px;
 }
 
 button selected {
