@@ -15,7 +15,7 @@ def spotify():
         foreground=colors["widget"]["color"]["text"],
         background=colors["widget"]["bg"],
         mouse_callbacks={
-            'Button1': lambda: qtile.cmd_spawn(scripts_dir + "rofi/spotify-control")
+            'Button1': lambda: qtile.cmd_spawn(scripts_dir + "rofi/media-control")
         }
     )
 

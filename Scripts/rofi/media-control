@@ -1,0 +1,37 @@
+#!/bin/sh
+
+error_message() {
+  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " $1"
+  exit 1
+}
+
+if command -v playerctl >/dev/nul 2>&1; then
+  error_message "playerctl is not installed!"
+fi
+
+# Check if spotify is running
+if ! playerctl metadata; then
+  error_message "No player is running!"
+fi
+
+# Find the current playing song
+current_info="$(playerctl metadata --format "{{ uc(playerName) }}
+{{ title }} by {{ artist }}")"
+
+# Options (using Feather fonts)
+previous="玲"
+playpuase="懶"
+next="怜"
+
+# Variable passed to rofi
+options="$previous|$playpuase|$next"
+
+selected="$(echo "$options" | rofi -markup -selected-row 1 -sep "|" \
+  -dmenu -i -p "$current_info" \
+  -theme "$HOME/.config/rofi/themes/media-control.rasi")"
+
+case "$selected" in
+  "$playpuase") playerctl play-pause ;;
+  "$previous") playerctl previous ;;
+  "$next") playerctl next ;;
+esac

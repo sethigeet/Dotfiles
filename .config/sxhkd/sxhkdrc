@@ -33,11 +33,11 @@ shift + XF86Audio{Raise,Lower}Volume
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioPlay
-	sp playpause
+	playerctl play-pause
 XF86AudioPrev
-	sp prev
+	playerctl previous
 XF86AudioNext
-	sp next
+	playerctl next
 
 # Mouse Clicks using keyboard!
 Menu
