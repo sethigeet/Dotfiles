@@ -213,7 +213,7 @@ return require("packer").startup(function(use)
     }
 
     -- Intuitive buffer closing
-    use "moll/vim-bbye"
+    use "famiu/bufdelete.nvim"
 
     -- Undo time travel
     use "mbbill/undotree"

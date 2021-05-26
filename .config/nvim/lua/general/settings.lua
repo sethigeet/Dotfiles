@@ -43,6 +43,7 @@ vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.o.title = true
 vim.o.titlestring = "%F - nvim"
 -- vim.cmd("set guifont=FiraCode Nerd Font:15")
+vim.cmd("set viminfo='20,<1000,s1000") -- Increase the max limit of the buffers so that we don't loose anything we yanked/deleted which is too large
 
 if vim.fn.has("persistent_undo") == 1 then
     vim.o.undodir = DATA_PATH .. "/undodir"

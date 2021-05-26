@@ -118,7 +118,7 @@ local mappings = {
     -- b is for Buffer
     b = {
         name = "Buffer",
-        d = { ":bdelete<CR>", "delete buffer" },
+        d = { ":Bdelete<CR>", "delete buffer" },
         f = { ":bfirst<CR>", "first buffer" },
         l = { ":blast<CR>", "last buffer" },
         n = { ":bnext<CR>", "next buffer" },
