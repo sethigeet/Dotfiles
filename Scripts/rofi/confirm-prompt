@@ -1,0 +1,94 @@
+#!/bin/sh
+
+# Default Options
+yes_text=""
+no_text=""
+query="Are you sure?"
+
+help_message="\
+usage: rofi-prompt -y <command> [options]
+  options:
+    -h, --help                     Shows this help message
+    -o, --yes-text <text>          The text to show for the yes option
+    -c, --no-text <text>           The text to show for the no option
+    -y, --yes-command <command>    The command to run when the yes option is selected
+    -n, --no-command <command>     The command to run when the no option is selected
+    -p, --prompt <text>            The prompt to show as a question
+"
+
+# Parse the args
+if [ $# -eq 0 ]; then
+  echo "$help_message"
+  exit 1
+fi
+
+while test $# -gt 0; do
+  case "$1" in
+    -o | --yes-text)
+      shift
+      if [ -n "$1" ]; then
+        yes_text="$1"
+      else
+        echo "$help_message" && exit 1
+      fi
+      shift
+      ;;
+    -c | --no-text)
+      shift
+      if [ -n "$1" ]; then
+        no_text="$1"
+      else
+        echo "$help_message" && exit 1
+      fi
+      shift
+      ;;
+    -y | --yes-command)
+      shift
+      if [ -n "$1" ]; then
+        yes_command="$1"
+      else
+        echo "$help_message" && exit 1
+      fi
+      shift
+      ;;
+    -n | --no-command)
+      shift
+      if [ -n "$1" ]; then
+        no_command="$1"
+      else
+        echo "$help_message" && exit 1
+      fi
+      shift
+      ;;
+    -q | --query)
+      shift
+      if [ -n "$1" ]; then
+        query="$1"
+      else
+        echo "$help_message" && exit 1
+      fi
+      shift
+      ;;
+    *)
+      echo "$help_message" && exit 1
+      ;;
+  esac
+done
+
+options="$no_text\n$yes_text"
+
+chosen="$(
+  echo "$options" | rofi \
+    -theme "$HOME/.config/rofi/themes/confirm-prompt.rasi" \
+    -dmenu \
+    -p "$query"
+)"
+
+case $chosen in
+  "$yes_text")
+    eval "$yes_command"
+    ;;
+  "$no_text")
+    eval "$no_command"
+    ;;
+esac

@@ -1,16 +1,8 @@
-configuration {
-  font: "Nunito Nerd Font 12";
-  show-icons: false;
-  sidebar-mode: false;
-}
-
+/* NOTE: Make sure that confirm-prompt.rasi is imported first as it contains a configuration block which must be at the top of the file */
+@import "confirm-prompt.rasi"
 @import "colors.rasi"
 
 window {
-  transparency: "real";
-  background-color: @background-color;
-  text-color: @foreground-color;
-  border-radius: 10px;
   height: 17.5%;
   width: 25%;
   location: north;
@@ -18,74 +10,22 @@ window {
   y-offset: 35px;
 }
 
-prompt {
-  padding: 1.5% 1% 1.5% 1%;
-  background-color: @background-color-alt;
-  text-color: @foreground-color;
+mainbox {
+  children: [ message, listview ];
 }
 
-inputbar {
-  children: [ prompt ];
+message {
+  children: [ textbox ];
   background-color: @background-color-alt;
-  text-color: @foreground-color;
   expand: false;
   position: north;
 }
 
+textbox {
+  padding: 1.5% 1% 1.5% 1%;
+  background-color: @background-color-alt;
+}
+
 listview {
-  background-color: @background-color;
   margin: 0.7% 3.5% 0% 3.5%;
-  spacing: 2%;
-  cycle: true;
-  dynamic: true;
-  layout: horizontal;
-}
-
-mainbox {
-  background-color: @background-color;
-  children: [ inputbar, listview ];
-  padding: 0% 0% 1% 0%;
-}
-
-element {
-  background-color: @background-color-alt;
-  text-color: @foreground-color;
-  orientation: horizontal;
-  border-radius: 100%;
-}
-
-element-text {
-  font: "Nunito Nerd Font 20";
-  expand: true;
-  horizontal-align: 0.5;
-  vertical-align: 0.5;
-  margin: 2.7% 1.6% 3.2% 1.6%;
-}
-
-element normal.urgent,
-element alternate.urgent {
-  background-color: @urgent-color;
-  text-color: @foreground-color;
-  border-radius: 0.2%;
-}
-
-element normal.active,
-element alternate.active {
-  background-color: @background-color-alt;
-  text-color: @foreground-color;
-}
-
-element selected {
-  background-color: @accent-color;
-  text-color: @foreground-color;
-}
-
-element selected.urgent {
-  background-color: @urgent-color;
-  text-color: @foreground-color;
-}
-
-element selected.active {
-  background-color: @background-color-alt;
-  color: @foreground-color;
 }
