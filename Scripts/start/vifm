@@ -1,3 +1,7 @@
 #!/bin/sh
 
-$TERMINAL -e zsh -c "source <(awk 'NR!=5' $XDG_CONFIG_HOME/zsh/.zshrc); ~/.config/vifm/scripts/vifmrun"
+if [ -t 0 ]; then
+  "$HOME/.config/vifm/scripts/vifmrun"
+else
+  $TERMINAL -e zsh -c "source <(awk 'NR!=5' $XDG_CONFIG_HOME/zsh/.zshrc); ~/.config/vifm/scripts/vifmrun"
+fi
