@@ -17,7 +17,6 @@ fi
 # Find the current playing song
 current_info="$(playerctl metadata --format "<span font_size='small' font_weight='light' style='italic'>{{ uc(playerName) }}</span>
 <span font_size='larger' font_weight='bold'>{{ title }}</span> <span font_size='smaller' style='italic'>by {{ artist }}</span>")"
-echo "$current_info"
 
 # Options (using Feather fonts)
 previous="玲"
