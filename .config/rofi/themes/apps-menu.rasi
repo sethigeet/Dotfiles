@@ -1,0 +1,112 @@
+configuration {
+  font: "Nunito Nerd Font 10";
+  show-icons: true;
+  display-drun: "";
+  drun-display-format: "{name}";
+  lines: 10;
+}
+
+@import "colors.rasi"
+
+window {
+  width: 30%;
+  location: northwest;
+  x-offset: 10px;
+  y-offset: 40px;
+  padding: 32px;
+  background-color: @normal-background;
+  children: [ listview, inputbar ];
+}
+
+prompt {
+  padding: 0 0 0 8px;
+}
+
+entry {
+  expand: true;
+  horizontal-align: 0;
+  placeholder: "Search";
+  padding: 0 0 0 16px;
+}
+
+inputbar {
+  expand: false;
+  border: 2px;
+  border-radius: 20px;
+  border-color: @accent-color;
+  padding: 8px;
+  margin: 16px 0 0 0;
+}
+
+listview {
+  cycle: false;
+  layout: vertical;
+  dynamic: true;
+  columns: 5;
+  lines: 4;
+}
+
+element {
+  orientation: vertical;
+  spacing: 4px;
+  border-radius: 0%;
+  padding: 8px 0;
+  margin: 4px;
+}
+
+element-icon {
+  size: 40px;
+}
+
+element-text {
+  expand: true;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  margin: 0 4px;
+}
+
+element normal.normal {
+  background-color: @normal-background;
+  text-color: @normal-foreground;
+}
+
+element normal.urgent {
+  background-color: @urgent-background;
+  text-color: @urgent-foreground;
+}
+
+element normal.active {
+  background-color: @active-background;
+  text-color: @active-foreground;
+}
+
+element selected.normal {
+  background-color: @selected-normal-background;
+  text-color: @selected-normal-foreground;
+  border-radius: 8px;
+}
+
+element selected.urgent {
+  background-color: @selected-urgent-background;
+  text-color: @selected-urgent-foreground;
+}
+
+element selected.active {
+  background-color: @selected-active-background;
+  text-color: @selected-active-foreground;
+}
+
+element alternate.normal {
+  background-color: @normal-background;
+  text-color: @normal-foreground;
+}
+
+element alternate.urgent {
+  background-color: @urgent-background;
+  text-color: @urgent-foreground;
+}
+
+element alternate.active {
+  background-color: @active-background;
+  text-color: @active-foreground;
+}
