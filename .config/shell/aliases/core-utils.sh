@@ -46,7 +46,7 @@ alias mkd="mkdir -pv"
 alias hsize="du -hs"
 
 # make a file executable
-alias mkexe="chmod +x"
+alias chmox="chmod +x"
 
 # use the package manager
 alias pac="sudo pacman"

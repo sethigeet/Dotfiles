@@ -28,3 +28,8 @@ function web_search() {
 ec() {
   $EDITOR "$(which "$1")"
 }
+
+mkexe() {
+  touch "$1"
+  chmod +x "$1"
+}
