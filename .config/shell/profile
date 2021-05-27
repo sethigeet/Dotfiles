@@ -35,6 +35,9 @@ export PYTHONSTARTUP="$XDG_DATA_HOME/python/startup"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node/node_repl_history"
 # export VIMINIT='if !has("nvim") | source "$XDG_CONFIG_HOME/vim/vimrc" | endif'
 
+# Set the QT Themes
+export QT_QPA_PLATFORMTHEME="gtk2"
+
 # Ignore some commands from history
 export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|vicd|cs|cau|gst|ga .|ga -u|v *|\? *|\?\? *)"
 
