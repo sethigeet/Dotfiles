@@ -64,16 +64,17 @@ while test $# -gt 0; do
         from_image "$1"
         exit 0
       else
-        echo "No image specified"
+        echo "No image specified" >&2
         exit 1
       fi
       shift
       ;;
     *)
-      echo "$help_message"
+      echo "$help_message" >&2
       exit 1
       ;;
   esac
 done
 
-echo "$help_message" && exit 1
+echo "$help_message" >&2
+exit 1

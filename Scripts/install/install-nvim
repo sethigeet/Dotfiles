@@ -155,7 +155,7 @@ install_extra() {
 # Word list
 install_wordlist() {
   if ! command -v wget >/dev/null 2>&1; then
-    echo "command wget not found!"
+    echo "command wget not found!" >&2
     exit 1
   fi
 

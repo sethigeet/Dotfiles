@@ -133,10 +133,11 @@ while test $# -gt 0; do
         elif [ "$1" == "10" ]; then
           BITS="10"
         else
-          echo "Invalid type specified!" && exit 1
+          echo "Invalid type specified!" >&2
+          exit 1
         fi
       else
-        echo "No type specified!"
+        echo "No type specified!" >&2
         exit 1
       fi
       shift
@@ -151,10 +152,11 @@ while test $# -gt 0; do
         elif [ "$1" == "table-slim" ]; then
           MODE="table-slim"
         else
-          echo "Invalid mode specified!" && exit 1
+          echo "Invalid mode specified!" >&2
+          exit 1
         fi
       else
-        echo "No mode specified!"
+        echo "No mode specified!" >&2
         exit 1
       fi
       shift
@@ -167,10 +169,11 @@ while test $# -gt 0; do
         elif [ "$1" == "human" ]; then
           NAME="human"
         else
-          echo "Invalid name type specified!" && exit 1
+          echo "Invalid name type specified!" >&2
+          exit 1
         fi
       else
-        echo "No name type specified!"
+        echo "No name type specified!" >&2
         exit 1
       fi
       shift
@@ -180,13 +183,13 @@ while test $# -gt 0; do
       if test $# -gt 0; then
         TEXT="$1"
       else
-        echo "No text specified!"
+        echo "No text specified!" >&2
         exit 1
       fi
       shift
       ;;
     *)
-      echo "$help_message"
+      echo "$help_message" >&2
       exit 1
       ;;
   esac
@@ -233,4 +236,5 @@ case "$MODE" in
     ;;
 esac
 
-echo "$help_message" && exit 1
+echo "$help_message" >&2
+exit 1
