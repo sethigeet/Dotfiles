@@ -41,7 +41,7 @@ URLS=(
 )
 
 notify() {
-  if [ "$(command -v notify-send)" ]; then
+  if [[ "$(command -v notify-send)" ]]; then
     notify-send "Emoji Picker" "$2"
   fi
 }
@@ -84,7 +84,7 @@ Press <b><i>Ctrl + c</i></b> to copy the emoji to the clipboard"
   # remove the description of the emoji
   selected_emoji="${selected_emoji%% *}"
 
-  if [ $exit_code == 0 ]; then
+  if [[ $exit_code == 0 ]]; then
     sleep 0.1 # Delay pasting so the text-entry can come active
     xdotool type --clearmodifiers "$selected_emoji"
   elif [ $exit_code == 10 ]; then
@@ -108,7 +108,7 @@ elif [[ $1 =~ -h|--help ]]; then
 fi
 
 # Download all emoji if they don't exist yet
-if [ ! -f "$EMOJI_FILE" ]; then
+if [[ ! -f $EMOJI_FILE ]]; then
   download
 fi
 

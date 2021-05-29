@@ -36,7 +36,7 @@ for config in "${!options[@]}"; do
 
   marked_up_config_name="$config_name <span font_size='smaller' font_weight='light' style='italic'>(${config_path//\/home\/$USER/\~})</span>"
 
-  if [ -z "$marked_up_config_names" ]; then
+  if [[ -z "$marked_up_config_names" ]]; then
     marked_up_config_names="$marked_up_config_name"
   else
     marked_up_config_names="$marked_up_config_names
@@ -47,7 +47,7 @@ done
 selected_config_name=$(echo "$marked_up_config_names" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -markup-rows -dmenu -i -p "Edit config")
 selected_config_name="${selected_config_name%% <span*}"
 
-[ -z "$selected_config_name" ] && exit 0
+[[ -z "$selected_config_name" ]] && exit 0
 
 # What to do when/if we choose a file to edit.
 selected_config_path=$(printf '%s\n' "${options["$selected_config_name"]}")
