@@ -20,7 +20,7 @@ vim.g.dashboard_custom_section = {
 -- }
 -- find_history = "SPC f h",
 
-require("general.functions").define_augroups({
+require("general.functions").DefineAugroups({
     dashboard = {
         { "FileType", "dashboard", "set showtabline=0" },
         { "WinLeave", "<buffer>", "set showtabline=2" },

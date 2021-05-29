@@ -46,7 +46,7 @@ vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true
 vim.g.mapleader = " "
 
 -- Hide the status line for the which-key window
-require("general.functions").define_augroups({
+require("general.functions").DefineAugroups({
     which_key = {
         { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
         { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" }

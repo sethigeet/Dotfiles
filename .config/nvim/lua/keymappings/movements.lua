@@ -20,3 +20,8 @@ vim.api.nvim_set_keymap("n", "<M-K>", ":resize -2<CR>", { noremap = true, silent
 vim.api.nvim_set_keymap("n", "<M-J>", ":resize +2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-H>", ":vertical resize -2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-L>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'",
+                        { silent = true, noremap = true, expr = true })
+vim.api.nvim_set_keymap("v", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'",
+                        { silent = true, noremap = true, expr = true })

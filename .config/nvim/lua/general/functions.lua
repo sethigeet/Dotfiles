@@ -1,4 +1,4 @@
-local function define_augroups(definitions)
+local function DefineAugroups(definitions)
     -- Create autocommand groups based on the passed definitions
     --
     -- The key will be the name of the group, and each definition
@@ -24,7 +24,7 @@ local function t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local check_back_space = function()
+local function check_back_space()
     local col = vim.fn.col(".") - 1
     if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
         return true
@@ -33,11 +33,7 @@ local check_back_space = function()
     end
 end
 
-function _G.smart_tab()
-    return vim.fn.pumvisible() == 1 and t("<C-n>") or t("<Tab>")
-end
-
-function _G.tab_complete()
+function _G.TabComplete()
     if vim.fn.pumvisible() == 1 then
         return t("<C-n>")
     elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
@@ -50,7 +46,7 @@ function _G.tab_complete()
     end
 end
 
-function _G.s_tab_complete()
+function _G.STabComplete()
     if vim.fn.pumvisible() == 1 then
         return t("<C-p>")
     elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
@@ -90,4 +86,4 @@ function _G.ToggleQFList(global)
     end
 end
 
-return { define_augroups = define_augroups }
+return { DefineAugroups = DefineAugroups }

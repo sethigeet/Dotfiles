@@ -1,8 +1,8 @@
 -- Post install command: nvim --headless "+call firenvim#install(0) | q"
 --
-local define_augroups = require("general.functions").define_augroups
+local DefineAugroups = require("general.functions").DefineAugroups
 
-define_augroups({
+DefineAugroups({
     FireNVIM = {
         { "BufEnter", "github.com_*.txt", "set filetype=markdown" },
         { "BufEnter", "*graphql*.txt", "set filetype=graphql" }

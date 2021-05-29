@@ -34,9 +34,9 @@ require("compe").setup({
 -- Dadbod completion
 vim.g["compe.source.vim_dadbod_completion"] = true
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.TabComplete()", { expr = true })
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.TabComplete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.STabComplete()", { expr = true })
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.STabComplete()", { expr = true })
 vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", { expr = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", { expr = true, silent = true })

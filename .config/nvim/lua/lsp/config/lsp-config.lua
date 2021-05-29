@@ -90,6 +90,6 @@ vim.api.nvim_set_keymap("n", "<C-b>",
                         { noremap = true, silent = true })
 
 -- Automatically populate the location list with the lsp diagnostics
-require("general.functions").define_augroups({
+require("general.functions").DefineAugroups({
     lsp = { { "BufWrite,BufEnter,InsertLeave", "*", "LspPopulateLocationList" } }
 })

@@ -1,6 +1,6 @@
-local define_augroups = require("general.functions").define_augroups
+local DefineAugroups = require("general.functions").DefineAugroups
 
-define_augroups({
+DefineAugroups({
     general_settings = {
         {
             "TextYankPost", "*",
