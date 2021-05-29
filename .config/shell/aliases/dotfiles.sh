@@ -1,6 +1,6 @@
 # bare repo for dotfiles
 if [ -d "$HOME/Dotfiles" ]; then
-  alias config="git --git-dir=$HOME/Dotfiles --work-tree=$HOME"
+  alias config='git --git-dir=$HOME/Dotfiles --work-tree=$HOME'
   alias c="config"
 
   alias cs="config status"
