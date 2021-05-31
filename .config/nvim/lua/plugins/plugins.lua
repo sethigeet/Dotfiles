@@ -67,7 +67,7 @@ return require("packer").startup(function(use)
 
     -- Have the file system follow you around
     use {
-        "airblade/vim-rooter",
+        "ahmedkhalf/lsp-rooter.nvim",
         config = function()
             require("plugins.configs.rooter")
         end
@@ -145,9 +145,9 @@ return require("packer").startup(function(use)
 
     -- Terminal
     use {
-        "voldikss/vim-floaterm",
+        "numtostr/FTerm.nvim",
         config = function()
-            require("plugins.configs.floaterm")
+            require("plugins.configs.fterm")
         end
     }
 
@@ -357,9 +357,9 @@ return require("packer").startup(function(use)
 
     -- Distraction free writing (zen mode)
     use {
-        "folke/zen-mode.nvim",
+        "Pocco81/TrueZen.nvim",
         config = function()
-            require("plugins.configs.zen-mode")
+            require("plugins.configs.truezen")
         end
     }
 
@@ -378,6 +378,21 @@ return require("packer").startup(function(use)
         config = function()
             require"sniprun".initial_setup()
             require("plugins.configs.sniprun")
+        end
+    }
+
+    use {
+        "andymass/vim-matchup",
+        config = function()
+            require("plugins.configs.matchup")
+        end
+    }
+
+    use {
+        "windwp/nvim-spectre",
+        requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
+        config = function()
+            require("plugins.configs.spectre")
         end
     }
 end)

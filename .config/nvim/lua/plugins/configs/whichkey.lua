@@ -98,7 +98,6 @@ local mappings = {
     n = { ":let @/ = \"\"<CR>", "no highlight" },
     u = { ":UndotreeToggle<CR>", "undo tree" },
     v = { "<C-W>v", "split right" },
-    z = { ":ZenMode<CR>", "zen mode" },
 
     -- a is for Action
     a = {
@@ -297,25 +296,40 @@ local mappings = {
         z = { ":Telescope current_buffer_fuzzy_find<CR>", "buf fuz find" }
     },
 
-    -- S is for Session
+    -- S is for Search and replace
     S = {
-        name = "Session",
-        s = { ":SessionSave<CR>", "save session" },
-        l = { ":SessionLoad<CR>", "load Session" }
+        name = "Search and Replace",
+        o = { ":lua require('spectre').open()<CR>", "open search" },
+        v = { ":lua require('spectre').open_visual()<CR>", "open visual" },
+        f = { ":lua require('spectre').open_file_search()<CR>", "open file search" },
+        a = {
+            name = "Actions",
+            q = "Send to quickfix list",
+            c = "Input replace vim command",
+            r = "Replace all",
+            o = "Show options",
+            v = "Change view mode"
+        }
     },
 
     -- t is for Terminal
     t = {
         name = "Terminal",
-        [";"] = { ":FloatermNew --wintype=normal --height=6<CR>", "terminal" },
-        b = { ":FloatermNew bpytop<CR>", "bpytop" },
-        g = { ":FloatermNew lazygit<CR>", "git" },
-        d = { ":FloatermNew lazydocker<CR>", "docker" },
-        n = { ":FloatermNew node<CR>", "node" },
-        p = { ":FloatermNew python<CR>", "python" },
-        m = { ":FloatermNew lazynpm<CR>", "npm" },
-        t = { ":FloatermToggle<CR>", "toggle" },
-        v = { ":FloatermNew vifm<CR>", "vifm" }
+        d = { ":call v:lua.__fterm_toggle('dropdown')<CR>", "dropdown" },
+        g = { ":call v:lua.__fterm_toggle('lazygit')<CR>", "git" },
+        n = { ":call v:lua.__fterm_toggle('node')<CR>", "node" },
+        p = { ":call v:lua.__fterm_toggle('python')<CR>", "python" },
+        t = { ":call v:lua.__fterm_toggle()<CR>", "toggle" }
+    },
+
+    z = {
+        name = "Zen",
+        f = { "<cmd>TZFocus<cr>", "toggle focus mode" },
+        l = { "<cmd>TZLeft<cr>", "toggle left ui" },
+        m = { "<cmd>TZMinimalist<cr>", "toggle minimalist mode" },
+        s = { "<cmd>TZBottom<cr>", "toggle bottom ui" },
+        t = { "<cmd>TZTop<cr>", "toggle top ui" },
+        z = { "<cmd>TZAtaraxis<cr>", "toggle full zen mode" }
     }
 }
 

@@ -1,4 +1,5 @@
 local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
 
 -- Global remapping
 require("telescope").setup({
@@ -38,26 +39,16 @@ require("telescope").setup({
         buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
         mappings = {
             i = {
+                ["<C-c>"] = actions.close,
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
-                -- To disable a keymap, put [map] = false
-                -- So, to not map "<C-n>", just put
-                -- ["<C-x>"] = false,
-
-                -- Otherwise, just set the mapping to the function that you want it to be.
-                -- ["<C-i>"] = actions.select_horizontal,
-
-                -- Add up multiple actions
+                ["<c-t>"] = trouble.open_with_trouble,
                 ["<CR>"] = actions.select_default + actions.center
-
-                -- You can perform as many actions in a row as you like
-                -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
             },
             n = {
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
                 ["<esc>"] = actions.close
-                -- ["<C-i>"] = my_cool_custom_action,
             }
         }
     },

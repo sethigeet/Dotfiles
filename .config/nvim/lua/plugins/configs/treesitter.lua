@@ -5,10 +5,12 @@ require("nvim-treesitter.configs").setup({
         enable = Opts.treesitter.highlight.enable -- false will disable the whole extension
     },
     rainbow = { enable = Opts.treesitter.rainbow.enable }, -- Rainbow brackets
+    context_commentstring = { enable = true }, -- Comment strings
     -- refactor = {highlight_definitions = {enable = true}}, -- Highlight all the occurrences of variables under the cursor
     autotag = { enable = Opts.treesitter.autotag.enable },
     indent = { enable = Opts.treesitter.indent.enable },
-    autopairs = { enable = Opts.treesitter.autopairs.enable }
+    autopairs = { enable = Opts.treesitter.autopairs.enable },
+    matchup = { enable = true } -- Extend vim's '%' functionality
 })
 
 -- vim.cmd("set foldmethod=expr")
