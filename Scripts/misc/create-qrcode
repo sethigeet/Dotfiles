@@ -27,4 +27,4 @@ qrcode_file="/tmp/qrcode.png"
 qrencode -m 10 -s 20 -o "$qrcode_file" "$text_to_encode"
 
 # display the image
-feh "$qrcode_file"
+exec feh "$qrcode_file"

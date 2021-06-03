@@ -9,4 +9,4 @@ selected_script="$(echo "$available_scripts" | sort | rofi -theme "$HOME/.config
 # Check if the user selected any config
 [ -z "$selected_script" ] && exit 0
 
-sh -c "$HOME/Scripts/$selected_script"
+exec sh -c "$HOME/Scripts/$selected_script"
