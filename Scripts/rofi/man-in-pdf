@@ -8,7 +8,7 @@ selected_man_page="$(man -k . | rofi -theme "$HOME/.config/rofi/themes/with-prom
 [ -z "$selected_man_page" ] && exit 0
 
 # take out only the name of the man page from the output
-selected_man_page="$(echo "$selected_man_page" | awk '{print $1}')"
+selected_man_page="${selected_man_page%% *}"
 
 # convert the man page into a pdf and display the pdf with zathura
 man -Tpdf "$selected_man_page" | zathura -
