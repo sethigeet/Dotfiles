@@ -1,16 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 error_message() {
   rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " $1"
   exit 1
 }
 
-if command -v playerctl >/dev/nul 2>&1; then
+if ! command -v playerctl >/dev/null 2>&1; then
   error_message "playerctl is not installed!"
 fi
 
 # Check if spotify is running
-if ! playerctl metadata; then
+if ! playerctl metadata >/dev/null 2>&1; then
   error_message "No player is running!"
 fi
 
