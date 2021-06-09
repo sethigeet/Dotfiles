@@ -1,0 +1,74 @@
+#!/bin/sh
+
+vmsList() {
+  vboxmanage list vms | awk -F '"' '{print $2}'
+}
+
+startVM() {
+  if [ "$2" = "headless" ]; then
+    vboxmanage startvm "$1" --type headless
+  else
+    vboxmanage startvm "$1"
+  fi
+}
+
+poweroffVM() {
+  vboxmanage controlvm "$1" acpipowerbutton --type headless
+}
+
+cloneVM() {
+  vboxmanage clonevm "$1" --mode machine --register --options keepallmacs
+}
+
+deleteVM() {
+  confirm-prompt -q "Delete $1?" -y "vboxmanage unregistervm \"$1\" --delete"
+}
+
+options="Start machine\nPower-off machine\nClone machine\nDelete machine"
+
+while true; do
+  # select machine to control
+  vm=$(
+    vmsList | rofi \
+      -theme "$HOME/.config/rofi/themes/with-prompt.rasi" \
+      -dmenu -i -p "Select a machine"
+  )
+  [ -z "$vm" ] && exit 0
+
+  action=$(
+    echo "$options" | rofi \
+      -theme "$HOME/.config/rofi/themes/with-prompt.rasi" \
+      -dmenu -i -p "Select an action" \
+      -kb-custom-1 Shift+Return \
+      -mesg "Press <b><i>Enter</i></b> to run the vm normally
+Press <b><i>Shift + Enter</i></b> to run the vm in headless mode"
+  )
+  retval=$?
+  [ -z "$action" ] && exit 0
+
+  case "$action" in
+    "Start machine")
+      if [ "$retval" = 10 ]; then
+        startVM "$vm" "headless"
+      else
+        startVM "$vm"
+      fi
+      exit 0
+      ;;
+    "Power-off machine")
+      poweroffVM "$vm"
+      exit 0
+      ;;
+    "Clone machine")
+      cloneVM "$vm"
+      exit 0
+      ;;
+    "Delete machine")
+      deleteVM "$vm"
+      exit 0
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+done
