@@ -13,4 +13,4 @@ selected_process_id="${selected_process_id##*: }"
 selected_process_name="${selected_process%% <span*}"
 
 # Confirm that the user wants to kill the process
-confirm-prompt -q "Kill $selected_process_name ($selected_process_id)?" -y "kill -9 $selected_process_id; echo \"Process $selected_process has been killed.\""
+confirm-prompt -q "Kill $selected_process_name ($selected_process_id)?" -y "kill -9 $selected_process_id"
