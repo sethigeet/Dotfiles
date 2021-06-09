@@ -10,7 +10,7 @@ super + {a,b}
 	$TERMINAL -e {alsamixer,bpytop}
 
 super + {e,w,i}
-	{nautilus,brave,vimiv}
+	{pcmanfm,brave,vimiv}
 
 super + shift + {e}
 	{code}
