@@ -22,8 +22,8 @@ super + space
 super + {c,p,s,v,x,z}
 	{edit-config,screenshot,run-script,vifm,power-menu,file-browser}
 
-super + shift + {s,v}
-	{edit-script,clipboard}
+super + shift + {m,s,v}
+	{spotify,edit-script,clipboard}
 
 # Media
 XF86Audio{Raise,Lower}Volume
