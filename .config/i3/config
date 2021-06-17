@@ -2,7 +2,6 @@
 
 # --- Initial Setup --- #
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id autotiling
 
 # --- Basic Definitions --- #
 smart_gaps on
