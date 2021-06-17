@@ -10,7 +10,6 @@ vim.opt.cmdheight = 2 -- More space for displaying messages
 vim.opt.mouse = "a" -- Enable your mouse
 vim.opt.splitbelow = true -- Horizontal splits will automatically be below
 vim.opt.splitright = true -- Vertical splits will automatically be to the right
-vim.opt.t_Co = "256" -- Support 256 colors
 vim.opt.conceallevel = 0 -- So that I can see `` in markdown files
 vim.opt.tabstop = 2 -- Insert 2 spaces for a tab
 vim.opt.shiftwidth = 2 -- Change the number of space characters inserted for indentation
@@ -22,7 +21,6 @@ vim.opt.laststatus = 2 -- Always display the status line
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.background = "dark" -- tell vim what the background color looks like
 vim.opt.showtabline = 2 -- Always show tabs
-vim.opt.noshowmode = true
 vim.opt_local.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.updatetime = 300 -- Faster completion
 vim.opt.timeoutlen = 500 -- By default timeoutlen is 1000 ms
@@ -38,15 +36,19 @@ vim.opt.titlestring = "%F - nvim"
 vim.opt.foldmethod = "manual" -- Set the method for folding
 vim.opt.viminfo = "'20,<1000,s1000" -- Increase the max limit of the buffers so that we don't loose anything we yanked/deleted which is too large
 
-vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object"
-vim.opt.whichwrap:append({ "<", ">", "[", "]", "h", "l" })
-vim.opt.matchpairs:append("<:>")
-vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
+-- vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object"
+-- vim.opt.whichwrap:append({ "<", ">", "[", "]", "h", "l" })
+-- vim.opt.matchpairs:append("<:>")
+-- vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
 
 -- Local options
 vim.opt_local.number = Opts.number -- Line numbers
 vim.opt_local.relativenumber = Opts.relative_number -- Relative Line numbers
 vim.opt_local.wrap = Opts.wrap_lines -- Display long lines as just one line
+
+-- Legacy stuff
+vim.cmd("set t_Co=256") -- Support 256 colors
+vim.cmd("set noshowmode")
 
 if vim.fn.has("persistent_undo") == 1 then
     vim.opt.undodir = DATA_PATH .. "/undodir"

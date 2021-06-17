@@ -29,3 +29,10 @@ require("bufferline").setup({
 })
 
 vim.api.nvim_set_keymap("n", "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true })
+
+-- Move to a buffer using Alt+number
+for i = 1, 9, 1 do
+    vim.api.nvim_set_keymap("n", "<M-" .. i .. ">",
+                            ":lua require('bufferline').go_to_buffer(" .. i .. ")<CR>",
+                            { noremap = true, silent = true })
+end

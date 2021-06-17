@@ -1,4 +1,4 @@
--- require("general.settings")
+require("general.settings")
 require("general.functions")
 require("general.augroups")
 require("general.paths")
