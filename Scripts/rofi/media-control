@@ -18,7 +18,7 @@ fi
 current_info="$(playerctl metadata --format "<span font_size='small' font_weight='light' style='italic'>{{ uc(playerName) }}</span>
 <span font_size='larger' font_weight='bold'>{{ title }}</span> <span font_size='smaller' style='italic'>by {{ artist }}</span>")"
 
-# Options (using Feather fonts)
+# Options
 previous="玲"
 playpuase="懶"
 next="怜"
