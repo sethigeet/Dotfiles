@@ -240,18 +240,6 @@ return require("packer").startup(function(use)
         end
     }
 
-    -- Neovim in Browser
-    use {
-        "glacambre/firenvim",
-        run = function()
-            vim.fn["firenvim#install"](1)
-        end,
-        config = function()
-            require("plugins.configs.firenvim")
-        end
-
-    }
-
     -- Multiple Cursors
     use "terryma/vim-multiple-cursors"
 

@@ -206,7 +206,7 @@ local mappings = {
         s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },
         S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" }
 
-        -- D = {":LspDeclaration<CR>", "workspace_diagnostics" },
+        -- D = {":LspDeclaration<CR>", "declarations" },
         -- r = {":Telescope lsp_references<CR>", "references" },
         -- p = {":Lspsaga diagnostic_jump_prev<CR>", "prev diagnostic" },
         -- n = {":Lspsaga diagnostic_jump_next<CR>", "next_diagnostic" },
