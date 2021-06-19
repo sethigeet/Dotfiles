@@ -13,8 +13,10 @@ Opts = {
     number = true,
     relative_number = true,
 
-    -- Min no. of line to keep above and below the cursor
-    scroll_off = 0,
+    -- Min number of line to keep above and below the cursor
+    scroll_off = 2,
+    -- Minimal number of lines to keep on the right and the left side of the cursor
+    side_scroll_off = 4,
 
     -- Colorscheme
     colorscheme = "tokyonight",

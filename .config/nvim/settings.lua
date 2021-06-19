@@ -5,6 +5,8 @@ Opts.relative_number = true
 
 -- Minimum number of line to keep above and below the cursor
 Opts.scroll_off = 2
+-- Minimal number of lines to keep on the right and the left side of the cursor
+Opts.side_scroll_off = 4
 
 -- Colorscheme
 Opts.colorscheme = "tokyonight"

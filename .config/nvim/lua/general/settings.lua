@@ -1,6 +1,7 @@
 -- Options
 vim.opt.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.opt.scrolloff = Opts.scroll_off -- Minimal number of lines to keep above and below the cursor
+vim.opt.sidescrolloff = Opts.side_scroll_off -- Minimal number of lines to keep on the right and the left side of the cursor
 vim.opt.wildignore = { "*.o", "*.a", "__pycache__", "*.pyc", "node_modules" }
 vim.opt.encoding = "utf-8" -- The encoding displayed
 vim.opt.pumheight = 10 -- Makes popup menu smaller
