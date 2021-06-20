@@ -3,8 +3,14 @@ if [ "$PROFILE_LOADED" != true ]; then
   source "$HOME/.config/shell/profile"
 fi
 
+if [ -n "$BASH_VERSION" ]; then
+  shell="bash"
+elif [ -n "$ZSH_VERSION" ]; then
+  shell="zsh"
+fi
+
 # Load dotfiles:
-for file in ~/.config/shell/{var_exports,paths/init,var_exports,aliases/init,functions,autocompletion}.sh; do
+for file in ~/.config/shell/{var_exports,paths/init,var_exports,aliases/init,functions,autocompletion,keybindings}.sh; do
   source "$file"
 done
 
