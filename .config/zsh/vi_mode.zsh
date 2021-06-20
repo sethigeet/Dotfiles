@@ -5,11 +5,15 @@ bindkey -v
 bindkey -v 'jk' vi-cmd-mode
 bindkey -v 'kj' vi-cmd-mode
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+# Use Ctrl+vim keys to move back in history
+bindkey -v '^j' vi-down-line-or-history
+bindkey -v '^k' vi-up-line-or-history
+
+# Use Ctrl+vim keys in tab complete menu
+bindkey -M menuselect '^h' vi-backward-char
+bindkey -M menuselect '^j' vi-down-line-or-history
+bindkey -M menuselect '^k' vi-up-line-or-history
+bindkey -M menuselect '^l' vi-forward-char
 bindkey -M menuselect 'left' vi-backward-char
 bindkey -M menuselect 'down' vi-down-line-or-history
 bindkey -M menuselect 'up' vi-up-line-or-history

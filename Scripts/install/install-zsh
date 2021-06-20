@@ -24,8 +24,3 @@ echo "Installed powerlevel10k theme!"
 echo "Installing you-should-use (plugin)..."
 git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use"
 echo "Installed you-should-use theme!"
-
-# Install conda-zsh-completion plugin
-echo "Installing conda-zsh-completion (plugin)..."
-git clone https://github.com/esc/conda-zsh-completion "${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/conda-zsh-completion"
-echo "Installed conda-zsh-completion!"

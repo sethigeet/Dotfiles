@@ -49,16 +49,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # HIST_STAMPS="mm/dd/yyyy"
 
 plugins=(
-	git
-	gitignore
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	extract
-	sudo
-  conda-zsh-completion
-	command-not-found
-	you-should-use
-	vi-mode
+  git
+  gitignore
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  extract
+  sudo
+  command-not-found
+  you-should-use
+  vi-mode
 )
 
 # Change the cursor style according to the vi mode
@@ -74,5 +73,5 @@ source "$ZSH/oh-my-zsh.sh"
 
 # Source the dotfiles
 file="$HOME/.config/zsh/init.zsh"
-[[ ! -f "$file" ]] || source "$file"
-unset file;
+[[ ! -f $file ]] || source "$file"
+unset file

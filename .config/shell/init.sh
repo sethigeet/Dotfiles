@@ -4,7 +4,7 @@ if [ "$PROFILE_LOADED" != true ]; then
 fi
 
 # Load dotfiles:
-for file in ~/.config/shell/{var_exports,paths/init,var_exports,aliases/init,functions,conda_init,autocompletion}.sh; do
+for file in ~/.config/shell/{var_exports,paths/init,var_exports,aliases/init,functions,autocompletion}.sh; do
   source "$file"
 done
 
