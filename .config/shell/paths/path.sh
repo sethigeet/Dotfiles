@@ -56,7 +56,6 @@ fi
 
 # RUST
 if [ -d "$XDG_DATA_HOME/cargo" ]; then
-  export CARGO_HOME="$XDG_DATA_HOME/cargo"
   PATH="$PATH:$XDG_DATA_HOME/cargo/bin"
 fi
 
