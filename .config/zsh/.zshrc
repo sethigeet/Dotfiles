@@ -71,6 +71,14 @@ ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump-$SHORT_HOST-$ZSH_VERSION"
 
 source "$ZSH/oh-my-zsh.sh"
 
+# Load the bash completion engine for compatibility
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && if [[ ${ZSH_DISABLE_COMPFIX-} = true ]]; then
+	compinit -u
+else
+	compinit
+fi
+
 # Source the dotfiles
 file="$HOME/.config/zsh/init.zsh"
 [[ ! -f $file ]] || source "$file"
