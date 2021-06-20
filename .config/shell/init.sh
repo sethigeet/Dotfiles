@@ -9,3 +9,6 @@ for file in ~/.config/shell/{var_exports,paths/init,var_exports,aliases/init,fun
 done
 
 unset file
+
+# Load asdf-vm
+source /opt/asdf-vm/asdf.sh
