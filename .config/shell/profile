@@ -7,7 +7,8 @@ export LANG=en_US.UTF-8
 # Set the default applications
 export TERMINAL="kitty"
 export BROWSER="brave"
-export EDITOR=nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # XDG paths
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -52,6 +53,7 @@ export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|
 
 # Add Custom scripts to the path for easier access in other configs
 PATH="$(find "$HOME/Scripts" -type d -printf "%p:")$PATH"
+export PATH
 
 # Use my custom rofi script for asking for a password for sudo
 export SUDO_ASKPASS="$HOME/Scripts/rofi/rofi-pass"

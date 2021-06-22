@@ -1,3 +1,5 @@
+# History settings
 HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE="$XDG_DATA_HOME/bash/history"
+HISTCONTROL=ignoreboth
