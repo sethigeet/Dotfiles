@@ -90,37 +90,37 @@
 
   // Move windows between splits
   {
-    "key": "alt+shift+h",
+    "key": "alt+ctrl+h",
     "command": "workbench.action.moveEditorToLeftGroup"
   },
   {
-    "key": "alt+shift+j",
+    "key": "alt+ctrl+j",
     "command": "workbench.action.moveEditorToBelowGroup"
   },
   {
-    "key": "alt+shift+k",
+    "key": "alt+ctrl+k",
     "command": "workbench.action.moveEditorToAboveGroup"
   },
   {
-    "key": "alt+shift+l",
+    "key": "alt+ctrl+l",
     "command": "workbench.action.moveEditorToRightGroup"
   },
 
   // Resize splits
   {
-    "key": "alt+left",
+    "key": "alt+shift+h",
     "command": "workbench.action.decreaseViewSize"
   },
   {
-    "key": "alt+down",
+    "key": "alt+shift+j",
     "command": "workbench.action.decreaseViewSize"
   },
   {
-    "key": "alt+up",
+    "key": "alt+shift+k",
     "command": "workbench.action.increaseViewSize"
   },
   {
-    "key": "alt+right",
+    "key": "alt+shift+l",
     "command": "workbench.action.increaseViewSize"
   },
 
