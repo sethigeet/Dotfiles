@@ -44,6 +44,9 @@ export ASDF_DIR="/opt/asdf-vm"
 # Set the QT Themes
 export QT_QPA_PLATFORMTHEME="gtk2"
 
+# Set the default fzf options
+export FZF_DEFAULT_OPTS="-i --layout=reverse --margin=2 --padding=1 --cycle --history=$XDG_DATA_HOME/fzf/history"
+
 # Ignore some commands from history
 export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|vicd|cs|cau|gst|ga .|ga -u|v *|\? *|\?\? *)"
 
