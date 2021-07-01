@@ -10,9 +10,10 @@
   "editor.fontSize": 15,
   "editor.linkedEditing": true,
   "editor.lineNumbers": "relative",
-  "editor.semanticHighlighting.enabled": true,
   "editor.smoothScrolling": true,
   "editor.rulers": [80],
+  "editor.semanticHighlighting.enabled": true,
+  "editor.inlineSuggest.enabled": true,
 
   //# Window
   "window.zoomLevel": 1,
