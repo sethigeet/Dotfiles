@@ -8,7 +8,18 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
-return require("packer").startup(function(use)
+local packer = require("packer")
+
+packer.init({
+    git = { clone_timeout = 300 },
+    display = {
+        open_fn = function()
+            return require("packer.util").float({ border = "single" })
+        end
+    }
+})
+
+packer.startup(function(use)
     -- Packer can manage itself as an optional plugin
     use "wbthomason/packer.nvim"
 
@@ -16,6 +27,7 @@ return require("packer").startup(function(use)
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.todo-comments")
         end
@@ -23,6 +35,7 @@ return require("packer").startup(function(use)
     use "suy/vim-context-commentstring" -- Useful for React Commenting
     use {
         "terrortylor/nvim-comment",
+        event = "BufRead",
         config = function()
             require("plugins.configs.comment")
         end
@@ -32,6 +45,7 @@ return require("packer").startup(function(use)
     use {
         "lukas-reineke/indent-blankline.nvim",
         branch = "lua",
+        event = "BufRead",
         config = function()
             require("plugins.configs.indent-blankline")
         end
@@ -60,6 +74,7 @@ return require("packer").startup(function(use)
     -- Easymotion
     use {
         "easymotion/vim-easymotion",
+        event = "BufRead",
         config = function()
             require("plugins.configs.easymotion")
         end
@@ -102,7 +117,7 @@ return require("packer").startup(function(use)
 
     -- Themes
     use "folke/tokyonight.nvim"
-    use "ayu-theme/ayu-vim"
+    -- use "ayu-theme/ayu-vim"
 
     -- Status Line
     use {
@@ -118,6 +133,7 @@ return require("packer").startup(function(use)
     use { "junegunn/gv.vim", requires = "tpope/vim-fugitive" }
     use {
         "rhysd/git-messenger.vim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.git-messenger")
         end
@@ -125,12 +141,14 @@ return require("packer").startup(function(use)
     use {
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.gitsigns")
         end
     }
     use {
         "f-person/git-blame.nvim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.git-blame")
         end
@@ -146,6 +164,7 @@ return require("packer").startup(function(use)
     -- Terminal
     use {
         "numtostr/FTerm.nvim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.fterm")
         end
@@ -174,15 +193,17 @@ return require("packer").startup(function(use)
     use {
         "hrsh7th/vim-vsnip",
         requires = "hrsh7th/vim-vsnip-integ",
+        event = "InsertEnter",
         config = function()
             require("plugins.configs.vsnip")
         end
     }
-    use "rafamadriz/friendly-snippets"
+    use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
 
     -- Interactive code
     use {
         "metakirby5/codi.vim",
+        cmd = "Codi",
         config = function()
             require("plugins.configs.codi")
         end
@@ -192,6 +213,7 @@ return require("packer").startup(function(use)
     use {
         "akinsho/nvim-bufferline.lua",
         requires = "kyazdani42/nvim-web-devicons",
+        event = "BufRead",
         config = function()
             require("plugins.configs.bufferline")
         end
@@ -207,41 +229,44 @@ return require("packer").startup(function(use)
     use {
         "folke/lsp-trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
+        cmd = { "TroubleToggle", "Telescope" },
         config = function()
             require("plugins.configs.trouble")
         end
     }
 
     -- Intuitive buffer closing
-    use "famiu/bufdelete.nvim"
+    use { "famiu/bufdelete.nvim", event = "BufEnter" }
 
     -- Undo time travel
-    use "mbbill/undotree"
+    use { "mbbill/undotree", event = "BufEnter" }
 
     -- Smooth scroll
-    use "psliwka/vim-smoothie"
+    use { "psliwka/vim-smoothie", event = "BufEnter" }
 
     -- Swap windows
     use {
         "wesQ3/vim-windowswap",
+        event = "BufEnter",
         config = function()
             require("plugins.configs.windowswap")
         end
     }
 
     -- Markdown Preview
-    use { "npxbr/glow.nvim", run = ":GlowInstall" }
+    use { "npxbr/glow.nvim", run = ":GlowInstall", ft = { "markdown", "markdownreact" } }
 
     -- Colorizer
     use {
         "norcalli/nvim-colorizer.lua",
+        event = "BufRead",
         config = function()
             require("plugins.configs.colorizer")
         end
     }
 
     -- Multiple Cursors
-    use "terryma/vim-multiple-cursors"
+    use { "terryma/vim-multiple-cursors", event = "BufRead" }
 
     -- Telescope
     use {
@@ -252,7 +277,8 @@ return require("packer").startup(function(use)
         },
         config = function()
             require("plugins.configs.telescope")
-        end
+        end,
+        cmd = "Telescope"
     }
 
     -- Intellisense
@@ -262,23 +288,27 @@ return require("packer").startup(function(use)
         "hrsh7th/nvim-compe",
         config = function()
             require("plugins.configs.compe")
-        end
+        end,
+        event = "InsertEnter"
     }
     use {
         "glepnir/lspsaga.nvim",
         config = function()
             require("plugins.configs.lspsaga")
-        end
+        end,
+        event = "BufRead"
     }
     use { "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } }
     use {
         "simrat39/symbols-outline.nvim",
+        cmd = "SymbolsOutline",
         config = function()
             require("plugins.configs.symbols-outline")
         end
     }
     use {
         "fatih/vim-go",
+        ft = { "go" },
         config = function()
             require("plugins.configs.vim-go")
         end,
@@ -288,15 +318,17 @@ return require("packer").startup(function(use)
     }
     use {
         "ray-x/lsp_signature.nvim",
+        event = "InsertEnter",
         config = function()
             require("plugins.configs.lsp_signature")
         end
     }
-    use "folke/lsp-colors.nvim"
+    use { "folke/lsp-colors.nvim", event = "BufRead" }
 
     -- Markdown preview
     use {
         "iamcco/markdown-preview.nvim",
+        ft = { "markdown", "markdownreact" },
         run = "cd app && npm install",
         config = function()
             require("plugins.configs.markdown-preview")
@@ -304,7 +336,7 @@ return require("packer").startup(function(use)
     }
 
     -- Easily change surrounding elements
-    use "tpope/vim-surround"
+    use { "tpope/vim-surround", event = "BufRead" }
 
     -- Visually interact with the registers easily
     use "gennaro-tedesco/nvim-peekup"
@@ -312,6 +344,7 @@ return require("packer").startup(function(use)
     -- Extend increment/decrement functionality
     use {
         "monaqa/dial.nvim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.dial")
         end
@@ -338,6 +371,7 @@ return require("packer").startup(function(use)
     -- Jump to lines more interactively
     use {
         "nacro90/numb.nvim",
+        event = "BufRead",
         config = function()
             require("plugins.configs.numb")
         end
@@ -345,15 +379,17 @@ return require("packer").startup(function(use)
 
     -- Distraction free writing (zen mode)
     use {
-        "Pocco81/TrueZen.nvim",
+        "folke/zen-mode.nvim",
+        cmd = "ZenMode",
         config = function()
-            require("plugins.configs.truezen")
+            require("plugins.configs.zen-mode")
         end
     }
 
     -- The emmet plugin for vim
     use {
         "mattn/emmet-vim",
+        event = "InsertEnter",
         config = function()
             require("plugins.configs.emmet")
         end
@@ -371,6 +407,7 @@ return require("packer").startup(function(use)
 
     use {
         "andymass/vim-matchup",
+        event = "CursorMoved",
         config = function()
             require("plugins.configs.matchup")
         end
@@ -379,6 +416,7 @@ return require("packer").startup(function(use)
     use {
         "windwp/nvim-spectre",
         requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
+        event = "BufRead",
         config = function()
             require("plugins.configs.spectre")
         end
