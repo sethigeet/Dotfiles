@@ -74,15 +74,6 @@ local function getOpts(mode, emptyPrefix)
 end
 
 local mappings = {
-    ["1"] = "move to buffer 1",
-    ["2"] = "move to buffer 2",
-    ["3"] = "move to buffer 3",
-    ["4"] = "move to buffer 4",
-    ["5"] = "move to buffer 5",
-    ["6"] = "move to buffer 6",
-    ["7"] = "move to buffer 7",
-    ["8"] = "move to buffer 8",
-    ["9"] = "move to buffer 9",
     ["<Space>"] = "easymotion prefix",
 
     ["/"] = { ":call v:lua.Comment()<CR>", "comment" },

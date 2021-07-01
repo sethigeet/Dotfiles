@@ -1,7 +1,7 @@
 require("bufferline").setup({
     options = {
         numbers = "none",
-        mappings = true,
+        mappings = false,
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(_, _, diagnostics_dict)
             local s = " "
