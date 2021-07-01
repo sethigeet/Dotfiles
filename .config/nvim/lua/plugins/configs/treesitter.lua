@@ -10,6 +10,7 @@ require("nvim-treesitter.configs").setup({
     autotag = { enable = true },
     indent = { enable = true },
     autopairs = { enable = true },
-    matchup = { enable = true } -- Extend vim's '%' functionality
+    matchup = { enable = true }, -- Extend vim's '%' functionality
+    project = { base_dir = { "~/Repos", "~/Programming" }, max_depth = 3 }
 })
 

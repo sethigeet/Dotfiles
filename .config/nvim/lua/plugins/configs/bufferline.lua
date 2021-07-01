@@ -1,7 +1,10 @@
 require("bufferline").setup({
     options = {
         numbers = "none",
+        number_style = "",
         mappings = false,
+        close_command = "Bdelete %d",
+        right_mouse_command = "Bdelete! %d",
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(_, _, diagnostics_dict)
             local s = " "
@@ -20,6 +23,7 @@ require("bufferline").setup({
             end
             return s
         end,
+        offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "center" } },
         show_buffer_icons = true,
         show_buffer_close_icons = true,
         show_close_icon = true,
