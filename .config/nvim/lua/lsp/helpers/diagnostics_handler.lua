@@ -1,8 +1,8 @@
-local function DiagnosticsHandler(lang)
+local function DiagnosticsHandler()
     return vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = Opts.lsp[lang].diagnostics.virtual_text,
-        signs = Opts.lsp[lang].diagnostics.signs,
-        underline = Opts.lsp[lang].diagnostics.underline,
+        virtual_text = { spacing = 0, prefix = "" },
+        signs = true,
+        underline = true,
         update_in_insert = true
     })
 end

@@ -2,7 +2,7 @@ vim.cmd("set shortmess+=c")
 vim.o.completeopt = "menuone,noselect"
 
 require("compe").setup({
-    enabled = Opts.auto_complete,
+    enabled = true,
     autocomplete = true,
     debug = false,
     min_length = 1,

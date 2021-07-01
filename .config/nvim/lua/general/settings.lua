@@ -1,7 +1,7 @@
 -- Options
 vim.opt.hidden = true -- Required to keep multiple buffers open multiple buffers
-vim.opt.scrolloff = Opts.scroll_off -- Minimal number of lines to keep above and below the cursor
-vim.opt.sidescrolloff = Opts.side_scroll_off -- Minimal number of lines to keep on the right and the left side of the cursor
+vim.opt.scrolloff = 2 -- Minimal number of lines to keep above and below the cursor
+vim.opt.sidescrolloff = 4 -- Minimal number of lines to keep on the right and the left side of the cursor
 vim.opt.wildignore = { "*.o", "*.a", "__pycache__", "*.pyc", "node_modules" }
 vim.opt.encoding = "utf-8" -- The encoding displayed
 vim.opt.pumheight = 10 -- Makes popup menu smaller
@@ -43,9 +43,9 @@ vim.opt.viminfo = "'20,<1000,s1000" -- Increase the max limit of the buffers so 
 -- vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
 
 -- Local options
-vim.opt_local.number = Opts.number -- Line numbers
-vim.opt_local.relativenumber = Opts.relative_number -- Relative Line numbers
-vim.opt_local.wrap = Opts.wrap_lines -- Display long lines as just one line
+vim.opt_local.number = true -- Line numbers
+vim.opt_local.relativenumber = true -- Relative Line numbers
+vim.opt_local.wrap = false -- Display long lines as just one line
 
 -- Legacy stuff
 vim.cmd("set t_Co=256") -- Support 256 colors
