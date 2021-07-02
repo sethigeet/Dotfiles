@@ -7,7 +7,6 @@ require("telescope").setup({
         vimgrep_arguments = {
             "rg", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case"
         },
-        prompt_position = "top",
         -- prompt_prefix = "  ",
         prompt_prefix = "  ",
         selection_caret = "  ",
@@ -16,16 +15,19 @@ require("telescope").setup({
         selection_strategy = "reset",
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
-        layout_defaults = { horizontal = { mirror = false }, vertical = { mirror = false } },
+        layout_config = {
+            horizontal = { mirror = false },
+            vertical = { mirror = false },
+            height = 0.75,
+            width = 0.75,
+            preview_cutoff = 120,
+            prompt_position = "top"
+        },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
         file_ignore_patterns = {},
         generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 0,
-        width = 0.75,
-        preview_cutoff = 120,
-        results_height = 1,
-        results_width = 0.8,
         border = {},
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
