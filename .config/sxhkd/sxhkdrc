@@ -6,8 +6,8 @@ super + ctrl + s; r
 super + Return
 	$TERMINAL
 
-super + {a,b}
-	$TERMINAL -e {alsamixer,bpytop}
+super + {b}
+	$TERMINAL -e {bpytop}
 
 super + {e,w,i}
 	{pcmanfm,brave,vimiv}
@@ -19,11 +19,11 @@ super + shift + {e}
 super + space
 	rofi -show drun
 
-super + {c,p,s,v,x,z}
-	{edit-config,screenshot,run-script,vifm,power-menu,file-browser}
+super + {c,p,s,v}
+	{edit-config,screenshot,run-script,vifm}
 
-super + shift + {m,s,v}
-	{spotify,edit-script,clipboard}
+super + shift + {m,s,v,x,z}
+	{spotify,edit-script,clipboard,power-menu,file-browser}
 
 # Media
 XF86Audio{Raise,Lower}Volume

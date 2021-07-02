@@ -12,9 +12,9 @@ group_key_bindings = [
     Key([mod, "shift"], "Tab", lazy.screen.prev_group(),
         desc="Switch to the previous group"),
 
-    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle(
+    Key([mod, "shift"], "t", lazy.group["scratchpad"].dropdown_toggle(
         "terminal"), desc="Toggle the scratchpad with the terminal"),
-    Key([mod], "0", lazy.group["scratchpad"].dropdown_toggle(
+    Key([mod, "shift"], "0", lazy.group["scratchpad"].dropdown_toggle(
         "emacs"), desc="Toggle the scratchpad with emacs"),
     Key([mod, "shift"], "c", lazy.group["scratchpad"].dropdown_toggle(
         "calculator"), desc="Toggle the scratchpad with the calculator"),
