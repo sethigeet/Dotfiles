@@ -6,19 +6,11 @@ vim.g.dashboard_custom_section = {
     c = { description = { " Load Last Session  " }, command = "SessionLoad" },
     d = { description = { " Find Word          " }, command = "Telescope live_grep" },
     e = { description = { " Marks              " }, command = "Telescope marks" },
-    i = { description = { " Nvim Config        " }, command = "e ~/.config/nvim/init.lua" }
+    i = {
+        description = { " Nvim Config        " },
+        command = "cd " .. CONFIG_PATH .. " | edit $MYVIMRC"
+    }
 }
-
--- vim.g.file_browser = {description = {" File Browser"}, command = "Telescope find_files"},
-
--- vim.g.dashboard_custom_shortcut = {
---     a = "f",
---     find_word = "SPC f a",
---     last_session = "SPC s l",
---     new_file = "SPC c n",
---     book_marks = "SPC f b"
--- }
--- find_history = "SPC f h",
 
 require("general.functions").DefineAugroups({
     dashboard = {

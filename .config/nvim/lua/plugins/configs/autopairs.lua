@@ -1,5 +1,6 @@
 local npairs = require("nvim-autopairs")
 
+-- Setup
 npairs.setup({
     check_ts = true,
     ts_config = {
@@ -8,20 +9,8 @@ npairs.setup({
     }
 })
 
-_G.AutoPairUtils = {}
-
-vim.g.completion_confirm_key = ""
-AutoPairUtils.completion_confirm = function()
-    if vim.fn.pumvisible() ~= 0 then
-        if vim.fn.complete_info()["selected"] ~= -1 then
-            return vim.fn["compe#confirm"](npairs.esc("<CR>"))
-        else
-            return npairs.esc("<CR>")
-        end
-    else
-        return npairs.autopairs_cr()
-    end
-end
-
-vim.api.nvim_set_keymap("i", "<CR>", "v:lua.AutoPairUtils.completion_confirm()",
-                        { expr = true, noremap = true })
+-- compe integration
+require("nvim-autopairs.completion.compe").setup({
+    map_cr = true, --  map <CR> on insert mode
+    map_complete = true -- it will auto insert `(` after select function or method item
+})

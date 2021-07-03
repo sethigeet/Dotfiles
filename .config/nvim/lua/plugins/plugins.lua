@@ -98,12 +98,13 @@ packer.startup({
             }
         }
 
-        -- Auto pairs for "(" "[" "{"
+        -- Auto pairs for "(", "[", "{", etc
         -- use {
         -- "windwp/nvim-autopairs",
         -- config = function()
         -- require("plugins.configs.autopairs")
-        -- end
+        -- end,
+        -- after = "nvim-compe"
         -- }
         use "jiangmiao/auto-pairs"
 
