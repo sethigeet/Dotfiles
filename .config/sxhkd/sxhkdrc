@@ -15,6 +15,10 @@ super + {e,w,i}
 super + shift + {e}
 	{code}
 
+# Manage Windows
+super + semicolon
+	skippy-xd
+
 # Custom Scripts
 super + space
 	rofi -show drun
