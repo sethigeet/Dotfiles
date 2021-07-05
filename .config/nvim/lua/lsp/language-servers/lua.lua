@@ -10,7 +10,7 @@ require("lspconfig").lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {"vim"}
+                globals = { "vim", "xplr" }
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
@@ -26,7 +26,6 @@ require("lspconfig").lua.setup {
         require("lsp.helpers.auto_format")("lua", client)
     end,
     handlers = {
-        ["textDocument/publishDiagnostics"] = require(
-            "lsp.helpers.diagnostics_handler")("lua")
+        ["textDocument/publishDiagnostics"] = require("lsp.helpers.diagnostics_handler")("lua")
     }
 }
