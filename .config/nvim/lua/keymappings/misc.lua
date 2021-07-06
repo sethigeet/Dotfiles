@@ -20,4 +20,3 @@ vim.api.nvim_set_keymap("n", "N", "Nzzzv", { silent = true, noremap = true })
 -- Substitute command shortcut
 vim.api.nvim_set_keymap("n", "S", ":%s//g<Left><Left>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("v", "S", ":s//g<Left><Left>", { silent = true, noremap = true })
-

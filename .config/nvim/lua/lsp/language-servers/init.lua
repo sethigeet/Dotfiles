@@ -1,7 +1,18 @@
 -- local custom_lsps = require("lsp.helpers.install_custom_lsp")
 require("lsp.helpers.install_langserver")({
-    "bash", "css", "dockerfile", "efm", "go", "graphql", "html", "json", "lua",
-    "python", "typescript", "vim", "yaml"
+  "bash",
+  "css",
+  "dockerfile",
+  "efm",
+  "go",
+  "graphql",
+  "html",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "vim",
+  "yaml",
 })
 
 require("lspinstall").setup()

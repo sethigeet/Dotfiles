@@ -9,29 +9,32 @@ local node = term:new():setup({ cmd = "node", dimensions = { height = 0.8, width
 local python = term:new():setup({ cmd = "python", dimensions = { height = 0.8, width = 0.8 } })
 
 function _G.__fterm_toggle(type)
-    local terminals = {
-        dropdown = function()
-            dropdown:toggle()
-        end,
-        lazygit = function()
-            lazygit:toggle()
-        end,
-        node = function()
-            node:toggle()
-        end,
-        python = function()
-            python:toggle()
-        end
-    }
+  local terminals = {
+    dropdown = function()
+      dropdown:toggle()
+    end,
+    lazygit = function()
+      lazygit:toggle()
+    end,
+    node = function()
+      node:toggle()
+    end,
+    python = function()
+      python:toggle()
+    end,
+  }
 
-    if terminals[type] ~= nil then
-        terminals[type]()
-    else
-        FTerm.toggle()
-    end
+  if terminals[type] ~= nil then
+    terminals[type]()
+  else
+    FTerm.toggle()
+  end
 end
 
-vim.api.nvim_set_keymap("n", "<F1>", "<cmd>lua require('FTerm').toggle()<CR>",
-                        { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<F1>", "<C-\\><C-n><cmd>lua require('FTerm').toggle()<CR>",
-                        { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<F1>", "<cmd>lua require('FTerm').toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "t",
+  "<F1>",
+  "<C-\\><C-n><cmd>lua require('FTerm').toggle()<CR>",
+  { noremap = true, silent = true }
+)

@@ -52,8 +52,8 @@ vim.cmd("set t_Co=256") -- Support 256 colors
 vim.cmd("set noshowmode")
 
 if vim.fn.has("persistent_undo") == 1 then
-    vim.opt.undodir = DATA_PATH .. "/undodir"
-    vim.opt.undofile = true
+  vim.opt.undodir = DATA_PATH .. "/undodir"
+  vim.opt.undofile = true
 end
 
 vim.cmd("syntax enable") -- Enables syntax highlighing
