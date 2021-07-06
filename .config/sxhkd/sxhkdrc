@@ -10,7 +10,7 @@ super + {b}
 	$TERMINAL -e {bpytop}
 
 super + {e,w,i}
-	{pcmanfm,brave,vimiv}
+	{nautilus,brave,vimiv}
 
 super + shift + {e}
 	{code}
