@@ -36,7 +36,7 @@ wk.setup({
     width = { min = 4, max = 50 }, -- min and max width of the columns
     spacing = 3, -- spacing between columns
   },
-  hidden = { "<silent>", ":", "<cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+  hidden = { "<silent>", ":", ":", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
 })
 
@@ -144,13 +144,13 @@ local mappings = {
     name = "Git",
     a = { ":Git add .<CR>", "add all" },
     -- b = { ":Git blame<CR>", "blame" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+    b = { ":Telescope git_branches<CR>", "Checkout branch" },
     B = { ":GBrowse<CR>", "browse" },
     c = {
       name = "Commits",
       c = { ":Git commit<CR>", "commit" },
-      o = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-      u = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
+      o = { ":Telescope git_commits<CR>", "Checkout commit" },
+      u = { ":Telescope git_bcommits<CR>", "Checkout commit(for current file)" },
     },
     d = { ":Git diff<CR>", "diff" },
     D = { ":Gdiffsplit<CR>", "diff split" },
@@ -219,12 +219,13 @@ local mappings = {
     t = { ":BookmarkToggle<CR>", "toggle" },
   },
 
-  -- p is for Peekup
   p = {
-    name = "Peekup",
-    p = { "<Plug>PeekupOpen<CR>", "view registers" },
-    b = { "<Plug>PeekupPasteBefore<CR>", "view registers & paste before cursor upon selection" },
-    a = { "<Plug>PeekupPasteAfter<CR>", "view registers & paste after cursor upon selection" },
+    name = "Packer",
+    c = { ":PackerCompile<CR>", "Compile" },
+    i = { ":PackerInstall<CR>", "Install" },
+    r = { ":luafile $MYVIMRC<CR>", "Reload" },
+    s = { ":PackerSync<CR>", "Sync" },
+    u = { ":PackerUpdate<CR>", "Update" },
   },
 
   -- q is for Quickfix
@@ -312,15 +313,7 @@ local mappings = {
     t = { ":call v:lua.__fterm_toggle()<CR>", "toggle" },
   },
 
-  z = {
-    name = "Zen",
-    f = { "<cmd>TZFocus<cr>", "toggle focus mode" },
-    l = { "<cmd>TZLeft<cr>", "toggle left ui" },
-    m = { "<cmd>TZMinimalist<cr>", "toggle minimalist mode" },
-    s = { "<cmd>TZBottom<cr>", "toggle bottom ui" },
-    t = { "<cmd>TZTop<cr>", "toggle top ui" },
-    z = { "<cmd>TZAtaraxis<cr>", "toggle full zen mode" },
-  },
+  z = { ":ZenMode<CR>", "toggle zen mode" },
 }
 
 wk.register(mappings, getOpts("n"))

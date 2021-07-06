@@ -8,9 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute("packadd packer.nvim")
 end
 
-local packer = require("packer")
-
-packer.startup({
+return require("packer").startup({
   function(use)
     -- Packer can manage itself as an optional plugin
     use("wbthomason/packer.nvim")
@@ -36,7 +34,6 @@ packer.startup({
     -- Indent lines
     use({
       "lukas-reineke/indent-blankline.nvim",
-      branch = "lua",
       event = "BufRead",
       config = function()
         require("plugins.configs.indent-blankline")
@@ -332,9 +329,6 @@ packer.startup({
 
     -- Easily change surrounding elements
     use({ "tpope/vim-surround", event = "BufRead" })
-
-    -- Visually interact with the registers easily
-    use("gennaro-tedesco/nvim-peekup")
 
     -- Extend increment/decrement functionality
     use({

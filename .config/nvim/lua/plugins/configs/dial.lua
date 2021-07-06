@@ -2,8 +2,10 @@ local dial = require("dial")
 
 -- Extend functionality to toggle between true and false
 dial.augends["custom#boolean"] = dial.common.enum_cyclic({ name = "boolean", strlist = { "true", "false" } })
+dial.augends["custom#Boolean"] = dial.common.enum_cyclic({ name = "boolean", strlist = { "True", "False" } })
 
 table.insert(dial.config.searchlist.normal, "custom#boolean")
+table.insert(dial.config.searchlist.normal, "custom#Boolean")
 
 for _, mode in ipairs({ "n", "x" }) do
   vim.api.nvim_set_keymap(mode, "<C-a>", "<Plug>(dial-increment)", { silent = true })

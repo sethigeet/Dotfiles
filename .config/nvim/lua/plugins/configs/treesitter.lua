@@ -4,7 +4,7 @@ require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true, -- false will disable the whole extension
   },
-  rainbow = { enable = true }, -- Rainbow brackets
+  rainbow = { enable = true, max_file_lines = 1000 }, -- Rainbow brackets
   context_commentstring = { enable = true }, -- Comment strings
   -- refactor = {highlight_definitions = {enable = true}}, -- Highlight all the occurrences of variables under the cursor
   autotag = { enable = true },
