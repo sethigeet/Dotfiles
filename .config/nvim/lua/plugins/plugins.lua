@@ -95,6 +95,13 @@ return require("packer").startup({
         "JoosepAlviste/nvim-ts-context-commentstring", -- Change the comment string according to the location of the cursor in the file
       },
     })
+    use({
+      "andymass/vim-matchup", -- Extend vim's '%' functionality using `treesitter`
+      event = "CursorMoved",
+      config = function()
+        require("plugins.configs.matchup")
+      end,
+    })
 
     -- Auto pairs for "(", "[", "{", etc
     -- use {
@@ -108,7 +115,7 @@ return require("packer").startup({
 
     -- Themes
     use("folke/tokyonight.nvim")
-    -- use "ayu-theme/ayu-vim"
+    -- use("ayu-theme/ayu-vim")
 
     -- Status Line
     use({
@@ -171,8 +178,6 @@ return require("packer").startup({
     -- use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
 
     -- See what keys do like in emacs
-    -- use "liuchengxu/vim-which-key"
-    -- Lua version of vim-which-key
     use({
       "folke/which-key.nvim",
       config = function()
@@ -395,14 +400,10 @@ return require("packer").startup({
       end,
     })
 
-    use({
-      "andymass/vim-matchup",
-      event = "CursorMoved",
-      config = function()
-        require("plugins.configs.matchup")
-      end,
-    })
+    -- Quickly align text by pattern
+    use("godlygeek/tabular")
 
+    -- Search and replace text interactively
     use({
       "windwp/nvim-spectre",
       requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
@@ -412,6 +413,7 @@ return require("packer").startup({
       end,
     })
   end,
+
   config = {
     git = { clone_timeout = 300 },
     display = {
