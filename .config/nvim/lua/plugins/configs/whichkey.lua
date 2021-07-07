@@ -53,19 +53,19 @@ require("general.functions").DefineAugroups({
   },
 })
 
-local function getOpts(mode, emptyPrefix)
-  local prefix
-  if emptyPrefix then
-    prefix = ""
+local function getOpts(mode, prefix)
+  local actual_prefix
+  if prefix then
+    actual_prefix = prefix
   else
-    prefix = "<leader>"
+    actual_prefix = "<leader>"
   end
 
   return {
-    mode = mode, -- NORMAL mode
+    mode = mode, -- vim mode
     -- prefix: use "<leader>f" for example for mapping everything related to finding files
     -- the prefix is prepended to every mapping part of `mappings`
-    prefix = prefix,
+    prefix = actual_prefix,
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true, -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
@@ -79,7 +79,7 @@ local mappings = {
   ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
   ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
-  [";"] = { ":Dashboard<CR>", "Show start screen" },
+  [";"] = { ":Dashboard<CR>", "show start screen" },
   e = { ":NvimTreeToggle<CR>", "explorer" },
   f = { ":Telescope find_files<CR>", "find files" },
   h = { "<C-W>s", "split below" },
@@ -185,8 +185,8 @@ local mappings = {
     f = { ":lua vim.lsp.buf.formatting()<CR>", "format" },
     H = { ":Lspsaga signature_help<CR>", "signature_help" },
     I = { ":LspInfo<CR>", "lsp info" },
-    j = { ":Lspsaga diagnostic_jump_prev<CR>", "Prev Diagnostic" },
-    k = { ":Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
+    j = { ":Lspsaga diagnostic_jump_prev<CR>", "prev Diagnostic" },
+    k = { ":Lspsaga diagnostic_jump_next<CR>", "next Diagnostic" },
     l = { ":Lspsaga lsp_finder<CR>", "lsp finder" },
     L = { ":Lspsaga show_line_diagnostics<CR>", "line diagnostics" },
     o = { ":SymbolsOutline<CR>", "outline" },
@@ -200,8 +200,6 @@ local mappings = {
     S = { ":Telescope lsp_workspace_symbols<CR>", "workspace symbols" },
 
     -- r = {":Telescope lsp_references<CR>", "references" },
-    -- p = {":Lspsaga diagnostic_jump_prev<CR>", "prev diagnostic" },
-    -- n = {":Lspsaga diagnostic_jump_next<CR>", "next diagnostic" },
     -- i = {":LspImplementation<CR>", "implementation" },
     -- h = {":Lspsaga hover_doc<CR>", "hover doc" },
   },
@@ -303,8 +301,34 @@ local mappings = {
     },
   },
 
-  -- t is for Terminal
+  -- t is for Treesitter
+  -- NOTE: These keybindings are actually defined in the `treesitter` config and only given proper names here
   t = {
+    name = "Treesitter",
+    r = "rename",
+    d = "goto definition",
+    l = "list definitions",
+    t = "list definitions toc",
+    ["*"] = "goto next usage",
+    ["#"] = "goto previous usage",
+    s = {
+      name = "Swap",
+      f = "next function",
+      c = "next class",
+      l = "next loop",
+      i = "next conditional",
+      p = "next parameter",
+
+      F = "previous function",
+      C = "previous class",
+      L = "previous loop",
+      I = "previous conditional",
+      P = "previous parameter",
+    },
+  },
+
+  -- T is for Terminal
+  T = {
     name = "Terminal",
     d = { ":call v:lua.__fterm_toggle('dropdown')<CR>", "dropdown" },
     g = { ":call v:lua.__fterm_toggle('lazygit')<CR>", "git" },
@@ -313,10 +337,39 @@ local mappings = {
     t = { ":call v:lua.__fterm_toggle()<CR>", "toggle" },
   },
 
+  -- z is for Zen Mode
   z = { ":ZenMode<CR>", "toggle zen mode" },
 }
 
 wk.register(mappings, getOpts("n"))
 wk.register(mappings, getOpts("v"))
 
-wk.register({ j = "which_key_ignore", k = "which_key_ignore", ["<Space>"] = "which_key_ignore" }, getOpts("i", true))
+-- Ignore the keybindings for escaping insert mode
+wk.register({ j = "which_key_ignore", k = "which_key_ignore", ["<Space>"] = "which_key_ignore" }, getOpts("i", ""))
+
+-- Treesitter move plugin keybindings
+local function getBracketMappings(next, start)
+  local dir = next and "next" or "previous"
+  local towards = start and "start" or "end"
+
+  local bracketMappings = {
+    f = "goto " .. dir .. " function " .. towards,
+    c = "goto " .. dir .. " class " .. towards,
+    l = "goto " .. dir .. " loop " .. towards,
+    i = "goto " .. dir .. " conditional " .. towards,
+    p = "goto " .. dir .. " parameter " .. towards,
+  }
+
+  local actualBracketMappings = {}
+  for key, obj in pairs(bracketMappings) do
+    local actual_key = start and key or string.upper(key)
+    actualBracketMappings[string.format("%s", actual_key)] = obj
+  end
+
+  return actualBracketMappings
+end
+
+wk.register(getBracketMappings(true, true), getOpts("n", "]"))
+wk.register(getBracketMappings(true, false), getOpts("n", "]"))
+wk.register(getBracketMappings(false, true), getOpts("n", "["))
+wk.register(getBracketMappings(false, false), getOpts("n", "["))

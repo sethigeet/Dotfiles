@@ -88,9 +88,10 @@ return require("packer").startup({
       end,
       -- NOTE: These are actually not required but extend the functionality of treesitter
       requires = {
+        "nvim-treesitter/nvim-treesitter-refactor", -- Rename variables when lsp is not available and navigate through blocks of code
+        "nvim-treesitter/nvim-treesitter-textobjects", -- Move text objects intelligently
         "windwp/nvim-ts-autotag", -- Automatically close and rename tags
         "p00f/nvim-ts-rainbow", -- Rainbow brackets
-        -- "nvim-treesitter/nvim-treesitter-refactor", -- Highlight all the occurrences of variables under the cursor
         "JoosepAlviste/nvim-ts-context-commentstring", -- Change the comment string according to the location of the cursor in the file
       },
     })
@@ -270,7 +271,7 @@ return require("packer").startup({
       config = function()
         require("plugins.configs.telescope")
       end,
-      cmd = "Telescope",
+      after = "lsp-trouble.nvim",
     })
 
     -- Intellisense
