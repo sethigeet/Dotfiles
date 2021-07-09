@@ -7,6 +7,7 @@ local function getTextObjectKeymaps(leader, uppercase)
     l = "@loop.outer",
     i = "@conditional.outer",
     p = "@parameter.inner",
+    b = "@block.outer",
   }
 
   local keymaps = {}
@@ -70,6 +71,8 @@ require("nvim-treesitter.configs").setup({
         ["ii"] = "@conditional.inner",
         ["aP"] = "@parameter.outer",
         ["iP"] = "@parameter.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
       },
     },
     swap = {

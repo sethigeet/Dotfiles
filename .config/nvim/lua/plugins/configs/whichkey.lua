@@ -109,10 +109,20 @@ local mappings = {
   b = {
     name = "Buffer",
     d = { ":Bdelete<CR>", "delete buffer" },
-    f = { ":bfirst<CR>", "first buffer" },
-    l = { ":blast<CR>", "last buffer" },
-    n = { ":bnext<CR>", "next buffer" },
-    p = { ":bprevious<CR>", "previous-buffer" },
+    f = { ":Telescope buffers<CR>", "search buffers" },
+    j = { ":BufferLineCyclePrev<CR>", "previous buffer" },
+    k = { ":BufferLineCycleNext<CR>", "next buffer" },
+    h = { ":BufferLineCloseRight<CR>", "close right buffer" },
+    l = { ":BufferLineCloseLeft<CR>", "close left buffer" },
+    H = { ":BufferLineMovePrev<CR>", "move to previous" },
+    L = { ":BufferLineMoveNext<CR>", "move to next" },
+    p = { ":BufferLinePick<CR>", "pick buffer" },
+    s = {
+      name = "Sort",
+      d = { ":BufferLineSortByDirectory", "by directory" },
+      e = { ":BufferLineSortByExtension", "by extension" },
+      r = { ":BufferLineSortByRelativeDirector", "by relative directory" },
+    },
   },
 
   -- d is for Database
@@ -237,12 +247,20 @@ local mappings = {
     l = { ":call v:lua.ToggleQFList(0)<CR>", "location list" },
   },
 
+  -- r is for Run
   r = {
     name = "Run",
     r = { "<Plug>SnipRun<CR>", "Run the selected piece of code" },
     s = { "<Plug>SnipReset<CR>", "Stop the running code" },
     c = { "<Plug>SnipClose<CR>", "Clear the previous output" },
     m = { "<Plug>SnipReplMemoryClean<CR>", "Clean the repl memory" },
+  },
+
+  -- R is for REST Client
+  R = {
+    name = "REST Client",
+    r = { "<Plug>RestNvim<CR>", "run" },
+    p = { "<Plug>RestNvimPreview<CR>", "preview" },
   },
 
   -- s is for Search
@@ -358,6 +376,7 @@ local function getBracketMappings(next, start)
     l = "goto " .. dir .. " loop " .. towards,
     i = "goto " .. dir .. " conditional " .. towards,
     p = "goto " .. dir .. " parameter " .. towards,
+    b = "goto " .. dir .. " block " .. towards,
   }
 
   local actualBracketMappings = {}

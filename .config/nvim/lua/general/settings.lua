@@ -2,7 +2,6 @@
 vim.opt.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.opt.scrolloff = 2 -- Minimal number of lines to keep above and below the cursor
 vim.opt.sidescrolloff = 4 -- Minimal number of lines to keep on the right and the left side of the cursor
-vim.opt.wildignore = { "*.o", "*.a", "__pycache__", "*.pyc", "node_modules" }
 vim.opt.encoding = "utf-8" -- The encoding displayed
 vim.opt.pumheight = 10 -- Makes popup menu smaller
 vim.opt.fileencoding = "utf-8" -- The encoding written to file
@@ -37,10 +36,11 @@ vim.opt.titlestring = "%F - nvim"
 vim.opt.foldmethod = "manual" -- Set the method for folding
 vim.opt.viminfo = "'20,<1000,s1000" -- Increase the max limit of the buffers so that we don't loose anything we yanked/deleted which is too large
 
--- vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object"
--- vim.opt.whichwrap:append({ "<", ">", "[", "]", "h", "l" })
--- vim.opt.matchpairs:append("<:>")
--- vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
+vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object
+vim.opt.matchpairs:append("<:>")
+vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
+vim.opt.formatoptions:remove({ "c", "r", "o" })
+vim.opt.wildignore:append({ "*.o", "*.a", "__pycache__", "*.pyc", "node_modules" })
 
 -- Local options
 vim.opt_local.number = true -- Line numbers
@@ -50,6 +50,8 @@ vim.opt_local.wrap = false -- Display long lines as just one line
 -- Legacy stuff
 vim.cmd("set t_Co=256") -- Support 256 colors
 vim.cmd("set noshowmode")
+-- TODO: Figure out why does this not work with `vim.opt`
+vim.cmd("set whichwrap+=<,>,[,],h,l")
 
 if vim.fn.has("persistent_undo") == 1 then
   vim.opt.undodir = DATA_PATH .. "/undodir"

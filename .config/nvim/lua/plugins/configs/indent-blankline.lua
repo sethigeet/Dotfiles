@@ -36,3 +36,8 @@ vim.g.indent_blankline_context_patterns = {
   "catch_clause",
   "import_statement",
 }
+
+-- HACK: This is a workaround until this issue is not closed (https://github.com/lukas-reineke/indent-blankline.nvim/issues/59)
+vim.opt.colorcolumn = "9999999"
+
+-- BUG: Horizontal scrolling hides text! (https://github.com/lukas-reineke/indent-blankline.nvim/issues/51)

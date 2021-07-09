@@ -412,6 +412,15 @@ return require("packer").startup({
         require("plugins.configs.spectre")
       end,
     })
+
+    -- REST client in nvim
+    use({
+      "NTBBloodbath/rest.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("rest-nvim").setup()
+      end,
+    })
   end,
 
   config = {
