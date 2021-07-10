@@ -33,6 +33,8 @@ require("bufferline").setup({
 })
 
 vim.api.nvim_set_keymap("n", "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 
 -- Move to a buffer using Alt+number
 for i = 1, 9, 1 do

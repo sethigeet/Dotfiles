@@ -7,9 +7,11 @@ vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, silent = true })
 
 -- TAB in general mode will move to text buffer
-vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
 -- SHIFT-TAB will go back
-vim.api.nvim_set_keymap("n", "<S-TAB>", ":bprevious<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<S-TAB>", ":bprevious<CR>", { noremap = true, silent = true })
+-- Shift-x will close the buffer
+vim.api.nvim_set_keymap("n", "X", ":Bdelete<CR>", { noremap = true, silent = true })
 
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
