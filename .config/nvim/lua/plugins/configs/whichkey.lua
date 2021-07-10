@@ -83,8 +83,6 @@ local mappings = {
   e = { ":NvimTreeToggle<CR>", "explorer" },
   f = { ":Telescope find_files<CR>", "find files" },
   h = { "<C-W>s", "split below" },
-  j = { ":lprev<CR>zz", "prev location list item" },
-  k = { ":lnext<CR>zz", "next location list item" },
   M = { ":MarkdownPreviewToggle<CR>", "markdown preview" },
   n = { ':let @/ = ""<CR>', "no highlight" },
   u = { ":UndotreeToggle<CR>", "undo tree" },
@@ -239,10 +237,10 @@ local mappings = {
   -- q is for Quickfix
   q = {
     name = "Quickfix",
-    w = { ":LspTrouble lsp_workspace_diagnostics<CR>", "lsp workspace diagnostics" },
-    d = { ":LspTrouble lsp_document_diagnostics<CR>", "lsp document diagnostics" },
-    r = { ":LspTrouble lsp_references<CR>", "lsp references" },
-    t = { ":TodoTrouble<CR>", "todos" },
+    w = { ":Trouble lsp_workspace_diagnostics<CR>", "lsp workspace diagnostics" },
+    d = { ":Trouble lsp_document_diagnostics<CR>", "lsp document diagnostics" },
+    r = { ":Trouble lsp_references<CR>", "lsp references" },
+    t = { ":Trouble todo<CR>", "todos" },
     q = { ":call v:lua.ToggleQFList(1)<CR>", "quickfix list" },
     l = { ":call v:lua.ToggleQFList(0)<CR>", "location list" },
   },

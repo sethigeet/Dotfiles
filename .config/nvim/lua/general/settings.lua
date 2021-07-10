@@ -21,7 +21,6 @@ vim.opt.laststatus = 2 -- Always display the status line
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.background = "dark" -- tell vim what the background color looks like
 vim.opt.showtabline = 2 -- Always show tabs
-vim.opt_local.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.updatetime = 300 -- Faster completion
 vim.opt.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.opt.clipboard = "unnamedplus" -- Copy paste between vim and everything else
@@ -36,6 +35,8 @@ vim.opt.titlestring = "%F - nvim"
 vim.opt.foldmethod = "manual" -- Set the method for folding
 vim.opt.viminfo = "'20,<1000,s1000" -- Increase the max limit of the buffers so that we don't loose anything we yanked/deleted which is too large
 
+vim.opt.completeopt = { "menuone", "noselect" }
+
 vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object
 vim.opt.matchpairs:append("<:>")
 vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
@@ -46,6 +47,7 @@ vim.opt.wildignore:append({ "*.o", "*.a", "__pycache__", "*.pyc", "node_modules"
 vim.opt_local.number = true -- Line numbers
 vim.opt_local.relativenumber = true -- Relative Line numbers
 vim.opt_local.wrap = false -- Display long lines as just one line
+vim.opt_local.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 
 -- Legacy stuff
 vim.cmd("set t_Co=256") -- Support 256 colors

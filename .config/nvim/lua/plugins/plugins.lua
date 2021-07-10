@@ -224,7 +224,7 @@ return require("packer").startup({
     use({
       "folke/lsp-trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
-      cmd = { "TroubleToggle", "Telescope" },
+      cmd = { "Trouble", "TroubleToggle", "Telescope" },
       config = function()
         require("plugins.configs.trouble")
       end,
@@ -401,7 +401,13 @@ return require("packer").startup({
     })
 
     -- Quickly align text by pattern
-    use("godlygeek/tabular")
+    use({
+      "godlygeek/tabular",
+      cmd = "Tabularize",
+      config = function()
+        require("plugins.configs.tabularize")
+      end,
+    })
 
     -- Search and replace text interactively
     use({

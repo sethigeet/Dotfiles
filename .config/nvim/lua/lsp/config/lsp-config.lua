@@ -85,8 +85,3 @@ vim.api.nvim_set_keymap(
   ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
   { noremap = true, silent = true }
 )
-
--- Automatically populate the location list with the lsp diagnostics
-require("general.functions").DefineAugroups({
-  lsp = { { "BufWrite,BufEnter,InsertLeave", "*", "LspPopulateLocationList" } },
-})
