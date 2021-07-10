@@ -18,7 +18,8 @@ if (ping -4 -c 1 google.com || ping -4 -c 1 github.com || ping -4 -c 1 sourcefor
     fi
     active="-a 0"
     PIP="$(wget --timeout=30 http://ipinfo.io/ip -qO -)"
-    LIP="$(nmcli device show "$IFACE" | grep 'IP4.ADDRESS' | awk '{print $2}')"
+    LIP="$(nmcli device show "$IFACE" | grep 'IP4.ADDRESS')"
+    LIP="${LIP##* }"
   fi
 else
   urgent="-u 0"
@@ -35,35 +36,51 @@ launch=" Open Connection Editor"
 
 options="$connected\n$bmon\n$launch_cli\n$launch"
 
-# Main
-chosen="$(
-  echo -e "$options" | rofi \
-    -theme "$HOME/.config/rofi/themes/without-inputbar.rasi" \
-    -lines 4 \
-    -markup \
-    -dmenu \
-    -mesg "SSID: <b>$SSID</b> 
+gui() {
+  chosen="$(
+    echo -e "$options" | rofi \
+      -theme "$HOME/.config/rofi/themes/without-inputbar.rasi" \
+      -lines 4 \
+      -markup \
+      -dmenu \
+      -mesg "SSID: <b>$SSID</b> 
 Local IP:  <b>$LIP</b>
 Public IP: <b>$PIP</b>" \
-    "$active" "$urgent" \
-    -selected-row 1
-)"
+      "$active" "$urgent" \
+      -selected-row 1
+  )"
 
-case $chosen in
-  "$connected")
-    if [[ $STATUS == *"enable"* ]]; then
-      nmcli radio wifi off
-    else
-      nmcli radio wifi on
-    fi
-    ;;
-  "$bmon")
-    $TERMINAL -e bmon
-    ;;
-  "$launch_cli")
-    $TERMINAL -e nmtui
-    ;;
-  "$launch")
-    nm-connection-editor
-    ;;
-esac
+  case $chosen in
+    "$connected")
+      if [[ $STATUS == *"enable"* ]]; then
+        nmcli radio wifi off
+      else
+        nmcli radio wifi on
+      fi
+      ;;
+    "$bmon")
+      $TERMINAL -e bmon
+      ;;
+    "$launch_cli")
+      $TERMINAL -e nmtui
+      ;;
+    "$launch")
+      nm-connection-editor
+      ;;
+  esac
+}
+
+tty() {
+  local bold=$'\e[1m'
+  local reset=$'\e[0m'
+
+  echo "SSID: $bold$SSID$reset
+Local IP:  $bold$LIP$reset
+Public IP: $bold$PIP$reset"
+}
+
+if [[ -t 0 ]]; then
+  tty
+else
+  gui
+fi
