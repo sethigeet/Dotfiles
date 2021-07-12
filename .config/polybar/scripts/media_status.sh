@@ -14,7 +14,7 @@ update_hooks() {
 }
 
 status() {
-  PLAYERCTL_STATUS=$(playerctl status 2>/dev/null)
+  PLAYERCTL_STATUS=$(playerctl status -a 2>/dev/null)
   EXIT_CODE=$?
 
   if [ $EXIT_CODE -eq 0 ]; then
@@ -23,20 +23,16 @@ status() {
     STATUS="No player is running"
   fi
 
-  if [ "$1" == "--status" ]; then
-    echo "$STATUS"
-  else
-    if [ "$STATUS" = "Stopped" ]; then
-      echo "Paused"
-    elif [ "$STATUS" = "Paused" ]; then
-      update_hooks "$PARENT_BAR_PID" 2
-      echo "Paused"
-    elif [ "$STATUS" = "No player is running" ]; then
-      echo "$STATUS"
-    else
-      update_hooks "$PARENT_BAR_PID" 1
-      playerctl metadata --format "$FORMAT"
-    fi
+  if [[ $STATUS == *Playing* ]]; then
+    update_hooks "$PARENT_BAR_PID" 1
+    playerctl metadata --format "$FORMAT"
+  elif [[ $STATUS == *Paused* ]]; then
+    update_hooks "$PARENT_BAR_PID" 2
+    echo "Paused"
+  elif [[ $STATUS == *Stopped* ]]; then
+    echo "Paused"
+  elif [[ $STATUS == "No player is running" ]]; then
+    echo "No player is running"
   fi
 }
 
