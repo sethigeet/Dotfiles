@@ -9,6 +9,9 @@ vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, silent = true })
 -- Easily duplicate lines
 vim.api.nvim_set_keymap("n", "yp", "yyp", { noremap = true, silent = true })
 
+-- Easily delete words in insert mode
+vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
+
 -- TAB in general mode will move to text buffer
 -- vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
 -- SHIFT-TAB will go back

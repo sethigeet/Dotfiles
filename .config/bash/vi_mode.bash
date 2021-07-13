@@ -5,6 +5,9 @@ set -o vi
 bind '"jk":vi-movement-mode'
 bind '"kj":vi-movement-mode'
 
+# Remap Ctrl+Backspace to delete a word
+stty werase \^H
+
 # Change cursor shape for different vi modes.
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \e[6 q"
