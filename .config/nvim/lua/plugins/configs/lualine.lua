@@ -19,28 +19,41 @@ local function getLspClient(msg)
   return msg
 end
 
-require("lualine").setup({
-  options = { theme = "tokyonight" },
-  sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch" },
-    lualine_c = {
-      {
-        "diff",
-        colored = true,
-        symbols = { added = " ", modified = "柳", removed = " " },
+local plugin = {}
+
+function plugin.setup()
+  require("lualine").setup(Opts.plugin.lualine.config)
+end
+
+function plugin.config()
+  Opts.plugin["lualine"] = {
+    enabled = true,
+    config = {
+      options = { theme = "tokyonight" },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch" },
+        lualine_c = {
+          {
+            "diff",
+            colored = true,
+            symbols = { added = " ", modified = "柳", removed = " " },
+          },
+          {
+            "diagnostics",
+            sources = { "nvim_lsp" },
+            sections = { "error", "warn", "info" },
+            symbols = { error = " ", warn = " ", info = " " },
+          },
+          { "filename", symbols = { modified = "  ", readonly = "  " } },
+        },
+        lualine_x = { { "filetype", colored = true }, getLspClient },
+        lualine_y = { getTabStop },
+        lualine_z = { "location" },
       },
-      {
-        "diagnostics",
-        sources = { "nvim_lsp" },
-        sections = { "error", "warn", "info" },
-        symbols = { error = " ", warn = " ", info = " " },
-      },
-      { "filename", symbols = { modified = "  ", readonly = "  " } },
+      extensions = { "fugitive", "nvim-tree" },
     },
-    lualine_x = { { "filetype", colored = true }, getLspClient },
-    lualine_y = { getTabStop },
-    lualine_z = { "location" },
-  },
-  extensions = { "fugitive", "nvim-tree" },
-})
+  }
+end
+
+return plugin

@@ -19,16 +19,18 @@ return require("packer").startup({
       requires = "nvim-lua/plenary.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.todo-comments")
+        require("plugins.configs.todo_comments").setup()
       end,
+      disable = not Opts.plugin.todo_comments.enabled,
     })
     use("suy/vim-context-commentstring") -- Useful for React Commenting
     use({
       "terrortylor/nvim-comment",
       event = "BufRead",
       config = function()
-        require("plugins.configs.comment")
+        require("plugins.configs.comment").setup()
       end,
+      disable = not Opts.plugin.comment.enabled,
     })
 
     -- Indent lines
@@ -36,8 +38,9 @@ return require("packer").startup({
       "lukas-reineke/indent-blankline.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.indent-blankline")
+        require("plugins.configs.indent_blankline").setup()
       end,
+      disable = not Opts.plugin.indent_blankline.enabled,
     })
 
     -- Repeat stuff
@@ -47,15 +50,16 @@ return require("packer").startup({
     use({
       "vifm/vifm.vim",
       config = function()
-        require("plugins.configs.vifm")
+        require("plugins.configs.vifm").setup()
       end,
+      disable = not Opts.plugin.vifm.enabled,
     })
 
     -- File Explorer
     use({
       "kyazdani42/nvim-tree.lua",
       config = function()
-        require("plugins.configs.nvim-tree")
+        require("plugins.configs.nvim_tree")
       end,
       requires = "kyazdani42/nvim-web-devicons", -- Cool Icons
     })
@@ -65,16 +69,18 @@ return require("packer").startup({
       "easymotion/vim-easymotion",
       event = "BufRead",
       config = function()
-        require("plugins.configs.easymotion")
+        require("plugins.configs.easymotion").setup()
       end,
+      disable = not Opts.plugin.easymotion.enabled,
     })
 
     -- Have the file system follow you around
     use({
       "ahmedkhalf/lsp-rooter.nvim",
       config = function()
-        require("plugins.configs.rooter")
+        require("plugins.configs.rooter").setup()
       end,
+      disable = not Opts.plugin.rooter.enabled,
     })
 
     -- auto set indent settings
@@ -84,33 +90,59 @@ return require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       config = function()
-        require("plugins.configs.treesitter")
+        require("plugins.configs.treesitter").setup()
       end,
-      -- NOTE: These are actually not required but extend the functionality of treesitter
-      requires = {
-        "nvim-treesitter/nvim-treesitter-refactor", -- Rename variables when lsp is not available and navigate through blocks of code
-        "nvim-treesitter/nvim-treesitter-textobjects", -- Move text objects intelligently
-        "windwp/nvim-ts-autotag", -- Automatically close and rename tags
-        "p00f/nvim-ts-rainbow", -- Rainbow brackets
-        "JoosepAlviste/nvim-ts-context-commentstring", -- Change the comment string according to the location of the cursor in the file
-      },
+      disable = not Opts.plugin.treesitter.enabled,
+    })
+    -- Rename variables when lsp is not available and navigate through blocks of code
+    use({
+      "nvim-treesitter/nvim-treesitter-refactor",
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.treesitter.enabled,
+    })
+    -- Move text objects intelligently
+    use({
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.treesitter.enabled,
+    })
+    -- Automatically close and rename tags
+    use({
+      "windwp/nvim-ts-autotag",
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.treesitter.enabled,
+    })
+    -- Rainbow brackets
+    use({
+      "p00f/nvim-ts-rainbow",
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.treesitter.enabled,
+    })
+    -- Change the comment string according to the location of the cursor in the file
+    use({
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.treesitter.enabled,
     })
     use({
       "andymass/vim-matchup", -- Extend vim's '%' functionality using `treesitter`
       event = "CursorMoved",
       config = function()
-        require("plugins.configs.matchup")
+        require("plugins.configs.matchup").setup()
       end,
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.matchup.enabled,
     })
 
     -- Auto pairs for "(", "[", "{", etc
-    -- use {
-    -- "windwp/nvim-autopairs",
-    -- config = function()
-    -- require("plugins.configs.autopairs")
-    -- end,
-    -- after = "nvim-compe"
-    -- }
+    -- use({
+    --   "windwp/nvim-autopairs",
+    --   config = function()
+    --     require("plugins.configs.autopairs").setup()
+    --   end,
+    --   after = "nvim-compe",
+    --   disable = not Opts.plugin.autopairs.enabled,
+    -- })
     use("jiangmiao/auto-pairs")
 
     -- Themes
@@ -122,8 +154,9 @@ return require("packer").startup({
       "hoob3rt/lualine.nvim",
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
-        require("plugins.configs.lualine")
+        require("plugins.configs.lualine").setup()
       end,
+      disable = not Opts.plugin.lualine.enabled,
     })
 
     -- Git
@@ -133,30 +166,34 @@ return require("packer").startup({
       "rhysd/git-messenger.vim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.git-messenger")
+        require("plugins.configs.git_messenger").setup()
       end,
+      disable = not Opts.plugin.git_messenger.enabled,
     })
     use({
       "lewis6991/gitsigns.nvim",
       requires = "nvim-lua/plenary.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.gitsigns")
+        require("plugins.configs.gitsigns").setup()
       end,
+      disable = not Opts.plugin.gitsigns.enabled,
     })
     use({
       "f-person/git-blame.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.git-blame")
+        require("plugins.configs.git_blame").setup()
       end,
+      disable = not Opts.plugin.git_blame.enabled,
     })
     -- use {
     -- "TimUntersberger/neogit",
     -- requires = "nvim-lua/plenary.nvim",
     -- config = function()
-    -- require("plugins.configs.neogit")
-    -- end
+    -- require("plugins.configs.neogit").setup()
+    -- end,
+    -- disable = not Opts.plugin.neogit.enabled,
     -- }
 
     -- Terminal
@@ -164,18 +201,20 @@ return require("packer").startup({
       "numtostr/FTerm.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.fterm")
+        require("plugins.configs.fterm").setup()
       end,
+      disable = not Opts.plugin.fterm.enabled,
     })
 
     -- Start Screen
     use({
       "glepnir/dashboard-nvim",
       config = function()
-        require("plugins.configs.dashboard")
+        require("plugins.configs.dashboard").setup()
       end,
+      disable = not Opts.plugin.dashboard.enabled,
     })
-    -- use {"mhinz/vim-startify", config = function() require("plugins.configs.startify") end}
+    -- use {"mhinz/vim-startify", config = function() require("plugins.configs.startify").setup() end}
 
     -- See what keys do like in emacs
     use({
@@ -191,8 +230,9 @@ return require("packer").startup({
       requires = "hrsh7th/vim-vsnip-integ",
       event = "InsertEnter",
       config = function()
-        require("plugins.configs.vsnip")
+        require("plugins.configs.vsnip").setup()
       end,
+      disable = not Opts.plugin.vsnip.enabled,
     })
     use({ "rafamadriz/friendly-snippets", event = "InsertEnter" })
 
@@ -201,8 +241,9 @@ return require("packer").startup({
       "metakirby5/codi.vim",
       cmd = "Codi",
       config = function()
-        require("plugins.configs.codi")
+        require("plugins.configs.codi").setup()
       end,
+      disable = not Opts.plugin.codi.enabled,
     })
 
     -- Better tabline
@@ -210,24 +251,27 @@ return require("packer").startup({
       "akinsho/nvim-bufferline.lua",
       requires = "kyazdani42/nvim-web-devicons",
       config = function()
-        require("plugins.configs.bufferline")
+        require("plugins.configs.bufferline").setup()
       end,
+      disable = not Opts.plugin.bufferline.enabled,
     })
 
     -- Better quickfix menu
     use({
       "kevinhwang91/nvim-bqf",
       config = function()
-        require("plugins.configs.bqf")
+        require("plugins.configs.bqf").setup()
       end,
+      disable = not Opts.plugin.bqf.enabled,
     })
     use({
       "folke/lsp-trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
       cmd = { "Trouble", "TroubleToggle", "Telescope" },
       config = function()
-        require("plugins.configs.trouble")
+        require("plugins.configs.trouble").setup()
       end,
+      disable = not Opts.plugin.trouble.enabled,
     })
 
     -- Intuitive buffer closing
@@ -239,25 +283,14 @@ return require("packer").startup({
     -- Smooth scroll
     use({ "psliwka/vim-smoothie", event = "BufEnter" })
 
-    -- Swap windows
-    use({
-      "wesQ3/vim-windowswap",
-      event = "BufEnter",
-      config = function()
-        require("plugins.configs.windowswap")
-      end,
-    })
-
-    -- Markdown Preview
-    use({ "npxbr/glow.nvim", run = ":GlowInstall", ft = { "markdown", "markdownreact" } })
-
     -- Colorizer
     use({
       "norcalli/nvim-colorizer.lua",
       event = "BufRead",
       config = function()
-        require("plugins.configs.colorizer")
+        require("plugins.configs.colorizer").setup()
       end,
+      disable = not Opts.plugin.colorizer.enabled,
     })
 
     -- Multiple Cursors
@@ -277,6 +310,7 @@ return require("packer").startup({
         require("plugins.configs.telescope")
       end,
       after = "lsp-trouble.nvim",
+      -- disable = not Opts.plugin.telescope.enabled,
     })
 
     -- Intellisense
@@ -285,24 +319,27 @@ return require("packer").startup({
     use({
       "hrsh7th/nvim-compe",
       config = function()
-        require("plugins.configs.compe")
+        require("plugins.configs.compe").setup()
       end,
       event = "InsertEnter",
+      disable = not Opts.plugin.compe.enabled,
     })
     use({
       "glepnir/lspsaga.nvim",
       config = function()
-        require("plugins.configs.lspsaga")
+        require("plugins.configs.lspsaga").setup()
       end,
       event = "BufRead",
+      disable = not Opts.plugin.lspsaga.enabled,
     })
     use({ "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } })
     use({
       "simrat39/symbols-outline.nvim",
       cmd = "SymbolsOutline",
       config = function()
-        require("plugins.configs.symbols-outline")
+        require("plugins.configs.symbols_outline").setup()
       end,
+      disable = not Opts.plugin.symbols_outline.enabled,
     })
     use({
       "fatih/vim-go",
@@ -318,8 +355,9 @@ return require("packer").startup({
       "ray-x/lsp_signature.nvim",
       event = "InsertEnter",
       config = function()
-        require("plugins.configs.lsp_signature")
+        require("plugins.configs.lsp_signature").setup()
       end,
+      disable = not Opts.plugin.lsp_signature.enabled,
     })
     use({ "folke/lsp-colors.nvim", event = "BufRead" })
 
@@ -329,8 +367,9 @@ return require("packer").startup({
       ft = { "markdown", "markdownreact" },
       run = "cd app && npm install",
       config = function()
-        require("plugins.configs.markdown-preview")
+        require("plugins.configs.markdown_preview").setup()
       end,
+      disable = not Opts.plugin.markdown_preview.enabled,
     })
 
     -- Easily change surrounding elements
@@ -341,25 +380,28 @@ return require("packer").startup({
       "monaqa/dial.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.dial")
+        require("plugins.configs.dial").setup()
       end,
+      disable = not Opts.plugin.dial.enabled,
     })
 
     -- Better bookmarks
     use({
       "MattesGroeger/vim-bookmarks",
       config = function()
-        require("plugins.configs.bookmarks")
+        require("plugins.configs.bookmarks").setup()
       end,
+      disable = not Opts.plugin.bookmarks.enabled,
     })
 
     -- Interact with databases
-    use("tpope/vim-dadbod")
+    use({ "tpope/vim-dadbod", disable = not Opts.plugin.dadbod.enabled })
     use({
       "kristijanhusak/vim-dadbod-ui",
       config = function()
-        require("plugins.configs.dadbod")
+        require("plugins.configs.dadbod").setup()
       end,
+      disable = not Opts.plugin.dadbod.enabled,
     })
     use("kristijanhusak/vim-dadbod-completion")
 
@@ -368,8 +410,9 @@ return require("packer").startup({
       "nacro90/numb.nvim",
       event = "BufRead",
       config = function()
-        require("plugins.configs.numb")
+        require("plugins.configs.numb").setup()
       end,
+      disable = not Opts.plugin.numb.enabled,
     })
 
     -- Distraction free writing (zen mode)
@@ -377,8 +420,9 @@ return require("packer").startup({
       "folke/zen-mode.nvim",
       cmd = "ZenMode",
       config = function()
-        require("plugins.configs.zen-mode")
+        require("plugins.configs.zen_mode").setup()
       end,
+      disable = not Opts.plugin.zen_mode.enabled,
     })
 
     -- The emmet plugin for vim
@@ -386,8 +430,9 @@ return require("packer").startup({
       "mattn/emmet-vim",
       event = "InsertEnter",
       config = function()
-        require("plugins.configs.emmet")
+        require("plugins.configs.emmet").setup()
       end,
+      disable = not Opts.plugin.emmet.enabled,
     })
 
     -- Run selected blocks of code
@@ -395,9 +440,9 @@ return require("packer").startup({
       "michaelb/sniprun",
       run = "bash ./install.sh",
       config = function()
-        require("sniprun").initial_setup()
-        require("plugins.configs.sniprun")
+        require("plugins.configs.sniprun").setup()
       end,
+      disable = not Opts.plugin.sniprun.enabled,
     })
 
     -- Quickly align text by pattern
@@ -405,8 +450,9 @@ return require("packer").startup({
       "godlygeek/tabular",
       cmd = "Tabularize",
       config = function()
-        require("plugins.configs.tabularize")
+        require("plugins.configs.tabular").setup()
       end,
+      disable = not Opts.plugin.tabular.enabled,
     })
 
     -- Search and replace text interactively
@@ -415,8 +461,9 @@ return require("packer").startup({
       requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
       event = "BufRead",
       config = function()
-        require("plugins.configs.spectre")
+        require("plugins.configs.spectre").setup()
       end,
+      disable = not Opts.plugin.spectre.enabled,
     })
 
     -- REST client in nvim

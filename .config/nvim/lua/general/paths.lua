@@ -1,8 +1,8 @@
 -- Python2 path
-vim.g.python2_host_prog = vim.fn.expand("/usr/bin/python2")
+vim.g.python2_host_prog = Opts.misc.exec_paths.python2
 
 -- Python3 path
-vim.g.python3_host_prog = vim.fn.expand("/usr/bin/python")
+vim.g.python3_host_prog = Opts.misc.exec_paths.python3
 
 -- Node.js path
--- vim.g.node_host_prog = vim.fn.expand("~/.nvm/versions/node/v14.16.0/bin/node")
+-- vim.g.node_host_prog = Opts.misc.exec_paths.node

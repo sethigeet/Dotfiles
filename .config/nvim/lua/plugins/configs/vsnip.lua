@@ -1,7 +1,21 @@
-local vsnip_filetypes = {}
+local plugin = {}
 
-vsnip_filetypes.javascriptreact = { "javascript" }
-vsnip_filetypes.typescriptreact = { "typescript" }
+function plugin.setup()
+  vim.g.vsnip_filetypes = Opts.plugin.vsnip.config.filetypes
+  vim.g.vsnip_snippet_dir = Opts.plugin.vsnip.config.snippets_dir
+end
 
-vim.g.vsnip_filetypes = vsnip_filetypes
-vim.g.vsnip_snippet_dir = CONFIG_PATH .. "/snippets"
+function plugin.config()
+  Opts.plugin["vsnip"] = {
+    enabled = true,
+    config = {
+      filetypes = {
+        javascriptreact = { "javascript" },
+        typescriptreact = { "typescript" },
+      },
+      snippets_dir = CONFIG_PATH .. "/snippets",
+    },
+  }
+end
+
+return plugin

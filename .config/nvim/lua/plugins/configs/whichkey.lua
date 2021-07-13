@@ -87,6 +87,7 @@ local mappings = {
   n = { ':let @/ = ""<CR>', "no highlight" },
   u = { ":UndotreeToggle<CR>", "undo tree" },
   v = { "<C-W>v", "split right" },
+  w = { ":w<CR>", "save file" },
 
   -- a is for Action
   a = {
@@ -334,12 +335,14 @@ local mappings = {
       l = "next loop",
       i = "next conditional",
       p = "next parameter",
+      b = "next block",
 
       F = "previous function",
       C = "previous class",
       L = "previous loop",
       I = "previous conditional",
       P = "previous parameter",
+      B = "previous block",
     },
   },
 

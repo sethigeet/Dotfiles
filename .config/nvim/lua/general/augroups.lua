@@ -1,6 +1,6 @@
 local DefineAugroups = require("general.functions").DefineAugroups
 
-DefineAugroups({
+local augroups = {
   general_settings = {
     {
       "TextYankPost",
@@ -11,8 +11,10 @@ DefineAugroups({
     { "BufWinLeave", "*.*", "mkview" }, -- Save the state for the next time
   },
   auto_compile = {},
-  mode_switching = {
-    -- will switch between absolute and relative line numbers depending on mode
+}
+
+if Opts.editor.smart_relative_line_numbers then
+  augroups["mode_switching "] = {
     {
       "InsertEnter",
       "*",
@@ -21,5 +23,7 @@ DefineAugroups({
     { "InsertLeave", "*", 'if exists("g:ms_relativenumberoff") | setlocal relativenumber | endif' },
     { "InsertEnter", "*", "if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif" },
     { "InsertLeave", "*", 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif' },
-  },
-})
+  }
+end
+
+DefineAugroups(augroups)
