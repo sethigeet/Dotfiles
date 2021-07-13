@@ -136,12 +136,12 @@ return require("packer").startup({
 
     -- Auto pairs for "(", "[", "{", etc
     -- use({
-    --   "windwp/nvim-autopairs",
-    --   config = function()
-    --     require("plugins.configs.autopairs").setup()
-    --   end,
-    --   after = "nvim-compe",
-    --   disable = not Opts.plugin.autopairs.enabled,
+    -- "windwp/nvim-autopairs",
+    -- config = function()
+    -- require("plugins.configs.autopairs").setup()
+    -- end,
+    -- after = "nvim-compe",
+    -- disable = not Opts.plugin.autopairs.enabled,
     -- })
     use("jiangmiao/auto-pairs")
 

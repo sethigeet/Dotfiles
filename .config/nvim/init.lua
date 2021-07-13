@@ -10,4 +10,3 @@ require("plugins")
 require("lsp")
 
 -- TODO: Refactor `telescope` and `nvim_tree` config with the new structure
--- TODO: Add `yp` mapping

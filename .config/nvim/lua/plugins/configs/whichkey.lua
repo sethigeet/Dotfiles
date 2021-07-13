@@ -36,8 +36,17 @@ wk.setup({
     width = { min = 4, max = 50 }, -- min and max width of the columns
     spacing = 3, -- spacing between columns
   },
+  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
   hidden = { "<silent>", ":", ":", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
+  triggers = "auto", -- automatically setup triggers
+  triggers_blacklist = {
+    -- list of mode / prefixes that should never be hooked by WhichKey
+    -- this is mostly relevant for key maps that start with a native binding
+    -- most people should not need to change this
+    i = { "j", "k", "<Space>" },
+    c = { "j", "k" },
+  },
 })
 
 -- Set leader
@@ -362,9 +371,6 @@ local mappings = {
 
 wk.register(mappings, getOpts("n"))
 wk.register(mappings, getOpts("v"))
-
--- Ignore the keybindings for escaping insert mode
-wk.register({ j = "which_key_ignore", k = "which_key_ignore", ["<Space>"] = "which_key_ignore" }, getOpts("i", ""))
 
 -- Treesitter move plugin keybindings
 local function getBracketMappings(next, start)

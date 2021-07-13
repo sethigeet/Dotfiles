@@ -1,4 +1,6 @@
 vim.cmd("cnoreabbrev W! w!")
+vim.cmd("cnoreabbrev w!! w !sudo tee > /dev/null %")
+vim.cmd("cnoreabbrev W!! w !sudo tee > /dev/null %")
 vim.cmd("cnoreabbrev Q! q!")
 vim.cmd("cnoreabbrev Qall! qall!")
 vim.cmd("cnoreabbrev Wq wq")

@@ -10,9 +10,6 @@ vim.api.nvim_set_keymap("i", "<C-k>", [[("\<C-p>")]], { noremap = true, expr = t
 vim.api.nvim_set_keymap("i", "<M-u>", "<Esc>viwUi", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-u>", "viwU<Esc>", { noremap = true, silent = true })
 
--- Save file as sudo when no sudo permissions
-vim.api.nvim_set_keymap("c", "w!!", "w !sudo tee > /dev/null %", {})
-
 -- Center the screen after search
 vim.api.nvim_set_keymap("n", "n", "nzzzv", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "N", "Nzzzv", { silent = true, noremap = true })

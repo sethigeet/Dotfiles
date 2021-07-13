@@ -6,6 +6,9 @@ vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true
 -- Fixed the "Y" behavior
 vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, silent = true })
 
+-- Easily duplicate lines
+vim.api.nvim_set_keymap("n", "yp", "yyp", { noremap = true, silent = true })
+
 -- TAB in general mode will move to text buffer
 -- vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
 -- SHIFT-TAB will go back
