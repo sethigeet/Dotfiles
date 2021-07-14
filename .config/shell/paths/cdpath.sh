@@ -1,5 +1,10 @@
 # Add the repos
-CDPATH="$CDPATH:$HOME/Repos:$HOME/Repos/github.com/$GITUSER"
+CDPATH="$CDPATH:$HOME/Repos"
+for service in "$HOME/Repos/"*; do
+  for user in "$service"/*; do
+    CDPATH="$CDPATH:$user"
+  done
+done
 
 # Add the configs
 CDPATH="$CDPATH:$XDG_CONFIG_HOME"
