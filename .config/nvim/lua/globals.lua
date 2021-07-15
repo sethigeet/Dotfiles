@@ -72,7 +72,6 @@ Opts = {
 
 local plugins = {
   "autopairs",
-  "bookmarks",
   "bqf",
   "bufferline",
   "codi",
@@ -82,7 +81,6 @@ local plugins = {
   "dadbod",
   "dashboard",
   "dial",
-  "easymotion",
   "emmet",
   "fterm",
   "git_blame",
@@ -109,6 +107,7 @@ local plugins = {
   "trouble",
   "vifm",
   "vsnip",
+  -- "which_key",
   "zen_mode",
 }
 for _, plugin in ipairs(plugins) do

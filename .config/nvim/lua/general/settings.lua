@@ -17,6 +17,8 @@ vim.opt.smarttab = true -- Makes tabbing smarter will realize you have 2 vs 4
 vim.opt.expandtab = Opts.editor.indent.expand_tab -- Converts tabs to spaces
 vim.opt.smartindent = true -- Makes indenting smart
 vim.opt.autoindent = true -- Good auto indent
+vim.opt.copyindent = true
+vim.opt.preserveindent = true
 vim.opt.laststatus = 2 -- Always display the status line
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.background = "dark" -- tell vim what the background color looks like
@@ -37,7 +39,7 @@ vim.opt.completeopt = { "menuone", "noselect" }
 
 vim.opt.iskeyword:append("-") -- treat dash separated words as a word text object
 vim.opt.matchpairs:append("<:>")
-vim.opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
+vim.opt.shortmess:append("astc")
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.wildignore:append(Opts.search.ignore)
 

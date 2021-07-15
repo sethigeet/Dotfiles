@@ -49,19 +49,6 @@ wk.setup({
   },
 })
 
--- Set leader
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-
--- Hide the status line for the which-key window
-require("general.functions").DefineAugroups({
-  which_key = {
-    { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
-    { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },
-  },
-})
-
 local function getOpts(mode, prefix)
   local actual_prefix
   if prefix then
@@ -82,9 +69,20 @@ local function getOpts(mode, prefix)
   }
 end
 
-local mappings = {
-  ["<Space>"] = "easymotion prefix",
+-- Set leader
+vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
+vim.g.mapleader = " "
 
+-- Hide the status line for the which-key window
+require("general.functions").DefineAugroups({
+  which_key = {
+    { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
+    { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },
+  },
+})
+
+local mappings = {
   ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
   ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
@@ -187,8 +185,6 @@ local mappings = {
     t = { ":GitGutterSignsToggle<CR>", "toggle signs" },
     u = { ":lua require('gitsigns').undo_stage_hunk()<CR>", "undo stage hunk" },
     S = { ":Telescope git_status<CR>", "Open changed file" },
-    v = { ":GV<CR>", "view commits" },
-    V = { ":GV!<CR>", "view buffer commits" },
     A = { ":Git add %<CR>", "add current" },
     -- S = { ":!git status<CR>", "status" }
   },
