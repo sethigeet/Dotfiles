@@ -24,7 +24,7 @@ local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local function check_back_space()
+local function checkBackSpace()
   local col = vim.fn.col(".") - 1
   if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
     return true
@@ -38,7 +38,7 @@ function _G.TabComplete()
     return t("<C-n>")
   elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
     return t("<Plug>(vsnip-expand-or-jump)")
-  elseif check_back_space() then
+  elseif checkBackSpace() then
     return t("<Tab>")
   else
     -- return vim.fn["compe#complete"]()
@@ -86,4 +86,15 @@ function _G.ToggleQFList(global)
   end
 end
 
-return { DefineAugroups = DefineAugroups }
+function CheckLspClientActive(name)
+  local clients = vim.lsp.get_active_clients()
+  for _, client in pairs(clients) do
+    if client.name == name then
+      return true
+    end
+  end
+
+  return false
+end
+
+return { DefineAugroups = DefineAugroups, CheckLspClientActive = CheckLspClientActive }

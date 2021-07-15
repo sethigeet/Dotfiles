@@ -1,4 +1,4 @@
-local function AutoFormat(lang, client)
+local function AutoFormat(client)
   if Opts.editor.format_on_save and client.resolved_capabilities.document_formatting then
     vim.cmd("augroup Format")
     vim.cmd("autocmd! * <buffer>")

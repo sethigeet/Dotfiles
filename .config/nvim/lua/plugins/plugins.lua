@@ -13,6 +13,9 @@ return require("packer").startup({
     -- Packer can manage itself as an optional plugin
     use("wbthomason/packer.nvim")
 
+    -- TODO: Remove this once it this is merged (https://github.com/neovim/neovim/pull/13823)
+    use({ "tjdevries/astronauta.nvim" })
+
     -- Better Comments
     use({
       "folke/todo-comments.nvim",

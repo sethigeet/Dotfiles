@@ -1,4 +1,4 @@
 require("lsp.wrapper")
 require("lsp.config")
-require("lsp.language-servers")
 require("lsp.helpers")
+require("lsp.language_servers")

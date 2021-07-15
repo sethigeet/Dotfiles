@@ -1,1 +1,1 @@
-require("lsp.config.lsp-config")
+require("lsp.config.lsp_config")
