@@ -35,9 +35,6 @@ function LanguageServer:lsp()
         self.on_attach(client, bufnr)
       end
     end,
-    handlers = {
-      ["textDocument/publishDiagnostics"] = require("lsp.helpers.diagnostics_handler")(),
-    },
   }
 
   if self.filetypes and #self.filetypes > 0 then

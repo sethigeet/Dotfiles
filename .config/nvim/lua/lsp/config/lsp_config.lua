@@ -8,6 +8,14 @@ vim.lsp.handlers["textDocument/implementation"] = require("lsputil.locations").i
 vim.lsp.handlers["textDocument/documentSymbol"] = require("lsputil.symbols").document_handler
 vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
 
+-- NOTE: This is a custom handler and does not require a plugin!
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = { spacing = 0, prefix = "" },
+  signs = true,
+  underline = true,
+  update_in_insert = true,
+})
+
 ---------------------------------------------
 
 -- Signs for diagnostics
