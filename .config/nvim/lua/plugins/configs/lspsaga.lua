@@ -37,6 +37,7 @@ end
 function plugin.config()
   Opts.plugin["lspsaga"] = {
     enabled = true,
+    border_style = "round",
   }
 end
 

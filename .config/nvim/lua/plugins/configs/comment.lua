@@ -20,9 +20,6 @@ function plugin.setup()
       vim.cmd("'<,'>CommentToggle")
     end
   end
-
-  vim.api.nvim_set_keymap("v", "<space>/", "v:lua.Comment()", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "<space>/", "v:lua.Comment()", { noremap = true, silent = true })
 end
 
 function plugin.config()

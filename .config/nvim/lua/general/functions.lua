@@ -56,7 +56,7 @@ function _G.STabComplete()
   end
 end
 
-function _G.ToggleQFList(global)
+function ToggleQFList(global)
   if global == 1 then
     if vim.fn.exists("g:quickfix_list_open") == 1 then
       if vim.g.quickfix_list_open == 1 then
@@ -86,15 +86,14 @@ function _G.ToggleQFList(global)
   end
 end
 
-function CheckLspClientActive(name)
-  local clients = vim.lsp.get_active_clients()
-  for _, client in pairs(clients) do
-    if client.name == name then
-      return true
-    end
+function ReloadFile()
+  if vim.opt.filetype == "vim" then
+    vim.cmd("silent! write")
+    vim.cmd("source %")
+  elseif vim.opt.filetype == "lua" then
+    vim.cmd("silent! write")
+    vim.cmd("luafile %")
   end
-
-  return false
 end
 
-return { DefineAugroups = DefineAugroups, CheckLspClientActive = CheckLspClientActive }
+return { DefineAugroups = DefineAugroups }

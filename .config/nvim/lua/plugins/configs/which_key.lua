@@ -247,8 +247,8 @@ local mappings = {
     d = { ":Trouble lsp_document_diagnostics<CR>", "lsp document diagnostics" },
     r = { ":Trouble lsp_references<CR>", "lsp references" },
     t = { ":Trouble todo<CR>", "todos" },
-    q = { ":call v:lua.ToggleQFList(1)<CR>", "quickfix list" },
-    l = { ":call v:lua.ToggleQFList(0)<CR>", "location list" },
+    q = { ":lua ToggleQFList(1)<CR>", "quickfix list" },
+    l = { ":lua ToggleQFList(0)<CR>", "location list" },
   },
 
   -- r is for Run
