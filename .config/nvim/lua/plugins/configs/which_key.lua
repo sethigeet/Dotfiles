@@ -254,10 +254,15 @@ local mappings = {
   -- r is for Run
   r = {
     name = "Run",
-    r = { "<Plug>SnipRun<CR>", "Run the selected piece of code" },
-    s = { "<Plug>SnipReset<CR>", "Stop the running code" },
-    c = { "<Plug>SnipClose<CR>", "Clear the previous output" },
-    m = { "<Plug>SnipReplMemoryClean<CR>", "Clean the repl memory" },
+    r = { "<Plug>SnipRun<CR>", "run the selected piece of code" },
+    s = { "<Plug>SnipReset<CR>", "stop the running code" },
+    c = { "<Plug>SnipClose<CR>", "clear the previous output" },
+    m = { "<Plug>SnipReplMemoryClean<CR>", "clean the repl memory" },
+
+    -- NOTE: This keybinding is only for nvim development
+    e = { ":lua SaveAndExec(false)<CR>", "exec the current function (nvim devel only)" },
+    E = { ":lua SaveAndExec(true)<CR>", "save and exec the current function (nvim devel only)" },
+    R = { ":lua ReloadFile()<CR>", "save and reload the current file (nvim devel only)" },
   },
 
   -- R is for REST Client
