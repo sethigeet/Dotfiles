@@ -1,6 +1,7 @@
 # Add the repos
 CDPATH="$CDPATH:$HOME/Repos"
 for service in "$HOME/Repos/"*; do
+  CDPATH="$CDPATH:$service"
   for user in "$service"/*; do
     CDPATH="$CDPATH:$user"
   done
