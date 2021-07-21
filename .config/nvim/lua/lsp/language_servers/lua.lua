@@ -21,6 +21,8 @@ local ls = LanguageServer:create({
             [vim.fn.expand("$VIMRUNTIME/lua")] = true,
             [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
           },
+          maxPreload = 100000,
+          preloadFileSize = 1000,
         },
       },
     },

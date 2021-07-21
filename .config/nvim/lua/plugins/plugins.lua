@@ -141,7 +141,8 @@ return require("packer").startup({
     })
 
     -- Git
-    -- use("tpope/vim-fugitive")
+    use("tpope/vim-fugitive")
+    use({ "junegunn/gv.vim", requires = "tpope/vim-fugitive" })
     use({
       "rhysd/git-messenger.vim",
       event = "BufRead",
@@ -171,6 +172,7 @@ return require("packer").startup({
     -- Terminal
     use({
       "numtostr/FTerm.nvim",
+      keys = { "<F1>", "<leader>T" },
       module = { "FTerm", "FTerm.terminal" },
       config = require("plugins.configs.fterm").setup,
       disable = not Opts.plugin.fterm.enabled,
@@ -287,6 +289,7 @@ return require("packer").startup({
       after = "nvim-lspconfig",
       disable = not Opts.plugin.lspsaga.enabled,
     })
+    use({ "folke/lsp-colors.nvim", event = "BufRead" })
     use({ "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } })
     use({
       "simrat39/symbols-outline.nvim",
@@ -299,19 +302,19 @@ return require("packer").startup({
       disable = not Opts.plugin.symbols_outline.enabled,
     })
     use({
+      "ray-x/lsp_signature.nvim",
+      event = "InsertEnter",
+      config = require("plugins.configs.lsp_signature").setup,
+      disable = not Opts.plugin.lsp_signature.enabled,
+    })
+    -- Language specific plugins
+    use({
       "fatih/vim-go",
       ft = { "go" },
       run = function()
         vim.cmd("GoUpdateBinaries")
       end,
     })
-    use({
-      "ray-x/lsp_signature.nvim",
-      event = "InsertEnter",
-      config = require("plugins.configs.lsp_signature").setup,
-      disable = not Opts.plugin.lsp_signature.enabled,
-    })
-    use({ "folke/lsp-colors.nvim", event = "BufRead" })
 
     -- Markdown preview
     use({
@@ -408,7 +411,7 @@ return require("packer").startup({
     git = { clone_timeout = 300 },
     display = {
       open_fn = function()
-        return require("packer.util").float({ border = "single" })
+        return require("packer.util").float({ border = "rounded" })
       end,
     },
     profile = {

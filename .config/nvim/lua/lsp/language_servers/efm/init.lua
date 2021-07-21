@@ -1,5 +1,6 @@
 -- Lua
 local stylua = require("lsp.language_servers.efm.stylua")
+local luacheck = require("lsp.language_servers.efm.luacheck")
 -- Go
 local golint = require("lsp.language_servers.efm.golint")
 local gofmt = require("lsp.language_servers.efm.gofmt")
@@ -43,7 +44,7 @@ local ls = LanguageServer:create({
     init_options = { documentFormatting = true },
     settings = {
       languages = {
-        lua = { stylua },
+        lua = { stylua, luacheck },
         go = { golint, gofmt },
         python = { autopep8, pylint },
         typescript = { prettier, eslint },

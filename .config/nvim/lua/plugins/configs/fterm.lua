@@ -47,7 +47,10 @@ end
 function plugin.config()
   Opts.plugin["fterm"] = {
     enabled = true,
-    config = { dimensions = { height = 0.8, width = 0.8, x = 0.5, y = 0.5 } },
+    config = {
+      dimensions = { height = 0.8, width = 0.8, x = 0.5, y = 0.5 },
+      border = "rounded",
+    },
   }
 end
 
