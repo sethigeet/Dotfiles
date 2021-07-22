@@ -12,7 +12,7 @@ function plugin.setup()
   local node = term:new():setup({ cmd = "node", dimensions = { height = 0.8, width = 0.8 } })
   local python = term:new():setup({ cmd = "python", dimensions = { height = 0.8, width = 0.8 } })
 
-  function _G.__fterm_toggle(type)
+  function TermToggle(type)
     local terminals = {
       dropdown = function()
         dropdown:toggle()

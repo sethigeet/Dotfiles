@@ -13,7 +13,7 @@ function plugin.setup()
 
   require("nvim_comment").setup(Opts.plugin.comment.config)
 
-  function _G.Comment()
+  function Comment()
     if vim.fn.mode() == "n" then
       vim.cmd("CommentToggle")
     else

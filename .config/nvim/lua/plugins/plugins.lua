@@ -264,6 +264,9 @@ return require("packer").startup({
         "nvim-telescope/telescope-media-files.nvim",
         "nvim-telescope/telescope-fzy-native.nvim",
         "nvim-telescope/telescope-project.nvim",
+        "nvim-telescope/telescope-symbols.nvim",
+        "nvim-telescope/telescope-fzf-writer.nvim",
+        { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
       },
       config = function()
         require("plugins.configs.telescope")
@@ -290,7 +293,6 @@ return require("packer").startup({
       disable = not Opts.plugin.lspsaga.enabled,
     })
     use({ "folke/lsp-colors.nvim", event = "BufRead" })
-    use({ "RishabhRD/nvim-lsputils", requires = { "RishabhRD/popfix" } })
     use({
       "simrat39/symbols-outline.nvim",
       cmd = {

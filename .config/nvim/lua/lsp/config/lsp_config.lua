@@ -1,14 +1,3 @@
--- NOTE: This part uses the 'lsputil' plugin
-vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
-vim.lsp.handlers["textDocument/references"] = require("lsputil.locations").references_handler
-vim.lsp.handlers["textDocument/definition"] = require("lsputil.locations").definition_handler
-vim.lsp.handlers["textDocument/declaration"] = require("lsputil.locations").declaration_handler
-vim.lsp.handlers["textDocument/typeDefinition"] = require("lsputil.locations").typeDefinition_handler
-vim.lsp.handlers["textDocument/implementation"] = require("lsputil.locations").implementation_handler
-vim.lsp.handlers["textDocument/documentSymbol"] = require("lsputil.symbols").document_handler
-vim.lsp.handlers["workspace/symbol"] = require("lsputil.symbols").workspace_handler
-
--- NOTE: This is a custom handler and does not require a plugin!
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = { spacing = 0, prefix = "" },
   signs = true,

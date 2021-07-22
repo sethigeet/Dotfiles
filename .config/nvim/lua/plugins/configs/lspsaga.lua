@@ -1,9 +1,7 @@
 local plugin = {}
 
 function plugin.setup()
-  local saga = require("lspsaga")
-
-  saga.init_lsp_saga(Opts.plugin.lspsaga.config)
+  -- require("lspsaga").init_lsp_saga(Opts.plugin.lspsaga.config)
 
   -- Show hover doc
   vim.api.nvim_set_keymap(
