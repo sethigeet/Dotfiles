@@ -83,7 +83,7 @@ require("general.functions").DefineAugroups({
 })
 
 local mappings = {
-  ["/"] = { ":lua Comment()<CR>", "comment" },
+  ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
   ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
   [";"] = { ":Dashboard<CR>", "show start screen" },
@@ -206,7 +206,7 @@ local mappings = {
     p = { ":Lspsaga preview_definition<CR>", "preview definition" },
     P = { ":lua PeekDefinition()<CR>", "peek definition" },
     q = { ":Telescope quickfix<CR>", "quickfix" },
-    r = { ":Lspsaga rename<CR>", "rename" },
+    r = { ":lua require('ui.rename').rename()<CR>", "rename" },
     T = { ":lua vim.lsp.buf.type_definition()<CR>", "type defintion" },
     v = { ":LspVirtualTextToggle<CR>", "toggle virtual text" },
     s = { ":Telescope lsp_document_symbols<CR>", "document symbols" },

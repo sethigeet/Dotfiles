@@ -24,6 +24,7 @@ local ls = LanguageServer:create({
           maxPreload = 100000,
           preloadFileSize = 1000,
         },
+        telemetry = { enable = false },
       },
     },
   },

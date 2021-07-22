@@ -26,6 +26,9 @@ function LanguageServer:lsp()
     return
   end
 
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
   local options = {
     root_dir = require("lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
@@ -35,6 +38,7 @@ function LanguageServer:lsp()
         self.on_attach(client, bufnr)
       end
     end,
+    capabilities = capabilities,
   }
 
   if self.filetypes and #self.filetypes > 0 then
