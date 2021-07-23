@@ -61,8 +61,6 @@ function M.rename()
 
   local current_name = get_current_name()
 
-  -- TODO: Change this to use the built-in function after this is merged (https://github.com/neovim/neovim/pull/15133)
-  -- local bufnr, winnr = vim.lsp.util.open_floating_preview({}, "", opts)
   local bufnr, winnr = window.create_floating_window({}, "", opts)
 
   local rename_prompt_prefix_ns = vim.api.nvim_create_namespace("ui_rename_prompt_prefix")

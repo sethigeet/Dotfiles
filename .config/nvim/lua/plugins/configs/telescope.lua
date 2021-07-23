@@ -127,18 +127,4 @@ function fns.cur_buf_symbols()
   builtin.treesitter(opts)
 end
 
-function temp()
-  -- builtin.find_files(themes.get_dropdown())
-  -- builtin.find_files(themes.get_ivy())
-  builtin.find_files(themes.get_cursor({
-    layout_config = {
-      horizontal = { mirror = false },
-      vertical = { mirror = false },
-      -- height = 0.75,
-      -- width = 0.75,
-    },
-    previewer = false,
-  }))
-end
-
 return fns
