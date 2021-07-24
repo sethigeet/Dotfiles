@@ -1,6 +1,12 @@
 -- Load the globals object for user customization
 require("globals")
-vim.cmd("luafile " .. CONFIG_PATH .. "/config.lua")
+local personal_config_file_path = CONFIG_PATH .. "/config.lua"
+if vim.fn.filereadable(personal_config_file_path) == 1 then
+  local status, _ = pcall(vim.cmd, "luafile " .. personal_config_file_path)
+  if not status then
+    print("There is a problem with the personal config")
+  end
+end
 
 -- Load the core settings
 require("general")
