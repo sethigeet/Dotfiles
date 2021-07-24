@@ -326,7 +326,12 @@ return require("packer").startup({
     })
 
     -- Easily change surrounding elements
-    use({ "tpope/vim-surround", event = "BufRead" })
+    use({
+      "blackCauldron7/surround.nvim",
+      event = "BufRead",
+      config = require("plugins.configs.surround").setup,
+      disable = not Opts.plugin.surround.enabled,
+    })
 
     -- Extend increment/decrement functionality
     use({

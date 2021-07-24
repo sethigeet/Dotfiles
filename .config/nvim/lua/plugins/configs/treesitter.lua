@@ -98,6 +98,15 @@ function plugin.config()
           goto_previous_start = getTextObjectKeymaps("[", false),
           goto_previous_end = getTextObjectKeymaps("[", true),
         },
+        -- TODO: Move this part into `PeekDefinition` code and use it as a fallback if `lsp` client does not support it!
+        -- lsp_interop = {
+        -- enable = true,
+        -- border = "none",
+        -- peek_definition_code = {
+        -- ["df"] = "@function.outer",
+        -- ["dF"] = "@class.outer",
+        -- },
+        -- },
       },
       rainbow = { enable = true, max_file_lines = 1000 }, -- Rainbow brackets
       context_commentstring = { enable = true }, -- Comment strings

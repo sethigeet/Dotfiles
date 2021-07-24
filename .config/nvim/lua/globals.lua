@@ -99,6 +99,7 @@ local plugins = {
   "sniprun",
   "spectre",
   -- "startify",
+  "surround",
   "symbols_outline",
   "tabular",
   -- "telescope",
