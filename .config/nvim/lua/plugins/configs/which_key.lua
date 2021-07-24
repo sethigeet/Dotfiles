@@ -313,6 +313,7 @@ local mappings = {
     d = "goto definition",
     l = "list definitions",
     t = "list definitions toc",
+    p = { ":TSPlaygroundToggle<CR>", "toggle playground" },
     s = {
       name = "Swap",
       f = "next function",

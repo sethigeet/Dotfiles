@@ -80,6 +80,12 @@ return require("packer").startup({
       -- opt = true,
       disable = not Opts.plugin.treesitter.enabled,
     })
+    -- Playground to interact with treesitter nodes
+    use({
+      "nvim-treesitter/playground",
+      after = "nvim-treesitter",
+      disable = not Opts.plugin.treesitter.enabled,
+    })
     -- Rename variables when lsp is not available and navigate through blocks of code
     use({
       "nvim-treesitter/nvim-treesitter-refactor",
