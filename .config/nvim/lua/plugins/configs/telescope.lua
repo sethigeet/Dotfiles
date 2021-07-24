@@ -116,11 +116,12 @@ function fns.grep_current_buf()
 end
 
 function fns.cur_buf_symbols()
-  local opts = themes.get_dropdown({
+  local opts = themes.get_ivy({
     winblend = 10,
-    layout_strategy = "bottom_pane",
+    layout_config = {
+      height = 10,
+    },
     border = true,
-    previewer = false,
     shorten_path = false,
   })
 

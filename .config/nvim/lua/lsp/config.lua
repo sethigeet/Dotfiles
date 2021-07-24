@@ -1,9 +1,15 @@
+-- Custom handler overrides
+
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(require("lsp.handlers.diagnostics")handler, {
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = { spacing = 0, prefix = "" },
   signs = true,
   underline = true,
   update_in_insert = true,
 })
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 ---------------------------------------------
 
@@ -59,26 +65,5 @@ vim.lsp.protocol.CompletionItemKind = {
 }
 
 -- Keymappings
-vim.api.nvim_set_keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-LeftMouse>", ":lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "K", ":Lspsaga hover_doc<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-p>", ":Lspsaga diagnostic_jump_prev<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-n>", ":Lspsaga diagnostic_jump_next<CR>", { noremap = true, silent = true })
--- scroll down hover doc or scroll in definition preview
-vim.api.nvim_set_keymap(
-  "n",
-  "<C-f>",
-  ":lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>",
-  { noremap = true, silent = true }
-)
--- scroll up hover doc
-vim.api.nvim_set_keymap(
-  "n",
-  "<C-b>",
-  ":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
-  { noremap = true, silent = true }
-)
+-- NOTE: Some keybindings related to LSP are defined in `which_key` config
+vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })

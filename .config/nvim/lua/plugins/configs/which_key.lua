@@ -191,21 +191,17 @@ local mappings = {
   -- l is for LSP
   l = {
     name = "LSP",
-    a = { ":Lspsaga code_action<CR>", "code actions" },
-    A = { ":Lspsaga range_code_action<CR>", "selected action" },
-    d = { ":Telescope lsp_document_diagnostics<CR>", "document diagnostics" },
-    D = { ":Telescope lsp_workspace_diagnostics<CR>", "workspace diagnostics" },
+    -- a = { ":Lspsaga code_action<CR>", "code actions" },
+    -- A = { ":Lspsaga range_code_action<CR>", "selected action" },
+    b = { ":lua require('plugins.configs.telescope').cur_buf_symbols()<CR>", "cur buf symbols" },
+    d = { ":Trouble lsp_document_diagnostics<CR>", "document diagnostics" },
+    D = { ":Trouble lsp_workspace_diagnostics<CR>", "workspace diagnostics" },
     f = { ":lua vim.lsp.buf.formatting()<CR>", "format" },
-    H = { ":Lspsaga signature_help<CR>", "signature_help" },
+    h = { ":lua vim.lsp.buf.signature_help()<CR>", "signature_help" },
     I = { ":LspInfo<CR>", "lsp info" },
-    j = { ":Lspsaga diagnostic_jump_prev<CR>", "prev Diagnostic" },
-    k = { ":Lspsaga diagnostic_jump_next<CR>", "next Diagnostic" },
-    l = { ":Lspsaga lsp_finder<CR>", "lsp finder" },
-    L = { ":Lspsaga show_line_diagnostics<CR>", "line diagnostics" },
+    -- l = { ":Lspsaga lsp_finder<CR>", "lsp finder" },
     o = { ":SymbolsOutline<CR>", "outline" },
-    p = { ":Lspsaga preview_definition<CR>", "preview definition" },
     P = { ":lua PeekDefinition()<CR>", "peek definition" },
-    q = { ":Telescope quickfix<CR>", "quickfix" },
     r = { ":lua require('ui.rename').rename()<CR>", "rename" },
     T = { ":lua vim.lsp.buf.type_definition()<CR>", "type defintion" },
     v = { ":LspVirtualTextToggle<CR>", "toggle virtual text" },
@@ -238,12 +234,9 @@ local mappings = {
   -- q is for Quickfix
   q = {
     name = "Quickfix",
-    w = { ":Trouble lsp_workspace_diagnostics<CR>", "lsp workspace diagnostics" },
-    d = { ":Trouble lsp_document_diagnostics<CR>", "lsp document diagnostics" },
-    r = { ":Trouble lsp_references<CR>", "lsp references" },
     t = { ":Trouble todo<CR>", "todos" },
-    q = { ":lua ToggleQFList(1)<CR>", "quickfix list" },
-    l = { ":lua ToggleQFList(0)<CR>", "location list" },
+    q = { ":TroubleToggle quickfix<CR>", "quickfix list" },
+    l = { ":TroubleToggle loclist<CR>", "location list" },
   },
 
   -- r is for Run
@@ -289,10 +282,8 @@ local mappings = {
     m = { ":Telescope marks<CR>", "marks" },
     o = { ":Telescope oldfiles<CR>", "oldfiles" },
     p = { ":Telescope project<CR>", "projects" },
-    s = { ":lua require('plugins.configs.telescope').cur_buf_symbols()<CR>", "cur buf symbols" },
     S = { ":Telescope git_status<CR>", "git status" },
     t = { ":TodoTelescope<CR>", "todos" },
-    y = { ":Telescope lsp_workspace_symbols<CR>", "lsp workspace symbols" },
     r = { ":Telescope registers<CR>", "registers" },
     R = { ":Telescope reloader<CR>", "reloader" },
     w = { ":Telescope file_browser<CR>", "file browser" },
@@ -322,8 +313,6 @@ local mappings = {
     d = "goto definition",
     l = "list definitions",
     t = "list definitions toc",
-    ["*"] = "goto next usage",
-    ["#"] = "goto previous usage",
     s = {
       name = "Swap",
       f = "next function",
@@ -386,3 +375,30 @@ wk.register(getBracketMappings(true, true), getOpts("n", "]"))
 wk.register(getBracketMappings(true, false), getOpts("n", "]"))
 wk.register(getBracketMappings(false, true), getOpts("n", "["))
 wk.register(getBracketMappings(false, false), getOpts("n", "["))
+
+-- LSP Bindings
+wk.register({
+  d = { "vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })", "Previous Diagnostic" },
+  r = "Goto previous usage", -- Defined in treesitter config
+}, getOpts(
+  "n",
+  "["
+))
+wk.register({
+  d = { "vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })", "Next  Diagnostic" },
+  r = "Goto next usage", -- Defined in treesitter config
+}, getOpts(
+  "n",
+  "]"
+))
+wk.register({
+  d = { ":lua vim.lsp.buf.definition()<CR>", "Goto definition" },
+  D = { ":lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
+  i = { ":lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
+  l = { ":lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })<CR>", "Show line diagnostics" },
+  r = { ":TroubleToggle lsp_references<CR>", "Goto references" },
+  -- p = { ":lua preview_definition<CR>", "Preview definition" },
+}, getOpts(
+  "n",
+  "g"
+))

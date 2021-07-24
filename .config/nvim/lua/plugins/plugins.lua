@@ -242,7 +242,12 @@ return require("packer").startup({
     use({ "mbbill/undotree", cmd = { "UndotreeShow", "UndotreeToggle" } })
 
     -- Smooth scroll
-    use({ "psliwka/vim-smoothie", event = "BufEnter" })
+    use({
+      "karb94/neoscroll.nvim",
+      event = "BufEnter",
+      config = require("plugins.configs.neoscroll").setup,
+      disable = not Opts.plugin.neoscroll.enabled,
+    })
 
     -- Colorizer
     use({
@@ -284,13 +289,6 @@ return require("packer").startup({
       after = "nvim-lspconfig",
       event = "InsertEnter",
       disable = not Opts.plugin.compe.enabled,
-    })
-    use({
-      "glepnir/lspsaga.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.lspsaga").setup,
-      after = "nvim-lspconfig",
-      disable = not Opts.plugin.lspsaga.enabled,
     })
     use({ "folke/lsp-colors.nvim", event = "BufRead" })
     use({

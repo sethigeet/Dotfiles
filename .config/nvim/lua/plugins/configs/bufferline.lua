@@ -3,7 +3,7 @@ local plugin = {}
 function plugin.setup()
   require("bufferline").setup(Opts.plugin.bufferline.config)
 
-  vim.api.nvim_set_keymap("n", "<C-b>", ":BufferLinePick<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("n", "<M-b>", ":BufferLinePick<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 

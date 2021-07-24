@@ -56,36 +56,6 @@ function _G.STabComplete()
   end
 end
 
-function ToggleQFList(global)
-  if global == 1 then
-    if vim.fn.exists("g:quickfix_list_open") == 1 then
-      if vim.g.quickfix_list_open == 1 then
-        vim.g.quickfix_list_open = 0
-        vim.cmd("TroubleClose")
-      else
-        vim.g.quickfix_list_open = 1
-        vim.cmd("Trouble quickfix")
-      end
-    else
-      vim.cmd("let g:quickfix_list_open = 1")
-      vim.cmd("Trouble quickfix")
-    end
-  else
-    if vim.fn.exists("g:location_list_open") == 1 then
-      if vim.g._location_list_open == 1 then
-        vim.g.location_list_open = 0
-        vim.cmd("TroubleClose")
-      else
-        vim.g.location_list_open = 1
-        vim.cmd("Trouble loclist")
-      end
-    else
-      vim.cmd("let g:location_list_open = 1")
-      vim.cmd("Trouble loclist")
-    end
-  end
-end
-
 function ReloadFile()
   print("Reloading current file")
   if vim.opt.filetype:get() == "vim" then
