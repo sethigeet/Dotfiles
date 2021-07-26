@@ -12,10 +12,4 @@ AddTabularPattern! f_quote /^[^"]*\zs"/l1r0
   end
 end
 
-function plugin.config()
-  Opts.plugin["tabular"] = {
-    enabled = true,
-  }
-end
-
 return plugin

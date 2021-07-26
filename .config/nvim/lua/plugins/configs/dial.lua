@@ -19,10 +19,4 @@ function plugin.setup()
   vim.api.nvim_set_keymap("x", "g<C-x>", "<Plug>(dial-decrement-additional)", { silent = true })
 end
 
-function plugin.config()
-  Opts.plugin["dial"] = {
-    enabled = true,
-  }
-end
-
 return plugin

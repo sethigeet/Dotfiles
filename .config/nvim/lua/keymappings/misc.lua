@@ -1,19 +1,21 @@
+local map = require("utils.map")
+
 -- Better indenting
-vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
+map.vnoremap("<", "<gv")
+map.vnoremap(">", ">gv")
 
 -- Better nav for omnicomplete
-vim.api.nvim_set_keymap("i", "<C-j>", [[("\<C-n>")]], { noremap = true, expr = true })
-vim.api.nvim_set_keymap("i", "<C-k>", [[("\<C-p>")]], { noremap = true, expr = true })
+map.inoremap("<C-j>", [[("\<C-n>")]], { expr = true })
+map.inoremap("<C-k>", [[("\<C-p>")]], { expr = true })
 
 -- Easy CAPS
-vim.api.nvim_set_keymap("i", "<M-u>", "<Esc>viwUi", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<M-u>", "viwU<Esc>", { noremap = true, silent = true })
+map.inoremap("<M-u>", "<Esc>viwUi")
+map.nnoremap("<M-u>", "viwU<Esc>")
 
 -- Center the screen after search
-vim.api.nvim_set_keymap("n", "n", "nzzzv", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("n", "N", "Nzzzv", { silent = true, noremap = true })
+map.nnoremap("n", "nzzzv")
+map.nnoremap("N", "Nzzzv")
 
 -- Substitute command shortcut
-vim.api.nvim_set_keymap("n", "S", ":%s//g<Left><Left>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("v", "S", ":s//g<Left><Left>", { silent = true, noremap = true })
+map.nnoremap("S", ":%s//g<Left><Left>")
+map.vnoremap("S", ":s//g<Left><Left>")

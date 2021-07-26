@@ -1,53 +1,60 @@
 local wk = require("which-key")
 
-wk.setup({
-  plugins = {
-    marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    -- No actual key bindings are created
-    spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
+local plugin = {}
+
+function plugin.setup()
+  wk.setup({
+    plugins = {
+      marks = true, -- shows a list of your marks on ' and `
+      registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+      -- No actual key bindings are created
+      spelling = {
+        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+        suggestions = 20, -- how many suggestions should be shown in the list?
+      },
+      presets = {
+        operators = false, -- adds help for operators like d, y, ...
+        motions = false, -- adds help for motions
+        text_objects = false, -- help for text objects triggered after entering an operator
+        windows = true, -- default bindings on <c-w>
+        nav = false, -- misc bindings to work with windows
+        z = true, -- bindings for folds, spelling and others prefixed with z
+        g = true, -- bindings for prefixed with g
+      },
     },
-    presets = {
-      operators = false, -- adds help for operators like d, y, ...
-      motions = false, -- adds help for motions
-      text_objects = false, -- help for text objects triggered after entering an operator
-      windows = true, -- default bindings on <c-w>
-      nav = false, -- misc bindings to work with windows
-      z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
+    icons = {
+      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+      separator = "➜", -- symbol used between a key and it's label
+      group = " ", -- symbol prepended to a group
     },
-  },
-  icons = {
-    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = "➜", -- symbol used between a key and it's label
-    group = " ", -- symbol prepended to a group
-  },
-  window = {
-    border = "none", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
-    padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
-  },
-  layout = {
-    height = { min = 5, max = 15 }, -- min and max height of the columns
-    width = { min = 4, max = 50 }, -- min and max width of the columns
-    spacing = 3, -- spacing between columns
-  },
-  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", ":", ":", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-  show_help = true, -- show help message on the command line when the popup is visible
-  triggers = "auto", -- automatically setup triggers
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { "j", "k", "<Space>" },
-    c = { "j", "k" },
-  },
-})
+    window = {
+      border = "none", -- none, single, double, shadow
+      position = "bottom", -- bottom, top
+      margin = { 1, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
+      padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
+    },
+    layout = {
+      height = { min = 5, max = 15 }, -- min and max height of the columns
+      width = { min = 4, max = 50 }, -- min and max width of the columns
+      spacing = 3, -- spacing between columns
+    },
+    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+    hidden = { "<silent>", ":", ":", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+    show_help = true, -- show help message on the command line when the popup is visible
+    triggers = "auto", -- automatically setup triggers
+    triggers_blacklist = {
+      -- list of mode / prefixes that should never be hooked by WhichKey
+      -- this is mostly relevant for key maps that start with a native binding
+      -- most people should not need to change this
+      i = { "j", "k", "<Space>" },
+      c = { "j", "k" },
+    },
+  })
+
+  plugin.keymaps()
+  plugin.defineAugroups()
+end
 
 local function getOpts(mode, prefix)
   local actual_prefix
@@ -69,19 +76,6 @@ local function getOpts(mode, prefix)
   }
 end
 
--- Set leader
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.g.mapleader = " "
-
--- Hide the status line for the which-key window
-require("general.functions").DefineAugroups({
-  which_key = {
-    { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
-    { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },
-  },
-})
-
 local mappings = {
   ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
   ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
@@ -91,10 +85,10 @@ local mappings = {
   f = { ":Telescope fzf_writer files<CR>", "find files" },
   h = { "<C-W>s", "split below" },
   M = { ":MarkdownPreviewToggle<CR>", "markdown preview" },
-  n = { ':let @/ = ""<CR>', "no highlight" },
   u = { ":UndotreeToggle<CR>", "undo tree" },
   v = { "<C-W>v", "split right" },
   w = { ":w<CR>", "save file" },
+  z = { ":ZenMode<CR>", "toggle zen mode" },
 
   -- a is for Action
   a = {
@@ -341,13 +335,7 @@ local mappings = {
     p = { ":lua TermToggle('python')<CR>", "python" },
     t = { ":lua TermToggle()<CR>", "toggle" },
   },
-
-  -- z is for Zen Mode
-  z = { ":ZenMode<CR>", "toggle zen mode" },
 }
-
-wk.register(mappings, getOpts("n"))
-wk.register(mappings, getOpts("v"))
 
 -- Treesitter move plugin keybindings
 local function getBracketMappings(next, start)
@@ -372,34 +360,56 @@ local function getBracketMappings(next, start)
   return actualBracketMappings
 end
 
-wk.register(getBracketMappings(true, true), getOpts("n", "]"))
-wk.register(getBracketMappings(true, false), getOpts("n", "]"))
-wk.register(getBracketMappings(false, true), getOpts("n", "["))
-wk.register(getBracketMappings(false, false), getOpts("n", "["))
+function plugin.keymaps()
+  -- Set leader
+  vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
+  vim.g.mapleader = " "
 
--- LSP Bindings
-wk.register({
-  d = { "vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })", "Previous Diagnostic" },
-  r = "Goto previous usage", -- Defined in treesitter config
-}, getOpts(
-  "n",
-  "["
-))
-wk.register({
-  d = { "vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })", "Next  Diagnostic" },
-  r = "Goto next usage", -- Defined in treesitter config
-}, getOpts(
-  "n",
-  "]"
-))
-wk.register({
-  d = { ":lua vim.lsp.buf.definition()<CR>", "Goto definition" },
-  D = { ":lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
-  i = { ":lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
-  l = { ":lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })<CR>", "Show line diagnostics" },
-  r = { ":TroubleToggle lsp_references<CR>", "Goto references" },
-  -- p = { ":lua preview_definition<CR>", "Preview definition" },
-}, getOpts(
-  "n",
-  "g"
-))
+  wk.register(mappings, getOpts("n"))
+  wk.register(mappings, getOpts("v"))
+
+  wk.register(getBracketMappings(true, true), getOpts("n", "]"))
+  wk.register(getBracketMappings(true, false), getOpts("n", "]"))
+  wk.register(getBracketMappings(false, true), getOpts("n", "["))
+  wk.register(getBracketMappings(false, false), getOpts("n", "["))
+
+  -- LSP Bindings
+  wk.register({
+    d = { ":lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })<CR>", "Previous Diagnostic" },
+    r = "Goto previous usage", -- Defined in treesitter config
+  }, getOpts(
+    "n",
+    "["
+  ))
+  wk.register({
+    d = { ":lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })<CR>", "Next  Diagnostic" },
+    r = "Goto next usage", -- Defined in treesitter config
+  }, getOpts(
+    "n",
+    "]"
+  ))
+  wk.register({
+    d = { ":lua vim.lsp.buf.definition()<CR>", "Goto definition" },
+    D = { ":lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
+    I = { ":lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
+    l = { ":lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })<CR>", "Show line diagnostics" },
+    r = { ":TroubleToggle lsp_references<CR>", "Goto references" },
+    -- p = { ":lua preview_definition<CR>", "Preview definition" },
+  }, getOpts(
+    "n",
+    "g"
+  ))
+end
+
+function plugin.defineAugroups()
+  -- Hide the status line for the which-key window
+  require("utils").DefineAugroups({
+    which_key = {
+      { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
+      { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },
+    },
+  })
+end
+
+return plugin

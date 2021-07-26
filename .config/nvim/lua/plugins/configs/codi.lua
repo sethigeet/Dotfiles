@@ -8,10 +8,4 @@ function plugin.setup()
   vim.cmd("let g:codi#aliases = { 'javascript.jsx': 'javascript' }")
 end
 
-function plugin.config()
-  Opts.plugin["codi"] = {
-    enabled = true,
-  }
-end
-
 return plugin

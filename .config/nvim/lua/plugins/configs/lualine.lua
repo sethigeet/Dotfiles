@@ -1,5 +1,9 @@
 local function getTabStop()
-  return " " .. vim.api.nvim_buf_get_option(0, "tabstop") .. " spaces"
+  local label = "Tab Size: "
+  if vim.api.nvim_buf_get_option(0, "expandtab") then
+    label = "Spaces: "
+  end
+  return " " .. label .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
 local function getLspClient(msg)
@@ -22,38 +26,31 @@ end
 local plugin = {}
 
 function plugin.setup()
-  require("lualine").setup(Opts.plugin.lualine.config)
-end
-
-function plugin.config()
-  Opts.plugin["lualine"] = {
-    enabled = true,
-    config = {
-      options = { theme = "tokyonight" },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch" },
-        lualine_c = {
-          {
-            "diff",
-            colored = true,
-            symbols = { added = " ", modified = "柳", removed = " " },
-          },
-          {
-            "diagnostics",
-            sources = { "nvim_lsp" },
-            sections = { "error", "warn", "info" },
-            symbols = { error = " ", warn = " ", info = " " },
-          },
-          { "filename", symbols = { modified = "  ", readonly = "  " } },
+  require("lualine").setup({
+    options = { theme = "tokyonight" },
+    sections = {
+      lualine_a = { "mode" },
+      lualine_b = { "branch" },
+      lualine_c = {
+        {
+          "diff",
+          colored = true,
+          symbols = { added = " ", modified = "柳", removed = " " },
         },
-        lualine_x = { { "filetype", colored = true }, getLspClient },
-        lualine_y = { getTabStop },
-        lualine_z = { "location" },
+        {
+          "diagnostics",
+          sources = { "nvim_lsp" },
+          sections = { "error", "warn", "info" },
+          symbols = { error = " ", warn = " ", info = " " },
+        },
+        { "filename", symbols = { modified = "  ", readonly = "  " } },
       },
-      extensions = { "fugitive", "nvim-tree" },
+      lualine_x = { { "filetype", colored = true }, getLspClient },
+      lualine_y = { getTabStop },
+      lualine_z = { "location" },
     },
-  }
+    extensions = { "fugitive", "nvim-tree" },
+  })
 end
 
 return plugin

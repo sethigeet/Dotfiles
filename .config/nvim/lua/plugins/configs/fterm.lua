@@ -3,7 +3,10 @@ local plugin = {}
 function plugin.setup()
   local FTerm = require("FTerm")
 
-  FTerm.setup(Opts.plugin.fterm.config)
+  FTerm.setup({
+    dimensions = { height = 0.8, width = 0.8, x = 0.5, y = 0.5 },
+    border = "rounded",
+  })
 
   local term = require("FTerm.terminal")
 
@@ -35,23 +38,14 @@ function plugin.setup()
     end
   end
 
-  vim.api.nvim_set_keymap("n", "<F1>", "<cmd>lua require('FTerm').toggle()<CR>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap(
-    "t",
-    "<F1>",
-    "<C-\\><C-n><cmd>lua require('FTerm').toggle()<CR>",
-    { noremap = true, silent = true }
-  )
+  plugin.keymaps()
 end
 
-function plugin.config()
-  Opts.plugin["fterm"] = {
-    enabled = true,
-    config = {
-      dimensions = { height = 0.8, width = 0.8, x = 0.5, y = 0.5 },
-      border = "rounded",
-    },
-  }
+function plugin.keymaps()
+  local map = require("utils.map")
+
+  map.nnoremap("<F1>", require("FTerm").toggle)
+  map.tnoremap("t", "<F1>", require("FTerm").toggle)
 end
 
 return plugin

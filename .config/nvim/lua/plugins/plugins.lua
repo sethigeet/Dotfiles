@@ -1,433 +1,377 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-  execute("packadd packer.nvim")
-end
-
-return require("packer").startup({
-  function(use)
-    -- Packer can manage itself as an optional plugin
-    use("wbthomason/packer.nvim")
-
-    -- TODO: Remove this once it this is merged (https://github.com/neovim/neovim/pull/13823)
-    use("tjdevries/astronauta.nvim")
-
-    -- Better Comments
-    use({
-      "folke/todo-comments.nvim",
-      requires = "nvim-lua/plenary.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.todo_comments").setup,
-      disable = not Opts.plugin.todo_comments.enabled,
-    })
-    use({
-      "terrortylor/nvim-comment",
-      event = "BufEnter",
-      config = require("plugins.configs.comment").setup,
-      disable = not Opts.plugin.comment.enabled,
-    })
-
-    -- Indent lines
-    use({
-      "lukas-reineke/indent-blankline.nvim",
-      event = "ColorScheme",
-      config = require("plugins.configs.indent_blankline").setup,
-      disable = not Opts.plugin.indent_blankline.enabled,
-    })
-
-    -- Repeat stuff
-    use("tpope/vim-repeat")
-
-    -- Vifm
-    use({
-      "vifm/vifm.vim",
-      config = require("plugins.configs.vifm").setup,
-      disable = not Opts.plugin.vifm.enabled,
-    })
-
-    -- File Explorer
-    use({
-      "kyazdani42/nvim-tree.lua",
-      cmd = {
-        "NvimTreeClipboard",
-        "NvimTreeClose",
-        "NvimTreeFindFile",
-        "NvimTreeOpen",
-        "NvimTreeRefresh",
-        "NvimTreeToggle",
-      },
-      config = function()
-        require("plugins.configs.nvim_tree")
-      end,
-      requires = "kyazdani42/nvim-web-devicons", -- Cool Icons
-    })
-
-    -- Have the file system follow you around
-    use({
-      "ahmedkhalf/lsp-rooter.nvim",
-      config = require("plugins.configs.rooter").setup,
-      disable = not Opts.plugin.rooter.enabled,
-    })
-
-    -- Treesitter
-    use({
-      "nvim-treesitter/nvim-treesitter",
-      config = require("plugins.configs.treesitter").setup,
-      -- opt = true,
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    -- Playground to interact with treesitter nodes
-    use({
-      "nvim-treesitter/playground",
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    -- Rename variables when lsp is not available and navigate through blocks of code
-    use({
-      "nvim-treesitter/nvim-treesitter-refactor",
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    -- Move text objects intelligently
-    use({
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    -- Automatically close and rename tags
-    use({
-      "windwp/nvim-ts-autotag",
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    -- Rainbow brackets
-    use({
-      "p00f/nvim-ts-rainbow",
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    -- Change the comment string according to the location of the cursor in the file
-    use({
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.treesitter.enabled,
-    })
-    use({
-      "andymass/vim-matchup", -- Extend vim's '%' functionality using `treesitter`
-      event = "CursorMoved",
-      config = require("plugins.configs.matchup").setup,
-      after = "nvim-treesitter",
-      disable = not Opts.plugin.matchup.enabled,
-    })
-
-    -- Auto pairs for "(", "[", "{", etc
-    -- use({
-    -- "windwp/nvim-autopairs",
-    -- config = require("plugins.configs.autopairs").setup,
-    -- after = "nvim-compe",
-    -- event = "InsertEnter",
-    -- disable = not Opts.plugin.autopairs.enabled,
-    -- })
-    use("jiangmiao/auto-pairs")
-
-    -- Themes
-    use("folke/tokyonight.nvim")
-    -- use("ayu-theme/ayu-vim")
-
-    -- Status Line
-    use({
-      "hoob3rt/lualine.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = require("plugins.configs.lualine").setup,
-      disable = not Opts.plugin.lualine.enabled,
-    })
-
-    -- Git
-    use("tpope/vim-fugitive")
-    use({ "junegunn/gv.vim", requires = "tpope/vim-fugitive" })
-    use({
-      "rhysd/git-messenger.vim",
-      event = "BufRead",
-      config = require("plugins.configs.git_messenger").setup,
-      disable = not Opts.plugin.git_messenger.enabled,
-    })
-    use({
-      "lewis6991/gitsigns.nvim",
-      requires = "nvim-lua/plenary.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.gitsigns").setup,
-      disable = not Opts.plugin.gitsigns.enabled,
-    })
-    use({
-      "f-person/git-blame.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.git_blame").setup,
-      disable = not Opts.plugin.git_blame.enabled,
-    })
-    -- use {
-    -- "TimUntersberger/neogit",
-    -- requires = "nvim-lua/plenary.nvim",
-    -- config = require("plugins.configs.neogit").setup,
-    -- disable = not Opts.plugin.neogit.enabled,
-    -- }
-
-    -- Terminal
-    use({
-      "numtostr/FTerm.nvim",
-      keys = { "<F1>", "<leader>T" },
-      module = { "FTerm", "FTerm.terminal" },
-      config = require("plugins.configs.fterm").setup,
-      disable = not Opts.plugin.fterm.enabled,
-    })
-
-    -- Start Screen
-    use({
-      "glepnir/dashboard-nvim",
-      config = require("plugins.configs.dashboard").setup,
-      disable = not Opts.plugin.dashboard.enabled,
-    })
-    -- use {"mhinz/vim-startify", config = require("plugins.configs.startify").setup end}
-
-    -- See what keys do like in emacs
-    use({
-      "folke/which-key.nvim",
-      config = function()
-        require("plugins.configs.which_key")
-      end,
-    })
-
-    -- Snippets
-    use({
-      "hrsh7th/vim-vsnip",
-      requires = "hrsh7th/vim-vsnip-integ",
-      event = "InsertEnter",
-      config = require("plugins.configs.vsnip").setup,
-      disable = not Opts.plugin.vsnip.enabled,
-    })
-    use({ "rafamadriz/friendly-snippets", event = "InsertEnter" })
-
-    -- Interactive code
-    use({
-      "metakirby5/codi.vim",
-      cmd = "Codi",
-      config = require("plugins.configs.codi").setup,
-      disable = not Opts.plugin.codi.enabled,
-    })
-
-    -- Better tabline
-    use({
-      "akinsho/nvim-bufferline.lua",
-      requires = "kyazdani42/nvim-web-devicons",
-      config = require("plugins.configs.bufferline").setup,
-      disable = not Opts.plugin.bufferline.enabled,
-    })
-
-    -- Better quickfix menu
-    use({
-      "kevinhwang91/nvim-bqf",
-      config = require("plugins.configs.bqf").setup,
-      disable = not Opts.plugin.bqf.enabled,
-    })
-    use({
-      "folke/lsp-trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      cmd = { "Trouble", "TroubleToggle", "Telescope" },
-      module = "telescope",
-      config = require("plugins.configs.trouble").setup,
-      disable = not Opts.plugin.trouble.enabled,
-    })
-
-    -- Intuitive buffer closing
-    use({ "famiu/bufdelete.nvim", cmd = "Bdelete" })
-
-    -- Undo time travel
-    use({ "mbbill/undotree", cmd = { "UndotreeShow", "UndotreeToggle" } })
-
-    -- Smooth scroll
-    use({
-      "karb94/neoscroll.nvim",
-      event = "BufEnter",
-      config = require("plugins.configs.neoscroll").setup,
-      disable = not Opts.plugin.neoscroll.enabled,
-    })
-
-    -- Colorizer
-    use({
-      "norcalli/nvim-colorizer.lua",
-      event = "BufRead",
-      config = require("plugins.configs.colorizer").setup,
-      disable = not Opts.plugin.colorizer.enabled,
-    })
-
-    -- Multiple Cursors
-    use({ "terryma/vim-multiple-cursors", keys = { "<C-n>" }, event = "BufRead" })
-
-    -- Telescope
-    use({
-      "nvim-telescope/telescope.nvim",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "nvim-lua/popup.nvim",
-        "nvim-telescope/telescope-media-files.nvim",
-        "nvim-telescope/telescope-fzy-native.nvim",
-        "nvim-telescope/telescope-project.nvim",
-        "nvim-telescope/telescope-symbols.nvim",
-        "nvim-telescope/telescope-fzf-writer.nvim",
-        { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
-      },
-      config = function()
-        require("plugins.configs.telescope")
-      end,
-      after = "lsp-trouble.nvim",
-      -- disable = not Opts.plugin.telescope.enabled,
-    })
-
-    -- Intellisense
-    use("neovim/nvim-lspconfig")
-    use("kabouzeid/nvim-lspinstall")
-    use({
-      "hrsh7th/nvim-compe",
-      config = require("plugins.configs.compe").setup,
-      after = "nvim-lspconfig",
-      event = "InsertEnter",
-      disable = not Opts.plugin.compe.enabled,
-    })
-    use({ "folke/lsp-colors.nvim", event = "BufRead" })
-    use({
-      "simrat39/symbols-outline.nvim",
-      cmd = {
-        "SymbolsOutline",
-        "SymbolsOutlineOpen",
-        "SymbolsOutlineClose",
-      },
-      config = require("plugins.configs.symbols_outline").setup,
-      disable = not Opts.plugin.symbols_outline.enabled,
-    })
-    use({
-      "ray-x/lsp_signature.nvim",
-      event = "InsertEnter",
-      config = require("plugins.configs.lsp_signature").setup,
-      disable = not Opts.plugin.lsp_signature.enabled,
-    })
-    -- Language specific plugins
-    use({
-      "fatih/vim-go",
-      ft = { "go" },
-      run = function()
-        vim.cmd("GoUpdateBinaries")
-      end,
-    })
-
-    -- Markdown preview
-    use({
-      "iamcco/markdown-preview.nvim",
-      ft = { "markdown", "markdownreact" },
-      run = "cd app && npm install",
-      config = require("plugins.configs.markdown_preview").setup,
-      disable = not Opts.plugin.markdown_preview.enabled,
-    })
-
-    -- Easily change surrounding elements
-    use({
-      "blackCauldron7/surround.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.surround").setup,
-      disable = not Opts.plugin.surround.enabled,
-    })
-
-    -- Extend increment/decrement functionality
-    use({
-      "monaqa/dial.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.dial").setup,
-      disable = not Opts.plugin.dial.enabled,
-    })
-
-    -- Interact with databases
-    use({ "tpope/vim-dadbod", disable = not Opts.plugin.dadbod.enabled, cmd = "DB" })
-    use({
-      "kristijanhusak/vim-dadbod-ui",
-      config = require("plugins.configs.dadbod").setup,
-      disable = not Opts.plugin.dadbod.enabled,
-      cmd = { "DBUI", "DBUIToggle" },
-      after = "vim-dadbod",
-    })
-    use({ "kristijanhusak/vim-dadbod-completion", after = "vim-dadbod-ui" })
-
-    -- Jump to lines more interactively
-    use({
-      "nacro90/numb.nvim",
-      event = "BufRead",
-      config = require("plugins.configs.numb").setup,
-      disable = not Opts.plugin.numb.enabled,
-    })
-
-    -- Distraction free writing (zen mode)
-    use({
-      "folke/zen-mode.nvim",
-      cmd = "ZenMode",
-      config = require("plugins.configs.zen_mode").setup,
-      disable = not Opts.plugin.zen_mode.enabled,
-    })
-
-    -- The emmet plugin for vim
-    use({
-      "mattn/emmet-vim",
-      event = "InsertEnter",
-      config = require("plugins.configs.emmet").setup,
-      disable = not Opts.plugin.emmet.enabled,
-    })
-
-    -- Run selected blocks of code
-    use({
-      "michaelb/sniprun",
-      run = "bash ./install.sh",
-      config = require("plugins.configs.sniprun").setup,
-      disable = not Opts.plugin.sniprun.enabled,
-    })
-
-    -- Quickly align text by pattern
-    use({
-      "godlygeek/tabular",
-      cmd = "Tabularize",
-      config = require("plugins.configs.tabular").setup,
-      disable = not Opts.plugin.tabular.enabled,
-    })
-
-    -- Search and replace text interactively
-    use({
-      "windwp/nvim-spectre",
-      requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
-      event = "BufRead",
-      config = require("plugins.configs.spectre").setup,
-      disable = not Opts.plugin.spectre.enabled,
-    })
-
-    -- REST client in nvim
-    use({
-      "NTBBloodbath/rest.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
-      config = function()
-        require("rest-nvim").setup()
-      end,
-      event = "BufEnter",
-    })
-  end,
-
-  config = {
-    git = { clone_timeout = 300 },
-    display = {
-      open_fn = function()
-        return require("packer.util").float({ border = "rounded" })
-      end,
-    },
-    profile = {
-      enable = true,
-      threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-    },
+local plugins = {
+  -- Packer can manage itself as an optional plugin
+  {
+    "wbthomason/packer.nvim",
+    opt = true,
   },
-})
+
+  -- Better Comments
+  {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    event = "BufRead",
+    config = "todo_comments",
+  },
+  {
+    "terrortylor/nvim-comment",
+    event = "BufEnter",
+    config = "comment",
+  },
+
+  -- Indent lines
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "ColorScheme",
+    config = "indent_blankline",
+  },
+
+  -- Repeat stuff
+  "tpope/vim-repeat",
+
+  -- Vifm
+  {
+    "vifm/vifm.vim",
+    config = "vifm",
+  },
+
+  -- File Explorer
+  {
+    "kyazdani42/nvim-tree.lua",
+    cmd = {
+      "NvimTreeClipboard",
+      "NvimTreeClose",
+      "NvimTreeFindFile",
+      "NvimTreeOpen",
+      "NvimTreeRefresh",
+      "NvimTreeToggle",
+    },
+    config = "nvim_tree",
+    requires = "kyazdani42/nvim-web-devicons", -- Cool Icons
+  },
+
+  -- Have the file system follow you around
+  {
+    "ahmedkhalf/lsp-rooter.nvim",
+    config = "rooter",
+  },
+
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = "treesitter",
+  },
+  -- Playground to interact with treesitter nodes
+  {
+    "nvim-treesitter/playground",
+    after = "nvim-treesitter",
+  },
+  -- Rename variables when lsp is not available and navigate through blocks of code
+  {
+    "nvim-treesitter/nvim-treesitter-refactor",
+    after = "nvim-treesitter",
+  },
+  -- Move text objects intelligently
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+  },
+  -- Automatically close and rename tags
+  {
+    "windwp/nvim-ts-autotag",
+    after = "nvim-treesitter",
+  },
+  -- Rainbow brackets
+  {
+    "p00f/nvim-ts-rainbow",
+    after = "nvim-treesitter",
+  },
+  -- Change the comment string according to the location of the cursor in the file
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    after = "nvim-treesitter",
+  },
+  {
+    "andymass/vim-matchup", -- Extend vim's '%' functionality using `treesitter`
+    event = "CursorMoved",
+    config = "matchup",
+    after = "nvim-treesitter",
+  },
+
+  -- Auto pairs for "(", "[", "{", etc
+  -- {
+  -- "windwp/nvim-autopairs",
+  -- config = "autopairs",
+  -- after = "nvim-compe",
+  -- event = "InsertEnter",
+  -- },
+  "jiangmiao/auto-pairs",
+
+  -- Themes
+  "folke/tokyonight.nvim",
+  -- "ayu-theme/ayu-vim"
+
+  -- Status Line
+  {
+    "hoob3rt/lualine.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = "lualine",
+  },
+
+  -- Git
+  "tpope/vim-fugitive",
+  { "junegunn/gv.vim", requires = "tpope/vim-fugitive" },
+  {
+    "rhysd/git-messenger.vim",
+    event = "BufRead",
+    config = "git_messenger",
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    event = "BufRead",
+    config = "gitsigns",
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = "git_blame",
+  },
+  -- use {
+  -- "TimUntersberger/neogit",
+  -- requires = "nvim-lua/plenary.nvim",
+  -- config = "neogit",
+  -- }
+
+  -- Terminal
+  {
+    "numtostr/FTerm.nvim",
+    keys = { "<F1>", "<leader>T" },
+    module = { "FTerm", "FTerm.terminal" },
+    config = "fterm",
+  },
+
+  -- Start Screen
+  {
+    "glepnir/dashboard-nvim",
+    config = "dashboard",
+  },
+  -- use { "mhinz/vim-startify", config = "startify" }
+
+  -- See what keys do like in emacs
+  {
+    "folke/which-key.nvim",
+    config = "which_key",
+  },
+
+  -- Snippets
+  {
+    "hrsh7th/vim-vsnip",
+    requires = "hrsh7th/vim-vsnip-integ",
+    event = "InsertEnter",
+    config = "vsnip",
+  },
+  { "rafamadriz/friendly-snippets", event = "InsertEnter" },
+
+  -- Interactive code
+  {
+    "metakirby5/codi.vim",
+    cmd = "Codi",
+    config = "codi",
+  },
+
+  -- Better tabline
+  {
+    "akinsho/nvim-bufferline.lua",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = "bufferline",
+  },
+
+  -- Better quickfix menu
+  {
+    "kevinhwang91/nvim-bqf",
+    config = "bqf",
+  },
+  {
+    "folke/lsp-trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    cmd = { "Trouble", "TroubleToggle" },
+    keys = { "<C-q>", "<C-l>" },
+    module = "trouble",
+    config = "trouble",
+  },
+
+  -- Intuitive buffer closing
+  { "famiu/bufdelete.nvim", cmd = "Bdelete" },
+
+  -- Undo time travel
+  { "mbbill/undotree", cmd = { "UndotreeShow", "UndotreeToggle" } },
+
+  -- Smooth scroll
+  {
+    "karb94/neoscroll.nvim",
+    event = "BufEnter",
+    config = "neoscroll",
+  },
+
+  -- Colorizer
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "BufRead",
+    config = "colorizer",
+  },
+
+  -- Multiple Cursors
+  { "terryma/vim-multiple-cursors", keys = { "<C-n>", "g<M-n>" }, event = "BufRead" },
+
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-lua/popup.nvim",
+      "nvim-telescope/telescope-media-files.nvim",
+      "nvim-telescope/telescope-fzy-native.nvim",
+      "nvim-telescope/telescope-project.nvim",
+      "nvim-telescope/telescope-symbols.nvim",
+      "nvim-telescope/telescope-fzf-writer.nvim",
+      { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
+    },
+    cmd = "Telescope",
+    config = "telescope",
+    after = "lsp-trouble.nvim",
+  },
+
+  -- Intellisense
+  "neovim/nvim-lspconfig",
+  "kabouzeid/nvim-lspinstall",
+  {
+    "hrsh7th/nvim-compe",
+    config = "compe",
+    after = "nvim-lspconfig",
+    event = "InsertEnter",
+  },
+  { "folke/lsp-colors.nvim", event = "BufRead" },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = {
+      "SymbolsOutline",
+      "SymbolsOutlineOpen",
+      "SymbolsOutlineClose",
+    },
+    config = "symbols_outline",
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    config = "lsp_signature",
+  },
+  -- Language specific plugins
+  {
+    "fatih/vim-go",
+    ft = { "go" },
+    run = 'vim.cmd("GoUpdateBinaries")',
+  },
+
+  -- Markdown preview
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = { "markdown", "markdownreact" },
+    run = "cd app && npm install",
+    config = "markdown_preview",
+  },
+
+  -- Easily change surrounding elements
+  {
+    "blackCauldron7/surround.nvim",
+    event = "BufRead",
+    config = "surround",
+  },
+
+  -- Extend increment/decrement functionality
+  {
+    "monaqa/dial.nvim",
+    event = "BufRead",
+    config = "dial",
+  },
+
+  -- Interact with databases
+  { "tpope/vim-dadbod", cmd = "DB" },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    config = "dadbod",
+    cmd = { "DBUI", "DBUIToggle" },
+    after = "vim-dadbod",
+  },
+  { "kristijanhusak/vim-dadbod-completion", after = "vim-dadbod-ui" },
+
+  -- Jump to lines more interactively
+  {
+    "nacro90/numb.nvim",
+    event = "BufRead",
+    config = "numb",
+  },
+
+  -- Distraction free writing (zen mode)
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = "zen_mode",
+  },
+
+  -- The emmet plugin for vim
+  {
+    "mattn/emmet-vim",
+    event = "InsertEnter",
+    config = "emmet",
+  },
+
+  -- Run selected blocks of code
+  {
+    "michaelb/sniprun",
+    run = "bash ./install.sh",
+    config = "sniprun",
+  },
+
+  -- Quickly align text by pattern
+  {
+    "godlygeek/tabular",
+    cmd = "Tabularize",
+    config = "tabular",
+  },
+
+  -- Search and replace text interactively
+  {
+    "windwp/nvim-spectre",
+    requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
+    event = "BufRead",
+    config = "spectre",
+  },
+
+  -- REST client in nvim
+  {
+    "NTBBloodbath/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup()
+    end,
+    event = "BufEnter",
+  },
+}
+
+local config = {
+  git = { clone_timeout = 300 },
+  display = {
+    open_fn = function()
+      return require("packer.util").float({ border = "rounded" })
+    end,
+  },
+  profile = {
+    enable = true,
+    threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+  },
+}
+
+return {
+  plugins = plugins,
+  config = config,
+}

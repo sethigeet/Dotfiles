@@ -1,27 +1,26 @@
+local map = require("utils.map")
+
 -- Global Leader key
 vim.g.mapleader = " "
 -- let localLeader=" "
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-
--- Fixed the "Y" behavior
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true, silent = true })
+map.nnoremap("<Space>", "<NOP>")
 
 -- Easily duplicate lines
-vim.api.nvim_set_keymap("n", "yp", "yyp", { noremap = true, silent = true })
+map.nnoremap("yp", "yyp")
 
 -- Easily delete words in insert mode
-vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true, silent = true })
+map.inoremap("<C-BS>", "<C-W>")
 
 -- TAB in general mode will move to text buffer
--- vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = true })
+map.nnoremap("<TAB>", ":bnext<CR>")
 -- SHIFT-TAB will go back
--- vim.api.nvim_set_keymap("n", "<S-TAB>", ":bprevious<CR>", { noremap = true, silent = true })
+map.nnoremap("<S-TAB>", ":bprevious<CR>")
 -- Shift-x will close the buffer
-vim.api.nvim_set_keymap("n", "X", ":Bdelete<CR>", { noremap = true, silent = true })
+map.nnoremap("X", ":bdelete<CR>")
 
 -- Move selected line / block of text in visual mode
-vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
+map.xnoremap("K", ":move '<-2<CR>gv-gv")
+map.xnoremap("J", ":move '>+1<CR>gv-gv")
 
 -- Alternate way to save
-vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true, silent = true })
+map.nnoremap("<C-s>", ":w<CR>")

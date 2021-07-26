@@ -33,7 +33,7 @@ function LanguageServer:lsp()
     root_dir = require("lsp.helpers.root_dir"),
     on_attach = function(client, bufnr)
       require("lsp.helpers.document_highlight")(client)
-      require("lsp.helpers.auto_format")(client)
+      require("lsp.helpers.format_on_save")(client)
       if self.on_attach then
         self.on_attach(client, bufnr)
       end
