@@ -1,9 +1,12 @@
+local map = require("utils.map")
+
 local function FormatOnSave(client)
   if client.resolved_capabilities.document_formatting then
-    vim.cmd("augroup Format")
-    vim.cmd("autocmd! * <buffer>")
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()")
-    vim.cmd("augroup END")
+    map.nnoremap("<C-s>", ":lua SaveFile(true)<CR>", { buffer = true })
+    map.nnoremap("<M-s>", ":lua SaveFile(false)<CR>", { buffer = true })
+
+    map.vnoremap("<C-s>", ":lua SaveFile(true, true)<CR>", { buffer = true })
+    map.vnoremap("<M-s>", ":lua SaveFile(false, true)<CR>", { buffer = true })
   end
 end
 

@@ -13,15 +13,15 @@ local plugins = {
     config = "todo_comments",
   },
   {
-    "terrortylor/nvim-comment",
+    "b3nj5m1n/kommentary",
     event = "BufEnter",
-    config = "comment",
+    config = "kommentary",
   },
 
   -- Indent lines
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "ColorScheme",
+    event = "BufEnter",
     config = "indent_blankline",
   },
 
@@ -50,9 +50,11 @@ local plugins = {
   },
 
   -- Have the file system follow you around
+  -- TODO: Replace with the newer version once that is complete
   {
-    "ahmedkhalf/lsp-rooter.nvim",
-    config = "rooter",
+    "airblade/vim-rooter",
+    -- "ahmedkhalf/lsp-rooter.nvim",
+    -- config = "rooter",
   },
 
   -- Treesitter
@@ -195,7 +197,7 @@ local plugins = {
     "folke/lsp-trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     cmd = { "Trouble", "TroubleToggle" },
-    keys = { "<C-q>", "<C-l>" },
+    keys = { "<C-q>" },
     module = "trouble",
     config = "trouble",
   },
@@ -245,12 +247,15 @@ local plugins = {
   "neovim/nvim-lspconfig",
   "kabouzeid/nvim-lspinstall",
   {
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  },
+  {
     "hrsh7th/nvim-compe",
     config = "compe",
     after = "nvim-lspconfig",
     event = "InsertEnter",
   },
-  { "folke/lsp-colors.nvim", event = "BufRead" },
   {
     "simrat39/symbols-outline.nvim",
     cmd = {

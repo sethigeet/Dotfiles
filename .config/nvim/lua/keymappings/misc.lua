@@ -17,5 +17,5 @@ map.nnoremap("n", "nzzzv")
 map.nnoremap("N", "Nzzzv")
 
 -- Substitute command shortcut
-map.nnoremap("S", ":%s//g<Left><Left>")
-map.vnoremap("S", ":s//g<Left><Left>")
+map.nnoremap("<M-x>", ":%s//g<Left><Left>")
+map.vnoremap("<M-x>", ":s//g<Left><Left>")

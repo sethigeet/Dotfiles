@@ -49,12 +49,16 @@ function plugin.keymaps()
   map.nnoremap("<S-TAB>", ":BufferLineCyclePrev<CR>")
 
   -- Move between buffers using Shift + Arrow Keys
-  map.nnoremap("<S-Left>", ":BufferLineCyclePrev<cr>")
-  map.nnoremap("<S-Right>", ":BufferLineCycleNext<cr>")
+  map.nnoremap("<S-Left>", ":BufferLineCyclePrev<CR>")
+  map.nnoremap("<S-Right>", ":BufferLineCycleNext<CR>")
+
+  -- Move between buffers using Ctrl + h,l Keys
+  map.nnoremap("<C-h>", ":BufferLineCyclePrev<CR>")
+  map.nnoremap("<C-l>", ":BufferLineCycleNext<CR>")
 
   -- Move buffers using Ctrl + Arrow Keys
-  map.nnoremap("<C-Left>", ":BufferLineMovePrev<cr>")
-  map.nnoremap("<C-Right>", ":BufferLineMoveNext<cr>")
+  map.nnoremap("<C-Left>", ":BufferLineMovePrev<CR>")
+  map.nnoremap("<C-Right>", ":BufferLineMoveNext<CR>")
 
   -- Move to a buffer using Alt+number
   for i = 1, 9, 1 do

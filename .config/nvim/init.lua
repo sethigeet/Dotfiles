@@ -4,4 +4,8 @@ require("globals")
 -- Load the core settings
 require("general")
 require("keymappings")
-require("lsp")
+
+-- Only load `lsp` if plugins are available as `lsp` requires some plugins right now
+if vim.fn.filereadable(CONFIG_PATH .. "/plugin/packer_compiled.lua") == 1 then
+  require("lsp")
+end

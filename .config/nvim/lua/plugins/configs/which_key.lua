@@ -77,7 +77,7 @@ local function getOpts(mode, prefix)
 end
 
 local mappings = {
-  ["/"] = { ":call v:lua.Comment()<CR>", "comment" },
+  ["/"] = { "<Plug>kommentary_line_default", "comment" },
   ["?"] = { ":NvimTreeFindFile<CR>", "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
   [";"] = { ":Dashboard<CR>", "show start screen" },
@@ -96,11 +96,8 @@ local mappings = {
     c = { ":ColorizerToggle<CR>", "colorizer" },
     h = { ":nohl<CR>", "remove search highlight" },
     i = { ":IndentBlanklineToggle<CR>", "toggle indent lines" },
-    m = { ":Glow<CR>", "markdown preview" },
     n = { ":set nonumber!<CR>", "line-numbers" },
-    s = { "<Plug>SortMotionVisual", "sort selected text" },
     r = { ":set norelativenumber!<CR>", "relative line nums" },
-    t = { ":FloatermToggle<CR>", "terminal" },
     v = { ":Codi<CR>", "virtual repl on" },
     V = { ":Codi!<CR>", "virtual repl off" },
   },
@@ -122,6 +119,19 @@ local mappings = {
       d = { ":BufferLineSortByDirectory", "by directory" },
       e = { ":BufferLineSortByExtension", "by extension" },
       r = { ":BufferLineSortByRelativeDirector", "by relative directory" },
+    },
+  },
+
+  -- NOTE: These keybindings are defined by the `kommentary` plugin itself
+  c = {
+    name = "Comment",
+    i = {
+      name = "Increase",
+      c = "line",
+    },
+    d = {
+      name = "Decrease",
+      c = "line",
     },
   },
 
@@ -217,12 +227,13 @@ local mappings = {
   },
 
   p = {
-    name = "Packer",
-    c = { ":PackerCompile<CR>", "Compile" },
-    i = { ":PackerInstall<CR>", "Install" },
+    name = "Plugin Manager",
+    c = { ":lua LoadPlugins('compile')<CR>", "Compile" },
+    i = { ":lua LoadPlugins('install')<CR>", "Install" },
     r = { ":luafile $MYVIMRC<CR>", "Reload" },
-    s = { ":PackerSync<CR>", "Sync" },
-    u = { ":PackerUpdate<CR>", "Update" },
+    s = { ":lua LoadPlugins('sync')<CR>", "Sync" },
+    p = { ":lua LoadPlugins('profile')<CR>", "Profile" },
+    u = { ":lua LoadPlugins('update')<CR>", "Update" },
   },
 
   -- q is for Quickfix
@@ -337,6 +348,12 @@ local mappings = {
   },
 }
 
+-- Mode specific changes
+local normalMappings = vim.deepcopy(mappings)
+
+local visualMappings = vim.deepcopy(mappings)
+visualMappings["/"][1] = "<Plug>kommentary_visual_default"
+
 -- Treesitter move plugin keybindings
 local function getBracketMappings(next, start)
   local dir = next and "next" or "previous"
@@ -366,8 +383,8 @@ function plugin.keymaps()
   vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
   vim.g.mapleader = " "
 
-  wk.register(mappings, getOpts("n"))
-  wk.register(mappings, getOpts("v"))
+  wk.register(normalMappings, getOpts("n"))
+  wk.register(visualMappings, getOpts("v"))
 
   wk.register(getBracketMappings(true, true), getOpts("n", "]"))
   wk.register(getBracketMappings(true, false), getOpts("n", "]"))

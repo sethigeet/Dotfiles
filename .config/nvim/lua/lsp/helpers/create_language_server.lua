@@ -1,6 +1,8 @@
 local LanguageServer = {
   lang = "",
   filetypes = {},
+  formatters = {},
+  linters = {},
 }
 
 local function check_lsp_client_active(name)
@@ -54,9 +56,51 @@ function LanguageServer:lsp()
   require("lspconfig")[self.lang].setup(options)
 end
 
-function LanguageServer:format() end
+function LanguageServer:format()
+  local formatters = self.formatters
 
-function LanguageServer:lint() end
+  local null_ls = require("null-ls")
+  local builtin_formatters = null_ls.builtins.formatting
+
+  if type(formatters) == "table" and not vim.tbl_isempty(formatters) and vim.tbl_islist(formatters) then
+    for i, formatter in ipairs(formatters) do
+      if builtin_formatters[formatter] then
+        formatters[i] = builtin_formatters[formatter]
+      end
+    end
+  elseif type(formatters) == "string" and formatters ~= "" then
+    if builtin_formatters[formatters] then
+      formatters = { builtin_formatters[formatters] }
+    end
+  else
+    formatters = {}
+  end
+
+  null_ls.register({ sources = formatters })
+end
+
+function LanguageServer:lint()
+  local linters = self.linters
+
+  local null_ls = require("null-ls")
+  local builtin_linters = null_ls.builtins.diagnostics
+
+  if type(linters) == "table" and not vim.tbl_isempty(linters) and vim.tbl_islist(linters) then
+    for i, linter in ipairs(linters) do
+      if builtin_linters[linter] then
+        linters[i] = builtin_linters[linter]
+      end
+    end
+  elseif type(linters) == "string" and linters ~= "" then
+    if builtin_linters[linters] then
+      linters = { builtin_linters[linters] }
+    end
+  else
+    linters = {}
+  end
+
+  null_ls.register({ sources = linters })
+end
 
 function LanguageServer:debug() end
 

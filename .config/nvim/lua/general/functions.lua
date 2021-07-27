@@ -14,6 +14,7 @@ function LoadPlugins(doWhat, args)
     sync = "PackerSync",
     compile = "PackerCompile",
     install = "PackerInstall",
+    update = "PackerUpdate",
     profile = "PackerProfile",
     load = "PackerLoad " .. (args or ""),
   }
@@ -23,6 +24,20 @@ function LoadPlugins(doWhat, args)
   end
 
   error("That action is not supported")
+end
+
+function SaveFile(format, force)
+  -- Format the file
+  if format then
+    vim.lsp.buf.formatting()
+  end
+
+  -- Save the file
+  if force then
+    vim.cmd("write!")
+  else
+    vim.cmd("write")
+  end
 end
 
 function ReloadFile()

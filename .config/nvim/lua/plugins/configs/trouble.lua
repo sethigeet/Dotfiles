@@ -48,7 +48,7 @@ function plugin.keymaps()
   -- Easily open the quickfix list
   map.nnoremap("<C-q>", ":TroubleToggle quickfix<CR>")
   -- Easily open the location list
-  map.nnoremap("<C-l>", ":TroubleToggle loclist<CR>")
+  -- map.nnoremap("<C-l>", ":TroubleToggle loclist<CR>")
 end
 
 return plugin

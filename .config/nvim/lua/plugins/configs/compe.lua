@@ -63,7 +63,9 @@ end
 
 local function confirm()
   if vim.fn.pumvisible() == 1 then
-    return vim.fn["compe#confirm"]({ keys = "<cr>", select = true })
+    return vim.fn["compe#confirm"]({ keys = "<CR>", select = true })
+  else
+    return utils.t("<CR>")
   end
 end
 
