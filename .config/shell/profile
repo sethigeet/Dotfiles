@@ -56,6 +56,7 @@ export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|
 
 # Add Custom scripts to the path for easier access in other configs
 PATH="$(find "$HOME/Scripts" -type d -printf "%p:")$PATH"
+PATH="$PATH:$HOME/.local/bin"
 export PATH
 
 # Use my custom rofi script for asking for a password for sudo
