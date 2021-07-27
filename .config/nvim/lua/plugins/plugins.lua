@@ -287,9 +287,8 @@ local plugins = {
 
   -- Easily change surrounding elements
   {
-    "blackCauldron7/surround.nvim",
+    "tpope/vim-surround",
     event = "BufRead",
-    config = "surround",
   },
 
   -- Extend increment/decrement functionality
