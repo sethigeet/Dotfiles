@@ -340,11 +340,9 @@ local mappings = {
   -- T is for Terminal
   T = {
     name = "Terminal",
-    d = { ":lua TermToggle('dropdown')<CR>", "dropdown" },
-    g = { ":lua TermToggle('lazygit')<CR>", "git" },
-    n = { ":lua TermToggle('node')<CR>", "node" },
-    p = { ":lua TermToggle('python')<CR>", "python" },
+    f = { ":lua TermToggle('floating')<CR>", "floating" },
     t = { ":lua TermToggle()<CR>", "toggle" },
+    s = { ":lua TermSend()<CR>", "send content" },
   },
 }
 

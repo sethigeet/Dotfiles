@@ -66,4 +66,5 @@ vim.lsp.protocol.CompletionItemKind = {
 
 -- Keymappings
 -- NOTE: Some keybindings related to LSP are defined in `which_key` config
-vim.api.nvim_set_keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+local map = require("utils.map")
+map.nnoremap("K", ":lua vim.lsp.buf.hover()<CR>")

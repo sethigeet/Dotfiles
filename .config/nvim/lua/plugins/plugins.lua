@@ -146,10 +146,10 @@ local plugins = {
 
   -- Terminal
   {
-    "numtostr/FTerm.nvim",
-    keys = { "<F1>", "<leader>T" },
-    module = { "FTerm", "FTerm.terminal" },
-    config = "fterm",
+    "akinsho/nvim-toggleterm.lua",
+    keys = { "`", "<F1>", "<leader>T" },
+    module = { "toggleterm", "toggleterm.terminal" },
+    config = "toggleterm",
   },
 
   -- Start Screen

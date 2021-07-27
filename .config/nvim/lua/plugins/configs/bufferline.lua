@@ -62,12 +62,7 @@ function plugin.keymaps()
 
   -- Move to a buffer using Alt+number
   for i = 1, 9, 1 do
-    vim.api.nvim_set_keymap(
-      "n",
-      "<M-" .. i .. ">",
-      ":lua require('bufferline').go_to_buffer(" .. i .. ")<CR>",
-      { noremap = true, silent = true }
-    )
+    map.nnoremap("<M-" .. i .. ">", ":lua require('bufferline').go_to_buffer(" .. i .. ")<CR>")
   end
 end
 

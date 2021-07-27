@@ -35,4 +35,24 @@ function utils.checkBackSpace()
   end
 end
 
+-- Why is this not a built-in Vim script function?
+function utils.getVisualSelection(allowCurrLine, join)
+  local start_coordinates = vim.fn.getpos("'<")
+  local line_start = start_coordinates[2]
+
+  local end_coordinates = vim.fn.getpos("'>")
+  local line_end = end_coordinates[2]
+
+  local lines = vim.fn.getline(line_start, line_end)
+  if vim.fn.len(lines) == 0 then
+    if allowCurrLine then
+      return vim.fn.getline(".")
+    end
+
+    return ""
+  end
+
+  return join and vim.fn.join(lines, "\n") or lines
+end
+
 return utils

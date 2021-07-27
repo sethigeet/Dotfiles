@@ -15,4 +15,4 @@ map.cnoremap("<C-c>", "<Esc>")
 map.xnoremap("<C-c>", "<Esc>")
 
 -- Map <Esc><Esc> to go into normal mode in a terminal
-map.tnoremap("<Esc><Esc>", [[<C-\><C-n>]], { silent = true })
+map.tnoremap("<Esc><Esc>", [[<C-\><C-n>]])

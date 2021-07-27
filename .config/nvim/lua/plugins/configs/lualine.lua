@@ -47,7 +47,7 @@ function plugin.setup()
       },
       lualine_x = { { "filetype", colored = true }, getLspClient },
       lualine_y = { getTabStop },
-      lualine_z = { "location" },
+      lualine_z = { "location", "progress" },
     },
     extensions = { "fugitive", "nvim-tree" },
   })
