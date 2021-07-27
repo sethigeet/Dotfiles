@@ -74,4 +74,4 @@ local ls = LanguageServer:create({
   },
 })
 
-ls:setup()
+return ls

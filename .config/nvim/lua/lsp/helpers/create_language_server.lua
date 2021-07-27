@@ -56,48 +56,58 @@ function LanguageServer:lsp()
   require("lspconfig")[self.lang].setup(options)
 end
 
-function LanguageServer:format()
-  local formatters = self.formatters
+local function formatForNullLS(builtins, customs)
+  local function handleCustom(custom)
+    if type(custom) == "string" and builtins[custom] then
+      return builtins[custom]
+    elseif type(custom) == "table" and builtins[custom[1]] then
+      local name = custom[1]
+      table.remove(custom, 1)
 
-  local null_ls = require("null-ls")
-  local builtin_formatters = null_ls.builtins.formatting
-
-  if type(formatters) == "table" and not vim.tbl_isempty(formatters) and vim.tbl_islist(formatters) then
-    for i, formatter in ipairs(formatters) do
-      if builtin_formatters[formatter] then
-        formatters[i] = builtin_formatters[formatter]
+      local opts = builtins[name]._opts
+      for k, v in pairs(custom) do
+        if k ~= "filetype" then
+          opts[k] = opts[k] or {}
+          table.insert(opts[k], v)
+          opts[k] = vim.tbl_flatten(opts[k])
+        end
       end
+
+      return builtins[name].with(opts)
     end
-  elseif type(formatters) == "string" and formatters ~= "" then
-    if builtin_formatters[formatters] then
-      formatters = { builtin_formatters[formatters] }
+  end
+
+  if type(customs) == "table" and not vim.tbl_isempty(customs) then
+    if vim.tbl_islist(customs) then
+      for i, custom in ipairs(customs) do
+        customs[i] = handleCustom(custom)
+      end
+    else
+      customs = { handleCustom(customs) }
+    end
+  elseif type(customs) == "string" and customs ~= "" then
+    if builtins[customs] then
+      customs = { builtins[customs] }
     end
   else
-    formatters = {}
+    customs = {}
   end
+
+  return customs
+end
+
+function LanguageServer:format()
+  local null_ls = require("null-ls")
+
+  local formatters = formatForNullLS(null_ls.builtins.formatting, self.formatters)
 
   null_ls.register({ sources = formatters })
 end
 
 function LanguageServer:lint()
-  local linters = self.linters
-
   local null_ls = require("null-ls")
-  local builtin_linters = null_ls.builtins.diagnostics
 
-  if type(linters) == "table" and not vim.tbl_isempty(linters) and vim.tbl_islist(linters) then
-    for i, linter in ipairs(linters) do
-      if builtin_linters[linter] then
-        linters[i] = builtin_linters[linter]
-      end
-    end
-  elseif type(linters) == "string" and linters ~= "" then
-    if builtin_linters[linters] then
-      linters = { builtin_linters[linters] }
-    end
-  else
-    linters = {}
-  end
+  local linters = formatForNullLS(null_ls.builtins.diagnostics, self.linters)
 
   null_ls.register({ sources = linters })
 end

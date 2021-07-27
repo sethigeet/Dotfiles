@@ -5,4 +5,4 @@ local ls = LanguageServer:create({
   formatters = "prettier",
 })
 
-ls:setup()
+return ls

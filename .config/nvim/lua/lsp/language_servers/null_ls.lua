@@ -8,4 +8,4 @@ local ls = LanguageServer:create({
   lang = "null-ls",
 })
 
-ls:setup()
+return ls

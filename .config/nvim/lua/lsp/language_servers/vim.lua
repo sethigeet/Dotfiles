@@ -4,4 +4,4 @@ local ls = LanguageServer:create({
   lang = "vim",
 })
 
-ls:setup()
+return ls

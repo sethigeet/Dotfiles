@@ -10,4 +10,4 @@ local ls = LanguageServer:create({
   end,
 })
 
-ls:setup()
+return ls

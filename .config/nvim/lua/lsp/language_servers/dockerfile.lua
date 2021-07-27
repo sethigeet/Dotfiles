@@ -4,4 +4,4 @@ local ls = LanguageServer:create({
   lang = "dockerfile",
 })
 
-ls:setup()
+return ls
