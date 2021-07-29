@@ -135,6 +135,9 @@ function M.do_rename(winnr)
     return
   end
 
+  -- Come out of insert mode if in it
+  vim.cmd("stopinsert")
+
   -- Check whether a lsp is active or not
   local active = require("lsp.helpers.check_lsp_active")()
   if not active then
@@ -142,9 +145,6 @@ function M.do_rename(winnr)
     do_rename_using_treesitter(new_name)
     return
   end
-
-  -- Come out of insert mode if in it
-  vim.cmd("stopinsert")
 
   -- Try renaming using `lsp`
   if do_rename_using_lsp(new_name) then

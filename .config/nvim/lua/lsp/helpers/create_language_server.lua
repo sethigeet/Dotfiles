@@ -5,16 +5,6 @@ local LanguageServer = {
   linters = {},
 }
 
-local function check_lsp_client_active(name)
-  local clients = vim.lsp.get_active_clients()
-  for _, client in pairs(clients) do
-    if client.name == name then
-      return true
-    end
-  end
-  return false
-end
-
 function LanguageServer:create(o)
   o = o or {} -- create object if user does not provide one
   setmetatable(o, self)
@@ -24,7 +14,7 @@ function LanguageServer:create(o)
 end
 
 function LanguageServer:lsp()
-  if check_lsp_client_active(self.lang) then
+  if require("lsp.helpers.check_lsp_active")(self.lang) then
     return
   end
 

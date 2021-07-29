@@ -9,8 +9,11 @@ super + Return
 super + {b}
 	$TERMINAL -e {bpytop}
 
-super + {e,w,i}
-	{nautilus,brave,vimiv}
+super + {e,i,w}
+	{nautilus,vimiv,brave}
+
+super + n
+  cd "$XDG_CONFIG_HOME/nvim"; exec $TERMINAL -e nvim "./init.lua"
 
 super + shift + {e}
 	{code}
