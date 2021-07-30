@@ -61,7 +61,7 @@ function M.rename()
 
   local current_name = get_current_name()
 
-  local bufnr, winnr = window.create_floating_window({}, "", opts)
+  local bufnr, winnr = window.create_floating_preview({}, "", opts)
 
   local rename_prompt_prefix_ns = vim.api.nvim_create_namespace("ui_rename_prompt_prefix")
 
