@@ -414,7 +414,7 @@ function plugin.keymaps()
     I = { ":lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
     l = { ":lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })<CR>", "Show line diagnostics" },
     r = { ":TroubleToggle lsp_references<CR>", "Goto references" },
-    -- p = { ":lua preview_definition<CR>", "Preview definition" },
+    p = { ":lua require('ui.peek').Peek('definition')<CR>", "Peek definition" },
   }, getOpts(
     "n",
     "g"

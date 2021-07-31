@@ -16,6 +16,9 @@ map.nnoremap("<M-u>", "viwU<Esc>")
 map.nnoremap("n", "nzzzv")
 map.nnoremap("N", "Nzzzv")
 
+-- Keep the cursor where it was after `J`
+map.nnoremap("J", "mzJ`z")
+
 -- Substitute command shortcut
 map.nnoremap("<M-x>", ":%s//g<Left><Left>")
 map.vnoremap("<M-x>", ":s//g<Left><Left>")

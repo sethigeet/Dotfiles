@@ -12,6 +12,10 @@ map.nnoremap("N", "'nN'[v:searchforward]", { expr = true })
 map.xnoremap("N", "'nN'[v:searchforward]", { expr = true })
 map.onoremap("N", "'nN'[v:searchforward]", { expr = true })
 
+-- Make <number>j/k register in jumplist too (only when <number> > 5)
+map.nnoremap("j", [[(v:count > 5 ? "m'" . v:count : "") . "j"]], { expr = true })
+map.nnoremap("k", [[(v:count > 5 ? "m'" . v:count : "") . "k"]], { expr = true })
+
 -- make * and # work in visual mode too!
 vim.api.nvim_exec(
   [[
