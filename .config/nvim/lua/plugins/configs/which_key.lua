@@ -162,29 +162,19 @@ local mappings = {
   -- g is for Git
   g = {
     name = "Git",
-    a = { ":Git add .<CR>", "add all" },
-    A = { ":Git add %<CR>", "add current" },
-    -- b = { ":Git blame<CR>", "blame" },
     b = { ":Telescope git_branches<CR>", "branches" },
-    B = { ":GBrowse<CR>", "browse" },
     c = {
       name = "Commits",
-      c = { ":Git commit<CR>", "commit" },
+      c = { ":Neogit commit<CR>", "commit" },
       o = { ":Telescope git_commits<CR>", "checkout commit" },
       u = { ":Telescope git_bcommits<CR>", "checkout commit(for current file)" },
     },
-    d = { ":Git diff<CR>", "diff" },
-    D = { ":Gdiffsplit<CR>", "diff split" },
-    g = { ":GGrep<CR>", "git grep" },
-    G = { ":Gstatus<CR>", "status" },
+    d = { ":DiffviewOpen<CR>", "diff" },
+    g = { ":Neogit<CR>", "neogit" },
     H = { ":lua require('gitsigns').preview_hunk()<CR>", "preview hunk" },
     j = { ":lua require('gitsigns').next_hunk()<CR>", "next hunk" },
     k = { ":lua require('gitsigns').prev_hunk()<CR>", "prev hunk" },
-    l = { ":Git log<CR>", "log" },
     m = { "<Plug>(git-messenger)<CR>", "message" },
-    p = { ":Git push<CR>", "push" },
-    P = { ":Git pull<CR>", "pull" },
-    r = { ":GRemove<CR>", "remove" },
     R = { ":lua require('gitsigns').reset_hunk()<CR>", "reset hunk" },
     s = { ":lua require('gitsigns').stage_hunk()<CR>", "stage hunk" },
     S = { ":Telescope git_status<CR>", "status" },
@@ -398,6 +388,7 @@ function plugin.keymaps()
   wk.register({
     d = { ":lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })<CR>", "Previous Diagnostic" },
     r = "Goto previous usage", -- Defined in treesitter config
+    g = { ":lua require('gitsigns').prev_hunk()<CR>", "Prev Hunk" },
   }, getOpts(
     "n",
     "["
@@ -405,6 +396,7 @@ function plugin.keymaps()
   wk.register({
     d = { ":lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })<CR>", "Next  Diagnostic" },
     r = "Goto next usage", -- Defined in treesitter config
+    g = { ":lua require('gitsigns').next_hunk()<CR>", "Next Hunk" },
   }, getOpts(
     "n",
     "]"

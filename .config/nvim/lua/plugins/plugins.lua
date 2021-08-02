@@ -120,8 +120,17 @@ local plugins = {
   },
 
   -- Git
-  "tpope/vim-fugitive",
-  { "junegunn/gv.vim", requires = "tpope/vim-fugitive" },
+  {
+    "sindrets/diffview.nvim",
+    config = "diffview",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+    },
+  },
   {
     "rhysd/git-messenger.vim",
     event = "BufRead",
@@ -138,11 +147,11 @@ local plugins = {
     event = "BufRead",
     config = "git_blame",
   },
-  -- use {
-  -- "TimUntersberger/neogit",
-  -- requires = "nvim-lua/plenary.nvim",
-  -- config = "neogit",
-  -- }
+  {
+    "TimUntersberger/neogit",
+    requires = "nvim-lua/plenary.nvim",
+    config = "neogit",
+  },
 
   -- Terminal
   {
