@@ -355,6 +355,7 @@ local normalMappings = vim.deepcopy(mappings)
 
 local visualMappings = vim.deepcopy(mappings)
 visualMappings["/"][1] = "<Plug>kommentary_visual_default"
+visualMappings["p"] = { '"_dP', "Paste without yank" }
 
 -- Treesitter move plugin keybindings
 local function getBracketMappings(next, start)

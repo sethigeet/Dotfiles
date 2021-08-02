@@ -24,3 +24,7 @@ map.nnoremap("<M-L>", ":vertical resize +2<CR>")
 
 map.nnoremap("0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
 map.nnoremap("0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
+
+-- Fuzzy finder (requires telescope)
+map.nnoremap("<C-p>", ":Telescope fzf_writer files<CR>")
+map.nnoremap("<C-b>", ":Telescope buffers<CR>")

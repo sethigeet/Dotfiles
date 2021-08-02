@@ -22,3 +22,7 @@ map.nnoremap("J", "mzJ`z")
 -- Substitute command shortcut
 map.nnoremap("<M-x>", ":%s//g<Left><Left>")
 map.vnoremap("<M-x>", ":s//g<Left><Left>")
+
+-- Delete wihthout yanking
+map.nnoremap("<M-c>", 'V"_d')
+map.vnoremap("<M-c>", '"_d')
