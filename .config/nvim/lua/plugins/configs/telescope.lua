@@ -97,7 +97,7 @@ function plugin.load_extensions()
 
   local extensions = {
     "media_files",
-    "fzy_native",
+    -- "fzy_native",
     "project",
     "fzf_writer",
     "frecency",

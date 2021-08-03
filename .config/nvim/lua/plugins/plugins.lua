@@ -151,6 +151,7 @@ local plugins = {
     "TimUntersberger/neogit",
     requires = "nvim-lua/plenary.nvim",
     config = "neogit",
+    cmd = "Neogit",
   },
 
   -- Terminal
@@ -241,7 +242,7 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-lua/popup.nvim",
       "nvim-telescope/telescope-media-files.nvim",
-      "nvim-telescope/telescope-fzy-native.nvim",
+      -- "nvim-telescope/telescope-fzy-native.nvim",
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-symbols.nvim",
       "nvim-telescope/telescope-fzf-writer.nvim",
