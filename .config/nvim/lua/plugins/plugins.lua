@@ -100,13 +100,12 @@ local plugins = {
   },
 
   -- Auto pairs for "(", "[", "{", etc
-  -- {
-  -- "windwp/nvim-autopairs",
-  -- config = "autopairs",
-  -- after = "nvim-compe",
-  -- event = "InsertEnter",
-  -- },
-  "jiangmiao/auto-pairs",
+  {
+    "windwp/nvim-autopairs",
+    config = "autopairs",
+    after = "nvim-compe",
+    event = "InsertEnter",
+  },
 
   -- Themes
   "folke/tokyonight.nvim",

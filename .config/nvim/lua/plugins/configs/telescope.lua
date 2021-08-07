@@ -132,4 +132,22 @@ function plugin.cur_buf_symbols()
   require("telescope.builtin").treesitter(opts)
 end
 
+function plugin.code_actions(ranged)
+  local opts = require("telescope.themes").get_cursor({
+    winblend = 10,
+    layout_config = {
+      height = 5,
+    },
+    border = true,
+    shorten_path = false,
+    previewer = false,
+  })
+
+  if ranged then
+    require("telescope.builtin").lsp_range_code_actions(opts)
+  else
+    require("telescope.builtin").lsp_code_actions(opts)
+  end
+end
+
 return plugin

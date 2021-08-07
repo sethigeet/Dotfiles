@@ -61,14 +61,6 @@ local function sTabComplete()
   end
 end
 
-local function confirm()
-  if vim.fn.pumvisible() == 1 then
-    return vim.fn["compe#confirm"]({ keys = "<CR>", select = true })
-  else
-    return utils.t("<CR>")
-  end
-end
-
 function plugin.keymaps()
   local map = require("utils.map")
 
@@ -76,7 +68,6 @@ function plugin.keymaps()
   map.smap("<Tab>", tabComplete, { expr = true })
   map.imap("<S-Tab>", sTabComplete, { expr = true })
   map.smap("<S-Tab>", sTabComplete, { expr = true })
-  map.imap("<CR>", confirm, { expr = true })
   map.imap("<C-Space>", "compe#complete()", { expr = true })
   map.imap("<C-e>", "compe#close('<C-e>')", { expr = true })
 end
