@@ -1,5 +1,6 @@
 local LanguageServer = {
   lang = "",
+  cmd_args = {},
   filetypes = {},
   formatters = {},
   linters = {},
@@ -43,7 +44,17 @@ function LanguageServer:lsp()
     end
   end
 
-  require("lspconfig")[self.lang].setup(options)
+  local config = require("lspconfig")[self.lang]
+
+  options.cmd = config.document_config.default_config.cmd
+  -- Add custom args if specified
+  if self.cmd_args and not vim.tbl_isempty(self.cmd_args) then
+    for _, arg in ipairs(self.cmd_args) do
+      table.insert(options.cmd, arg)
+    end
+  end
+
+  config.setup(options)
 end
 
 local function formatForNullLS(builtins, customs)

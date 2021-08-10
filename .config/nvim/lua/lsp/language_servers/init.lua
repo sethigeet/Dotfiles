@@ -1,5 +1,6 @@
 local lsps = {
   "bash",
+  "cpp",
   "css",
   "dockerfile",
   "go",

@@ -9,7 +9,7 @@ local augroups = {
     },
 
     -- Get back to the place from where you left the file
-    --  Builtin vim way:
+    --  Builtin vim way: (NOTE: can be fixed for other plugins by setting the `viewoptions`)
     -- { "BufWinEnter", "*.*", "silent!", "loadview" }, -- Load the state save state
     -- { "BufWinLeave", "*.*", "mkview" }, -- Save the state for the next time
     -- Custom implementation to not interfere with plugins
