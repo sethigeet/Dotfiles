@@ -104,7 +104,6 @@ local plugins = {
     "windwp/nvim-autopairs",
     config = "autopairs",
     after = "nvim-compe",
-    event = "InsertEnter",
   },
 
   -- Themes
@@ -239,7 +238,6 @@ local plugins = {
     "nvim-telescope/telescope.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
-      "nvim-lua/popup.nvim",
       "nvim-telescope/telescope-media-files.nvim",
       -- "nvim-telescope/telescope-fzy-native.nvim",
       "nvim-telescope/telescope-project.nvim",
@@ -248,6 +246,7 @@ local plugins = {
       { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
     },
     cmd = "Telescope",
+    module = { "telescope", "telescope.*", "plugins.configs.telescope" },
     config = "telescope",
     after = "lsp-trouble.nvim",
   },
