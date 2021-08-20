@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "create-next-app": "^10.2.0",
+    "@nestjs/cli": "^8.1.1",
+    "create-next-app": "^11.1.0",
     "create-react-app": "^4.0.3",
     "expo-cli": "^4.4.3",
     "firebase-tools": "^9.10.0",
