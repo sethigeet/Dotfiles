@@ -50,7 +50,7 @@ main() {
 
   # Window status
   window_status_format="#I $right_chevron_icon #W #{?window_last_flag,$window_last_icon ,}#{?current_window_flag,,}#{?window_zoomed_flag,$window_zoomed_icon ,}#{?window_marked_flag,$window_marked_icon,}"
-  set_tmux_option window-status-format " $window_status_format "
+  set_tmux_option window-status-format " #[fg=$TC]$window_status_format "
 
   window_status_format_current="#[fg=$BG,bg=$BG_ALT]$right_arrow_icon#[fg=$TC,bold]"
   window_status_format_current="$window_status_format_current $window_status_format"
