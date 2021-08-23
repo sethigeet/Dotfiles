@@ -52,7 +52,18 @@ export PYTHONDONTWRITEBYTECODE=1 # tell python to not create .pyc files for the 
 export FZF_DEFAULT_OPTS="-i --layout=reverse --cycle --history=$XDG_DATA_HOME/fzf/history"
 
 # Ignore some commands from history
-export HISTORY_IGNORE="(l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|.....|vicd|cs|cau|gst|ga .|ga -u|v *|\? *|\?\? *)"
+HISTORY_IGNORE="("
+#   Core utils
+HISTORY_IGNORE="l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|....."
+#   Utility ->  vifm|nvim|  search
+HISTORY_IGNORE="vicd|v *|\? *|\?\? *"
+#   Git
+HISTORY_IGNORE="cs|cau|gst|ga .|ga -u|"
+#   Golang
+HISTORY_IGNORE="gob .|goc .|gor .|got .|gov ."
+HISTORY_IGNORE=")"
+
+export HISTORY_IGNORE
 
 # Add Custom scripts to the path for easier access in other configs
 PATH="$(find "$HOME/Scripts" -type d -printf "%p:")$PATH"

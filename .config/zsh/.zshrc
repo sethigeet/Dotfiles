@@ -58,6 +58,7 @@ plugins=(
   command-not-found
   you-should-use
   vi-mode
+  golang
 )
 
 # Change the cursor style according to the vi mode
