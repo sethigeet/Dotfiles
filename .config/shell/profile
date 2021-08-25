@@ -54,14 +54,16 @@ export FZF_DEFAULT_OPTS="-i --layout=reverse --cycle --history=$XDG_DATA_HOME/fz
 # Ignore some commands from history
 HISTORY_IGNORE="("
 #   Core utils
-HISTORY_IGNORE="l|la|ll|lla|ls|cd|pwd|exit|reboot|history|cd -|cd ..|..|...|....|....."
+HISTORY_IGNORE="${HISTORY_IGNORE}l|la|ll|lla|ls|cd|pwd|exit|reboot|history"
+#   CDing
+HISTORY_IGNORE="$HISTORY_IGNORE|cd -|cd ..|..|...|....|.....|-"
 #   Utility ->  vifm|nvim|  search
-HISTORY_IGNORE="vicd|v *|\? *|\?\? *"
+HISTORY_IGNORE="$HISTORY_IGNORE|vicd|v *|\? *|\?\? *"
 #   Git
-HISTORY_IGNORE="cs|cau|gst|ga .|ga -u|"
+HISTORY_IGNORE="$HISTORY_IGNORE|cs|cau|gst|ga .|ga -u"
 #   Golang
-HISTORY_IGNORE="gob .|goc .|gor .|got .|gov ."
-HISTORY_IGNORE=")"
+HISTORY_IGNORE="$HISTORY_IGNORE|gob .|goc .|gor .|got .|gov ."
+HISTORY_IGNORE="$HISTORY_IGNORE)"
 
 export HISTORY_IGNORE
 
