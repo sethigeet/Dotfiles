@@ -15,8 +15,8 @@ super + {e,i,w}
 super + n
   cd "$XDG_CONFIG_HOME/nvim"; exec $TERMINAL -e nvim "./init.lua"
 
-super + shift + {e}
-	{code}
+super + shift + {e,w}
+	{code,vieb}
 
 # Manage Windows
 super + semicolon
@@ -45,6 +45,10 @@ XF86AudioPrev
 	playerctl previous
 XF86AudioNext
 	playerctl next
+
+# Display powersaver
+super + F1
+  power-saver --toggle
 
 # Mouse Clicks using keyboard!
 Menu

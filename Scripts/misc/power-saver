@@ -8,18 +8,31 @@ usage: power-saver [options]
     --off                        Turn the power saver off
 "
 
-turn_on_power_saver() {
+turn_on() {
   # turn on the display power saver
   # ie. turn off the display after 300s (5min)
   xset s 300 300
   xset dpms 300 300 300
 }
 
-turn_off_power_saver() {
+turn_off() {
   # turn off the display power saver
   # ie. do not turn off the display after inactivity
   xset s off off
   xset -dpms
+}
+
+toggle() {
+  is_enabled="$(xset q | grep 'Enabled')"
+
+  # if it is disabled
+  if [ -z "$is_enabled" ]; then
+    # enable it
+    turn_on
+  else
+    # disable it
+    turn_off
+  fi
 }
 
 while test $# -gt 0; do
@@ -30,12 +43,16 @@ while test $# -gt 0; do
       ;;
     --on)
       echo "Turning on the power-saver"
-      turn_on_power_saver
+      turn_on
       exit 0
       ;;
     --off)
       echo "Turning off the power-saver"
-      turn_off_power_saver
+      turn_off
+      exit 0
+      ;;
+    --toggle)
+      toggle
       exit 0
       ;;
     *)
