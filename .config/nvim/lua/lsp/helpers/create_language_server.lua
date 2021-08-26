@@ -67,7 +67,7 @@ local function formatForNullLS(builtins, customs)
 
       local opts = builtins[name]._opts
       for k, v in pairs(custom) do
-        if k ~= "filetype" then
+        if k ~= "filetype" and k ~= "condition" then
           opts[k] = opts[k] or {}
           table.insert(opts[k], v)
           opts[k] = vim.tbl_flatten(opts[k])

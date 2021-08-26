@@ -79,7 +79,7 @@ function plugin.setup()
       frecency = {
         show_scores = false,
         show_unindexed = true,
-        ignore_patterns = { "*.git/*", "*/tmp/*" },
+        ignore_patterns = { "*.git/*", "*/tmp/*", "*/node_modules/*", "*/env/*", "*/venv/*" },
         workspaces = {
           ["configs"] = os.getenv("XDG_CONFIG_DIR"),
           ["scripts"] = os.getenv("HOME") .. "/Scripts",
