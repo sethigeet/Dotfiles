@@ -29,7 +29,7 @@ end
 function SaveFile(format, force)
   -- Format the file
   if format then
-    vim.lsp.buf.formatting()
+    vim.lsp.buf.formatting_sync()
   end
 
   -- Save the file

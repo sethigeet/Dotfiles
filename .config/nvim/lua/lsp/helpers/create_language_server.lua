@@ -62,19 +62,7 @@ local function formatForNullLS(builtins, customs)
     if type(custom) == "string" and builtins[custom] then
       return builtins[custom]
     elseif type(custom) == "table" and builtins[custom[1]] then
-      local name = custom[1]
-      table.remove(custom, 1)
-
-      local opts = builtins[name]._opts
-      for k, v in pairs(custom) do
-        if k ~= "filetype" and k ~= "condition" then
-          opts[k] = opts[k] or {}
-          table.insert(opts[k], v)
-          opts[k] = vim.tbl_flatten(opts[k])
-        end
-      end
-
-      return builtins[name].with(opts)
+      return builtins[custom[1]].with(custom)
     end
   end
 
