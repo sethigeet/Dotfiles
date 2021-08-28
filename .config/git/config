@@ -17,13 +17,13 @@
 	cmd = nvim -d $LOCAL $REMOTE
 
 [merge]
-	tool = nvimfugitive
+	tool = nvimdiffview
 
 [mergetool "nvimmerge"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
-[mergetool "nvimfugitive"]
-	cmd = nvim -f -c "Gdiff" "$MERGED"
+[mergetool "nvimdiffview"]
+	cmd = nvim -f -c "DiffviewOpen" "$MERGED"
 
 [pull]
 	rebase = false
