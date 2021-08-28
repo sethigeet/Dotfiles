@@ -6,13 +6,17 @@ usage: power-saver [options]
     -h, --help                   Shows this help message
     --on                         Turn the power saver on
     --off                        Turn the power saver off
+    --toggle                     Toggle on/off the power saver
+    --screen-off                 Turn off the screen
 "
 
 turn_on() {
   # turn on the display power saver
-  # ie. turn off the display after 300s (5min)
-  xset s 300 300
-  xset dpms 300 300 300
+  # ie. turn off the display after $1 seconds or 300s (5min)
+
+  timeout="${1:-300}"
+  xset s "$timeout" "$timeout"
+  xset dpms "$timeout" "$timeout" "$timeout"
 }
 
 turn_off() {
@@ -23,16 +27,29 @@ turn_off() {
 }
 
 toggle() {
-  is_enabled="$(xset q | grep 'Enabled')"
+  is_on="$(xset q | grep 'Enabled')"
 
   # if it is disabled
-  if [ -z "$is_enabled" ]; then
+  if [ -z "$is_on" ]; then
     # enable it
     turn_on
   else
     # disable it
     turn_off
   fi
+}
+
+turn_off_screen() {
+  # set the timeout to 1s
+  turn_on 1
+
+  # wait for the screen to turn off
+  sleep 2
+
+  # set the timeout back to on
+  # NOTE: The timeout has to be turned on(only) again as if the timeout is turned off then the screen would turn on immediately
+  #       It cannot be turn off
+  turn_on
 }
 
 while test $# -gt 0; do
@@ -53,6 +70,10 @@ while test $# -gt 0; do
       ;;
     --toggle)
       toggle
+      exit 0
+      ;;
+    --screen-off)
+      turn_off_screen
       exit 0
       ;;
     *)

@@ -48,6 +48,8 @@ XF86AudioNext
 
 # Display powersaver
 super + F1
+  power-saver --screen-off
+super + shift + F1
   power-saver --toggle
 
 # Mouse Clicks using keyboard!
