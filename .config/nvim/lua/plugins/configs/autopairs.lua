@@ -2,6 +2,7 @@ local plugin = {}
 
 function plugin.setup()
   local npairs = require("nvim-autopairs")
+  local Rule = require("nvim-autopairs.rule")
 
   -- Setup
   npairs.setup({
@@ -9,6 +10,11 @@ function plugin.setup()
     ts_config = {
       lua = { "string" }, -- it will not add pair on that treesitter node
       javascript = { "template_string" },
+    },
+
+    fast_wrap = {
+      map = "<M-f>",
+      hightlight = "Search",
     },
   })
 
@@ -18,10 +24,34 @@ function plugin.setup()
     map_complete = true, -- it will auto insert `(` after select function or method item
   })
 
+  local rules = {}
+
+  -- Add spaces between parentheses
+  table.insert(
+    rules,
+    Rule(" ", " "):with_pair(function(opts)
+      local pair = opts.line:sub(opts.col - 1, opts.col)
+      return vim.tbl_contains({ "()", "[]", "{}" }, pair)
+    end)
+  )
+  local parens = { { "(", ")" }, { "{", "}" }, { "[", "]" } }
+  for _, paren in ipairs(parens) do
+    table.insert(
+      rules,
+      Rule(paren[1] .. " ", " " .. paren[2])
+        :with_pair(function()
+          return false
+        end)
+        :with_move(function(opts)
+          return opts.prev_char:match(".%" .. paren[2]) ~= nil
+        end)
+        :use_key(paren[2])
+    )
+  end
+
   -- Endwise
   local endwise = require("nvim-autopairs.ts-rule").endwise
-
-  npairs.add_rules({
+  for _, rule in ipairs({
     -- HACK: Pass in `nil` instead of the treesitter node in some places as it does not work properly right now
 
     -- Lua
@@ -36,7 +66,21 @@ function plugin.setup()
     endwise("for .*; do$", "done", "sh", nil), -- { "c_style_for_statement", "for_statement" }
     endwise("until .*; do$", "done", "sh", nil), -- { "c_style_for_statement", "for_statement" }
     endwise("case .* in$", "esac", "sh", nil), -- "case_statement"
-  })
+  }) do
+    table.insert(rules, rule)
+  end
+
+  -- Language specific stuff
+  -- JavaScript/TypeScript
+  table.insert(
+    rules,
+    Rule("%(.*%)%s*%=>$", " {  }", { "javascript", "javascriptreact", "typescript", "typescriptreact" })
+      :use_regex(true)
+      :set_end_pair_length(2)
+  )
+
+  -- Add all the rules
+  npairs.add_rules(rules)
 end
 
 return plugin

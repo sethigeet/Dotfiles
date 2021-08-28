@@ -16,7 +16,7 @@ for _, mode in ipairs({ "t", "i" }) do
   map.default_noremap(mode, "<M-l>", [[<C-\><C-N><C-w>l]])
 end
 
--- Use alt + left,down,up,right to resize windows
+-- Use alt + shift + h,j,k,l to resize windows
 map.nnoremap("<M-K>", ":resize -2<CR>")
 map.nnoremap("<M-J>", ":resize +2<CR>")
 map.nnoremap("<M-H>", ":vertical resize -2<CR>")

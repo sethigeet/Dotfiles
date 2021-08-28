@@ -9,5 +9,5 @@ map.nnoremap("<C-q>", ":copen<CR>")
 -- map.nnoremap("<C-l>", ":lopen<CR>")
 
 -- Navigate through the global qf list
-map.nnoremap("<C-j>", ":cprev<CR>zz")
-map.nnoremap("<C-k>", ":cnext<CR>zz")
+-- map.nnoremap("<C-j>", ":cprev<CR>zz")
+-- map.nnoremap("<C-k>", ":cnext<CR>zz")

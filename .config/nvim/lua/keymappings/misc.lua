@@ -26,3 +26,7 @@ map.vnoremap("<M-x>", ":s//g<Left><Left>")
 -- Delete wihthout yanking
 map.nnoremap("<M-c>", 'V"_d')
 map.vnoremap("<M-c>", '"_d')
+
+-- NOTE: <C-M> is the code sent for Ctrl+Enter
+map.nnoremap("<C-M>", "<Esc>o")
+map.inoremap("<C-CR>", "<Esc>o")
