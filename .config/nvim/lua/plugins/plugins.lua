@@ -5,6 +5,9 @@ local plugins = {
     opt = true,
   },
 
+  -- TODO: Remove this once this PR is merged (https://github.com/neovim/neovim/pull/15436)
+  "lewis6991/impatient.nvim",
+
   -- Better Comments
   {
     "folke/todo-comments.nvim",
@@ -367,6 +370,18 @@ local plugins = {
       require("rest-nvim").setup()
     end,
     event = "BufEnter",
+  },
+
+  -- Easily convert colors to different formats
+  {
+    "NTBBloodbath/color-converter.nvim",
+    module = "color-converter",
+  },
+
+  -- Better notifications
+  {
+    "rcarriga/nvim-notify",
+    config = "notify",
   },
 }
 

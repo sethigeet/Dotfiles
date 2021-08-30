@@ -141,6 +141,14 @@ local mappings = {
     },
   },
 
+  C = {
+    name = "Convert Color",
+    c = { getCmd("lua require('color-converter').cycle()"), "cycle" },
+    x = { getCmd("lua require('color-converter').to_hex()"), "to HEX" },
+    r = { getCmd("lua require('color-converter').to_rgb()"), "to RGB" },
+    h = { getCmd("lua require('color-converter').to_hsl()"), "to HSL" },
+  },
+
   -- d is for Database
   d = {
     name = "Database",
