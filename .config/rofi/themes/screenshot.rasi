@@ -1,5 +1,6 @@
 configuration {
   sidebar-mode: false;
+  show-icons: false;
 }
 
 @import "colors.rasi"
@@ -10,7 +11,6 @@ window {
   width: 100px;
   location: east;
   x-offset: -15px;
-  y-offset: 0px;
 }
 
 listview {
@@ -31,15 +31,9 @@ element {
   background-color: @background-color-alt;
   orientation: vertical;
   border-radius: 12px;
-}
-
-element-text {
-  font: "Nunito Nerd Font 20";
-  text-color: @foreground-color;
-  expand: true;
   horizontal-align: 0.5;
-  vertical-align: 0;
-  margin: 10px 10px 33px 10px;
+  vertical-align: 0.5;
+  padding: 25px;
 }
 
 element selected {
@@ -47,4 +41,17 @@ element selected {
   border: 0px;
   border-radius: 10px;
   border-color: @accent-color;
+}
+
+element-text {
+  font: "Nunito Nerd Font 20";
+  text-color: @foreground-color;
+  expand: true;
+  margin: 0 0 0 3px;
+
+  background-color: @background-color-alt;
+}
+
+element-text selected {
+  background-color: @accent-color;
 }

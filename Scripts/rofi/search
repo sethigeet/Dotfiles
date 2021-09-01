@@ -76,7 +76,10 @@ fi
 
 
 # Searching the chosen engine
-query=$(echo "" | rofi -lines 0 -dmenu -markup -mesg "Enter a query to search on <b>$selected_engine_name</b> in <b><i>$search_mode_to_display</i></b> mode")
+query=$(rofi -theme-str 'listview { lines: 0; }' \
+  -dmenu -markup \
+  -mesg "Enter a query to search on <b>$selected_engine_name</b> in <b><i>$search_mode_to_display</i></b> mode" \
+)
 
 [[ -z "$query" ]] && exit 0
 

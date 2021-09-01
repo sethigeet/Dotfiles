@@ -49,14 +49,15 @@ element {
   text-color: @foreground-color;
   orientation: horizontal;
   border-radius: 100%;
+  padding: 2.7% 1.6% 2% 1.6%;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
 }
 
 element-text {
   font: "Nunito Nerd Font 20";
   expand: true;
-  horizontal-align: 0.5;
-  vertical-align: 0.5;
-  margin: 2.7% 1.6% 3.2% 1.6%;
+  background-color: @background-color-alt;
 }
 
 element normal.urgent,
@@ -87,3 +88,6 @@ element selected.active {
   color: @foreground-color;
 }
 
+element-text selected {
+  background-color: @accent-color;
+}

@@ -1,7 +1,6 @@
 configuration {
   show-icons: true;
   sidebar-mode: false;
-  lines: 10;
 }
 
 @import "colors.rasi"
@@ -36,6 +35,10 @@ textbox {
   padding: 7px;
   font: "Nunito Nerd Font 12";
   vertical-align: 0.5;
+}
+
+listview {
+  lines: 10;
 }
 
 element {
@@ -90,14 +93,30 @@ element alternate.active {
   text-color: @active-foreground;
 }
 
+element-text {
+  padding: 0 0 0 5;
+}
+
+element-text selected {
+  background-color: @selected-active-background;
+}
+
 element-icon {
   size: 2ch;
   border-radius: 7px;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+}
+
+element-icon selected {
+  background-color: @selected-active-background;
 }
 
 button {
   padding: 8px;
   border-radius: 7px;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
 }
 
 button selected {

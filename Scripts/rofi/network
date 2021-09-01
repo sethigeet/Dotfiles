@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get info
-IFACE="$(nmcli connection show | awk '/^[^docker]/ && (NR>1) {print $NF}')"
+IFACE="$(nmcli connection show | awk '!/docker|vpn/ && (NR>1) {print $NF}')"
 # IFACE="${IFACE##*: }"
 STATUS="$(nmcli radio wifi)"
 active=""
@@ -40,7 +40,7 @@ gui() {
   chosen="$(
     echo -e "$options" | rofi \
       -theme "$HOME/.config/rofi/themes/without-inputbar.rasi" \
-      -lines 4 \
+      -theme-str 'listview { lines: 4; }' \
       -markup \
       -dmenu \
       -mesg "SSID: <b>$SSID</b> 

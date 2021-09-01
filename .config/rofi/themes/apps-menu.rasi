@@ -3,7 +3,6 @@ configuration {
   show-icons: true;
   display-drun: "";
   drun-display-format: "{name}";
-  lines: 10;
 }
 
 @import "colors.rasi"
@@ -56,6 +55,8 @@ element {
 
 element-icon {
   size: 40px;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
 }
 
 element-text {
@@ -109,4 +110,12 @@ element alternate.urgent {
 element alternate.active {
   background-color: @active-background;
   text-color: @active-foreground;
+}
+
+element-text selected {
+  background-color: @selected-active-background;
+}
+
+element-icon selected {
+  background-color: @selected-active-background;
 }

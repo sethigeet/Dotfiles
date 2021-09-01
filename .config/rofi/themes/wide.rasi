@@ -1,9 +1,10 @@
-configuration {
-  lines: 12;
-}
-
 @import "with-prompt.rasi"
 
 window {
   width: 60%;
 }
+
+listview {
+  lines: 12;
+}
+
