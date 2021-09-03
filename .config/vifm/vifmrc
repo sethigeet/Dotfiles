@@ -1,4 +1,4 @@
-" vim: filetype=vim :
+" vim: filetype=vim:
 
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
@@ -258,7 +258,7 @@ fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
         \ %pc
         \ vifmpreview clear
 fileviewer *.gif
-        \ vifmpreview gifpreview %px %py %pw %ph %c
+        \ vifmpreview videopreview %px %py %pw %ph %c
         \ %pc
         \ vifmpreview clear
         
