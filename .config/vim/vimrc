@@ -1,4 +1,5 @@
-# This part is is for changing the directories used by vim to be XDG complient
+" This part is is for changing the directories used by vim to be XDG complient
+
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_DATA_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
@@ -16,5 +17,4 @@ set undodir=$XDG_CACHE_HOME/vim/undo     | call mkdir(&undodir,   'p')
 
 if !has('nvim') | set viminfofile=$XDG_CACHE_HOME/vim/viminfo | endif
 
-# -------------------------------------------------
-
+" -------------------------------------------------
