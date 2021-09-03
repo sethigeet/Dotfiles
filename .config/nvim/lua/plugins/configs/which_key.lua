@@ -184,16 +184,24 @@ local mappings = {
       u = { getCmd("Telescope git_bcommits"), "checkout commit(for current file)" },
     },
     d = { getCmd("DiffviewOpen"), "diff" },
+    D = { getCmd("Gitsigns preview_hunk"), "inline diff" },
     g = { getCmd("Neogit"), "neogit" },
-    H = { getCmd("lua require('gitsigns').preview_hunk()"), "preview hunk" },
-    j = { getCmd("lua require('gitsigns').next_hunk()"), "next hunk" },
-    k = { getCmd("lua require('gitsigns').prev_hunk()"), "prev hunk" },
-    m = { getCmd("(git-messenger)", true), "message" },
-    R = { getCmd("lua require('gitsigns').reset_hunk()"), "reset hunk" },
-    s = { getCmd("lua require('gitsigns').stage_hunk()"), "stage hunk" },
+    j = { getCmd("Gitsigns next_hunk"), "next hunk" },
+    k = { getCmd("Gitsigns prev_hunk"), "prev hunk" },
+    m = { getCmd("GitMessenger"), "message" },
+    r = {
+      name = "Reset",
+      b = { getCmd("Gitsigns reset_buffer"), "buffer" },
+      h = { getCmd("Gitsigns reset_hunk"), "hunk" },
+    },
+    s = {
+      name = "Stage",
+      b = { getCmd("Gitsigns stage_buffer"), "buffer" },
+      h = { getCmd("Gitsigns stage_hunk"), "hunk" },
+      u = { getCmd("Gitsigns undo_stage_hunk"), "undo hunk" },
+    },
     S = { getCmd("Telescope git_status"), "status" },
     t = { getCmd("GitGutterSignsToggle"), "toggle signs" },
-    u = { getCmd("lua require('gitsigns').undo_stage_hunk()"), "undo stage hunk" },
   },
 
   -- l is for LSP
@@ -226,7 +234,7 @@ local mappings = {
     name = "Mark",
     a = { getCmd("BookmarkShowAll"), "show all" },
     c = { getCmd("BookmarkClear"), "clear" },
-    d = { ":BookmarkClearAll<CR>", "clear all" },
+    d = { getCmd("BookmarkClearAll"), "clear all" },
     j = { getCmd("BookmarkNext"), "next mark" },
     k = { getCmd("BookmarkPrev"), "prev mark" },
     l = { getCmd("BookmarkLoad"), "load" },
@@ -402,7 +410,7 @@ function plugin.keymaps()
   wk.register({
     d = { getCmd("lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })"), "Previous Diagnostic" },
     r = "Goto previous usage", -- Defined in treesitter config
-    g = { getCmd("lua require('gitsigns').prev_hunk()"), "Prev Hunk" },
+    g = { getCmd("Gitsigns prev_hunk"), "Prev Hunk" },
   }, getOpts(
     "n",
     "["
@@ -410,7 +418,7 @@ function plugin.keymaps()
   wk.register({
     d = { getCmd("lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })"), "Next  Diagnostic" },
     r = "Goto next usage", -- Defined in treesitter config
-    g = { getCmd("lua require('gitsigns').next_hunk()"), "Next Hunk" },
+    g = { getCmd("Gitsigns next_hunk"), "Next Hunk" },
   }, getOpts(
     "n",
     "]"

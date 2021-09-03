@@ -16,6 +16,11 @@ map.onoremap("N", "'nN'[v:searchforward]", { expr = true })
 map.nnoremap("j", [[(v:count > 5 ? "m'" . v:count : "") . "j"]], { expr = true })
 map.nnoremap("k", [[(v:count > 5 ? "m'" . v:count : "") . "k"]], { expr = true })
 
+-- Add more undo break-points
+map.inoremap(",", ",<c-g>u")
+map.inoremap(".", ".<c-g>u")
+map.inoremap(";", ";<c-g>u")
+
 -- make * and # work in visual mode too!
 vim.api.nvim_exec(
   [[

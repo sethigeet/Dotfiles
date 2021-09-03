@@ -14,6 +14,7 @@ function plugin.setup()
       "git",
       "dashboard",
       "neogitstatus",
+      "packer",
     },
     char = "▏",
     use_treesitter = true,

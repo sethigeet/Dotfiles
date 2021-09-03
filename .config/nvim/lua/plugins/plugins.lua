@@ -7,6 +7,8 @@ local plugins = {
 
   -- TODO: Remove this once this PR is merged (https://github.com/neovim/neovim/pull/15436)
   "lewis6991/impatient.nvim",
+  -- TODO: Remove this once this PR is merged (https://github.com/neovim/neovim/issues/12587)
+  "antoinemadec/FixCursorHold.nvim",
 
   -- Better Comments
   {
