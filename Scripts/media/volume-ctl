@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# This script requires notify-send.py to send notifications
+
+help_message="\
+usage: volume-ctl subcommand [options]
+  options:
+    help                         Show this help message
+    up [amount]                  Increases the volume by the specified amount or the default amount
+    down [amount]                Decreases the volume by the specified amount or the default amount
+    mute                         Mutes the volume
+"
+
+notify_error() {
+  notify-send.py -u critical --icon "audio-volume-high" --app-name "Volume Control" "$@"
+  exit 1
+}
+
+command -v "amixer" >/dev/null 2>&1 || notify_error "Install alsa-utils!" "To increase or decrease the volume you need to install 'alsa-utils'"
+
+case "$1" in
+  up)
+    shift
+    amixer set Master on -q
+    amixer sset Master "${1:-5}"%+ -q
+    ;;
+  down)
+    shift
+    amixer set Master on -q
+    amixer sset Master "${1:-5}"%- -q
+    ;;
+  togglemute)
+    amixer set Master 1+ toggle -q
+    ;;
+  help)
+    echo "$help_message"
+    exit 0
+    ;;
+  *)
+    echo "$help_message" >&2
+    exit 1
+    ;;
+esac
+
+check_mute() { amixer get Master | grep 'off'; }
+
+VOLUME="$(amixer get Master | grep -oP '\[\K[^%\]]+' | head -n1)"
+if check_mute >/dev/null 2>&1; then
+  ICON="notification-audio-volume-muted"
+elif [ "$VOLUME" -eq 0 ]; then
+  ICON="audio-volume-muted"
+elif [ "$VOLUME" -lt 10 ]; then
+  ICON="audio-volume-low"
+elif [ "$VOLUME" -lt 30 ]; then
+  ICON="audio-volume-low"
+elif [ "$VOLUME" -lt 70 ]; then
+  ICON="audio-volume-medium"
+else
+  ICON="audio-volume-high"
+fi
+
+notify-send.py --icon "audio-volume-high" \
+  --app-name "Volume" \
+  "Volume" "Current volume: <i><b>$VOLUME%</b></i>" \
+  --hint string:image-path:"$ICON" \
+  boolean:transient:true \
+  int:has-percentage:"$VOLUME" \
+  --replaces-process "volume-popup" &

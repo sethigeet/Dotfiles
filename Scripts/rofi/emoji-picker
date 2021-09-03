@@ -19,11 +19,6 @@ Notes:
   * Ctrl+C will copy it to your clipboard WITHOUT pasting it.
 "
 
-# Display Error msg
-msg() {
-  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
-}
-
 # Where to save the emojis file.
 EMOJI_FILE="$XDG_CACHE_HOME/emojis.txt"
 
@@ -41,9 +36,15 @@ URLS=(
 )
 
 notify() {
-  if [[ "$(command -v notify-send)" ]]; then
-    notify-send "Emoji Picker" "$2"
-  fi
+  notify-send.py --icon "emoji-people-symbolic" --app-name "Emoji Picker" "$@"
+}
+
+# Notify the user with an error message
+notify_error() {
+  notify-send.py -u critical \
+    --icon "emoji-people-symbolic" \
+    --app-name "Emoji Picker" \
+    " '$1' not found" "Please install '$1' first and ensure that it is there in your path!"
 }
 
 download() {
@@ -66,7 +67,7 @@ download() {
     echo "$emojis" >>"$EMOJI_FILE"
   done
 
-  notify "All the emojis have been downloaded!"
+  notify "Emojis Downloaded!" "All the emojis have been downloaded!"
 }
 
 display() {
@@ -93,7 +94,7 @@ Press <b><i>Ctrl + c</i></b> to copy the emoji to the clipboard"
     elif command -v xsel &>/dev/null; then
       echo -n "$selected_emoji" | xsel -i -b
     else
-      msg "xclip/xsel"
+      notify_error "xclip/xsel"
     fi
   fi
 }

@@ -1,28 +1,32 @@
 #!/bin/sh
 
-# Display Error msg
-msg() {
-  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+# Notify the user with an error message
+notify_error() {
+  notify-send.py -u critical \
+    --icon "color-select-symbolic" \
+    --app-name "Color Picker" \
+    " '$1' not found" "Please install '$1' first and ensure that it is there in your path!"
 }
 
-TIME=3000                  # Miliseconds notification should remain visible
-ICON="edit-paste-symbolic" # The icon to be shown in the notification
-
-if command -v colorpicker >/dev/null 2>&1; then
-  # Run colorpicker to pick a color
-  selected_color=$(colorpicker --one-shot --preview --short)
-
-  # copy it to the clipboard
-  if command -v xclip >/dev/null 2>&1; then
-    echo "$selected_color" | xclip -r -selection clipboard
-  elif command -v xsel >/dev/null 2>&1; then
-    echo "$selected_color" | xsel -i -b
-  else
-    msg "xclip/xsel/greenclip" && exit 1
-  fi
-
-  # send a notification
-  notify-send -u low -t $TIME -i $ICON "HEX Color Copied" "The HEX code of the selected color (\"$selected_color\") has been copied to the clipboard"
-else
-  msg "colorpicker" && exit 1
+if ! command -v colorpicker >/dev/null 2>&1; then
+  notify_error "colorpicker"
+  exit 1
 fi
+
+# Run colorpicker to pick a color
+selected_color=$(colorpicker --one-shot --preview --short)
+
+# copy it to the clipboard
+if command -v xclip >/dev/null 2>&1; then
+  echo "$selected_color" | xclip -r -selection clipboard
+elif command -v xsel >/dev/null 2>&1; then
+  echo "$selected_color" | xsel -i -b
+else
+  notify_error "xclip/xsel/greenclip" && exit 1
+fi
+
+# send a notification
+notify-send.py --icon "color-select-symbolic" \
+  --app-name "Color Picker" \
+  "HEX Color Copied" \
+  "The HEX code of the selected color (\"<b>$selected_color</b>\") has been copied to the clipboard"

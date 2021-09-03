@@ -1,0 +1,104 @@
+/* Notification center */
+
+.blurredBG,
+#main_window,
+.blurredBG.low,
+.blurredBG.normal {
+  background: rgba(26, 27, 38, 0.6);
+}
+
+.noti-center.time {
+  font-size: 32px;
+}
+
+/* Notifications */
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.appname {
+  font-size: 12px;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.blurredBG.notification {
+  background: rgba(26, 27, 38, 0.5);
+}
+
+.blurredBG.notification.critical {
+  background: rgba(219, 75, 75, 0.5);
+}
+
+.notificationInCenter.critical {
+  background: rgba(219, 75, 75, 0.5);
+}
+
+/* Labels */
+
+label {
+  color: #C0CAF5;
+}
+
+label.notification {
+  color: #C0CAF5;
+}
+
+label.critical {
+  color: #C0CAF5;
+}
+.notificationInCenter label.critical {
+  color: #C0CAF5;
+}
+
+/* Buttons */
+
+button {
+  background: rgba(21, 22, 30, 0.4);
+  color: #C0CAF5;
+  border-radius: 5px;
+  text-shadow: none;
+  padding: 5px;
+}
+
+button:hover {
+  background: rgba(21, 22, 30, 0.7);
+  color: #C0CAF5;
+}
+
+/* Custom Buttons */
+
+.userbutton {
+  background: rgba(21, 22, 30, 0.2);
+}
+
+.userbuttonlabel {
+  color: #C0CAF5;
+  font-size: 12px;
+}
+
+.userbutton:hover {
+  background: rgba(21, 22, 30, 0.5);
+}
+
+.userbuttonlabel:hover {
+  color: #111;
+}
+
+button.buttonState1 {
+  background: rgba(122, 162, 247, 0.3);
+}
+
+.userbuttonlabel.buttonState1 {
+  color: #C0CAF5;
+}
+
+button.buttonState1:hover {
+  background: rgba(122, 162, 247, 0.6);
+}
+
+/* Images */

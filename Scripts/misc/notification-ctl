@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# This script makes the interaction with the deadd-notification-center easier
+# NOTE: This script requires notify-send.py to interact with the deadd-notification-center
+
+help_message="\
+usage: notification-ctl subcommand
+  options:
+    help                         Show this help message
+    clear-incenter               Clear all the notification from the notification center
+    clear-popups                 Clear all the popup notifications
+    clear                        Clear all the notifications
+    pause                        Pause all the popup notifications
+    unpause                      Unpause all the popup notifications
+    toggle                       Toggle the notification center
+    reload-styles                Reloads the styles of the notification center
+    restart                      Restarts the notification center
+"
+
+case "$1" in
+  toggle)
+    kill -s USR1 "$(pidof deadd-notification-center)"
+    exit 0
+    ;;
+  clear-incenter)
+    notify-send.py a --hint boolean:deadd-notification-center:true \
+      string:type:clearInCenter
+    exit 0
+    ;;
+  clear-popups)
+    notify-send.py a --hint boolean:deadd-notification-center:true \
+      string:type:clearPopups
+    exit 0
+    ;;
+  clear)
+    $0 clear-incenter
+    $0 clear-popups
+    exit 0
+    ;;
+  pause)
+    notify-send.py a --hint boolean:deadd-notification-center:true \
+      string:type:pausePopups
+    exit 0
+    ;;
+  unpause)
+    notify-send.py a --hint boolean:deadd-notification-center:true \
+      string:type:unpausePopups
+    exit 0
+    ;;
+  reload-styles)
+    notify-send.py a --hint boolean:deadd-notification-center:true \
+      string:type:reloadStyle
+    exit 0
+    ;;
+  restart)
+    systemctl --user restart deadd-notification-center.service
+    exit 0
+    ;;
+  help)
+    echo "$help_message"
+    exit 0
+    ;;
+  *)
+    echo "$help_message" >&2
+    exit 1
+    ;;
+esac

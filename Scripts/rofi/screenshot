@@ -1,15 +1,79 @@
 #!/bin/sh
 
-# Display Error msg
-msg() {
-  rofi -theme "$HOME/.config/rofi/themes/message.rasi" -e " Please install '$1' first."
+# This script makes taking screenshots easier
+# NOTE: `flameshot` and/or `scrot` both have to be installed to run this script!
+
+IMG_DIR="$HOME/Pictures/Screenshots"           # The directory to save the screenshots in
+ICON="camera"                                  # The icon to be shown in the notification
+TIME=5000                                      # The time after which the notification expires
+FILE_FORMAT='Screenshot_%Y-%m-%d-%S_$wx$h.png' # The naming format for the screenshot files
+
+check_for_program() {
+  command -v "$1" >/dev/null 2>&1
 }
 
-IMG_PATH="$HOME/Pictures/Screenshots"
-TIME=3000     # Miliseconds notification should remain visible
-ICON="camera" # The icon to be shown in the notification
+# Check if atleast one of them is installed
+if ! check_for_program "flameshot"; then
+  if ! check_for_program "scrot"; then
+    notify_error "scrot/flameshot"
+  fi
+fi
 
-[ -d "$IMG_PATH" ] || mkdir -p "$IMG_PATH"
+# Display Error msg
+notify_error() {
+  notify-send.py -u critical --icon "$ICON" --app-name "Screenshot" "$@"
+  exit 1
+}
+
+notify() {
+  ans=$(notify-send.py --icon "$ICON" -t $TIME \
+    --app-name "Screenshot" \
+    'Screenshot taken' \
+    "$1" \
+    --hint string:image-path:"file://$IMG_DIR/$2" \
+    --action img:"Open image" dir:"Open directory")
+
+  ans_is_img=$(echo "$ans" | grep "img")
+  ans_is_dir=$(echo "$ans" | grep "dir")
+  if [ -n "$ans_is_img" ]; then
+    xdg-open "$IMG_DIR/$2"
+  elif [ -n "$ans_is_dir" ]; then
+    xdg-open "$IMG_DIR"
+  fi
+}
+
+take_area_screenshot() {
+  # I prefer `flameshot` for area screenshots
+  if check_for_program "flameshot"; then
+    flameshot gui -p "$IMG_DIR"
+  else
+    file_name=$(scrot --select "$FILE_FORMAT" --exec 'echo $f')
+    notify 'Screenshot of the selected area has been taken!' "$file_name"
+  fi
+}
+
+take_screen_screenshot() {
+  # I prefer `scrot` for screen screenshots
+  if check_for_program "scrot"; then
+    file_name=$(scrot "$FILE_FORMAT" --exec 'echo $f')
+    notify 'Screenshot of the whole screen has been taken!' "$file_name"
+  else
+    flameshot full -p "$IMG_DIR"
+  fi
+}
+
+take_window_screenshot() {
+  # I prefer `scrot` for window screenshots
+  if check_for_program "scrot"; then
+    file_name=$(scrot --focused "$FILE_FORMAT" --exec 'echo $f')
+    notify 'Screenshot of the focued window has been taken!' "$file_name"
+  else
+    flameshot gui -p "$IMG_DIR"
+  fi
+}
+
+[ -d "$IMG_DIR" ] || mkdir -p "$IMG_DIR"
+cd "$IMG_DIR" || exit
 
 # Options
 screen=""
@@ -22,40 +86,13 @@ options="$screen|$area|$window"
 selected="$(echo "$options" | rofi -no-lazy-grab -selected-row 1 -sep "|" -dmenu -i \
   -theme "$HOME/.config/rofi/themes/screenshot.rasi")"
 
-cd "$IMG_PATH" || exit
+# Wait for the rofi window to dissapear
+sleep 0.5
 
 case "$selected" in
-  "$screen")
-    if command -v flameshot >/dev/null 2>&1; then
-      sleep 1
-      flameshot full -p "$IMG_PATH"
-    elif command -v scrot >/dev/null 2>&1; then
-      sleep 1
-      scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
-      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the whole screen has been taken!'
-    else
-      msg "scrot/flameshot"
-    fi
-    ;;
-  "$area")
-    if command -v flameshot >/dev/null 2>&1; then
-      sleep 1
-      flameshot gui -p "$IMG_PATH"
-    elif command -v scrot >/dev/null 2>&1; then
-      sleep 1
-      scrot -s 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
-      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the selected section has been taken!'
-    else
-      msg "scrot/flameshot"
-    fi
-    ;;
-  "$window")
-    if command -v scrot >/dev/null 2>&1; then
-      sleep 1
-      scrot -u 'Screenshot_%Y-%m-%d-%S_$wx$h.png'
-      notify-send -u low -t $TIME -i $ICON 'Screenshot' 'Screenshot of the focued window has been taken!'
-    else
-      msg "scrot"
-    fi
-    ;;
+  "$area") take_area_screenshot ;;
+
+  "$screen") take_screen_screenshot ;;
+
+  "$window") take_window_screenshot ;;
 esac

@@ -106,6 +106,7 @@ local mappings = {
     r = { getCmd("set norelativenumber!"), "relative line nums" },
     v = { getCmd("Codi"), "virtual repl on" },
     V = { getCmd("Codi!"), "virtual repl off" },
+    w = { getCmd("set wrap!"), "word wrap" },
   },
 
   -- b is for Buffer

@@ -12,9 +12,6 @@ super + {b}
 super + {e,i,w}
 	{nautilus,vimiv,brave}
 
-super + n
-  cd "$XDG_CONFIG_HOME/nvim"; exec $TERMINAL -e nvim "./init.lua"
-
 super + shift + {e,w}
 	{code,vieb}
 
@@ -32,13 +29,17 @@ super + {c,p,s,v}
 super + shift + {m,s,v,x,z}
 	{spotify,edit-script,clipboard,power-menu,file-browser}
 
+# Notifications
+super + n
+  notification-ctl toggle
+
 # Media
 XF86Audio{Raise,Lower}Volume
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}10%
+	volume-ctl {up,down} 10
 shift + XF86Audio{Raise,Lower}Volume
-	pactl set-sink-volume @DEFAULT_SINK@ {+,-}2%
+	volume-ctl {up,down} 2
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	volume-ctl togglemute
 XF86AudioPlay
 	playerctl play-pause
 XF86AudioPrev
