@@ -304,10 +304,10 @@ local mappings = {
     m = { getCmd("Telescope marks"), "marks" },
     o = { getCmd("Telescope oldfiles"), "oldfiles" },
     p = { getCmd("Telescope project"), "projects" },
+    r = { getCmd("Telescope resume"), "resume last" },
+    R = { getCmd("Telescope registers"), "registers" },
     S = { getCmd("Telescope git_status"), "git status" },
     t = { getCmd("TodoTelescope"), "todos" },
-    r = { getCmd("Telescope registers"), "registers" },
-    R = { getCmd("Telescope reloader"), "reloader" },
     w = { getCmd("Telescope file_browser"), "file browser" },
   },
 
