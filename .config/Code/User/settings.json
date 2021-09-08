@@ -246,9 +246,6 @@
     "<C-y>": false
   },
 
-  // Bracket Pair Colorizer
-  "bracket-pair-colorizer-2.forceIterationColorCycle": true,
-
   // Better Comments
   "better-comments.tags": [
     {
