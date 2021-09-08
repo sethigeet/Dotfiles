@@ -1,6 +1,6 @@
 local map = require("utils.map")
 
-local function FormatOnSave(client)
+local function format_on_save(client)
   if client.resolved_capabilities.document_formatting then
     map.nnoremap("<C-s>", ":lua SaveFile(true)<CR>", { buffer = true })
     map.nnoremap("<M-s>", ":lua SaveFile(false)<CR>", { buffer = true })
@@ -10,4 +10,4 @@ local function FormatOnSave(client)
   end
 end
 
-return FormatOnSave
+return format_on_save

@@ -1,4 +1,4 @@
-local function getTabStop()
+local function get_tab_stop()
   local label = "Tab Size: "
   if vim.api.nvim_buf_get_option(0, "expandtab") then
     label = "Spaces: "
@@ -6,7 +6,7 @@ local function getTabStop()
   return " " .. label .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-local function getLspClient(msg)
+local function get_lsp_client(msg)
   msg = msg or "  No Active Lsp"
   local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
   local clients = vim.lsp.get_active_clients()
@@ -45,8 +45,8 @@ function plugin.setup()
         },
         { "filename", symbols = { modified = "  ", readonly = "  " } },
       },
-      lualine_x = { { "filetype", colored = true }, getLspClient },
-      lualine_y = { getTabStop },
+      lualine_x = { { "filetype", colored = true }, get_lsp_client },
+      lualine_y = { get_tab_stop },
       lualine_z = { "location", "progress" },
     },
     extensions = { "fugitive", "nvim-tree" },

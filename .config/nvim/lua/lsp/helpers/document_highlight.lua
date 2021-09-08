@@ -1,4 +1,4 @@
-local function DocumentHighlight(client)
+local function document_highlight(client)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
@@ -17,4 +17,4 @@ local function DocumentHighlight(client)
   end
 end
 
-return DocumentHighlight
+return document_highlight

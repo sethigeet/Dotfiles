@@ -1,4 +1,4 @@
-local DefineAugroups = require("utils").DefineAugroups
+local define_augroups = require("utils").define_augroups
 
 local augroups = {
   general_settings = {
@@ -13,7 +13,7 @@ local augroups = {
     -- { "BufWinEnter", "*.*", "silent!", "loadview" }, -- Load the state save state
     -- { "BufWinLeave", "*.*", "mkview" }, -- Save the state for the next time
     -- Custom implementation to not interfere with plugins
-    { "BufReadPost", "*", "lua require('utils').restoreLastPlace()" },
+    { "BufReadPost", "*", "lua require('utils').restore_last_place()" },
   },
   auto_compile = {},
 
@@ -22,5 +22,4 @@ local augroups = {
     { "BufRead,BufNewFile", "*.{tsx}", "setlocal filetype=typescriptreact" },
   },
 }
-
-DefineAugroups(augroups)
+define_augroups(augroups)

@@ -39,19 +39,19 @@ function plugin.setup()
   plugin.keymaps()
 end
 
-local function tabComplete()
+local function tab_complete()
   if vim.fn.pumvisible() == 1 then
     return utils.t("<C-n>")
   elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
     return utils.t("<Plug>(vsnip-expand-or-jump)")
-  elseif utils.checkBackSpace() then
+  elseif utils.check_back_space() then
     return utils.t("<Tab>")
   else
     return vim.fn["emmet#expandAbbrIntelligent"]("\\<Tab>")
   end
 end
 
-local function sTabComplete()
+local function s_tab_complete()
   if vim.fn.pumvisible() == 1 then
     return utils.t("<C-p>")
   elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
@@ -64,10 +64,10 @@ end
 function plugin.keymaps()
   local map = require("utils.map")
 
-  map.imap("<Tab>", tabComplete, { expr = true })
-  map.smap("<Tab>", tabComplete, { expr = true })
-  map.imap("<S-Tab>", sTabComplete, { expr = true })
-  map.smap("<S-Tab>", sTabComplete, { expr = true })
+  map.imap("<Tab>", tab_complete, { expr = true })
+  map.smap("<Tab>", tab_complete, { expr = true })
+  map.imap("<S-Tab>", s_tab_complete, { expr = true })
+  map.smap("<S-Tab>", s_tab_complete, { expr = true })
   map.imap("<C-Space>", "compe#complete()", { expr = true })
   map.imap("<C-e>", "compe#close('<C-e>')", { expr = true })
 end

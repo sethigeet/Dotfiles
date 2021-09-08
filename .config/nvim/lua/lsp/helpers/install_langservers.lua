@@ -1,6 +1,6 @@
 LspInstall = require("lspinstall")
 
-local function InstallLangServers(langs)
+local function install_lang_servers(langs)
   for _, lang in ipairs(langs) do
     if not LspInstall.is_server_installed(lang) then
       LspInstall.install_server(lang)
@@ -8,4 +8,4 @@ local function InstallLangServers(langs)
   end
 end
 
-return InstallLangServers
+return install_lang_servers

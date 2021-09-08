@@ -2,7 +2,7 @@ local plugin = {}
 
 local treesitter_leader = "<leader>t"
 
-local function getTextObjectKeymaps(leader, uppercase)
+local function get_text_object_keymaps(leader, uppercase)
   local objects = {
     f = "@function.outer",
     c = "@class.outer",
@@ -80,17 +80,17 @@ function plugin.setup()
       },
       swap = {
         enable = true,
-        swap_next = getTextObjectKeymaps(treesitter_leader .. "s", false),
-        swap_previous = getTextObjectKeymaps(treesitter_leader .. "s", true),
+        swap_next = get_text_object_keymaps(treesitter_leader .. "s", false),
+        swap_previous = get_text_object_keymaps(treesitter_leader .. "s", true),
       },
       move = {
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
 
-        goto_next_start = getTextObjectKeymaps("]", false),
-        goto_next_end = getTextObjectKeymaps("]", true),
-        goto_previous_start = getTextObjectKeymaps("[", false),
-        goto_previous_end = getTextObjectKeymaps("[", true),
+        goto_next_start = get_text_object_keymaps("]", false),
+        goto_next_end = get_text_object_keymaps("]", true),
+        goto_previous_start = get_text_object_keymaps("[", false),
+        goto_previous_end = get_text_object_keymaps("[", true),
       },
       -- TODO: Move this part into `PeekDefinition` code and use it as a fallback if `lsp` client does not support it!
       -- lsp_interop = {

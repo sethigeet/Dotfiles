@@ -34,7 +34,7 @@ LSP. No location was found.]],
   end
 end
 
-function peek.OpenFile()
+function peek.open_file()
   -- Get the file currently open in the floating window
   local filepath = vim.fn.expand("%:.")
 
@@ -59,10 +59,10 @@ Make sure that the file actually exists!]],
   local winnr = vim.api.nvim_get_current_win()
 
   -- Set the cursor at the right position
-  peek.SetCursorToPrevPos(winnr)
+  peek.set_cursor_to_prev_pos(winnr)
 end
 
-function peek.SetCursorToPrevPos(winnr)
+function peek.set_cursor_to_prev_pos(winnr)
   -- Get position of the thing to peek at
   local location = peek.prev_result
   local range = location.targetRange or location.range
@@ -74,7 +74,7 @@ function peek.SetCursorToPrevPos(winnr)
   vim.api.nvim_win_set_cursor(winnr, cursor_pos)
 end
 
-function peek.Peek(what)
+function peek.peek(what)
   -- If a window already exists, focus it at the right position!
   if vim.tbl_contains(vim.api.nvim_list_wins(), peek.floating_win) then
     local success_1, _ = pcall(vim.api.nvim_set_current_win, peek.floating_win)
@@ -92,13 +92,13 @@ Use goto definition/declartion instead!]],
     end
 
     -- Set the cursor at the correct position in the floating window
-    peek.SetCursorToPrevPos()
+    peek.set_cursor_to_prev_pos()
 
     vim.api.nvim_buf_set_keymap(
       peek.floating_buf,
       "n",
       "<CR>",
-      ":lua require('ui.peek').OpenFile()<CR>",
+      ":lua require('ui.peek').open_file()<CR>",
       { noremap = true, silent = true }
     )
   else

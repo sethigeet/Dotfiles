@@ -59,7 +59,7 @@ function plugin.defineFunctions()
   -- NOTE: A lot of this functionality has been ripped off from the
   --       `toggleterm` plugin's code and slightly modified
   function TermSend()
-    local contents = require("utils").getVisualSelection(true)
+    local contents = require("utils").get_visual_selection(true)
 
     local terms = require("toggleterm.terminal")
     local num = terms.get_toggled_id()

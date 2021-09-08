@@ -53,10 +53,10 @@ function plugin.setup()
   })
 
   plugin.keymaps()
-  plugin.defineAugroups()
+  plugin.define_augroups()
 end
 
-local function getOpts(mode, prefix)
+local function get_opts(mode, prefix)
   local actual_prefix
   if prefix then
     actual_prefix = prefix
@@ -76,56 +76,56 @@ local function getOpts(mode, prefix)
   }
 end
 
-local function getCmd(cmd, isPlugin)
+local function get_cmd(cmd, isPlugin)
   local prefix = isPlugin and "<Plug>" or "<Cmd>"
   local suffix = isPlugin and "" or "<CR>"
   return prefix .. cmd .. suffix
 end
 
 local mappings = {
-  ["/"] = { getCmd("kommentary_line_default", true), "comment" },
-  ["?"] = { getCmd("NvimTreeFindFile"), "show file in tree" },
+  ["/"] = { get_cmd("kommentary_line_default", true), "comment" },
+  ["?"] = { get_cmd("NvimTreeFindFile"), "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
-  [";"] = { getCmd("Dashboard"), "show start screen" },
-  e = { getCmd("NvimTreeToggle"), "explorer" },
-  f = { getCmd("Telescope fzf_writer files"), "find files" },
+  [";"] = { get_cmd("Dashboard"), "show start screen" },
+  e = { get_cmd("NvimTreeToggle"), "explorer" },
+  f = { get_cmd("Telescope fzf_writer files"), "find files" },
   h = { "<C-W>s", "split below" },
-  M = { getCmd("MarkdownPreviewToggle"), "markdown preview" },
-  u = { getCmd("UndotreeToggle"), "undo tree" },
+  M = { get_cmd("MarkdownPreviewToggle"), "markdown preview" },
+  u = { get_cmd("UndotreeToggle"), "undo tree" },
   v = { "<C-W>v", "split right" },
-  w = { getCmd("w"), "save file" },
-  z = { getCmd("ZenMode"), "toggle zen mode" },
+  w = { get_cmd("w"), "save file" },
+  z = { get_cmd("ZenMode"), "toggle zen mode" },
 
   -- a is for Action
   a = {
     name = "Actions",
-    c = { getCmd("ColorizerToggle"), "colorizer" },
-    h = { getCmd("nohl"), "remove search highlight" },
-    i = { getCmd("IndentBlanklineToggle"), "toggle indent lines" },
-    n = { getCmd("set nonumber!"), "line-numbers" },
-    r = { getCmd("set norelativenumber!"), "relative line nums" },
-    v = { getCmd("Codi"), "virtual repl on" },
-    V = { getCmd("Codi!"), "virtual repl off" },
-    w = { getCmd("set wrap!"), "word wrap" },
+    c = { get_cmd("ColorizerToggle"), "colorizer" },
+    h = { get_cmd("nohl"), "remove search highlight" },
+    i = { get_cmd("IndentBlanklineToggle"), "toggle indent lines" },
+    n = { get_cmd("set nonumber!"), "line-numbers" },
+    r = { get_cmd("set norelativenumber!"), "relative line nums" },
+    v = { get_cmd("Codi"), "virtual repl on" },
+    V = { get_cmd("Codi!"), "virtual repl off" },
+    w = { get_cmd("set wrap!"), "word wrap" },
   },
 
   -- b is for Buffer
   b = {
     name = "Buffer",
-    d = { getCmd("Bdelete"), "delete buffer" },
-    f = { getCmd("Telescope buffers"), "search buffers" },
-    j = { getCmd("BufferLineCyclePrev"), "previous buffer" },
-    k = { getCmd("BufferLineCycleNext"), "next buffer" },
-    h = { getCmd("BufferLineCloseRight"), "close right buffer" },
-    l = { getCmd("BufferLineCloseLeft"), "close left buffer" },
-    H = { getCmd("BufferLineMovePrev"), "move to previous" },
-    L = { getCmd("BufferLineMoveNext"), "move to next" },
-    p = { getCmd("BufferLinePick"), "pick buffer" },
+    d = { get_cmd("Bdelete"), "delete buffer" },
+    f = { get_cmd("Telescope buffers"), "search buffers" },
+    j = { get_cmd("BufferLineCyclePrev"), "previous buffer" },
+    k = { get_cmd("BufferLineCycleNext"), "next buffer" },
+    h = { get_cmd("BufferLineCloseRight"), "close right buffer" },
+    l = { get_cmd("BufferLineCloseLeft"), "close left buffer" },
+    H = { get_cmd("BufferLineMovePrev"), "move to previous" },
+    L = { get_cmd("BufferLineMoveNext"), "move to next" },
+    p = { get_cmd("BufferLinePick"), "pick buffer" },
     s = {
       name = "Sort",
-      d = { getCmd("BufferLineSortByDirectory"), "by directory" },
-      e = { getCmd("BufferLineSortByExtension"), "by extension" },
-      r = { getCmd("BufferLineSortByRelativeDirector"), "by relative directory" },
+      d = { get_cmd("BufferLineSortByDirectory"), "by directory" },
+      e = { get_cmd("BufferLineSortByExtension"), "by extension" },
+      r = { get_cmd("BufferLineSortByRelativeDirector"), "by relative directory" },
     },
   },
 
@@ -144,179 +144,179 @@ local mappings = {
 
   C = {
     name = "Convert Color",
-    c = { getCmd("lua require('color-converter').cycle()"), "cycle" },
-    x = { getCmd("lua require('color-converter').to_hex()"), "to HEX" },
-    r = { getCmd("lua require('color-converter').to_rgb()"), "to RGB" },
-    h = { getCmd("lua require('color-converter').to_hsl()"), "to HSL" },
+    c = { get_cmd("lua require('color-converter').cycle()"), "cycle" },
+    x = { get_cmd("lua require('color-converter').to_hex()"), "to HEX" },
+    r = { get_cmd("lua require('color-converter').to_rgb()"), "to RGB" },
+    h = { get_cmd("lua require('color-converter').to_hsl()"), "to HSL" },
   },
 
   -- d is for Database
   d = {
     name = "Database",
-    t = { getCmd("DBUIToggle"), "toggle ui" },
-    f = { getCmd("DBUIFindBuffer"), "find buffer" },
-    r = { getCmd("DBUIRenameBuffer"), "rename buffer" },
-    i = { getCmd("DBUILastQueryInfo"), "last query info" },
+    t = { get_cmd("DBUIToggle"), "toggle ui" },
+    f = { get_cmd("DBUIFindBuffer"), "find buffer" },
+    r = { get_cmd("DBUIRenameBuffer"), "rename buffer" },
+    i = { get_cmd("DBUILastQueryInfo"), "last query info" },
   },
 
   -- F is for Fold
   F = {
     name = "Fold",
-    O = { getCmd("set foldlevel=20"), "open all" },
-    C = { getCmd("set foldlevel=0"), "close all" },
-    c = { getCmd("foldclose"), "close" },
-    o = { getCmd("foldopen"), "open" },
-    ["1"] = { getCmd("set foldlevel=1"), "level 1" },
-    ["2"] = { getCmd("set foldlevel=2"), "level 2" },
-    ["3"] = { getCmd("set foldlevel=3"), "level 3" },
-    ["4"] = { getCmd("set foldlevel=4"), "level 4" },
-    ["5"] = { getCmd("set foldlevel=5"), "level 5" },
-    ["6"] = { getCmd("set foldlevel=6"), "level 6" },
+    O = { get_cmd("set foldlevel=20"), "open all" },
+    C = { get_cmd("set foldlevel=0"), "close all" },
+    c = { get_cmd("foldclose"), "close" },
+    o = { get_cmd("foldopen"), "open" },
+    ["1"] = { get_cmd("set foldlevel=1"), "level 1" },
+    ["2"] = { get_cmd("set foldlevel=2"), "level 2" },
+    ["3"] = { get_cmd("set foldlevel=3"), "level 3" },
+    ["4"] = { get_cmd("set foldlevel=4"), "level 4" },
+    ["5"] = { get_cmd("set foldlevel=5"), "level 5" },
+    ["6"] = { get_cmd("set foldlevel=6"), "level 6" },
   },
 
   -- g is for Git
   g = {
     name = "Git",
-    b = { getCmd("Telescope git_branches"), "branches" },
+    b = { get_cmd("Telescope git_branches"), "branches" },
     c = {
       name = "Commits",
-      c = { getCmd("Neogit commit"), "commit" },
-      o = { getCmd("Telescope git_commits"), "checkout commit" },
-      u = { getCmd("Telescope git_bcommits"), "checkout commit(for current file)" },
+      c = { get_cmd("Neogit commit"), "commit" },
+      o = { get_cmd("Telescope git_commits"), "checkout commit" },
+      u = { get_cmd("Telescope git_bcommits"), "checkout commit(for current file)" },
     },
-    d = { getCmd("DiffviewOpen"), "diff" },
-    D = { getCmd("Gitsigns preview_hunk"), "inline diff" },
-    g = { getCmd("Neogit"), "neogit" },
-    j = { getCmd("Gitsigns next_hunk"), "next hunk" },
-    k = { getCmd("Gitsigns prev_hunk"), "prev hunk" },
-    m = { getCmd("GitMessenger"), "message" },
+    d = { get_cmd("DiffviewOpen"), "diff" },
+    D = { get_cmd("Gitsigns preview_hunk"), "inline diff" },
+    g = { get_cmd("Neogit"), "neogit" },
+    j = { get_cmd("Gitsigns next_hunk"), "next hunk" },
+    k = { get_cmd("Gitsigns prev_hunk"), "prev hunk" },
+    m = { get_cmd("GitMessenger"), "message" },
     r = {
       name = "Reset",
-      b = { getCmd("Gitsigns reset_buffer"), "buffer" },
-      h = { getCmd("Gitsigns reset_hunk"), "hunk" },
+      b = { get_cmd("Gitsigns reset_buffer"), "buffer" },
+      h = { get_cmd("Gitsigns reset_hunk"), "hunk" },
     },
     s = {
       name = "Stage",
-      b = { getCmd("Gitsigns stage_buffer"), "buffer" },
-      h = { getCmd("Gitsigns stage_hunk"), "hunk" },
-      u = { getCmd("Gitsigns undo_stage_hunk"), "undo hunk" },
+      b = { get_cmd("Gitsigns stage_buffer"), "buffer" },
+      h = { get_cmd("Gitsigns stage_hunk"), "hunk" },
+      u = { get_cmd("Gitsigns undo_stage_hunk"), "undo hunk" },
     },
-    S = { getCmd("Telescope git_status"), "status" },
-    t = { getCmd("GitGutterSignsToggle"), "toggle signs" },
+    S = { get_cmd("Telescope git_status"), "status" },
+    t = { get_cmd("GitGutterSignsToggle"), "toggle signs" },
   },
 
   -- l is for LSP
   l = {
     name = "LSP",
-    a = { getCmd("lua require('plugins.configs.telescope').code_actions()"), "code actions" },
-    A = { getCmd("lua require('plugins.configs.telescope').code_actions(true)"), "range code actions" },
-    b = { getCmd("lua require('plugins.configs.telescope').cur_buf_symbols()"), "cur buf symbols" },
-    d = { getCmd("Trouble lsp_document_diagnostics"), "document diagnostics" },
-    D = { getCmd("Trouble lsp_workspace_diagnostics"), "workspace diagnostics" },
-    f = { getCmd("lua vim.lsp.buf.formatting()"), "format" },
-    h = { getCmd("lua vim.lsp.buf.signature_help()"), "signature_help" },
-    i = { getCmd("LspInfo"), "lsp info" },
-    o = { getCmd("SymbolsOutline"), "outline" },
+    a = { get_cmd("lua require('plugins.configs.telescope').code_actions()"), "code actions" },
+    A = { get_cmd("lua require('plugins.configs.telescope').code_actions(true)"), "range code actions" },
+    b = { get_cmd("lua require('plugins.configs.telescope').cur_buf_symbols()"), "cur buf symbols" },
+    d = { get_cmd("Trouble lsp_document_diagnostics"), "document diagnostics" },
+    D = { get_cmd("Trouble lsp_workspace_diagnostics"), "workspace diagnostics" },
+    f = { get_cmd("lua vim.lsp.buf.formatting()"), "format" },
+    h = { get_cmd("lua vim.lsp.buf.signature_help()"), "signature_help" },
+    i = { get_cmd("LspInfo"), "lsp info" },
+    o = { get_cmd("SymbolsOutline"), "outline" },
     p = {
       name = "Peek",
-      d = { getCmd("lua require('ui.peek').Peek('definition')"), "definition" },
-      t = { getCmd("lua require('ui.peek').Peek('typeDefinition')"), "type definition" },
-      i = { getCmd("lua require('ui.peek').Peek('implementation')"), "implementation" },
+      d = { get_cmd("lua require('ui.peek').peek('definition')"), "definition" },
+      t = { get_cmd("lua require('ui.peek').peek('typeDefinition')"), "type definition" },
+      i = { get_cmd("lua require('ui.peek').peek('implementation')"), "implementation" },
     },
-    r = { getCmd("lua require('ui.rename').rename()"), "rename" },
-    t = { getCmd("lua vim.lsp.buf.type_definition()"), "type defintion" },
-    v = { getCmd("LspVirtualTextToggle"), "toggle virtual text" },
-    s = { getCmd("Telescope lsp_document_symbols"), "document symbols" },
-    S = { getCmd("Telescope lsp_workspace_symbols"), "workspace symbols" },
+    r = { get_cmd("lua require('ui.rename').rename()"), "rename" },
+    t = { get_cmd("lua vim.lsp.buf.type_definition()"), "type defintion" },
+    v = { get_cmd("LspVirtualTextToggle"), "toggle virtual text" },
+    s = { get_cmd("Telescope lsp_document_symbols"), "document symbols" },
+    S = { get_cmd("Telescope lsp_workspace_symbols"), "workspace symbols" },
   },
 
   -- m is for Mark
   m = {
     name = "Mark",
-    a = { getCmd("BookmarkShowAll"), "show all" },
-    c = { getCmd("BookmarkClear"), "clear" },
-    d = { getCmd("BookmarkClearAll"), "clear all" },
-    j = { getCmd("BookmarkNext"), "next mark" },
-    k = { getCmd("BookmarkPrev"), "prev mark" },
-    l = { getCmd("BookmarkLoad"), "load" },
-    s = { getCmd("BookmarkSave"), "save" },
-    t = { getCmd("BookmarkToggle"), "toggle" },
+    a = { get_cmd("BookmarkShowAll"), "show all" },
+    c = { get_cmd("BookmarkClear"), "clear" },
+    d = { get_cmd("BookmarkClearAll"), "clear all" },
+    j = { get_cmd("BookmarkNext"), "next mark" },
+    k = { get_cmd("BookmarkPrev"), "prev mark" },
+    l = { get_cmd("BookmarkLoad"), "load" },
+    s = { get_cmd("BookmarkSave"), "save" },
+    t = { get_cmd("BookmarkToggle"), "toggle" },
   },
 
   p = {
     name = "Plugin Manager",
-    c = { getCmd("lua LoadPlugins('compile')"), "Compile" },
-    i = { getCmd("lua LoadPlugins('install')"), "Install" },
-    r = { getCmd("luafile $MYVIMRC"), "Reload" },
-    s = { getCmd("lua LoadPlugins('sync')"), "Sync" },
-    p = { getCmd("lua LoadPlugins('profile')"), "Profile" },
-    u = { getCmd("lua LoadPlugins('update')"), "Update" },
+    c = { get_cmd("lua LoadPlugins('compile')"), "Compile" },
+    i = { get_cmd("lua LoadPlugins('install')"), "Install" },
+    r = { get_cmd("luafile $MYVIMRC"), "Reload" },
+    s = { get_cmd("lua LoadPlugins('sync')"), "Sync" },
+    p = { get_cmd("lua LoadPlugins('profile')"), "Profile" },
+    u = { get_cmd("lua LoadPlugins('update')"), "Update" },
   },
 
   -- q is for Quickfix
   q = {
     name = "Quickfix",
-    t = { getCmd("Trouble todo"), "todos" },
-    q = { getCmd("TroubleToggle quickfix"), "quickfix list" },
-    l = { getCmd("TroubleToggle loclist"), "location list" },
+    t = { get_cmd("Trouble todo"), "todos" },
+    q = { get_cmd("TroubleToggle quickfix"), "quickfix list" },
+    l = { get_cmd("TroubleToggle loclist"), "location list" },
   },
 
   -- r is for Run
   r = {
     name = "Run",
-    r = { getCmd("SnipRun", true), "run the selected piece of code" },
-    s = { getCmd("SnipReset", true), "stop the running code" },
-    c = { getCmd("SnipClose", true), "clear the previous output" },
-    m = { getCmd("SnipReplMemoryClean", true), "clean the repl memory" },
+    r = { get_cmd("SnipRun", true), "run the selected piece of code" },
+    s = { get_cmd("SnipReset", true), "stop the running code" },
+    c = { get_cmd("SnipClose", true), "clear the previous output" },
+    m = { get_cmd("SnipReplMemoryClean", true), "clean the repl memory" },
 
     -- NOTE: This keybinding is only for nvim development
-    e = { getCmd("lua SaveAndExec(false)"), "exec the current function (nvim devel only)" },
-    E = { getCmd("lua SaveAndExec(true)"), "save and exec the current function (nvim devel only)" },
-    R = { getCmd("lua ReloadFile()"), "save and reload the current file (nvim devel only)" },
+    e = { get_cmd("lua SaveAndExec(false)"), "exec the current function (nvim devel only)" },
+    E = { get_cmd("lua SaveAndExec(true)"), "save and exec the current function (nvim devel only)" },
+    R = { get_cmd("lua ReloadFile()"), "save and reload the current file (nvim devel only)" },
   },
 
   -- R is for REST Client
   R = {
     name = "REST Client",
-    r = { getCmd("RestNvim", true), "run" },
-    p = { getCmd("RestNvimPreview", true), "preview" },
+    r = { get_cmd("RestNvim", true), "run" },
+    p = { get_cmd("RestNvimPreview", true), "preview" },
   },
 
   -- s is for Search
   s = {
     name = "Search",
-    ["."] = { getCmd("Telescope filetypes"), "filetypes" },
-    [";"] = { getCmd("Telescope commands"), "commands" },
-    a = { getCmd("Telescope lsp_code_actions"), "code actions" },
-    A = { getCmd("Telescope builtin"), "all" },
-    b = { getCmd("Telescope buffers"), "buffers" },
-    B = { getCmd("Telescope git_branches"), "git branches" },
-    c = { getCmd("Telescope git_commits"), "git commits" },
-    d = { getCmd("Telescope lsp_document_diagnostics"), "document diagnostics" },
-    D = { getCmd("Telescope lsp_workspace_diagnostics"), "workspace diagnostics" },
-    e = { getCmd("Telescope symbols"), "emojis" },
-    f = { getCmd("Telescope fzf_writer files"), "files" },
-    F = { getCmd("Telescope git_files"), "git files" },
-    g = { getCmd("Telescope fzf_writer staged_grep"), "text" },
-    G = { getCmd("lua require('plugins.configs.telescope').grep_current_buf()"), "grep cur buf" },
-    i = { getCmd("Telescope media_files"), "media files" },
-    l = { getCmd("Telescope loclist"), "loclist" },
-    m = { getCmd("Telescope marks"), "marks" },
-    o = { getCmd("Telescope oldfiles"), "oldfiles" },
-    p = { getCmd("Telescope project"), "projects" },
-    r = { getCmd("Telescope resume"), "resume last" },
-    R = { getCmd("Telescope registers"), "registers" },
-    S = { getCmd("Telescope git_status"), "git status" },
-    t = { getCmd("TodoTelescope"), "todos" },
-    w = { getCmd("Telescope file_browser"), "file browser" },
+    ["."] = { get_cmd("Telescope filetypes"), "filetypes" },
+    [";"] = { get_cmd("Telescope commands"), "commands" },
+    a = { get_cmd("Telescope lsp_code_actions"), "code actions" },
+    A = { get_cmd("Telescope builtin"), "all" },
+    b = { get_cmd("Telescope buffers"), "buffers" },
+    B = { get_cmd("Telescope git_branches"), "git branches" },
+    c = { get_cmd("Telescope git_commits"), "git commits" },
+    d = { get_cmd("Telescope lsp_document_diagnostics"), "document diagnostics" },
+    D = { get_cmd("Telescope lsp_workspace_diagnostics"), "workspace diagnostics" },
+    e = { get_cmd("Telescope symbols"), "emojis" },
+    f = { get_cmd("Telescope fzf_writer files"), "files" },
+    F = { get_cmd("Telescope git_files"), "git files" },
+    g = { get_cmd("Telescope fzf_writer staged_grep"), "text" },
+    G = { get_cmd("lua require('plugins.configs.telescope').grep_current_buf()"), "grep cur buf" },
+    i = { get_cmd("Telescope media_files"), "media files" },
+    l = { get_cmd("Telescope loclist"), "loclist" },
+    m = { get_cmd("Telescope marks"), "marks" },
+    o = { get_cmd("Telescope oldfiles"), "oldfiles" },
+    p = { get_cmd("Telescope project"), "projects" },
+    r = { get_cmd("Telescope resume"), "resume last" },
+    R = { get_cmd("Telescope registers"), "registers" },
+    S = { get_cmd("Telescope git_status"), "git status" },
+    t = { get_cmd("TodoTelescope"), "todos" },
+    w = { get_cmd("Telescope file_browser"), "file browser" },
   },
 
   -- S is for Search and replace
   S = {
     name = "Search and Replace",
-    o = { getCmd("lua require('spectre').open()"), "open search" },
-    v = { getCmd("lua require('spectre').open_visual()"), "open visual" },
-    f = { getCmd("lua require('spectre').open_file_search()"), "open file search" },
+    o = { get_cmd("lua require('spectre').open()"), "open search" },
+    v = { get_cmd("lua require('spectre').open_visual()"), "open visual" },
+    f = { get_cmd("lua require('spectre').open_file_search()"), "open file search" },
     a = {
       name = "Actions",
       q = "Send to quickfix list",
@@ -335,7 +335,7 @@ local mappings = {
     d = "goto definition",
     l = "list definitions",
     t = "list definitions toc",
-    p = { getCmd("TSPlaygroundToggle"), "toggle playground" },
+    p = { get_cmd("TSPlaygroundToggle"), "toggle playground" },
     s = {
       name = "Swap",
       f = "next function",
@@ -357,25 +357,25 @@ local mappings = {
   -- T is for Terminal
   T = {
     name = "Terminal",
-    f = { getCmd("lua TermToggle('floating')"), "floating" },
-    t = { getCmd("lua TermToggle()"), "toggle" },
-    s = { getCmd("lua TermSend()"), "send content" },
+    f = { get_cmd("lua TermToggle('floating')"), "floating" },
+    t = { get_cmd("lua TermToggle()"), "toggle" },
+    s = { get_cmd("lua TermSend()"), "send content" },
   },
 }
 
 -- Mode specific changes
-local normalMappings = vim.deepcopy(mappings)
+local normal_mappings = vim.deepcopy(mappings)
 
-local visualMappings = vim.deepcopy(mappings)
-visualMappings["/"][1] = "<Plug>kommentary_visual_default"
-visualMappings["p"] = { '"_dP', "Paste without yank" }
+local visual_mappings = vim.deepcopy(mappings)
+visual_mappings["/"][1] = "<Plug>kommentary_visual_default"
+visual_mappings["p"] = { '"_dP', "Paste without yank" }
 
 -- Treesitter move plugin keybindings
-local function getBracketMappings(next, start)
+local function get_bracket_mappings(next, start)
   local dir = next and "next" or "previous"
   local towards = start and "start" or "end"
 
-  local bracketMappings = {
+  local bracket_mappings = {
     f = "goto " .. dir .. " function " .. towards,
     c = "goto " .. dir .. " class " .. towards,
     l = "goto " .. dir .. " loop " .. towards,
@@ -384,13 +384,13 @@ local function getBracketMappings(next, start)
     b = "goto " .. dir .. " block " .. towards,
   }
 
-  local actualBracketMappings = {}
-  for key, obj in pairs(bracketMappings) do
+  local actual_bracket_mappings = {}
+  for key, obj in pairs(bracket_mappings) do
     local actual_key = start and key or string.upper(key)
-    actualBracketMappings[string.format("%s", actual_key)] = obj
+    actual_bracket_mappings[string.format("%s", actual_key)] = obj
   end
 
-  return actualBracketMappings
+  return actual_bracket_mappings
 end
 
 function plugin.keymaps()
@@ -399,47 +399,47 @@ function plugin.keymaps()
   vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
   vim.g.mapleader = " "
 
-  wk.register(normalMappings, getOpts("n"))
-  wk.register(visualMappings, getOpts("v"))
+  wk.register(normal_mappings, get_opts("n"))
+  wk.register(visual_mappings, get_opts("v"))
 
-  wk.register(getBracketMappings(true, true), getOpts("n", "]"))
-  wk.register(getBracketMappings(true, false), getOpts("n", "]"))
-  wk.register(getBracketMappings(false, true), getOpts("n", "["))
-  wk.register(getBracketMappings(false, false), getOpts("n", "["))
+  wk.register(get_bracket_mappings(true, true), get_opts("n", "]"))
+  wk.register(get_bracket_mappings(true, false), get_opts("n", "]"))
+  wk.register(get_bracket_mappings(false, true), get_opts("n", "["))
+  wk.register(get_bracket_mappings(false, false), get_opts("n", "["))
 
   -- LSP Bindings
   wk.register({
-    d = { getCmd("lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })"), "Previous Diagnostic" },
+    d = { get_cmd("lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })"), "Previous Diagnostic" },
     r = "Goto previous usage", -- Defined in treesitter config
-    g = { getCmd("Gitsigns prev_hunk"), "Prev Hunk" },
-  }, getOpts(
+    g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
+  }, get_opts(
     "n",
     "["
   ))
   wk.register({
-    d = { getCmd("lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })"), "Next  Diagnostic" },
+    d = { get_cmd("lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })"), "Next  Diagnostic" },
     r = "Goto next usage", -- Defined in treesitter config
-    g = { getCmd("Gitsigns next_hunk"), "Next Hunk" },
-  }, getOpts(
+    g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
+  }, get_opts(
     "n",
     "]"
   ))
   wk.register({
-    d = { getCmd("lua vim.lsp.buf.definition()"), "Goto definition" },
-    D = { getCmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
-    I = { getCmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
-    l = { getCmd("lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })"), "Show line diagnostics" },
-    r = { getCmd("TroubleToggle lsp_references"), "Goto references" },
-    p = { getCmd("lua require('ui.peek').Peek('definition')"), "Peek definition" },
-  }, getOpts(
+    d = { get_cmd("lua vim.lsp.buf.definition()"), "Goto definition" },
+    D = { get_cmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
+    I = { get_cmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
+    l = { get_cmd("lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })"), "Show line diagnostics" },
+    r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
+    p = { get_cmd("lua require('ui.peek').peek('definition')"), "Peek definition" },
+  }, get_opts(
     "n",
     "g"
   ))
 end
 
-function plugin.defineAugroups()
+function plugin.define_augroups()
   -- Hide the status line for the which-key window
-  require("utils").DefineAugroups({
+  require("utils").define_augroups({
     which_key = {
       { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
       { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },

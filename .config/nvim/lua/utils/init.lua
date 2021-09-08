@@ -1,7 +1,7 @@
 local utils = {}
 local fn = vim.fn
 
-function utils.DefineAugroups(definitions)
+function utils.define_augroups(definitions)
   -- Create autocommand groups based on the passed definitions
   --
   -- The key will be the name of the group, and each definition
@@ -27,7 +27,7 @@ function utils.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-function utils.checkBackSpace()
+function utils.check_back_space()
   local col = vim.fn.col(".") - 1
   if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
     return true
@@ -37,7 +37,7 @@ function utils.checkBackSpace()
 end
 
 -- Why is this not a built-in Vim script function?
-function utils.getVisualSelection(allowCurrLine, join)
+function utils.get_visual_selection(allowCurrLine, join)
   local start_coordinates = vim.fn.getpos("'<")
   local line_start = start_coordinates[2]
 
@@ -56,7 +56,7 @@ function utils.getVisualSelection(allowCurrLine, join)
   return join and vim.fn.join(lines, "\n") or lines
 end
 
-function utils.restoreLastPlace()
+function utils.restore_last_place()
   local ignore_buftypes = { "quickfix", "nofile", "help" }
   local ignore_filetypes = { "gitcommit", "gitrebase", "svn", "hgcommit" }
 

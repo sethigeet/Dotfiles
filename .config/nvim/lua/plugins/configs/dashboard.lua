@@ -21,11 +21,11 @@ function plugin.setup()
   vim.g.dashboard_session_directory = "~/.cache/nvim/session"
   vim.g.dashboard_custom_footer = { "by Geet Sethi (sethigeet)" }
 
-  plugin.defineAugroups()
+  plugin.define_augroups()
 end
 
-function plugin.defineAugroups()
-  require("utils").DefineAugroups({
+function plugin.define_augroups()
+  require("utils").define_augroups({
     dashboard = {
       { "FileType", "dashboard", "set showtabline=0" },
       { "WinLeave", "<buffer>", "set showtabline=2" },

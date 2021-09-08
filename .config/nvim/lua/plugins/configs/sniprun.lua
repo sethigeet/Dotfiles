@@ -1,8 +1,9 @@
 local plugin = {}
 
 function plugin.setup()
-  require("sniprun").initial_setup()
-  require("sniprun").setup({
+  local sniprun = require("sniprun")
+  sniprun.initial_setup()
+  sniprun.setup({
     -- selected_interpreters = {}, -- use those instead of the default for the current filetype
     -- repl_enable = {}, -- enable REPL-like behavior for the given interpreters
     -- repl_disable = {}, -- disable REPL-like behavior for the given interpreters
