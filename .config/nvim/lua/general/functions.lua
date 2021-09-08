@@ -41,7 +41,15 @@ function SaveFile(format, force)
 end
 
 function ReloadFile()
-  print("Reloading current file")
+  vim.notify(
+    [[The current file will be sourced and will be
+loading in the runtime again]],
+    vim.log.levels.INFO,
+    {
+      title = "Reloading current file",
+    }
+  )
+
   if vim.opt.filetype:get() == "vim" then
     vim.cmd("silent! write")
     vim.cmd("source %")
@@ -80,14 +88,20 @@ function SaveAndExec(save)
   end
 
   if not function_node then
-    print("Unable to find any global function under the cursor")
+    vim.notify(
+      "Unable to find any global function under the cursor",
+      vim.log.levels.ERROR,
+      { title = "An error occurred" }
+    )
     return
   end
 
   local query = vim.treesitter.get_query("lua", "SaveAndExec_Lua_Result")
   for _, node in query:iter_captures(function_node, 0) do
     local fn_name = vim.treesitter.get_node_text(node, 0)
-    print("Executing '" .. fn_name .. "'")
+    vim.notify("Executing the global function found under the cursor: '" .. fn_name .. "'", vim.log.levels.INFO, {
+      title = "Executing '" .. fn_name .. "'",
+    })
     vim.cmd("lua " .. fn_name .. "()")
     break
   end

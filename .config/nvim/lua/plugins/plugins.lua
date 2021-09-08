@@ -159,7 +159,7 @@ local plugins = {
 
   -- Terminal
   {
-    "akinsho/nvim-toggleterm.lua",
+    "akinsho/toggleterm.nvim",
     keys = { "`", "<F1>", "<leader>T" },
     module = { "toggleterm", "toggleterm.terminal" },
     config = "toggleterm",

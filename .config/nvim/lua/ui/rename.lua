@@ -3,7 +3,6 @@ local M = {}
 -- Tresitter stuff
 local ts_utils = require("nvim-treesitter.ts_utils")
 local locals = require("nvim-treesitter.locals")
-local utils = require("nvim-treesitter.utils")
 
 -- To draw the window
 local window = require("ui.window")
@@ -16,7 +15,14 @@ local function get_current_name()
   local node_at_point = ts_utils.get_node_at_cursor()
 
   if not node_at_point then
-    utils.print_warning("No variable to rename!")
+    vim.notify(
+      [[No variable was found under the cursor
+which could be renamed]],
+      vim.log.levels.WARN,
+      {
+        title = "No variable to rename found!",
+      }
+    )
     return
   end
 
@@ -86,18 +92,22 @@ local function do_rename_using_lsp(new_name)
 
   params.newName = new_name
 
-  local _, result = pcall(vim.lsp.buf_request, 0, "textDocument/rename", params, nil)
+  local success, _ = pcall(vim.lsp.buf_request, 0, "textDocument/rename", params, nil)
 
-  if result ~= nil then
-    return true
-  end
-
-  return false
+  return success
 end
 
 local function do_rename_using_treesitter(new_name)
   -- Warn the user
-  utils.print_warning("NOTE: using treesitter to rename!")
+  vim.notify(
+    [[The currently active LSPs do not support the
+textDocument/rename method, so treesitter is
+being used to rename the variable]],
+    vim.log.levels.WARN,
+    {
+      title = "Using treesitter to rename!",
+    }
+  )
 
   local bufnr = vim.api.nvim_get_current_buf()
   local node_at_point = ts_utils.get_node_at_cursor()

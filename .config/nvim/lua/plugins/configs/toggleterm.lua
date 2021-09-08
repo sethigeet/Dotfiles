@@ -65,7 +65,15 @@ function plugin.defineFunctions()
     local num = terms.get_toggled_id()
     local term, _ = terms.get_or_create_term(num, "")
     if not term:is_open() then
-      print("the terminal is not open!")
+      vim.notify(
+        [[No terminal was found to be open. Pleas open a
+terminal first]],
+        vim.log.levels.INFO,
+        {
+          title = "No terminal is open!",
+        }
+      )
+
       return
     end
 

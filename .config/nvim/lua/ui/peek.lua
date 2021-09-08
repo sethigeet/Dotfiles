@@ -6,9 +6,17 @@ local peek = {
   prev_result = nil,
 }
 
-local function preview_location_callback(_, method, result)
+local function preview_location_callback(_, result, _, _)
   if result == nil or vim.tbl_isempty(result) then
-    print("peek: No location found: " .. method)
+    vim.notify(
+      [[No results were returned by the
+LSP. No location was found.]],
+      vim.log.levels.ERROR,
+      {
+        title = "peek: No location found",
+      }
+    )
+
     return nil
   end
 
@@ -31,7 +39,14 @@ function peek.OpenFile()
   local filepath = vim.fn.expand("%:.")
 
   if not filepath then
-    print("peek: Unable to open the file!")
+    vim.notify(
+      [[There was an error while trying to open the file.
+Make sure that the file actually exists!]],
+      vim.log.levels.ERROR,
+      {
+        title = "peek: Unable to open the file",
+      }
+    )
     return
   end
 
@@ -64,7 +79,15 @@ function peek.Peek(what)
   if vim.tbl_contains(vim.api.nvim_list_wins(), peek.floating_win) then
     local success_1, _ = pcall(vim.api.nvim_set_current_win, peek.floating_win)
     if not success_1 then
-      print("peek: You cannot edit the current file in a preview!")
+      vim.notify(
+        [[You cannot edit the curren file in a preview.
+Use goto definition/declartion instead!]],
+        vim.log.levels.ERROR,
+        {
+          title = "peek: Unable to open the file",
+        }
+      )
+
       return
     end
 
@@ -83,9 +106,11 @@ function peek.Peek(what)
     local params = vim.lsp.util.make_position_params()
     local success, _ = pcall(vim.lsp.buf_request, 0, "textDocument/" .. what, params, preview_location_callback)
     if not success then
-      print(
-        'peek: Error calling LSP method "textDocument/' .. what .. '". The current language lsp might not support it.'
-      )
+      vim.notify([[An error occurred while calling the LSP method
+"textDocument/]] .. what .. [[". The current LSP
+might not support it]], vim.log.levels.ERROR, {
+        title = 'peek: Error calling the method "textDocument/' .. what,
+      })
     end
   end
 end
