@@ -6,6 +6,10 @@
     "key": "ctrl+l",
     "command": "editor.action.addSelectionToNextFindMatch"
   },
+  {
+    "key": "alt+s",
+    "command": "workbench.action.files.saveWithoutFormatting"
+  },
 
   //# Explorer
   {
