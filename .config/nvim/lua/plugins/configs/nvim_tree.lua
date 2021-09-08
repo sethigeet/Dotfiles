@@ -50,6 +50,8 @@ function plugin.setup()
   -- vim.g.nvim_tree_root_folder_modifier = ':~' -- This is the default. See :help filename-modifiers for more options
   -- vim.g.nvim_tree_tab_open = 1 -- 0 by default, will open the tree when entering a new tab and the tree was previously open
   -- vim.g.nvim_tree_width_allow_resize = 1 -- 0 by default, will not resize the tree when opening a file
+  vim.g.nvim_tree_update_cwd = 1 -- 0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
+  vim.g.nvim_tree_respect_buf_cwd = 1 -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
   vim.g.nvim_tree_disable_netrw = 1 -- 1 by default, disables netrw
   vim.g.nvim_tree_hijack_netrw = 1 -- 1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
   vim.g.nvim_tree_show_icons = { git = 1, folders = 1, files = 1 }

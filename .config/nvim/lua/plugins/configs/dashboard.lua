@@ -12,6 +12,7 @@ function plugin.setup()
       description = { " Nvim Config        " },
       command = "cd " .. CONFIG_PATH .. " | edit $MYVIMRC",
     },
+    p = { description = { " Projects           " }, command = "Telescope projects" },
   }
   vim.g.dashboard_preview_command = "cat"
   vim.g.dashboard_preview_pipeline = "lolcat"

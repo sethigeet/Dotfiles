@@ -40,27 +40,27 @@ function plugin.keymaps()
   local map = require("utils.map")
 
   -- Goto any buffer instantly
-  map.nnoremap("<M-b>", ":BufferLinePick<CR>")
+  map.nnoremap("<M-b>", "<cmd>BufferLinePick<CR>")
 
   -- Move between buffers using Tab and Shift + Tab
-  map.nnoremap("<TAB>", ":BufferLineCycleNext<CR>")
-  map.nnoremap("<S-TAB>", ":BufferLineCyclePrev<CR>")
+  map.nnoremap("<TAB>", "<cmd>BufferLineCycleNext<CR>")
+  map.nnoremap("<S-TAB>", "<cmd>BufferLineCyclePrev<CR>")
 
   -- Move between buffers using Shift + Arrow Keys
-  map.nnoremap("<S-Left>", ":BufferLineCyclePrev<CR>")
-  map.nnoremap("<S-Right>", ":BufferLineCycleNext<CR>")
+  map.nnoremap("<S-Left>", "<cmd>BufferLineCyclePrev<CR>")
+  map.nnoremap("<S-Right>", "<cmd>BufferLineCycleNext<CR>")
 
   -- Move between buffers using Ctrl + h,l Keys
-  map.nnoremap("<C-h>", ":BufferLineCyclePrev<CR>")
-  map.nnoremap("<C-l>", ":BufferLineCycleNext<CR>")
+  map.nnoremap("<C-h>", "<cmd>BufferLineCyclePrev<CR>")
+  map.nnoremap("<C-l>", "<cmd>BufferLineCycleNext<CR>")
 
   -- Move buffers using Ctrl + Arrow Keys
-  map.nnoremap("<C-Left>", ":BufferLineMovePrev<CR>")
-  map.nnoremap("<C-Right>", ":BufferLineMoveNext<CR>")
+  map.nnoremap("<C-Left>", "<cmd>BufferLineMovePrev<CR>")
+  map.nnoremap("<C-Right>", "<cmd>BufferLineMoveNext<CR>")
 
   -- Move to a buffer using Alt+number
   for i = 1, 9, 1 do
-    map.nnoremap("<M-" .. i .. ">", ":lua require('bufferline').go_to_buffer(" .. i .. ")<CR>")
+    map.nnoremap("<M-" .. i .. ">", "<cmd>lua require('bufferline').go_to_buffer(" .. i .. ")<CR>")
   end
 end
 

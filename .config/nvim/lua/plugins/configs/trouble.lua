@@ -46,9 +46,9 @@ function plugin.keymaps()
   local map = require("utils.map")
 
   -- Easily open the quickfix list
-  map.nnoremap("<C-q>", ":TroubleToggle quickfix<CR>")
+  map.nnoremap("<C-q>", "<cmd>TroubleToggle quickfix<CR>")
   -- Easily open the location list
-  -- map.nnoremap("<C-l>", ":TroubleToggle loclist<CR>")
+  -- map.nnoremap("<C-l>", "<cmd>TroubleToggle loclist<CR>")
 end
 
 return plugin

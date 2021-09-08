@@ -17,14 +17,14 @@ for _, mode in ipairs({ "t", "i" }) do
 end
 
 -- Use alt + shift + h,j,k,l to resize windows
-map.nnoremap("<M-K>", ":resize -2<CR>")
-map.nnoremap("<M-J>", ":resize +2<CR>")
-map.nnoremap("<M-H>", ":vertical resize -2<CR>")
-map.nnoremap("<M-L>", ":vertical resize +2<CR>")
+map.nnoremap("<M-K>", "<cmd>resize -2<CR>")
+map.nnoremap("<M-J>", "<cmd>resize +2<CR>")
+map.nnoremap("<M-H>", "<cmd>vertical resize -2<CR>")
+map.nnoremap("<M-L>", "<cmd>vertical resize +2<CR>")
 
 map.nnoremap("0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
 map.nnoremap("0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
 
 -- Fuzzy finder (requires telescope)
-map.nnoremap("<C-p>", ":Telescope fzf_writer files<CR>")
-map.nnoremap("<C-b>", ":Telescope buffers<CR>")
+map.nnoremap("<C-p>", "<cmd>Telescope fzf_writer files<CR>")
+map.nnoremap("<C-b>", "<cmd>Telescope buffers<CR>")

@@ -98,7 +98,7 @@ Use goto definition/declartion instead!]],
       peek.floating_buf,
       "n",
       "<CR>",
-      ":lua require('ui.peek').open_file()<CR>",
+      "<cmd>lua require('ui.peek').open_file()<CR>",
       { noremap = true, silent = true }
     )
   else

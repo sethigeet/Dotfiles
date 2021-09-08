@@ -55,11 +55,9 @@ local plugins = {
   },
 
   -- Have the file system follow you around
-  -- TODO: Replace with the newer version once that is complete
   {
-    "airblade/vim-rooter",
-    -- "ahmedkhalf/lsp-rooter.nvim",
-    -- config = "rooter",
+    "ahmedkhalf/project.nvim",
+    config = "project",
   },
 
   -- Treesitter
@@ -245,7 +243,6 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-media-files.nvim",
       -- "nvim-telescope/telescope-fzy-native.nvim",
-      "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-symbols.nvim",
       "nvim-telescope/telescope-fzf-writer.nvim",
       { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
