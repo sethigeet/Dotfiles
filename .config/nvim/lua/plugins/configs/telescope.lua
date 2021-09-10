@@ -57,11 +57,12 @@ function plugin.setup()
           ["<C-n>"] = actions.cycle_history_next,
           ["<C-p>"] = actions.cycle_history_prev,
           ["<CR>"] = actions.select_default + actions.center,
+          ["<Esc>"] = actions.close,
         },
         n = {
           ["<C-n>"] = actions.cycle_history_next,
           ["<C-p>"] = actions.cycle_history_prev,
-          ["<esc>"] = actions.close,
+          ["<Esc>"] = actions.close,
         },
       },
     },

@@ -14,12 +14,15 @@ function plugin.setup()
 
     fast_wrap = {
       map = "<M-f>",
-      hightlight = "Search",
+      end_key = "f",
+      keys = "qwertyuiopzxcvbnmasdghjkl",
+      -- highlight = "BufferCurrentTarget",
+      highlight = "SelectNextKey",
     },
   })
 
   -- compe integration
-  require("nvim-autopairs.completion.compe").setup({
+  require("nvim-autopairs.completion.cmp").setup({
     map_cr = true, --  map <CR> on insert mode
     map_complete = true, -- it will auto insert `(` after select function or method item
   })

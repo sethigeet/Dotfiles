@@ -1,28 +1,29 @@
--- Symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = {
-  "  ", -- Text
-  "  ", -- Method
-  "  ", -- Function
-  "  ", -- Constructor
-  " ﴲ ", -- Field
-  "[]", -- Variable
-  "  ", -- Class
-  " ﰮ ", -- Interface
-  "  ", -- Module
-  " 襁", -- Property
-  " 塞", -- Unit
-  "  ", -- Value
-  " 練", -- Enum
-  "  ", -- Keyword
-  "  ", -- Snippet
-  "  ", -- Color
-  "  ", -- File
-  "  ", -- Reference
-  "  ", -- Folder
-  "  ", -- EnumMember
-  " ﲀ ", -- Constant
-  "  ", -- Struct
-  "  ", -- Event
-  "  ", -- Operator
-  "  ", -- TypeParameter
+local icons = {
+  Class = "  ",
+  Color = "  ",
+  Constant = " ﲀ ",
+  Constructor = "  ",
+  Enum = " 練 ",
+  EnumMember = "  ",
+  Event = "  ",
+  Field = " ﴲ ",
+  File = "  ",
+  Folder = "  ",
+  Function = "  ",
+  Interface = " ﰮ ",
+  Keyword = "  ",
+  Method = "  ",
+  Module = "  ",
+  Operator = " ",
+  Property = " 襁 ",
+  Reference = "  ",
+  Snippet = "  ",
+  Struct = "  ",
+  Text = "  ",
+  TypeParameter = "  ",
+  Unit = " 塞",
+  Value = "  ",
+  Variable = "[]",
 }
+
+return icons

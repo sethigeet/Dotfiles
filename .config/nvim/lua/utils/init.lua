@@ -36,6 +36,11 @@ function utils.check_back_space()
   end
 end
 
+function utils.has_words_before()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 -- Why is this not a built-in Vim script function?
 function utils.get_visual_selection(allowCurrLine, join)
   local start_coordinates = vim.fn.getpos("'<")

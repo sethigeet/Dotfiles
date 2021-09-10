@@ -106,7 +106,7 @@ local plugins = {
   {
     "windwp/nvim-autopairs",
     config = "autopairs",
-    after = "nvim-compe",
+    after = "nvim-cmp",
   },
 
   -- Themes
@@ -175,15 +175,6 @@ local plugins = {
     "folke/which-key.nvim",
     config = "which_key",
   },
-
-  -- Snippets
-  {
-    "hrsh7th/vim-vsnip",
-    requires = "hrsh7th/vim-vsnip-integ",
-    event = "InsertEnter",
-    config = "vsnip",
-  },
-  { "rafamadriz/friendly-snippets", event = "InsertEnter" },
 
   -- Interactive code
   {
@@ -261,10 +252,28 @@ local plugins = {
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
   {
-    "hrsh7th/nvim-compe",
-    config = "compe",
+    "hrsh7th/nvim-cmp",
+    config = "cmp",
     after = "nvim-lspconfig",
-    event = "InsertEnter",
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-calc",
+      "f3fora/cmp-spell",
+      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-vsnip",
+      {
+        "hrsh7th/vim-vsnip",
+        requires = { "rafamadriz/friendly-snippets" },
+      },
+      -- {
+      --   "L3MON4D3/LuaSnip",
+      --   requires = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
+      -- },
+    },
   },
   {
     "simrat39/symbols-outline.nvim",
