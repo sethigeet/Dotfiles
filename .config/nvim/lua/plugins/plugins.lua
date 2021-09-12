@@ -254,7 +254,6 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     config = "cmp",
-    after = "nvim-lspconfig",
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -264,15 +263,12 @@ local plugins = {
       "hrsh7th/cmp-calc",
       "f3fora/cmp-spell",
       "ray-x/cmp-treesitter",
-      "hrsh7th/cmp-vsnip",
+      "saadparwaiz1/cmp_luasnip",
       {
-        "hrsh7th/vim-vsnip",
+        "L3MON4D3/LuaSnip",
+        config = "luasnip",
         requires = { "rafamadriz/friendly-snippets" },
       },
-      -- {
-      --   "L3MON4D3/LuaSnip",
-      --   requires = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
-      -- },
     },
   },
   {

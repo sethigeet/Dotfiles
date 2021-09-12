@@ -5,9 +5,8 @@ local plugin = {}
 local function tab_complete(fallback)
   if vim.fn.pumvisible() == 1 then
     vim.api.nvim_feedkeys(utils.t("<C-n>"), "n", true)
-  elseif utils.has_words_before() and vim.fn["vsnip#available"]() == 1 then
-    print("in vsnip")
-    vim.api.nvim_feedkeys(utils.t("<Plug>(vsnip-expand-or-jump)"), "", true)
+  elseif utils.has_words_before() and require("luasnip").expand_or_jumpable() then
+    vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-expand-or-jump"), "", true)
   elseif utils.has_words_before() and not require("cmp").select_next_item() then
     vim.api.nvim_feedkeys(vim.fn["emmet#expandAbbrIntelligent"]("\\<Tab>"), "", true)
   else
@@ -18,8 +17,8 @@ end
 local function s_tab_complete(fallback)
   if vim.fn.pumvisible() == 1 then
     vim.api.nvim_feedkeys(utils.t("<C-p>"), "n", true)
-  elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-    vim.api.nvim_feedkeys(utils.t("<Plug>(vsnip-jump-prev)"), "", true)
+  elseif require("luasnip").jumpable(-1) then
+    vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-prev"), "", true)
   else
     fallback()
   end
@@ -27,11 +26,12 @@ end
 
 function plugin.setup()
   local cmp = require("cmp")
+  local luasnip = require("luasnip")
 
   cmp.setup({
     snippet = {
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     mapping = {
