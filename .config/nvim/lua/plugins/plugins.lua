@@ -115,7 +115,8 @@ local plugins = {
 
   -- Status Line
   {
-    "hoob3rt/lualine.nvim",
+    -- "hoob3rt/lualine.nvim",
+    "shadmansaleh/lualine.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = "lualine",
   },
@@ -257,11 +258,11 @@ local plugins = {
     event = "InsertEnter",
     module = { "cmp", "cmp.*" },
     requires = {
-      { "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" },
+      -- { "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" },
       -- NOTE: The lsp plugin cannot be lazy loaded as `create_language_server` depends on it at startup
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path", event = "InsertEnter", after = "nvim-cmp" },
-      { "hrsh7th/cmp-nvim-lua", event = "InsertEnter", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
       { "hrsh7th/cmp-emoji", event = "InsertEnter", after = "nvim-cmp" },
       { "hrsh7th/cmp-calc", event = "InsertEnter", after = "nvim-cmp" },
       { "f3fora/cmp-spell", event = "InsertEnter", after = "nvim-cmp" },
