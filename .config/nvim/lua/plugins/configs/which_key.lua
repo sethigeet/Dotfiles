@@ -409,7 +409,7 @@ function plugin.keymaps()
 
   -- LSP Bindings
   wk.register({
-    d = { get_cmd("lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })"), "Previous Diagnostic" },
+    d = { get_cmd("lua vim.diagnostic.goto_prev({ popup_opts = { border = 'rounded' } })"), "Previous Diagnostic" },
     r = "Goto previous usage", -- Defined in treesitter config
     g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
   }, get_opts(
@@ -417,7 +417,7 @@ function plugin.keymaps()
     "["
   ))
   wk.register({
-    d = { get_cmd("lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })"), "Next  Diagnostic" },
+    d = { get_cmd("lua vim.diagnostic.goto_next({ popup_opts = { border = 'rounded' } })"), "Next  Diagnostic" },
     r = "Goto next usage", -- Defined in treesitter config
     g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
   }, get_opts(
@@ -428,7 +428,7 @@ function plugin.keymaps()
     d = { get_cmd("lua vim.lsp.buf.definition()"), "Goto definition" },
     D = { get_cmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
     I = { get_cmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
-    l = { get_cmd("lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'rounded' })"), "Show line diagnostics" },
+    l = { get_cmd("lua vim.diagnostic.show_line_diagnostics({ border = 'rounded' })"), "Show line diagnostics" },
     r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
     p = { get_cmd("lua require('ui.peek').peek('definition')"), "Peek definition" },
   }, get_opts(

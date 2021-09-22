@@ -25,7 +25,7 @@ fi
 
 # use "nvim" as the man pager
 # if command -v nvim &> /dev/null; then
-#   export MANPAGER="nvim -c 'set ft=man' -"
+#   export MANPAGER="nvim +Man!"
 # fi
 
 # use "vim" as the man pager

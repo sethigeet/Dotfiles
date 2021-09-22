@@ -58,33 +58,36 @@ end
 
 -- diagnostic
 function lsp_wrapper.get_all()
-  vim.lsp.diagnostic.get_all()
+  vim.diagnostic.get()
 end
 
 function lsp_wrapper.get_next()
-  vim.lsp.diagnostic.get_next()
+  vim.diagnostic.get_next()
 end
 
 function lsp_wrapper.get_prev()
-  vim.lsp.diagnostic.get_prev()
+  vim.diagnostic.get_prev()
 end
 
 function lsp_wrapper.goto_next()
-  vim.lsp.diagnostic.goto_next()
+  vim.diagnostic.goto_next()
 end
 
 function lsp_wrapper.goto_prev()
-  vim.lsp.diagnostic.goto_prev()
+  vim.diagnostic.goto_prev()
 end
 
 function lsp_wrapper.populate_location_list()
-  vim.lsp.diagnostic.set_loclist({ open_loclist = false })
+  vim.diagnostic.set_loclist({ open_loclist = false })
 end
 
 local show_virtual_text = true
 function lsp_wrapper.toggle_virtual_text()
   show_virtual_text = not show_virtual_text
-  vim.lsp.diagnostic.display(vim.lsp.diagnostic.get(0, 1), 0, 1, { virtual_text = show_virtual_text })
+
+  vim.diagnostic.config({
+    virtual_text = show_virtual_text and { spacing = 4, prefix = "" } or false,
+  })
 end
 
 return lsp_wrapper

@@ -1,21 +1,21 @@
 -- Signs for diagnostics
-vim.fn.sign_define("LspDiagnosticsSignError", {
-  texthl = "LspDiagnosticsSignError",
+vim.fn.sign_define("DiagnosticSignError", {
+  texthl = "DiagnosticError",
   text = " ",
-  numhl = "LspDiagnosticsSignError",
+  numhl = "DiagnosticError",
 })
-vim.fn.sign_define("LspDiagnosticsSignWarning", {
-  texthl = "LspDiagnosticsSignWarning",
+vim.fn.sign_define("DiagnosticSignWarn", {
+  texthl = "DiagnosticWarn",
   text = " ",
-  numhl = "LspDiagnosticsSignWarning",
+  numhl = "DiagnosticWarn",
 })
-vim.fn.sign_define("LspDiagnosticsSignInformation", {
-  texthl = "LspDiagnosticsSignInformation",
+vim.fn.sign_define("DiagnosticSignInfo", {
+  texthl = "DiagnosticInfo",
   text = " ",
-  numhl = "LspDiagnosticsSignInformation",
+  numhl = "DiagnosticInfo",
 })
-vim.fn.sign_define("LspDiagnosticsSignHint", {
-  texthl = "LspDiagnosticsSignHint",
+vim.fn.sign_define("DiagnosticSignHint", {
+  texthl = "DiagnosticHint",
   text = " ",
-  numhl = "LspDiagnosticsSignHint",
+  numhl = "DiagnosticHint",
 })
