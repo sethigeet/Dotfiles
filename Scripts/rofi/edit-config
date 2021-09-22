@@ -31,30 +31,61 @@ options[ xplr]="$HOME/.config/xplr/init.lua"
 options[牢 zathura]="$HOME/.config/zathura/zathurarc"
 options[ zsh]="$HOME/.config/zsh/init.zsh"
 
-marked_up_config_names=""
-for config in "${!options[@]}"; do
-  config_name="$config"
-  config_path=${options[$config]}
+edit_file() {
+  selected_config_path=$(printf '%s\n' "${options[$1]}")
+  selected_config_dir="${selected_config_path%/*}"
 
-  marked_up_config_name="$config_name <span font_size='smaller' font_weight='light' style='italic'>(${config_path//\/home\/$USER/\~})</span>"
+  cd "$selected_config_dir" || exit 1
 
-  if [[ -z $marked_up_config_names ]]; then
-    marked_up_config_names="$marked_up_config_name"
+  if [ -t 0 ]; then
+    exec nvim "$selected_config_path"
   else
-    marked_up_config_names="$marked_up_config_names
-$marked_up_config_name"
+    exec $TERMINAL -e nvim "$selected_config_path"
   fi
-done
+}
 
-selected_config_name=$(echo "$marked_up_config_names" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -markup-rows -dmenu -i -p "Edit config")
-selected_config_name="${selected_config_name%% <span*}"
+# if a name has been specified, directly edit it
+if [ -n "$1" ]; then
+  # edit_file "${options[$1]}"
+  actual_name="$(echo "${!options[@]}" | grep -E -o ". $1")"
+  [ -z "$actual_name" ] && echo "This config does not exist!" && exit 1
+  edit_file "$actual_name"
+fi
+
+selected_config_name=""
+
+if [ -t 0 ]; then
+  config_names=""
+  for config in "${!options[@]}"; do
+    if [[ -z $config_names ]]; then
+      config_names="$config"
+    else
+      config_names="$config_names
+$config"
+    fi
+  done
+  selected_config_name="$(echo "$config_names" | fzf --prompt 'Select a config: ')"
+else
+  marked_up_config_names=""
+  for config in "${!options[@]}"; do
+    config_name="$config"
+    config_path=${options[$config]}
+
+    marked_up_config_name="$config_name <span font_size='smaller' font_weight='light' style='italic'>(${config_path//\/home\/$USER/\~})</span>"
+
+    if [[ -z $marked_up_config_names ]]; then
+      marked_up_config_names="$marked_up_config_name"
+    else
+      marked_up_config_names="$marked_up_config_names
+$marked_up_config_name"
+    fi
+  done
+
+  selected_config_name=$(echo "$marked_up_config_names" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -markup-rows -dmenu -i -p "Edit config")
+  selected_config_name="${selected_config_name%% <span*}"
+fi
 
 [[ -z $selected_config_name ]] && exit 0
 
 # What to do when/if we choose a file to edit.
-selected_config_path=$(printf '%s\n' "${options["$selected_config_name"]}")
-selected_config_dir="${selected_config_path%/*}"
-
-cd "$selected_config_dir" || exit 1
-
-exec $TERMINAL -e nvim "$selected_config_path"
+edit_file "$selected_config_name"
