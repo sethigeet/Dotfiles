@@ -226,7 +226,7 @@ local plugins = {
   },
 
   -- Multiple Cursors
-  { "terryma/vim-multiple-cursors", keys = { "<C-n>", "g<M-n>" }, event = "BufRead" },
+  { "mg979/vim-visual-multi", event = "BufRead" },
 
   -- Telescope
   {

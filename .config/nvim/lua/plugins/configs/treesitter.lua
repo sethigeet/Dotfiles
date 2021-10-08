@@ -102,7 +102,12 @@ function plugin.setup()
       -- },
       -- },
     },
-    rainbow = { enable = true, max_file_lines = 1000 }, -- Rainbow brackets
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = 1000,
+      -- colors = { "#B52A5B", "#FF4971", "#bd93f9", "#E9729D", "#F18FB0", "#8897F4", "#b488bf" },
+    }, -- Rainbow brackets
     context_commentstring = { enable = true }, -- Comment strings
     autotag = { enable = true },
     indent = { enable = true },

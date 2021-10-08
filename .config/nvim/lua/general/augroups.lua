@@ -15,6 +15,7 @@ local augroups = {
     -- Custom implementation to not interfere with plugins
     { "BufReadPost", "*", "lua require('utils').restore_last_place()" },
   },
+
   auto_compile = {},
 
   filetypes = {
