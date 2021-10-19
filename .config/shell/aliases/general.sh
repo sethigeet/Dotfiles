@@ -25,3 +25,7 @@ alias \?="web_search ddgl"
 alias \?\?="web_search google"
 
 alias path="echo \"\$PATH\" | tr ':' '\n'"
+
+if command -v ffprobe &>/dev/null; then
+  alias get-vid-info='ffprobe -v quiet -print_format json -show_format -show_streams'
+fi
