@@ -3,7 +3,9 @@ local utils = require("utils")
 local plugin = {}
 
 local function tab_complete(fallback)
-  if vim.fn.pumvisible() == 1 then
+  local cmp = require("cmp")
+
+  if cmp.visible() then
     vim.api.nvim_feedkeys(utils.t("<C-n>"), "n", true)
   elseif utils.has_words_before() and require("luasnip").expand_or_jumpable() then
     vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-expand-or-jump"), "", true)
@@ -15,7 +17,9 @@ local function tab_complete(fallback)
 end
 
 local function s_tab_complete(fallback)
-  if vim.fn.pumvisible() == 1 then
+  local cmp = require("cmp")
+
+  if cmp.visible() then
     vim.api.nvim_feedkeys(utils.t("<C-p>"), "n", true)
   elseif require("luasnip").jumpable(-1) then
     vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-prev"), "", true)

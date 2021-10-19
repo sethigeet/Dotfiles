@@ -72,11 +72,6 @@ function plugin.setup()
         find_cmd = "fd",
       },
       fzy_native = { override_generic_sorter = true, override_file_sorter = true },
-      fzf_writer = {
-        -- minimum_grep_characters = 2,
-        -- minimum_files_characters = 2,
-        use_highlighter = true,
-      },
       frecency = {
         show_scores = false,
         show_unindexed = true,
@@ -100,7 +95,6 @@ function plugin.load_extensions()
     "media_files",
     -- "fzy_native",
     "projects",
-    "fzf_writer",
     "frecency",
   }
   for _, ext in ipairs(extensions) do
