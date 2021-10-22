@@ -257,7 +257,7 @@ local plugins = {
     event = "InsertEnter",
     module = { "cmp", "cmp.*" },
     requires = {
-      -- { "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" },
+      { "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" },
       -- NOTE: The lsp plugin cannot be lazy loaded as `create_language_server` depends on it at startup
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path", event = "InsertEnter", after = "nvim-cmp" },

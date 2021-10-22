@@ -56,14 +56,14 @@ function plugin.setup()
     sources = {
       { name = "nvim_lsp" },
       { name = "path" },
-      -- { name = "buffer" },
       { name = "calc" },
       { name = "emoji" },
       { name = "treesitter" },
       { name = "spell" },
-      { name = "nvim_lua" },
+      { name = "nvim_lua" }, -- NOTE: This source only enables itself for lua files
       { name = "vim-dadbod-completion" },
       { name = "luasnip" },
+      { name = "buffer", max_completion_items = 15, keyword_length = 5 },
     },
     documentation = {
       border = "rounded",
@@ -83,18 +83,18 @@ end
 
 function plugin.append_sources_to_buf(sources)
   local config = require("cmp.config")
-  for _, source in ipairs(config.global.sources) do
-    table.insert(sources, source)
+  local temp_sources = vim.deepcopy(config.global.sources)
+  for _, source in ipairs(sources) do
+    table.insert(temp_sources, source)
   end
 
-  require("cmp").setup.buffer({ sources = sources })
+  require("cmp").setup.buffer({ sources = temp_sources })
 end
 
 function plugin.define_augroups()
   require("utils").define_augroups({
     cmp_custom = {
       { "FileType", "TelescopePrompt", "lua require('cmp').setup.buffer({ enabled = false })" },
-      { "FileType", "lua", "lua require('plugins.configs.cmp').append_sources_to_buf({ { name = 'nvim_lua' } })" },
     },
   })
 end
