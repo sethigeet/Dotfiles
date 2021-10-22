@@ -3,9 +3,6 @@
 # Set the repeat rate for keyboard
 xset r rate 550 33
 
-# Set the inactivity timout for the display
-power-saver --on
-
 # Read the xresources file
 xrdb "$XDG_CONFIG_HOME/X11/xresources"
 

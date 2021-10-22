@@ -6,3 +6,5 @@ set-background -r &
 numlockx on &
 greenclip daemon &
 sxhkd &
+notification-ctl restart &
+power-saver --on &
