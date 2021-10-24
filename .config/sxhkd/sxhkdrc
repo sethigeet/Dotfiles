@@ -13,7 +13,7 @@ super + {e,i,w}
 	{nautilus,vimiv,brave}
 
 super + shift + {e,w}
-	{code,vieb}
+	{code,brave --incognito}
 
 # Manage Windows
 super + semicolon
