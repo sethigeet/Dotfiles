@@ -4,6 +4,10 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = true,
   severity_sort = false,
+  float = {
+    show_header = true,
+    border = "rounded",
+  },
 })
 
 -- Custom handler overrides
