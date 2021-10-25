@@ -1,7 +1,7 @@
-local LanguageServer = require("lsp.helpers.create_language_server")
+local LanguageServer = require("lsp.helpers.language_server")
 
 local ls = LanguageServer:create({
-  lang = "cpp",
+  server_name = "clangd",
   -- NOTE: The formatting is also handled by `clangd`
   formatters = "clang_format",
   cmd_args = { "--clang-tidy", "--cross-file-rename" },

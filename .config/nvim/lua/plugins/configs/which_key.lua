@@ -216,6 +216,7 @@ local mappings = {
     f = { get_cmd("lua vim.lsp.buf.formatting()"), "format" },
     h = { get_cmd("lua vim.lsp.buf.signature_help()"), "signature_help" },
     i = { get_cmd("LspInfo"), "lsp info" },
+    I = { get_cmd("LspInstallInfo"), "lsp install info" },
     o = { get_cmd("SymbolsOutline"), "outline" },
     p = {
       name = "Peek",

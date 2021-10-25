@@ -94,7 +94,7 @@ function plugin.load_extensions()
   local extensions = {
     "media_files",
     -- "fzy_native",
-    "projects",
+    -- "projects",
     "frecency",
   }
   for _, ext in ipairs(extensions) do

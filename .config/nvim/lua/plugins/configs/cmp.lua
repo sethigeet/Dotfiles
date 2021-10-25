@@ -6,7 +6,7 @@ local function tab_complete(fallback)
   local cmp = require("cmp")
 
   if cmp.visible() then
-    vim.api.nvim_feedkeys(utils.t("<C-n>"), "n", true)
+    cmp.select_next_item()
   elseif utils.has_words_before() and require("luasnip").expand_or_jumpable() then
     vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-expand-or-jump"), "", true)
   elseif utils.has_words_before() and not require("cmp").select_next_item() then
@@ -20,7 +20,7 @@ local function s_tab_complete(fallback)
   local cmp = require("cmp")
 
   if cmp.visible() then
-    vim.api.nvim_feedkeys(utils.t("<C-p>"), "n", true)
+    cmp.select_prev_item()
   elseif require("luasnip").jumpable(-1) then
     vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-prev"), "", true)
   else
@@ -60,8 +60,6 @@ function plugin.setup()
       { name = "emoji" },
       { name = "treesitter" },
       { name = "spell" },
-      { name = "nvim_lua" }, -- NOTE: This source only enables itself for lua files
-      { name = "vim-dadbod-completion" },
       { name = "luasnip" },
       { name = "buffer", max_completion_items = 15, keyword_length = 5 },
     },
@@ -75,6 +73,9 @@ function plugin.setup()
         vim_item.kind = icons[vim_item.kind]
         return vim_item
       end,
+    },
+    experimental = {
+      ghost_text = true,
     },
   })
 
@@ -94,7 +95,16 @@ end
 function plugin.define_augroups()
   require("utils").define_augroups({
     cmp_custom = {
-      { "FileType", "TelescopePrompt", "lua require('cmp').setup.buffer({ enabled = false })" },
+      -- NOTE: This is not required as telescope already does it
+      -- { "FileType", "TelescopePrompt", "lua require('cmp').setup.buffer({ enabled = false })" },
+
+      -- Turn on some sources in particular filetypes only
+      { "FileType", "lua", "lua require('plugins.configs.cmp').append_sources_to_buf({ { name = 'nvim_lua' } })" },
+      {
+        "FileType",
+        "sql,mysql,plsql",
+        "lua require('plugins.configs.cmp').append_sources_to_buf({ { name = 'vim-dadbod-completion' } })",
+      },
     },
   })
 end

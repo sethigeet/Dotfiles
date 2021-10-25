@@ -1,5 +1,5 @@
 local LanguageServer = {
-  lang = "",
+  server_name = "",
   cmd_args = {},
   filetypes = {},
   formatters = {},
@@ -15,7 +15,7 @@ function LanguageServer:create(o)
 end
 
 function LanguageServer:lsp()
-  if require("lsp.helpers.check_lsp_active")(self.lang) then
+  if require("lsp.helpers.check_lsp_active")(self.server_name) then
     return
   end
 
@@ -45,17 +45,26 @@ function LanguageServer:lsp()
     end
   end
 
-  local config = require("lspconfig")[self.lang]
+  local lsp_installer_servers = require("nvim-lsp-installer.servers")
+  local ok, server = lsp_installer_servers.get_server(self.server_name)
+  if not ok then
+    require("lspconfig")[self.server_name].setup(options)
+    return
+  end
 
-  options.cmd = config.document_config.default_config.cmd
+  -- Install the server if it is not installed
+  if not server:is_installed() then
+    server:install()
+  end
+
   -- Add custom args if specified
   if self.cmd_args and not vim.tbl_isempty(self.cmd_args) then
     for _, arg in ipairs(self.cmd_args) do
-      table.insert(options.cmd, arg)
+      table.insert(server._default_options.cmd, arg)
     end
   end
 
-  config.setup(options)
+  server:setup(options)
 end
 
 local function formatForNullLS(builtins, customs)

@@ -1,7 +1,7 @@
-local LanguageServer = require("lsp.helpers.create_language_server")
+local LanguageServer = require("lsp.helpers.language_server")
 
 local ls = LanguageServer:create({
-  lang = "bash",
+  server_name = "bashls",
   filetypes = { "sh", "bash", "zsh" },
   formatters = { "shfmt", extra_args = { "-ci", "-i", "2", "-s", "-bn" } },
   linters = { "shellcheck", extra_args = { "-e", "1090" } },

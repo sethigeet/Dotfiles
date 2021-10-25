@@ -1,7 +1,7 @@
-local LanguageServer = require("lsp.helpers.create_language_server")
+local LanguageServer = require("lsp.helpers.language_server")
 
 local ls = LanguageServer:create({
-  lang = "python",
+  server_name = "pyright",
   formatters = "black",
   linters = "flake8",
   custom = {

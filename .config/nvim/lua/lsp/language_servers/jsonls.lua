@@ -1,4 +1,4 @@
-local LanguageServer = require("lsp.helpers.create_language_server")
+local LanguageServer = require("lsp.helpers.language_server")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -11,7 +11,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 local ls = LanguageServer:create({
-  lang = "json",
+  server_name = "jsonls",
   filetypes = { "json", "jsonc" },
   formatters = "prettierd",
   custom = {

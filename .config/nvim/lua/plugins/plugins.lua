@@ -55,10 +55,10 @@ local plugins = {
   },
 
   -- Have the file system follow you around
-  {
-    "ahmedkhalf/project.nvim",
-    config = "project",
-  },
+  -- {
+  --   "ahmedkhalf/project.nvim",
+  --   config = "project",
+  -- },
 
   -- Treesitter
   {
@@ -115,8 +115,7 @@ local plugins = {
 
   -- Status Line
   {
-    -- "hoob3rt/lualine.nvim",
-    "hoob3rt/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = "lualine",
   },
@@ -246,7 +245,7 @@ local plugins = {
 
   -- Intellisense
   "neovim/nvim-lspconfig",
-  "kabouzeid/nvim-lspinstall",
+  "williamboman/nvim-lsp-installer",
   {
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },

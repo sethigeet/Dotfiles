@@ -1,24 +1,27 @@
 local lsps = {
-  "bash",
-  "cpp",
-  "css",
-  "dockerfile",
-  "go",
+  "bashls",
+  "clangd",
+  "cssls",
+  "dockerls",
+  "gopls",
   "graphql",
   "html",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "vim",
-  "yaml",
+  "jsonls",
+  "sumneko_lua",
+  "pyright",
+  "tsserver",
+  "vimls",
+  "yamlls",
 }
 
--- Setup automatic lsp install
-require("lsp.helpers.install_langservers")(lsps)
-
 -- Setup lsp install
-require("lspinstall").setup()
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.settings({})
+lsp_installer.on_server_ready(function(server)
+  server:setup({})
+
+  vim.cmd([[ do User LspAttachBuffers ]])
+end)
 
 -- Load all the language servers
 for _, lsp in ipairs(lsps) do
