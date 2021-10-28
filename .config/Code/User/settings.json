@@ -15,6 +15,7 @@
   "editor.semanticHighlighting.enabled": true,
   "editor.inlineSuggest.enabled": true,
   "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
 
   //# Window
   "window.zoomLevel": 1,
@@ -83,8 +84,7 @@
   "output.smartScroll.enabled": false,
 
   //# Telemetry
-  "telemetry.enableTelemetry": false,
-  "telemetry.enableCrashReporter": false,
+  "telemetry.telemetryLevel": "off",
 
   //# Language Specific settings
   "[python]": {
@@ -159,6 +159,9 @@
   // Code Runner
   "code-runner.clearPreviousOutput": true,
   "code-runner.enableAppInsights": false,
+  "code-runner.executorMap": {
+    "go": "go run ."
+  },
 
   //# Vim
   "vim.useSystemClipboard": true,
@@ -324,5 +327,8 @@
     "env": true,
     "venv": true,
     ".git": true
-  }
+  },
+
+  // RedHat
+  "redhat.telemetry.enabled": false
 }
