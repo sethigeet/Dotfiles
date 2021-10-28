@@ -106,7 +106,7 @@ function plugin.setup()
         i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         c = function(fallback)
           if cmp.visible() then
-            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
           else
             fallback()
           end

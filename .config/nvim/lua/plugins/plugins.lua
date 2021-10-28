@@ -253,7 +253,7 @@ local plugins = {
   {
     "hrsh7th/nvim-cmp",
     config = "cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     module = { "cmp", "cmp.*" },
     requires = {
       { "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" },
