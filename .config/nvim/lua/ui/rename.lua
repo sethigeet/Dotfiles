@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local M = {}
 
 -- Tresitter stuff
@@ -87,12 +89,34 @@ function M.rename()
   apply_keymaps(bufnr, winnr)
 end
 
+local function lsp_handler(err, result, ctx, config)
+  if err then
+    vim.notify(("Error running LSP query '%s': %s"):format(ctx.method, err), vim.log.levels.ERROR)
+    return
+  end
+
+  -- echo the resulting changes
+  local new_word = ""
+  if result and result.changes then
+    local msg = ""
+    for f, c in pairs(result.changes) do
+      new_word = c[1].newText
+      msg = msg .. ("%d changes -> %s"):format(#c, utils.get_relative_path(f)) .. "\n"
+    end
+    local currName = vim.fn.expand("<cword>")
+    msg = msg .. ("\n%s -> %s"):format(currName, new_word)
+    vim.notify(msg, vim.log.levels.INFO)
+  end
+
+  vim.lsp.handlers[ctx.method](err, result, ctx, config)
+end
+
 local function do_rename_using_lsp(new_name)
   local params = vim.lsp.util.make_position_params()
 
   params.newName = new_name
 
-  local success, _ = pcall(vim.lsp.buf_request, 0, "textDocument/rename", params, nil)
+  local success, _ = pcall(vim.lsp.buf_request, 0, "textDocument/rename", params, lsp_handler)
 
   return success
 end
