@@ -259,10 +259,11 @@ local plugins = {
       { "hrsh7th/cmp-buffer", event = "InsertEnter", after = "nvim-cmp" },
       -- NOTE: The lsp plugin cannot be lazy loaded as `create_language_server` depends on it at startup
       { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-path", event = "InsertEnter", after = "nvim-cmp" },
+      { "hrsh7th/cmp-path", event = { "InsertEnter", "CmdlineEnter" }, after = "nvim-cmp" },
       { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
       { "hrsh7th/cmp-emoji", event = "InsertEnter", after = "nvim-cmp" },
       { "hrsh7th/cmp-calc", event = "InsertEnter", after = "nvim-cmp" },
+      { "hrsh7th/cmp-cmdline", event = "CmdlineEnter", after = "nvim-cmp" },
       { "f3fora/cmp-spell", event = "InsertEnter", after = "nvim-cmp" },
       { "ray-x/cmp-treesitter", event = "InsertEnter", after = "nvim-cmp" },
       { "saadparwaiz1/cmp_luasnip", event = "InsertEnter", after = "nvim-cmp" },
