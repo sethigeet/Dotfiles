@@ -250,6 +250,8 @@ local plugins = {
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
+
+  -- Autocompletion
   {
     "hrsh7th/nvim-cmp",
     config = "cmp",
@@ -275,6 +277,7 @@ local plugins = {
       },
     },
   },
+
   {
     "simrat39/symbols-outline.nvim",
     cmd = {
