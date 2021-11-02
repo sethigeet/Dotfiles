@@ -13,7 +13,7 @@ local ls = LanguageServer:create({
           path = vim.split(package.path, ";"),
         },
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
+          -- Get the language server to recognize the global vars
           globals = { "vim", "xplr" },
         },
         workspace = {
