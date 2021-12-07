@@ -413,32 +413,23 @@ function plugin.keymaps()
     d = { get_cmd("lua vim.diagnostic.goto_prev()"), "Previous Diagnostic" },
     r = "Goto previous usage", -- Defined in treesitter config
     g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
-  }, get_opts(
-    "n",
-    "["
-  ))
+  }, get_opts("n", "["))
   wk.register({
     d = { get_cmd("lua vim.diagnostic.goto_next()"), "Next  Diagnostic" },
     r = "Goto next usage", -- Defined in treesitter config
     g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
-  }, get_opts(
-    "n",
-    "]"
-  ))
+  }, get_opts("n", "]"))
   wk.register({
     d = { get_cmd("lua vim.lsp.buf.definition()"), "Goto definition" },
     D = { get_cmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
     I = { get_cmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
     l = {
-      get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line' })"),
+      get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics' })"),
       "Show line diagnostics",
     },
     r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
     p = { get_cmd("lua require('ui.peek').peek('definition')"), "Peek definition" },
-  }, get_opts(
-    "n",
-    "g"
-  ))
+  }, get_opts("n", "g"))
 end
 
 function plugin.define_augroups()

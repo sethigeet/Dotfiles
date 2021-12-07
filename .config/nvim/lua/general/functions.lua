@@ -60,13 +60,13 @@ loading in the runtime again]],
 end
 
 -- NOTE: The part ahead requires `nvim-treesitter` plugin to be installed!
-vim.treesitter.set_query(
-  "lua",
-  "SaveAndExec_Lua_Result",
-  [[
-   (function_name (*)) @capture
-]]
-)
+-- vim.treesitter.set_query(
+--   "lua",
+--   "SaveAndExec_Lua_Result",
+--   [[
+--    (function_name (*)) @capture
+-- ]]
+-- )
 
 function SaveAndExec(save)
   if save then

@@ -121,7 +121,7 @@ function plugin.setup()
       { name = "treesitter" },
       { name = "spell" },
       { name = "luasnip" },
-      { name = "buffer", opts = { max_completion_items = 15, keyword_length = 5 } },
+      { name = "buffer", options = { max_completion_items = 15, keyword_length = 5 } },
     },
     documentation = {
       border = "rounded",

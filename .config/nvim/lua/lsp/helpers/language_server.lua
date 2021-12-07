@@ -100,7 +100,7 @@ function LanguageServer:format()
 
   local formatters = formatForNullLS(null_ls.builtins.formatting, self.formatters)
 
-  null_ls.register({ sources = formatters })
+  null_ls.register(formatters)
 end
 
 function LanguageServer:lint()
@@ -108,7 +108,7 @@ function LanguageServer:lint()
 
   local linters = formatForNullLS(null_ls.builtins.diagnostics, self.linters)
 
-  null_ls.register({ sources = linters })
+  null_ls.register(linters)
 end
 
 function LanguageServer:debug() end
