@@ -45,6 +45,11 @@ function LanguageServer:lsp()
     end
   end
 
+  if self.server_name == "null-ls" then
+    require("null-ls").setup(options)
+    return
+  end
+
   local lsp_installer_servers = require("nvim-lsp-installer.servers")
   local ok, server = lsp_installer_servers.get_server(self.server_name)
   if not ok then
