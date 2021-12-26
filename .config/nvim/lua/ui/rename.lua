@@ -1,17 +1,10 @@
 local utils = require("utils")
 
-local M = {}
-
 -- Tresitter stuff
 local ts_utils = require("nvim-treesitter.ts_utils")
 local locals = require("nvim-treesitter.locals")
 
--- To draw the window
-local window = require("ui.window")
-
-local exec_keys = { n = { "<CR>" }, i = { "<CR>" } }
-local quit_keys = { n = { "<Esc>", "<C-c>" }, i = { "<C-c>" } }
-local prompt_prefix = "➤ "
+local old_name
 
 local function get_current_name()
   local node_at_point = ts_utils.get_node_at_cursor()
@@ -33,62 +26,6 @@ which could be renamed]],
   return current_name
 end
 
-local function apply_keymaps(bufnr, winnr)
-  for mode, keys in pairs(exec_keys) do
-    for _, key in ipairs(keys) do
-      vim.api.nvim_buf_set_keymap(
-        bufnr,
-        mode,
-        key,
-        "<cmd>lua require('ui.rename').do_rename(" .. winnr .. ")<CR>",
-        { silent = true, nowait = true }
-      )
-    end
-  end
-
-  for mode, keys in pairs(quit_keys) do
-    for _, key in ipairs(keys) do
-      vim.api.nvim_buf_set_keymap(
-        bufnr,
-        mode,
-        key,
-        "<cmd>lua vim.api.nvim_win_close(" .. winnr .. ", true)<CR>",
-        { silent = true, nowait = true }
-      )
-    end
-  end
-end
-
-function M.rename()
-  local opts = {
-    height = 1,
-    width = 30,
-    border = "rounded",
-    enter = true,
-  }
-
-  local current_name = get_current_name()
-
-  local bufnr, winnr = window.create_floating_preview({}, "", opts)
-
-  local rename_prompt_prefix_ns = vim.api.nvim_create_namespace("ui_rename_prompt_prefix")
-
-  -- Set some options
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
-  vim.api.nvim_win_set_option(winnr, "scrolloff", 0)
-  vim.api.nvim_win_set_option(winnr, "sidescrolloff", 0)
-  vim.api.nvim_buf_set_option(bufnr, "buftype", "prompt")
-
-  -- Set the prompt
-  vim.fn.prompt_setprompt(bufnr, prompt_prefix)
-  vim.api.nvim_buf_add_highlight(bufnr, rename_prompt_prefix_ns, "String", 0, 0, #prompt_prefix)
-  -- Write the current name of the variable and select it
-  vim.cmd("norm i" .. current_name)
-  vim.cmd("norm bve")
-
-  apply_keymaps(bufnr, winnr)
-end
-
 local function lsp_handler(err, result, ctx, config)
   if err then
     vim.notify(("Error running LSP query '%s': %s"):format(ctx.method, err), vim.log.levels.ERROR)
@@ -103,8 +40,7 @@ local function lsp_handler(err, result, ctx, config)
       new_word = c[1].newText
       msg = msg .. ("%d changes -> %s"):format(#c, utils.get_relative_path(f)) .. "\n"
     end
-    local currName = vim.fn.expand("<cword>")
-    msg = msg .. ("\n%s -> %s"):format(currName, new_word)
+    msg = msg .. ("\n%s -> %s"):format(old_name, new_word)
     vim.notify(msg, vim.log.levels.INFO)
   end
 
@@ -156,37 +92,32 @@ being used to rename the variable]],
   vim.lsp.util.apply_text_edits(edits, bufnr)
 end
 
-function M.do_rename(winnr)
-  -- Get the new name
-  local new_name = vim.trim(vim.fn.getline("."):sub(#prompt_prefix + 1, -1))
-
-  -- Close the window
-  vim.api.nvim_win_close(winnr, true)
-
+return function()
   -- Get the current name
-  local current_name = get_current_name()
-  if not (new_name and #new_name > 0) or new_name == current_name then
-    return
-  end
+  old_name = get_current_name()
 
-  -- Come out of insert mode if in it
-  vim.cmd("stopinsert")
+  vim.ui.input({
+    prompt = "New Name",
+    default = old_name,
+  }, function(new_name)
+    if not (new_name and #new_name > 0) or new_name == old_name then
+      return
+    end
 
-  -- Check whether a lsp is active or not
-  local active = require("lsp.helpers.check_lsp_active")()
-  if not active then
-    -- Use treesitter to rename if no lsp is active
+    -- Check whether a lsp is active or not
+    local active = require("lsp.helpers.check_lsp_active")()
+    if not active then
+      -- Use treesitter to rename if no lsp is active
+      do_rename_using_treesitter(new_name)
+      return
+    end
+
+    -- Try renaming using `lsp`
+    if do_rename_using_lsp(new_name) then
+      return
+    end
+
+    -- Use treesitter to rename if lsp is unable to do so
     do_rename_using_treesitter(new_name)
-    return
-  end
-
-  -- Try renaming using `lsp`
-  if do_rename_using_lsp(new_name) then
-    return
-  end
-
-  -- Use treesitter to rename if lsp is unable to do so
-  do_rename_using_treesitter(new_name)
+  end)
 end
-
-return M

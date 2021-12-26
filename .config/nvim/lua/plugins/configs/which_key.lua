@@ -224,7 +224,7 @@ local mappings = {
       t = { get_cmd("lua require('ui.peek').peek('typeDefinition')"), "type definition" },
       i = { get_cmd("lua require('ui.peek').peek('implementation')"), "implementation" },
     },
-    r = { get_cmd("lua require('ui.rename').rename()"), "rename" },
+    r = { get_cmd("lua require('ui.rename')()"), "rename" },
     t = { get_cmd("lua vim.lsp.buf.type_definition()"), "type defintion" },
     v = { get_cmd("LspVirtualTextToggle"), "toggle virtual text" },
     s = { get_cmd("Telescope lsp_document_symbols"), "document symbols" },

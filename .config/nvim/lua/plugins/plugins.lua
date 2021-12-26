@@ -394,6 +394,9 @@ local plugins = {
     "rcarriga/nvim-notify",
     config = "notify",
   },
+
+  -- Easily create beautiful looking UI elements
+  "MunifTanjim/nui.nvim",
 }
 
 local config = {
