@@ -220,11 +220,11 @@ local mappings = {
     o = { get_cmd("SymbolsOutline"), "outline" },
     p = {
       name = "Peek",
-      d = { get_cmd("lua require('ui.peek').peek('definition')"), "definition" },
-      t = { get_cmd("lua require('ui.peek').peek('typeDefinition')"), "type definition" },
-      i = { get_cmd("lua require('ui.peek').peek('implementation')"), "implementation" },
+      d = { get_cmd("lua require('lsp.helpers.peek').peek('definition')"), "definition" },
+      t = { get_cmd("lua require('lsp.helpers.peek').peek('typeDefinition')"), "type definition" },
+      i = { get_cmd("lua require('lsp.helpers.peek').peek('implementation')"), "implementation" },
     },
-    r = { get_cmd("lua require('ui.rename')()"), "rename" },
+    r = { get_cmd("lua require('lsp.helpers.rename')()"), "rename" },
     t = { get_cmd("lua vim.lsp.buf.type_definition()"), "type defintion" },
     v = { get_cmd("LspVirtualTextToggle"), "toggle virtual text" },
     s = { get_cmd("Telescope lsp_document_symbols"), "document symbols" },
@@ -424,11 +424,11 @@ function plugin.keymaps()
     D = { get_cmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
     I = { get_cmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
     l = {
-      get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics' })"),
+      get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics', source = true })"),
       "Show line diagnostics",
     },
     r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
-    p = { get_cmd("lua require('ui.peek').peek('definition')"), "Peek definition" },
+    p = { get_cmd("lua require('lsp.helpers.peek').peek('definition')"), "Peek definition" },
   }, get_opts("n", "g"))
 end
 

@@ -1,4 +1,4 @@
-local LanguageServer = require("lsp.helpers.language_server")
+local LanguageServer = require("lsp.language_server")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true

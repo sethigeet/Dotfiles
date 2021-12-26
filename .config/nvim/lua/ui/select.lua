@@ -1,7 +1,7 @@
 local Menu = require("nui.menu")
 local event = require("nui.utils.autocmd").event
 
-local apply_default_keymaps = require("ui.apply_keymaps")
+local apply_default_keymaps = require("utils.ui").apply_default_keymaps
 
 local select_ui = nil
 

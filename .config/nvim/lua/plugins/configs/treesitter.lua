@@ -139,17 +139,6 @@ function plugin.setup()
       lint_events = { "BufWrite", "CursorHold" },
     },
   })
-
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  -- Make jsonc use json
-  parser_config.jsonc.used_by = "json"
-  -- Add Markdown
-  parser_config.markdown = {
-    install_info = {
-      url = "https://github.com/ikatyang/tree-sitter-markdown",
-      files = { "src/parser.c", "src/scanner.cc" },
-    },
-  }
 end
 
 return plugin

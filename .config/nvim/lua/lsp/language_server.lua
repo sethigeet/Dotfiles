@@ -6,6 +6,8 @@ local LanguageServer = {
   linters = {},
 }
 
+local lsp_utils = require("utils.lsp")
+
 function LanguageServer:create(o)
   o = o or {} -- create object if user does not provide one
   setmetatable(o, self)
@@ -15,7 +17,7 @@ function LanguageServer:create(o)
 end
 
 function LanguageServer:lsp()
-  if require("lsp.helpers.check_lsp_active")(self.server_name) then
+  if lsp_utils.check_lsp_client_active(self.server_name) then
     return
   end
 
@@ -24,10 +26,10 @@ function LanguageServer:lsp()
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
   local options = {
-    root_dir = require("lsp.helpers.root_dir"),
+    root_dir = lsp_utils.get_root_dir,
     on_attach = function(client, bufnr)
-      require("lsp.helpers.document_highlight")(client)
-      require("lsp.helpers.format_on_save")(client)
+      lsp_utils.setup_document_highlight(client)
+      lsp_utils.setup_format_on_save(client)
       if self.on_attach then
         self.on_attach(client, bufnr)
       end

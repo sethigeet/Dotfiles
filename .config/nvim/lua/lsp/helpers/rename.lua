@@ -105,7 +105,7 @@ return function()
     end
 
     -- Check whether a lsp is active or not
-    local active = require("lsp.helpers.check_lsp_active")()
+    local active = require("utils.lsp").check_lsp_client_active()
     if not active then
       -- Use treesitter to rename if no lsp is active
       do_rename_using_treesitter(new_name)

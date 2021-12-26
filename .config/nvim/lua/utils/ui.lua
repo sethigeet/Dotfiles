@@ -1,6 +1,8 @@
+local M = {}
+
 local quit_keys = { n = { "<Esc>", "<C-c>" }, i = { "<C-c>" } }
 
-return function(popup, on_close)
+function M.apply_default_keymaps(popup, on_close)
   -- cancel operation if <quit-key> is pressed
   for mode, keys in pairs(quit_keys) do
     for _, key in ipairs(keys) do
@@ -8,3 +10,5 @@ return function(popup, on_close)
     end
   end
 end
+
+return M
