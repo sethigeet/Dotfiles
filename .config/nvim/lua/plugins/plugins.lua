@@ -298,6 +298,8 @@ local plugins = {
     ft = { "go" },
     run = 'vim.cmd("GoUpdateBinaries")',
   },
+  -- JSON Schemas provider
+  "b0o/schemastore.nvim",
 
   -- Markdown preview
   {

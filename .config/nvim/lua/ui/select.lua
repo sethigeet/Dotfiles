@@ -35,7 +35,7 @@ Please close all other selects first]],
     if not item then
       on_choice(nil, nil)
     else
-      local return_item = custom and item or item.text
+      local return_item = custom and item or items[item.index]
       on_choice(return_item, index)
     end
 
@@ -96,7 +96,7 @@ Please close all other selects first]],
     },
   }, {
     lines = menu_items,
-    min_width = opts.min_width or 20,
+    min_width = opts.min_width or math.max(20, #opts.prompt),
     keymap = opts.keymap or {
       close = { "<Esc>", "<C-c>" },
       focus_next = { "j", "<Down>", "<Tab>", "<C-n>" },

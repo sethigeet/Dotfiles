@@ -14,6 +14,10 @@ local ls = LanguageServer:create({
   server_name = "jsonls",
   filetypes = { "json", "jsonc" },
   formatters = "prettierd",
+  on_attach = function(client, _)
+    -- Disable formatting in the lsp server as `null-ls` handles formatting
+    client.resolved_capabilities.document_formatting = false
+  end,
   custom = {
     commands = {
       Format = {
@@ -27,48 +31,7 @@ local ls = LanguageServer:create({
     settings = {
       json = {
         -- Schemas https://www.schemastore.org
-        schemas = {
-          {
-            fileMatch = { "package.json" },
-            url = "https://json.schemastore.org/package.json",
-          },
-          {
-            fileMatch = { "tsconfig*.json" },
-            url = "https://json.schemastore.org/tsconfig.json",
-          },
-          {
-            fileMatch = {
-              ".prettierrc",
-              ".prettierrc.json",
-              "prettier.config.json",
-            },
-            url = "https://json.schemastore.org/prettierrc.json",
-          },
-          {
-            fileMatch = { ".eslintrc", ".eslintrc.json" },
-            url = "https://json.schemastore.org/eslintrc.json",
-          },
-          {
-            fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
-            url = "https://json.schemastore.org/babelrc.json",
-          },
-          {
-            fileMatch = { "lerna.json" },
-            url = "https://json.schemastore.org/lerna.json",
-          },
-          {
-            fileMatch = { "now.json", "vercel.json" },
-            url = "https://json.schemastore.org/now.json",
-          },
-          {
-            fileMatch = {
-              ".stylelintrc",
-              ".stylelintrc.json",
-              "stylelint.config.json",
-            },
-            url = "http://json.schemastore.org/stylelintrc.json",
-          },
-        },
+        schemas = require("schemastore").json.schemas(),
       },
     },
   },
