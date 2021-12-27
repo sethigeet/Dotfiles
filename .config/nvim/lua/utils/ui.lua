@@ -1,6 +1,6 @@
 local M = {}
 
-local quit_keys = { n = { "<Esc>", "<C-c>" }, i = { "<C-c>" } }
+local quit_keys = { n = { "<Esc>", "<C-c>", "q" }, i = { "<C-c>" } }
 
 function M.apply_default_keymaps(popup, on_close)
   -- cancel operation if <quit-key> is pressed
