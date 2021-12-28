@@ -18,9 +18,9 @@ local plugins = {
     config = "todo_comments",
   },
   {
-    "b3nj5m1n/kommentary",
+    "numToStr/Comment.nvim",
     event = "BufEnter",
-    config = "kommentary",
+    config = "comment",
   },
 
   -- Indent lines

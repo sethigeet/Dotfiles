@@ -47,8 +47,8 @@ function plugin.setup()
       -- list of mode / prefixes that should never be hooked by WhichKey
       -- this is mostly relevant for key maps that start with a native binding
       -- most people should not need to change this
-      i = { "j", "k", "<Space>" },
       c = { "j", "k" },
+      i = { "j", "k", "<Space>" },
     },
   })
 
@@ -83,7 +83,7 @@ local function get_cmd(cmd, isPlugin)
 end
 
 local mappings = {
-  ["/"] = { get_cmd("kommentary_line_default", true), "comment" },
+  ["/"] = { "<Cmd>lua require('Comment.api').call('toggle_current_linewise_op')<CR>g@$", "comment" },
   ["?"] = { get_cmd("NvimTreeFindFile"), "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
   [";"] = { get_cmd("Dashboard"), "show start screen" },
@@ -126,19 +126,6 @@ local mappings = {
       d = { get_cmd("BufferLineSortByDirectory"), "by directory" },
       e = { get_cmd("BufferLineSortByExtension"), "by extension" },
       r = { get_cmd("BufferLineSortByRelativeDirector"), "by relative directory" },
-    },
-  },
-
-  -- NOTE: These keybindings are defined by the `kommentary` plugin itself
-  c = {
-    name = "Comment",
-    i = {
-      name = "Increase",
-      c = "line",
-    },
-    d = {
-      name = "Decrease",
-      c = "line",
     },
   },
 
@@ -246,12 +233,12 @@ local mappings = {
 
   p = {
     name = "Plugin Manager",
-    c = { get_cmd("lua LoadPlugins('compile')"), "Compile" },
-    i = { get_cmd("lua LoadPlugins('install')"), "Install" },
-    r = { get_cmd("luafile $MYVIMRC"), "Reload" },
-    s = { get_cmd("lua LoadPlugins('sync')"), "Sync" },
-    p = { get_cmd("lua LoadPlugins('profile')"), "Profile" },
-    u = { get_cmd("lua LoadPlugins('update')"), "Update" },
+    c = { get_cmd("lua LoadPlugins('compile')"), "compile" },
+    i = { get_cmd("lua LoadPlugins('install')"), "install" },
+    r = { get_cmd("luafile $MYVIMRC"), "reload" },
+    s = { get_cmd("lua LoadPlugins('sync')"), "sync" },
+    p = { get_cmd("lua LoadPlugins('profile')"), "profile" },
+    u = { get_cmd("lua LoadPlugins('update')"), "update" },
   },
 
   -- q is for Quickfix
@@ -320,11 +307,11 @@ local mappings = {
     f = { get_cmd("lua require('spectre').open_file_search()"), "open file search" },
     a = {
       name = "Actions",
-      q = "Send to quickfix list",
-      c = "Input replace vim command",
-      r = "Replace all",
-      o = "Show options",
-      v = "Change view mode",
+      q = "send to quickfix list",
+      c = "input replace vim command",
+      r = "replace all",
+      o = "show options",
+      v = "change view mode",
     },
   },
 
@@ -368,7 +355,7 @@ local mappings = {
 local normal_mappings = vim.deepcopy(mappings)
 
 local visual_mappings = vim.deepcopy(mappings)
-visual_mappings["/"][1] = "<Plug>kommentary_visual_default"
+visual_mappings["/"][1] = "<Esc><Cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>"
 visual_mappings["p"] = { '"_dP', "Paste without yank" }
 
 -- Treesitter move plugin keybindings
@@ -420,6 +407,27 @@ function plugin.keymaps()
     g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
   }, get_opts("n", "]"))
   wk.register({
+    b = {
+      name = "Comment Block ",
+      c = "Line",
+    },
+    c = {
+      name = "Comment Line ",
+      c = "Line",
+      A = "Insert at the end of the line",
+      o = "Insert below",
+      O = "Insert above",
+    },
+    [">"] = {
+      name = "Increase comment level",
+      c = "Line",
+      b = "Block",
+    },
+    ["<lt>"] = {
+      name = "Decrease comment level",
+      c = "Line",
+      b = "Block",
+    },
     d = { get_cmd("lua vim.lsp.buf.definition()"), "Goto definition" },
     D = { get_cmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
     I = { get_cmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
