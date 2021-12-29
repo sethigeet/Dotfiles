@@ -1,7 +1,0 @@
-command! LspGetAll lua require 'diagnostic.wrapper'.get_all()
-command! LspGetNext lua require 'diagnostic.wrapper'.get_next()
-command! LspGetPrev lua require 'diagnostic.wrapper'.get_prev()
-command! LspGotoNext lua require 'diagnostic.wrapper'.goto_next()
-command! LspGotoPrev lua require 'diagnostic.wrapper'.goto_prev()
-command! LspPopulateLocationList lua require 'diagnostic.wrapper'.populate_location_list()
-command! -nargs=0 DiagnosticVirtualTextToggle lua require 'diagnostic.wrapper'.toggle_virtual_text()

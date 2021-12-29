@@ -10,4 +10,4 @@ vim.diagnostic.config({
   },
 })
 
-vim.cmd("source " .. CONFIG_PATH .. "/lua/diagnostic/wrapper.vim")
+require("diagnostic.wrapper") 
