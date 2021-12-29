@@ -49,7 +49,7 @@ function plugin.setup()
       lualine_y = { get_tab_stop },
       lualine_z = { "location", "progress" },
     },
-    extensions = { "fugitive", "nvim-tree" },
+    extensions = { "nvim-tree", "quickfix", "toggleterm", "symbols-outline" },
   })
 end
 

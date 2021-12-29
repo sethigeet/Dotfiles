@@ -24,6 +24,7 @@ map.xnoremap("J", ":move '>+1<CR>gv-gv")
 
 -- Alternate way to save
 map.nnoremap("<C-s>", ":w<CR>")
+map.nnoremap("<M-s>", ":w<CR>")
 
 -- Get rid of highlights easily
 map.nnoremap("<M-Esc>", "<cmd>nohl<CR>")

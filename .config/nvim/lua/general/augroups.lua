@@ -5,7 +5,7 @@ local augroups = {
     {
       "TextYankPost",
       "*",
-      'lua require("vim.highlight").on_yank({higroup = "IncSearch", timeout = 500})',
+      'lua vim.highlight.on_yank({higroup = "IncSearch", timeout = 500})',
     },
 
     -- Get back to the place from where you left the file
