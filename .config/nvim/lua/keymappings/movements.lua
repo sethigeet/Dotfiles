@@ -26,5 +26,5 @@ map.nnoremap("0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", {
 map.nnoremap("0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
 
 -- Fuzzy finder (requires telescope)
-map.nnoremap("<C-p>", "<cmd>Telescope fzf_writer files<CR>")
+map.nnoremap("<C-p>", "<cmd>Telescope find_files<CR>")
 map.nnoremap("<C-b>", "<cmd>Telescope buffers<CR>")

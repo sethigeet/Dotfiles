@@ -27,6 +27,12 @@ function utils.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+---@param keys string keys to feed
+--- Replace keys with termcodes and feed them
+function utils.feed(keys)
+  vim.api.nvim_feedkeys(utils.t(keys), "n", true)
+end
+
 function utils.check_back_space()
   local col = vim.fn.col(".") - 1
   if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then

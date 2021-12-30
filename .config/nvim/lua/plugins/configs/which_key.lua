@@ -435,8 +435,9 @@ function plugin.keymaps()
       get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics', source = true })"),
       "Show line diagnostics",
     },
-    r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
     p = { get_cmd("lua require('lsp.helpers.peek').peek('definition')"), "Peek definition" },
+    r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
+    s = { get_cmd("lua vim.lsp.buf.signature_help()"), "Goto references" },
   }, get_opts("n", "g"))
 end
 
