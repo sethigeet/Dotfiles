@@ -34,12 +34,12 @@ super + n
   notification-ctl toggle
 
 # Media
-XF86Audio{Raise,Lower}Volume
-	volume-ctl {up,down} 10
-shift + XF86Audio{Raise,Lower}Volume
-	volume-ctl {up,down} 2
-XF86AudioMute
-	volume-ctl togglemute
+{_,alt + } XF86Audio{Raise,Lower}Volume
+	volume-ctl -s {output,input} {up,down} 10
+{_,alt + } shift + XF86Audio{Raise,Lower}Volume
+	volume-ctl -s {output,alt} {up,down} 2
+{_,alt + } XF86AudioMute
+	volume-ctl -s {output,input} togglemute
 XF86AudioPlay
 	playerctl play-pause
 XF86AudioPrev

@@ -4,11 +4,14 @@
 
 help_message="\
 usage: volume-ctl subcommand [options]
-  options:
+  commands:
     help                         Show this help message
     up [amount]                  Increases the volume by the specified amount or the default amount
     down [amount]                Decreases the volume by the specified amount or the default amount
-    mute                         Mutes the volume
+    togglemute                   Mutes the volume
+
+  options:
+  -s, --source                 Set the source('input' or 'output') (default: 'output')
 "
 
 notify_error() {
@@ -18,33 +21,69 @@ notify_error() {
 
 command -v "amixer" >/dev/null 2>&1 || notify_error "Install alsa-utils!" "To increase or decrease the volume you need to install 'alsa-utils'"
 
-case "$1" in
-  up)
-    shift
-    amixer set Master on -q
-    amixer sset Master "${1:-5}"%+ -q
-    ;;
-  down)
-    shift
-    amixer set Master on -q
-    amixer sset Master "${1:-5}"%- -q
-    ;;
-  togglemute)
-    amixer set Master 1+ toggle -q
-    ;;
-  help)
-    echo "$help_message"
-    exit 0
-    ;;
-  *)
-    echo "$help_message" >&2
-    exit 1
-    ;;
-esac
+CONTROL="Master"
+SOURCE="Output"
 
-check_mute() { amixer get Master | grep 'off'; }
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -s | --source)
+      shift
 
-VOLUME="$(amixer get Master | grep -oP '\[\K[^%\]]+' | head -n1)"
+      if [ "$1" = "input" ]; then
+        CONTROL="Capture"
+        SOURCE="Input"
+      elif [ "$1" = "output" ]; then
+        CONTROL="Master"
+        SOURCE="Output"
+      else
+        echo "Invalid source specified!" >&2
+        echo
+        echo "$help_message" >&2
+        exit 1
+      fi
+
+      shift
+      ;;
+    up)
+      shift
+
+      if [ "$CONTROL" = "Master" ]; then
+        amixer set "$CONTROL" on -q
+      fi
+
+      amixer sset "$CONTROL" "${1:-5}"%+ -q
+
+      break
+      ;;
+    down)
+      shift
+
+      if [ "$CONTROL" = "Master" ]; then
+        amixer set "$CONTROL" on -q
+      fi
+      amixer sset "$CONTROL" "${1:-5}"%- -q
+
+      break
+      ;;
+    togglemute)
+      amixer set "$CONTROL" 1+ toggle -q
+
+      break
+      ;;
+    help)
+      echo "$help_message"
+      exit 0
+      ;;
+    *)
+      echo "$help_message" >&2
+      exit 1
+      ;;
+  esac
+done
+
+check_mute() { amixer get "$CONTROL" | grep 'off'; }
+
+VOLUME="$(amixer get "$CONTROL" | grep -oP '\[\K[^%\]]+' | head -n1)"
 if check_mute >/dev/null 2>&1; then
   ICON="notification-audio-volume-muted"
 elif [ "$VOLUME" -eq 0 ]; then
@@ -61,7 +100,7 @@ fi
 
 notify-send.py --icon "audio-volume-high" \
   --app-name "Volume" \
-  "Volume" "Current volume: <i><b>$VOLUME%</b></i>" \
+  "Volume" "Current volume of '$SOURCE': <i><b>$VOLUME%</b></i>" \
   --hint string:image-path:"$ICON" \
   boolean:transient:true \
   int:has-percentage:"$VOLUME" \
