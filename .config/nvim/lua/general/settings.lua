@@ -2,6 +2,8 @@ local opt = vim.opt
 
 -- Options
 local opts = {
+  backup = false, -- Do not create a backup file
+  backupcopy = "yes", -- While saving a file, make a copy of it and then write the new contents to the original file
   hidden = true, -- Required to keep multiple buffers open multiple buffers
   scrolloff = 4, -- Minimal number of lines to keep above and below the cursor
   sidescrolloff = 4, -- Minimal number of lines to keep on the right and the left side of the cursor
