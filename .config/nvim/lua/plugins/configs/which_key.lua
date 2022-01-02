@@ -131,10 +131,10 @@ local mappings = {
 
   C = {
     name = "Convert Color",
-    c = { get_cmd("lua require('color-converter').cycle()"), "cycle" },
-    x = { get_cmd("lua require('color-converter').to_hex()"), "to HEX" },
-    r = { get_cmd("lua require('color-converter').to_rgb()"), "to RGB" },
-    h = { get_cmd("lua require('color-converter').to_hsl()"), "to HSL" },
+    c = { require("color-converter").cycle, "cycle" },
+    x = { require("color-converter").to_hex, "to HEX" },
+    r = { require("color-converter").to_rgb, "to RGB" },
+    h = { require("color-converter").to_hsl, "to HSL" },
   },
 
   -- d is for Database
@@ -195,13 +195,18 @@ local mappings = {
   -- l is for LSP
   l = {
     name = "LSP",
-    a = { get_cmd("lua require('plugins.configs.telescope').code_actions()"), "code actions" },
-    A = { get_cmd("lua require('plugins.configs.telescope').code_actions(true)"), "range code actions" },
-    b = { get_cmd("lua require('plugins.configs.telescope').cur_buf_symbols()"), "cur buf symbols" },
+    a = { require("plugins.configs.telescope").code_actions, "code actions" },
+    A = {
+      function()
+        require("plugins.configs.telescope").code_actions(true)
+      end,
+      "range code actions",
+    },
+    b = { require("plugins.configs.telescope").cur_buf_symbols, "cur buf symbols" },
     d = { get_cmd("Trouble document_diagnostics"), "document diagnostics" },
     D = { get_cmd("Trouble workspace_diagnostics"), "workspace diagnostics" },
-    f = { get_cmd("lua vim.lsp.buf.formatting()"), "format" },
-    h = { get_cmd("lua vim.lsp.buf.signature_help()"), "signature_help" },
+    f = { vim.lsp.buf.formatting, "format" },
+    h = { vim.lsp.buf.signature_help, "signature_help" },
     i = { get_cmd("LspInfo"), "lsp info" },
     I = { get_cmd("LspInstallInfo"), "lsp install info" },
     o = { get_cmd("SymbolsOutline"), "outline" },
@@ -211,8 +216,8 @@ local mappings = {
       t = { get_cmd("lua require('lsp.helpers.peek').peek('typeDefinition')"), "type definition" },
       i = { get_cmd("lua require('lsp.helpers.peek').peek('implementation')"), "implementation" },
     },
-    r = { get_cmd("lua require('lsp.helpers.rename')()"), "rename" },
-    t = { get_cmd("lua vim.lsp.buf.type_definition()"), "type defintion" },
+    r = { require("lsp.helpers.rename"), "rename" },
+    t = { vim.lsp.buf.type_definition, "type defintion" },
     v = { get_cmd("DiagnosticVirtualTextToggle"), "toggle virtual text" },
     s = { get_cmd("Telescope lsp_document_symbols"), "document symbols" },
     S = { get_cmd("Telescope lsp_workspace_symbols"), "workspace symbols" },
@@ -286,7 +291,7 @@ local mappings = {
     f = { get_cmd("Telescope find_files"), "files" },
     F = { get_cmd("Telescope git_files"), "git files" },
     g = { get_cmd("Telescope live_grep"), "text" },
-    G = { get_cmd("lua require('plugins.configs.telescope').grep_current_buf()"), "grep cur buf" },
+    G = { require("plugins.configs.telescope").grep_current_buf, "grep cur buf" },
     i = { get_cmd("Telescope media_files"), "media files" },
     l = { get_cmd("Telescope loclist"), "loclist" },
     m = { get_cmd("Telescope marks"), "marks" },
@@ -302,9 +307,9 @@ local mappings = {
   -- S is for Search and replace
   S = {
     name = "Search and Replace",
-    o = { get_cmd("lua require('spectre').open()"), "open search" },
-    v = { get_cmd("lua require('spectre').open_visual()"), "open visual" },
-    f = { get_cmd("lua require('spectre').open_file_search()"), "open file search" },
+    o = { require("spectre").open, "open search" },
+    v = { require("spectre").open_visual, "open visual" },
+    f = { require("spectre").open_file_search, "open file search" },
     a = {
       name = "Actions",
       q = "send to quickfix list",
@@ -397,12 +402,12 @@ function plugin.keymaps()
 
   -- LSP Bindings
   wk.register({
-    d = { get_cmd("lua vim.diagnostic.goto_prev()"), "Previous Diagnostic" },
+    d = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
     r = "Goto previous usage", -- Defined in treesitter config
     g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
   }, get_opts("n", "["))
   wk.register({
-    d = { get_cmd("lua vim.diagnostic.goto_next()"), "Next  Diagnostic" },
+    d = { vim.diagnostic.goto_next, "Next  Diagnostic" },
     r = "Goto next usage", -- Defined in treesitter config
     g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
   }, get_opts("n", "]"))
@@ -428,16 +433,16 @@ function plugin.keymaps()
       c = "Line",
       b = "Block",
     },
-    d = { get_cmd("lua vim.lsp.buf.definition()"), "Goto definition" },
-    D = { get_cmd("lua vim.lsp.buf.declaration()"), "Goto declaration" },
-    I = { get_cmd("lua vim.lsp.buf.implementation()"), "Goto implementation" },
+    d = { vim.lsp.buf.definition, "Goto definition" },
+    D = { vim.lsp.buf.declaration, "Goto declaration" },
+    I = { vim.lsp.buf.implementation, "Goto implementation" },
     l = {
       get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics', source = true })"),
       "Show line diagnostics",
     },
     p = { get_cmd("lua require('lsp.helpers.peek').peek('definition')"), "Peek definition" },
     r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
-    s = { get_cmd("lua vim.lsp.buf.signature_help()"), "Goto references" },
+    s = { vim.lsp.buf.signature_help, "Goto references" },
   }, get_opts("n", "g"))
 end
 

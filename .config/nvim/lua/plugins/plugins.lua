@@ -251,6 +251,12 @@ local plugins = {
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
 
+  -- For Nvim development
+  {
+    "folke/lua-dev.nvim",
+    -- module = "lua-dev",
+  },
+
   -- Autocompletion
   {
     "hrsh7th/nvim-cmp",
@@ -262,7 +268,6 @@ local plugins = {
       -- NOTE: The lsp plugin cannot be lazy loaded as `create_language_server` depends on it at startup
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path", event = { "InsertEnter", "CmdlineEnter" }, after = "nvim-cmp" },
-      { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
       { "hrsh7th/cmp-emoji", event = "InsertEnter", after = "nvim-cmp" },
       { "hrsh7th/cmp-calc", event = "InsertEnter", after = "nvim-cmp" },
       { "hrsh7th/cmp-cmdline", event = "CmdlineEnter", after = "nvim-cmp" },
