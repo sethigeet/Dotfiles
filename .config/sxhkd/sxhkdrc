@@ -7,7 +7,7 @@ super + Return
 	$TERMINAL
 
 super + {b}
-	$TERMINAL -e {bpytop}
+	$TERMINAL -e {btop}
 
 super + {e,i,w}
 	{nautilus,vimiv,brave}
