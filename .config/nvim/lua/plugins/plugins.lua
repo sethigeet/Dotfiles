@@ -33,12 +33,6 @@ local plugins = {
   -- Repeat stuff
   "tpope/vim-repeat",
 
-  -- Vifm
-  {
-    "vifm/vifm.vim",
-    config = "vifm",
-  },
-
   -- File Explorer
   {
     "kyazdani42/nvim-tree.lua",

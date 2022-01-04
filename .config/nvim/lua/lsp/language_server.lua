@@ -66,8 +66,10 @@ function LanguageServer:lsp()
 
   -- Add custom args if specified
   if self.cmd_args and not vim.tbl_isempty(self.cmd_args) then
+    local cmd = server._default_options.cmd
+      or require("lspconfig.server_configurations." .. self.server_name).default_config.cmd
     for _, arg in ipairs(self.cmd_args) do
-      table.insert(server._default_options.cmd, arg)
+      table.insert(cmd, arg)
     end
   end
 

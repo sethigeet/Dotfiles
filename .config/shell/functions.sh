@@ -38,3 +38,20 @@ get-key-name() {
   xev | awk -F'[ )]+' \
     '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 }
+
+mkrepo() {
+  if [ -z "$1" ]; then
+    echo "Specify the name of the repo to create" >&2
+    exit 1
+  fi
+
+  # go to the repos dir
+  cd "$GITUSER" || exit 1
+
+  # create the dir for the repo and cd into it
+  mkdir "$1"
+  cd "$1" || exit 1
+
+  # initialize a git repo
+  git init
+}
