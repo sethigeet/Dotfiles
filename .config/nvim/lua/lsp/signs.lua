@@ -1,21 +1,31 @@
--- Signs for diagnostics
-vim.fn.sign_define("DiagnosticSignError", {
+-- Signs for DAP
+vim.fn.sign_define("DapBreakpoint", {
+  text = "",
   texthl = "DiagnosticError",
-  text = " ",
-  numhl = "DiagnosticError",
+  linehl = "",
+  numhl = "",
 })
-vim.fn.sign_define("DiagnosticSignWarn", {
+vim.fn.sign_define("DapBreakpointCondition", {
+  text = "",
   texthl = "DiagnosticWarn",
-  text = " ",
-  numhl = "DiagnosticWarn",
+  linehl = "",
+  numhl = "",
 })
-vim.fn.sign_define("DiagnosticSignInfo", {
-  texthl = "DiagnosticInfo",
-  text = " ",
-  numhl = "DiagnosticInfo",
+vim.fn.sign_define("DapLogPoint", {
+  text = "",
+  texthl = "DiagnosticWarn",
+  linehl = "",
+  numhl = "",
 })
-vim.fn.sign_define("DiagnosticSignHint", {
+vim.fn.sign_define("DapBreakpointRejected", {
+  text = "",
   texthl = "DiagnosticHint",
-  text = " ",
-  numhl = "DiagnosticHint",
+  linehl = "",
+  numhl = "",
+})
+vim.fn.sign_define("DapStopped", {
+  text = "",
+  texthl = "DiagnosticInfo",
+  linehl = "DiagnosticUnderlineInfo",
+  numhl = "DiagnosticInfo",
 })

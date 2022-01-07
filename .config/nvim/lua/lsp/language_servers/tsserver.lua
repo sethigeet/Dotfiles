@@ -13,6 +13,12 @@ local ls = LanguageServer:create({
     -- Disable formatting in the lsp server as `null-ls` handles formatting
     client.resolved_capabilities.document_formatting = false
   end,
+
+  debugger_name = "jsnode",
+  -- debugger_config = {
+  -- adapters = {},
+  -- configurations = {},
+  -- },
 })
 
 return ls

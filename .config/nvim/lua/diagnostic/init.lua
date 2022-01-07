@@ -11,3 +11,4 @@ vim.diagnostic.config({
 })
 
 require("diagnostic.wrapper")
+require("diagnostic.signs")

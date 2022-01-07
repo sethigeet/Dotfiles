@@ -1,5 +1,7 @@
 local LanguageServer = {
   server_name = "",
+  debugger_name = "",
+  debugger_config = {},
   cmd_args = {},
   filetypes = {},
   formatters = {},
@@ -120,7 +122,21 @@ function LanguageServer:lint()
   null_ls.register(linters)
 end
 
-function LanguageServer:debug() end
+function LanguageServer:debug()
+  if self.debugger_name == "" then
+    return
+  end
+
+  local dap_install = require("dap-install")
+  local installed_debuggers = require("dap-install.api.debuggers").get_installed_debuggers()
+
+  -- If the debugger is not installed, then install it
+  if not vim.tbl_contains(installed_debuggers, self.debugger_name) then
+    require("dap-install.core.install").install_debugger(self.debugger_name)
+  end
+
+  dap_install.config(self.debugger_name, self.debugger_config)
+end
 
 function LanguageServer:setup()
   self:lsp()

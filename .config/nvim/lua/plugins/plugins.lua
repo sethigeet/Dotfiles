@@ -300,6 +300,11 @@ local plugins = {
   -- JSON Schemas provider
   "b0o/schemastore.nvim",
 
+  -- Debugging
+  "mfussenegger/nvim-dap",
+  "rcarriga/nvim-dap-ui",
+  "Pocco81/DAPInstall.nvim",
+
   -- Markdown preview
   {
     "iamcco/markdown-preview.nvim",

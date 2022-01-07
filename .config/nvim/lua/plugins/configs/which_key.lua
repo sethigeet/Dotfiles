@@ -137,8 +137,82 @@ local mappings = {
     h = { require("color-converter").to_hsl, "to HSL" },
   },
 
-  -- d is for Database
+  -- d is for Debugging
   d = {
+    name = "Debugging",
+    b = {
+      name = "breakpoint",
+      t = { require("dap").toggle_breakpoint, "toggle breakpoint" },
+      l = {
+        function()
+          vim.ui.input({
+            prompt = "Log Message for Breakpoint",
+          }, function(message)
+            if not (message and #message > 0) then
+              return
+            end
+            require("dap").set_breakpoint(nil, nil, message)
+          end)
+        end,
+        "set log breakpoint",
+      },
+      c = {
+        function()
+          vim.ui.input({
+            prompt = "Condition for Breakpoint",
+          }, function(condition)
+            if not (condition and #condition > 0) then
+              return
+            end
+            require("dap").set_breakpoint(condition)
+          end)
+        end,
+        "set conditional breakpoint",
+      },
+      L = {
+        function()
+          require("dapui").float_element("breakpoints")
+        end,
+        "list breakpoints",
+      },
+    },
+    c = { require("dap").continue, "start/continue" },
+    C = { require("dap").run_to_cursor, "run to cursor" },
+    g = { require("dap").session, "get session" },
+    h = { require("dapui").eval, "hover" },
+    p = { require("dap").pause, "pause" },
+    q = { require("dap").close, "quit" },
+    r = { require("dap").restart, "restart" },
+    s = {
+      name = "step",
+      b = { require("dap").step_back, "step back" },
+      i = { require("dap").step_into, "step into" },
+      o = { require("dap").step_over, "step over" },
+      u = { require("dap").step_out, "step out" },
+    },
+    S = {
+      function()
+        require("dapui").float_element("stacks")
+      end,
+      "show stacks",
+    },
+    d = {
+      function()
+        require("dap").disconnect({ terminateDebugee = false })
+      end,
+      "disconnect",
+    },
+    t = { require("dapui").toggle, "Toggle UI" },
+    T = {
+      function()
+        require("dap").disconnect({ terminateDebugee = true })
+      end,
+      "terminate & disconnect",
+    },
+  },
+
+  -- D is for Database
+  D = {
     name = "Database",
     t = { get_cmd("DBUIToggle"), "toggle ui" },
     f = { get_cmd("DBUIFindBuffer"), "find buffer" },

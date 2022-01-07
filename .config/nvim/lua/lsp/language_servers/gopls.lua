@@ -24,6 +24,12 @@ local ls = LanguageServer:create({
     -- Disable formatting in the lsp server as `vim-go` plugin handles formatting
     client.resolved_capabilities.document_formatting = false
   end,
+
+  debugger_name = "go_delve",
+  -- debugger_config = {
+  -- adapters = {},
+  -- configurations = {},
+  -- },
 })
 
 return ls

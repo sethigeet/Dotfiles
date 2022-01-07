@@ -15,6 +15,12 @@ local ls = LanguageServer:create({
       },
     },
   },
+
+  debugger_name = "python",
+  -- debugger_config = {
+  -- adapters = {},
+  -- configurations = {},
+  -- },
 })
 
 return ls
