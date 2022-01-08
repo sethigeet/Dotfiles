@@ -14,9 +14,9 @@ elif command -v xsel &>/dev/null; then
 fi
 
 # youtube
-if command -v youtube-dl &>/dev/null; then
-  alias ytd="youtube-dl --add-metadata -c"   # download video with audio
-  alias ytad="youtube-dl --add-metadata -xc" # download audio only
+if command -v yt-dlp &>/dev/null; then
+  alias ytd="yt-dlp --add-metadata -c"   # download video with audio
+  alias ytad="yt-dlp --add-metadata -xc" # download audio only
 fi
 
 if command -v gallery-dl &>/dev/null; then
