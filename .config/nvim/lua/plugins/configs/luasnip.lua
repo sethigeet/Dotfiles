@@ -15,7 +15,7 @@ function plugin.setup()
 end
 
 function plugin.keymaps()
-  local map = require("utils.map")
+  local map = require("utils").map
 end
 
 return plugin

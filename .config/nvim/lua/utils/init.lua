@@ -126,4 +126,11 @@ function utils.get_relative_path(path)
   return "." .. nice_path
 end
 
+function utils.map(mode, lhs, rhs, opts)
+  if opts and opts.silent == nil then
+    opts.silent = true
+  end
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 return utils

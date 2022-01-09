@@ -43,12 +43,12 @@ function plugin.setup()
 end
 
 function plugin.keymaps()
-  local map = require("utils.map")
+  local map = require("utils").map
 
   -- Easily open the quickfix list
-  map.nnoremap("<C-q>", "<cmd>TroubleToggle quickfix<CR>")
+  map("n", "<C-q>", "<Cmd>TroubleToggle quickfix<CR>")
   -- Easily open the location list
-  -- map.nnoremap("<C-l>", "<cmd>TroubleToggle loclist<CR>")
+  -- map("n", "<C-l>", "<Cmd>TroubleToggle loclist<CR>")
 end
 
 return plugin

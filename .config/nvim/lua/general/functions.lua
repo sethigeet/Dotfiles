@@ -26,20 +26,6 @@ function LoadPlugins(doWhat, args)
   error("That action is not supported")
 end
 
-function SaveFile(format, force)
-  -- Format the file
-  if format then
-    vim.lsp.buf.formatting_sync()
-  end
-
-  -- Save the file
-  if force then
-    vim.cmd("write!")
-  else
-    vim.cmd("write")
-  end
-end
-
 function ReloadFile()
   vim.notify(
     [[The current file will be sourced and will be

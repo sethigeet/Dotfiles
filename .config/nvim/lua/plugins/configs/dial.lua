@@ -14,15 +14,13 @@ function plugin.setup()
 end
 
 function plugin.keymaps()
-  local map = require("utils.map")
+  local map = require("utils").map
 
-  for _, mode in ipairs({ "n", "x" }) do
-    map.default_map(mode, "<C-a>", "<Plug>(dial-increment)")
-    map.default_map(mode, "<C-x>", "<Plug>(dial-decrement)")
-  end
+  map({ "n", "x" }, "<C-a>", "<Plug>(dial-increment)")
+  map({ "n", "x" }, "<C-x>", "<Plug>(dial-decrement)")
 
-  map.xmap("g<C-a>", "<Plug>(dial-increment-additional)")
-  map.xmap("g<C-x>", "<Plug>(dial-decrement-additional)")
+  map({ "n", "x" }, "g<C-a>", "<Plug>(dial-increment-additional)")
+  map({ "n", "x" }, "g<C-x>", "<Plug>(dial-decrement-additional)")
 end
 
 return plugin

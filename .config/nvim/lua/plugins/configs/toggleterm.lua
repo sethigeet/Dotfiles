@@ -90,15 +90,15 @@ terminal first]],
 end
 
 function plugin.keymaps()
-  local map = require("utils.map")
+  local map = require("utils").map
 
-  map.nnoremap("`", TermToggle)
-  map.tnoremap("`", TermToggle)
+  map("n", "`", TermToggle)
+  map("t", "`", TermToggle)
 
-  map.nnoremap("<F1>", function()
+  map("n", "<F1>", function()
     TermToggle("floating")
   end)
-  map.tnoremap("<F1>", function()
+  map("t", "<F1>", function()
     TermToggle("floating")
   end)
 end

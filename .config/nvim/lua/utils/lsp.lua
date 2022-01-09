@@ -1,6 +1,6 @@
 local M = {}
 
-local map = require("utils.map")
+local map = require("utils").map
 
 function M.check_lsp_client_active(name)
   local active_clients = vim.lsp.get_active_clients()
@@ -40,13 +40,27 @@ function M.setup_document_highlight(client)
   end
 end
 
+local function save_file(format, force)
+  -- Format the file
+  if format then
+    vim.lsp.buf.formatting_sync()
+  end
+
+  -- Save the file
+  if force then
+    vim.cmd("write!")
+  else
+    vim.cmd("write")
+  end
+end
+
 function M.setup_format_on_save(client)
   if client.resolved_capabilities.document_formatting then
-    map.nnoremap("<C-s>", "<cmd>lua SaveFile(true)<CR>", { buffer = true })
-    map.nnoremap("<M-s>", "<cmd>lua SaveFile(false)<CR>", { buffer = true })
+    map("n", "<C-s>", function() save_file(true) end, { buffer = true })
+    map("n", "<M-s>", function() save_file(false) end, { buffer = true })
 
-    map.vnoremap("<C-s>", "<cmd>lua SaveFile(true, true)<CR>", { buffer = true })
-    map.vnoremap("<M-s>", "<cmd>lua SaveFile(false, true)<CR>", { buffer = true })
+    map("v", "<C-s>", function() save_file(true, true) end, { buffer = true })
+    map("v", "<M-s>", function() save_file(false, true) end, { buffer = true })
   end
 end
 
