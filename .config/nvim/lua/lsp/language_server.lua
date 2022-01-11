@@ -30,11 +30,11 @@ function LanguageServer:lsp()
   local options = {
     root_dir = lsp_utils.get_root_dir,
     on_attach = function(client, bufnr)
-      lsp_utils.setup_document_highlight(client)
-      lsp_utils.setup_format_on_save(client)
       if self.on_attach then
         self.on_attach(client, bufnr)
       end
+      lsp_utils.setup_document_highlight(client)
+      lsp_utils.setup_format_on_save(client)
     end,
     capabilities = capabilities,
   }
