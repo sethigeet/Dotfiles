@@ -1,18 +1,11 @@
-local lsps = {
-  "bashls",
-  "clangd",
-  "cssls",
-  "dockerls",
-  "gopls",
-  "graphql",
-  "html",
-  "jsonls",
-  "sumneko_lua",
-  "pyright",
-  "tsserver",
-  "vimls",
-  "yamlls",
-}
+local lsps = {}
+for _, file in ipairs(vim.split(vim.fn.glob(CONFIG_PATH .. "/lua/lsp/language_servers/*"), "\n")) do
+  local match = string.gmatch(file, [[[a-z,_,-]+.lua$]])()
+  if match ~= "init.lua" then
+    local name, _ = string.gsub(match, [[.lua$]], "", 1)
+    table.insert(lsps, name)
+  end
+end
 
 -- Setup lsp install
 local lsp_installer = require("nvim-lsp-installer")

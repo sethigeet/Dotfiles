@@ -3,6 +3,7 @@ local LanguageServer = {
   debugger_name = "",
   debugger_config = {},
   cmd_args = {},
+  capabilities = {},
   filetypes = {},
   formatters = {},
   linters = {},
@@ -25,6 +26,7 @@ function LanguageServer:lsp()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities = vim.tbl_deep_extend("force", capabilities, self.capabilities)
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
   local options = {

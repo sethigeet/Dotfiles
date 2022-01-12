@@ -297,6 +297,7 @@ local plugins = {
     ft = { "go" },
     run = 'vim.cmd("GoUpdateBinaries")',
   },
+  "simrat39/rust-tools.nvim",
   -- JSON Schemas provider
   "b0o/schemastore.nvim",
 

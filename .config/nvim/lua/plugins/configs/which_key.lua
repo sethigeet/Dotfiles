@@ -375,7 +375,6 @@ local mappings = {
     R = { get_cmd("Telescope registers"), "registers" },
     S = { get_cmd("Telescope git_status"), "git status" },
     t = { get_cmd("TodoTelescope"), "todos" },
-    w = { get_cmd("Telescope file_browser"), "file browser" },
   },
 
   -- S is for Search and replace
