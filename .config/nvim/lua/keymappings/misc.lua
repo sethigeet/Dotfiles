@@ -26,7 +26,3 @@ map("v", "<M-x>", ":s//g<Left><Left>")
 -- Delete wihthout yanking
 map("n", "<M-d>", 'V"_d')
 map("v", "<M-d>", '"_d')
-
--- NOTE: <C-M> is the code sent for Ctrl+Enter
-map("n", "<C-M>", "<Esc>o")
-map("i", "<C-CR>", "<Esc>o")
