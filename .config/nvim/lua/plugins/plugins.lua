@@ -138,11 +138,6 @@ local plugins = {
     config = "gitsigns",
   },
   {
-    "f-person/git-blame.nvim",
-    event = "BufRead",
-    config = "git_blame",
-  },
-  {
     "TimUntersberger/neogit",
     requires = "nvim-lua/plenary.nvim",
     config = "neogit",
