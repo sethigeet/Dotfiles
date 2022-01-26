@@ -56,17 +56,29 @@ end
 
 function M.setup_format_on_save(client)
   if client.resolved_capabilities.document_formatting then
-    map("n", "<C-s>", function() save_file(true) end, { buffer = true })
-    map("n", "<M-s>", function() save_file(false) end, { buffer = true })
+    map("n", "<C-s>", function()
+      save_file(true)
+    end, { buffer = true })
+    map("n", "<M-s>", function()
+      save_file(false)
+    end, { buffer = true })
 
-    map("v", "<C-s>", function() save_file(true, true) end, { buffer = true })
-    map("v", "<M-s>", function() save_file(false, true) end, { buffer = true })
+    map("v", "<C-s>", function()
+      save_file(true, true)
+    end, { buffer = true })
+    map("v", "<M-s>", function()
+      save_file(false, true)
+    end, { buffer = true })
   end
 end
 
 function M.get_root_dir(filename)
   -- Look into this: require('lspconfig/util').root_pattern("files", ".git", ".")
   return vim.fn.getcwd()
+end
+
+function M.setup_keybindings()
+  require("keymappings.lsp")
 end
 
 return M

@@ -82,6 +82,29 @@ local function get_cmd(cmd, isPlugin)
   return prefix .. cmd .. suffix
 end
 
+-- Treesitter move plugin keybindings
+local function get_bracket_mappings(next, start)
+  local dir = next and "next" or "previous"
+  local towards = start and "start" or "end"
+
+  local bracket_mappings = {
+    f = "goto " .. dir .. " function " .. towards,
+    c = "goto " .. dir .. " class " .. towards,
+    l = "goto " .. dir .. " loop " .. towards,
+    i = "goto " .. dir .. " conditional " .. towards,
+    p = "goto " .. dir .. " parameter " .. towards,
+    b = "goto " .. dir .. " block " .. towards,
+  }
+
+  local actual_bracket_mappings = {}
+  for key, obj in pairs(bracket_mappings) do
+    local actual_key = start and key or string.upper(key)
+    actual_bracket_mappings[string.format("%s", actual_key)] = obj
+  end
+
+  return actual_bracket_mappings
+end
+
 local mappings = {
   ["/"] = { "<Cmd>lua require('Comment.api').call('toggle_current_linewise_op')<CR>g@$", "comment" },
   ["?"] = { get_cmd("NvimTreeFindFile"), "show file in tree" },
@@ -429,6 +452,51 @@ local mappings = {
   },
 }
 
+local open_bracket_mappings = {
+  d = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
+  r = "Goto previous usage", -- Defined in treesitter config
+  g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
+}
+local close_bracket_mappings = {
+  d = { vim.diagnostic.goto_next, "Next  Diagnostic" },
+  r = "Goto next usage", -- Defined in treesitter config
+  g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
+}
+
+local g_mappings = {
+  b = {
+    name = "Comment Block ",
+    c = "Line",
+  },
+  c = {
+    name = "Comment Line ",
+    c = "Line",
+    A = "Insert at the end of the line",
+    o = "Insert below",
+    O = "Insert above",
+  },
+  [">"] = {
+    name = "Increase comment level",
+    c = "Line",
+    b = "Block",
+  },
+  ["<lt>"] = {
+    name = "Decrease comment level",
+    c = "Line",
+    b = "Block",
+  },
+  d = { vim.lsp.buf.definition, "Goto definition" },
+  D = { vim.lsp.buf.declaration, "Goto declaration" },
+  I = { vim.lsp.buf.implementation, "Goto implementation" },
+  l = {
+    get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics', source = true })"),
+    "Show line diagnostics",
+  },
+  p = { get_cmd("lua require('lsp.helpers.peek').peek('definition')"), "Peek definition" },
+  r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
+  s = { vim.lsp.buf.signature_help, "Goto references" },
+}
+
 -- Mode specific changes
 local normal_mappings = vim.deepcopy(mappings)
 
@@ -436,87 +504,26 @@ local visual_mappings = vim.deepcopy(mappings)
 visual_mappings["/"][1] = "<Esc><Cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>"
 visual_mappings["p"] = { '"_dP', "Paste without yank" }
 
--- Treesitter move plugin keybindings
-local function get_bracket_mappings(next, start)
-  local dir = next and "next" or "previous"
-  local towards = start and "start" or "end"
-
-  local bracket_mappings = {
-    f = "goto " .. dir .. " function " .. towards,
-    c = "goto " .. dir .. " class " .. towards,
-    l = "goto " .. dir .. " loop " .. towards,
-    i = "goto " .. dir .. " conditional " .. towards,
-    p = "goto " .. dir .. " parameter " .. towards,
-    b = "goto " .. dir .. " block " .. towards,
-  }
-
-  local actual_bracket_mappings = {}
-  for key, obj in pairs(bracket_mappings) do
-    local actual_key = start and key or string.upper(key)
-    actual_bracket_mappings[string.format("%s", actual_key)] = obj
-  end
-
-  return actual_bracket_mappings
-end
-
 function plugin.keymaps()
   -- Set leader
   vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
   vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
   vim.g.mapleader = " "
 
+  -- `Leader` key
   wk.register(normal_mappings, get_opts("n"))
   wk.register(visual_mappings, get_opts("v"))
 
+  -- bracket keys
   wk.register(get_bracket_mappings(true, true), get_opts("n", "]"))
   wk.register(get_bracket_mappings(true, false), get_opts("n", "]"))
   wk.register(get_bracket_mappings(false, true), get_opts("n", "["))
   wk.register(get_bracket_mappings(false, false), get_opts("n", "["))
+  wk.register(open_bracket_mappings, get_opts("n", "["))
+  wk.register(close_bracket_mappings, get_opts("n", "["))
 
-  -- LSP Bindings
-  wk.register({
-    d = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
-    r = "Goto previous usage", -- Defined in treesitter config
-    g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
-  }, get_opts("n", "["))
-  wk.register({
-    d = { vim.diagnostic.goto_next, "Next  Diagnostic" },
-    r = "Goto next usage", -- Defined in treesitter config
-    g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
-  }, get_opts("n", "]"))
-  wk.register({
-    b = {
-      name = "Comment Block ",
-      c = "Line",
-    },
-    c = {
-      name = "Comment Line ",
-      c = "Line",
-      A = "Insert at the end of the line",
-      o = "Insert below",
-      O = "Insert above",
-    },
-    [">"] = {
-      name = "Increase comment level",
-      c = "Line",
-      b = "Block",
-    },
-    ["<lt>"] = {
-      name = "Decrease comment level",
-      c = "Line",
-      b = "Block",
-    },
-    d = { vim.lsp.buf.definition, "Goto definition" },
-    D = { vim.lsp.buf.declaration, "Goto declaration" },
-    I = { vim.lsp.buf.implementation, "Goto implementation" },
-    l = {
-      get_cmd("lua vim.diagnostic.open_float(0, { scope = 'line', header = 'Line Diagnostics', source = true })"),
-      "Show line diagnostics",
-    },
-    p = { get_cmd("lua require('lsp.helpers.peek').peek('definition')"), "Peek definition" },
-    r = { get_cmd("TroubleToggle lsp_references"), "Goto references" },
-    s = { vim.lsp.buf.signature_help, "Goto references" },
-  }, get_opts("n", "g"))
+  -- `g` key
+  wk.register(g_mappings, get_opts("n", "g"))
 end
 
 function plugin.define_augroups()
