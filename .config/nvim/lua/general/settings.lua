@@ -11,7 +11,6 @@ local opts = {
   encoding = "utf-8", -- The encoding displayed
   fileencoding = "utf-8", -- The encoding written to file
   ruler = true, -- Show the cursor position all the time
-  cmdheight = 2, -- More space for displaying messages
   mouse = "a", -- Enable the mouse
   splitbelow = true, -- Horizontal splits will automatically be below
   splitright = true, -- Vertical splits will automatically be to the right
