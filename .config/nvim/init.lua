@@ -1,5 +1,5 @@
 -- TODO: Remove this with the corresponding plugin after the PR is merged
-require("impatient")
+pcall(require, "impatient")
 
 -- Load the global variables
 require("globals")

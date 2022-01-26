@@ -35,8 +35,10 @@ function LanguageServer:lsp()
       if self.on_attach then
         self.on_attach(client, bufnr)
       end
+
       lsp_utils.setup_document_highlight(client)
       lsp_utils.setup_format_on_save(client)
+      lsp_utils.setup_keybindings()
     end,
     capabilities = capabilities,
   }
