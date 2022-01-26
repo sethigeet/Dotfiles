@@ -75,10 +75,12 @@
   "explorer.compactFolders": false,
 
   //# Terminal
-  "terminal.external.linuxExec": "/usr/bin/alacritty",
+  "terminal.external.linuxExec": "/usr/bin/kitty",
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "terminal.integrated.fontSize": 16,
   // "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
 
   //# Output
   "output.smartScroll.enabled": false,
@@ -149,6 +151,10 @@
 
   // CPP
   "C_Cpp.clang_format_fallbackStyle": "Google",
+
+  // Julia
+  "julia.symbolCacheDownload": true,
+  "julia.enableTelemetry": false,
 
   //# Autocompletion
   // Kite
