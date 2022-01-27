@@ -1,12 +1,23 @@
 local LanguageServer = {
+  -- For lsp
   server_name = "",
-  debugger_name = "",
-  debugger_config = {},
   cmd_args = {},
   capabilities = {},
   filetypes = {},
+
+  -- For `nvim-dap`
+  debugger_name = "",
+  debugger_config = {},
+
+  -- For null-ls
   formatters = {},
   linters = {},
+
+  -- For asthetics
+  virtual_text = {
+    inlay_hints = false,
+    code_lens = false,
+  },
 }
 
 local lsp_utils = require("utils.lsp")
@@ -38,7 +49,16 @@ function LanguageServer:lsp()
 
       lsp_utils.setup_document_highlight(client)
       lsp_utils.setup_format_on_save(client)
-      lsp_utils.setup_keybindings()
+      lsp_utils.setup_keybindings(bufnr)
+
+      if self.virtual_text.inlay_hints then
+        -- NOTE: This currently only supports `rust-analyzer`
+        lsp_utils.setup_inlay_hints()
+      end
+
+      if self.virtual_text.code_lens then
+        lsp_utils.setup_codelens()
+      end
     end,
     capabilities = capabilities,
   }

@@ -22,9 +22,10 @@ local ls = LanguageServer:create({
     },
   },
 
-  on_attach = function(_, _)
-    require("lsp.helpers.inlay_hints").setup_autocmd()
-  end,
+  virtual_text = {
+    inlay_hints = true,
+    code_lens = true,
+  },
 
   -- TODO: Setup the functionality for the debugger
   -- debugger_name = "",

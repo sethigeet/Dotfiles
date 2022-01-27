@@ -234,6 +234,7 @@ local plugins = {
 
   -- Intellisense
   "neovim/nvim-lspconfig",
+  "nvim-lua/lsp_extensions.nvim",
   "williamboman/nvim-lsp-installer",
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -286,13 +287,14 @@ local plugins = {
     event = "InsertEnter",
     config = "lsp_signature",
   },
+
   -- Language specific plugins
   {
     "fatih/vim-go",
     ft = { "go" },
     run = 'vim.cmd("GoUpdateBinaries")',
   },
-  "simrat39/rust-tools.nvim",
+  -- "simrat39/rust-tools.nvim",
   -- JSON Schemas provider
   "b0o/schemastore.nvim",
 

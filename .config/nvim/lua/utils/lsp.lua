@@ -77,8 +77,30 @@ function M.get_root_dir(filename)
   return vim.fn.getcwd()
 end
 
-function M.setup_keybindings()
-  require("keymappings.lsp")
+function M.setup_keybindings(bufnr)
+  require("keymappings.lsp").setup(bufnr)
+end
+
+function M.setup_inlay_hints()
+  require("utils").define_augroups({
+    lsp_inlay_hints = {
+      { "TextChanged,TextChangedI", "<buffer>", "lua require('lsp_extensions').inlay_hints({ prefix = '  ' })" },
+    },
+  })
+
+  -- TODO: Figure out a way to run this once the server has started
+  -- require("lsp_extensions").inlay_hints({ prefix = "  " })
+end
+
+function M.setup_codelens()
+  require("utils").define_augroups({
+    lsp_codelens = {
+      { "TextChanged,TextChangedI", "<buffer>", "lua vim.lsp.codelens.refresh()" },
+    },
+  })
+
+  -- TODO: Figure out a way to run this once the server has started
+  -- vim.lsp.codelens.refresh()
 end
 
 return M
