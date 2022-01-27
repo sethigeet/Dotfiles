@@ -520,7 +520,7 @@ function plugin.keymaps()
   wk.register(get_bracket_mappings(false, true), get_opts("n", "["))
   wk.register(get_bracket_mappings(false, false), get_opts("n", "["))
   wk.register(open_bracket_mappings, get_opts("n", "["))
-  wk.register(close_bracket_mappings, get_opts("n", "["))
+  wk.register(close_bracket_mappings, get_opts("n", "]"))
 
   -- `g` key
   wk.register(g_mappings, get_opts("n", "g"))

@@ -2,6 +2,8 @@ local plugin = {}
 
 function plugin.setup()
   local actions = require("telescope.actions")
+  local actions_layout = require("telescope.actions.layout")
+  local actions_state = require("telescope.actions.state")
   local trouble = require("trouble.providers.telescope")
   local previewers = require("telescope.previewers")
   local sorters = require("telescope.sorters")
@@ -56,12 +58,24 @@ function plugin.setup()
           ["<c-t>"] = trouble.open_with_trouble,
           ["<C-n>"] = actions.cycle_history_next,
           ["<C-p>"] = actions.cycle_history_prev,
+          ["<C-y>"] = function(prompt_bufnr)
+            local entry = actions_state.get_selected_entry()
+            if not entry or not type(entry) == "table" then
+              return
+            end
+
+            actions_state.get_current_picker(prompt_bufnr):reset_prompt(entry.ordinal)
+          end,
+          ["<M-p>"] = actions_layout.toggle_preview,
+          ["<M-m>"] = actions_layout.toggle_mirror,
           ["<CR>"] = actions.select_default + actions.center,
           ["<Esc>"] = actions.close,
         },
         n = {
           ["<C-n>"] = actions.cycle_history_next,
           ["<C-p>"] = actions.cycle_history_prev,
+          ["<M-p>"] = actions_layout.toggle_preview,
+          ["<M-m>"] = actions_layout.toggle_mirror,
           ["<Esc>"] = actions.close,
         },
       },
