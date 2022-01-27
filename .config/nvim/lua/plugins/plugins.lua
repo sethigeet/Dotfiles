@@ -235,6 +235,7 @@ local plugins = {
   -- Intellisense
   "neovim/nvim-lspconfig",
   "nvim-lua/lsp_extensions.nvim",
+  "j-hui/fidget.nvim",
   "williamboman/nvim-lsp-installer",
   {
     "jose-elias-alvarez/null-ls.nvim",
