@@ -127,7 +127,8 @@ function utils.get_relative_path(path)
 end
 
 function utils.map(mode, lhs, rhs, opts)
-  if opts and opts.silent == nil then
+  opts = opts or {}
+  if vim.tbl_isempty(opts) or opts.silent == nil then
     opts.silent = true
   end
   vim.keymap.set(mode, lhs, rhs, opts)

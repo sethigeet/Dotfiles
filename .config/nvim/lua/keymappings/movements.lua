@@ -20,7 +20,3 @@ map("n", "<M-L>", "<cmd>vertical resize +2<CR>")
 
 map("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
 map("v", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", { expr = true })
-
--- Fuzzy finder (requires telescope)
-map("n", "<C-p>", "<Cmd>Telescope find_files<CR>")
-map("n", "<C-b>", "<Cmd>Telescope buffers<CR>")

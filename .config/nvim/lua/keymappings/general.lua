@@ -19,8 +19,8 @@ map("n", "<S-TAB>", "<Cmd>bprevious<CR>")
 map("n", "X", "<Cmd>bdelete<CR>")
 
 -- Move selected line / block of text in visual mode
-map("x", "K", "<Cmd>move '<-2<CR>gv-gv")
-map("x", "J", "<Cmd>move '>+1<CR>gv-gv")
+map("x", "K", ":move '<-2<CR>gv-gv")
+map("x", "J", ":move '>+1<CR>gv-gv")
 
 -- Alternate way to save
 map("n", "<C-s>", "<Cmd>w<CR>")

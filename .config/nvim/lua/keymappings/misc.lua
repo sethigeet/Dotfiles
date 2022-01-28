@@ -24,5 +24,4 @@ map("n", "<M-x>", ":%s//g<Left><Left>")
 map("v", "<M-x>", ":s//g<Left><Left>")
 
 -- Delete wihthout yanking
-map("n", "<M-d>", 'V"_d')
-map("v", "<M-d>", '"_d')
+map("n", "<M-d>", '"_d')

@@ -99,7 +99,16 @@ function plugin.setup()
     },
   })
 
+  plugin.keymappings()
   plugin.load_extensions()
+end
+
+function plugin.keymappings()
+  local map = require("utils").map
+
+  map("n", "<C-f>", plugin.grep_current_buf)
+  map("n", "<C-b>", "<Cmd>Telescope buffers<CR>")
+  map("n", "<C-p>", "<Cmd>Telescope find_files<CR>")
 end
 
 function plugin.load_extensions()
@@ -117,9 +126,8 @@ function plugin.load_extensions()
 end
 
 function plugin.grep_current_buf()
-  local opts = require("telescope.themes").get_dropdown({
+  local opts = require("telescope.themes").get_ivy({
     winblend = 10,
-    layout_strategy = "bottom_pane",
     border = true,
     previewer = false,
     shorten_path = false,

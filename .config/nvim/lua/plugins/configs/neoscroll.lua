@@ -7,7 +7,7 @@ function plugin.setup()
       "<C-u>",
       "<C-d>",
       -- "<C-b>",
-      "<C-f>",
+      -- "<C-f>",
       "<C-y>",
       "<C-e>",
       "zt",
