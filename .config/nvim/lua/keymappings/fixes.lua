@@ -1,4 +1,4 @@
-local map = require("utils").map
+local map = require("utils.wrappers").map
 
 -- Saner "n" and "N" behavior
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n

@@ -1,11 +1,10 @@
-vim.g.tokyonight_style = "night"
-vim.cmd("colorscheme tokyonight")
+local highlight_groups = require("utils.wrappers").highlight_groups
 
 -- Git diff colors
-vim.cmd([[
-  hi DiffAdd        guibg=#283B4D guifg=NONE
-  hi DiffChange     guibg=#283B4D guifg=NONE
-  hi DiffDelete     guibg=#3C2C3C guifg=#725272 gui=bold
-  hi DiffText       guibg=#365069 guifg=NONE
-  hi SelectNextKey                guifg=#FF007C gui=bold
-]])
+highlight_groups({
+  DiffAdd = { bg = "#283B4D" },
+  DiffChange = { bg = "#283B4D" },
+  DiffDelete = { bg = "#3C2C3C", fg = "#725272", style = "bold" },
+  DiffText = { bg = "#365069" },
+  SelectNextKey = { fg = "#FF007C", style = "bold" },
+})

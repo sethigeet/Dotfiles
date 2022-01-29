@@ -1,4 +1,4 @@
-local map = require("utils").map
+local map = require("utils.wrappers").map
 
 -- Better window movements
 map({ "n", "i", "x" }, "<M-h>", "<C-w>h")

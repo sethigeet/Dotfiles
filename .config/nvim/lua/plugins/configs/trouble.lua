@@ -43,7 +43,7 @@ function plugin.setup()
 end
 
 function plugin.keymaps()
-  local map = require("utils").map
+  local map = require("utils.wrappers").map
 
   -- Easily open the quickfix list
   map("n", "<C-q>", "<Cmd>TroubleToggle quickfix<CR>")

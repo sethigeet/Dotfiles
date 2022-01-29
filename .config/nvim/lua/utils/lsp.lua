@@ -1,6 +1,6 @@
 local M = {}
 
-local map = require("utils").map
+local map = require("utils.wrappers").map
 
 function M.check_lsp_client_active(name)
   local active_clients = vim.lsp.get_active_clients()

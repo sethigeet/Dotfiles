@@ -97,19 +97,9 @@ function utils.restore_last_place()
   end
 end
 
-function utils.split(str, sep)
-  local res = {}
-  for w in str:gmatch("([^" .. sep .. "]*)") do
-    if w ~= "" then
-      table.insert(res, w)
-    end
-  end
-  return res
-end
-
 function utils.get_relative_path(path)
-  local split_path = utils.split(path, "/")
-  local split_cwd = utils.split(vim.fn.getcwd(), "/")
+  local split_path = vim.split(path, "/")
+  local split_cwd = vim.split(vim.fn.getcwd(), "/")
   local curr_dir = split_cwd[#split_cwd]
   local nice_path = ""
 
@@ -124,14 +114,6 @@ function utils.get_relative_path(path)
   end
 
   return "." .. nice_path
-end
-
-function utils.map(mode, lhs, rhs, opts)
-  opts = opts or {}
-  if vim.tbl_isempty(opts) or opts.silent == nil then
-    opts.silent = true
-  end
-  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 return utils

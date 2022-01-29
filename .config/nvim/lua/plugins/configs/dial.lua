@@ -14,7 +14,7 @@ function plugin.setup()
 end
 
 function plugin.keymaps()
-  local map = require("utils").map
+  local map = require("utils.wrappers").map
 
   map({ "n", "x" }, "<C-a>", "<Plug>(dial-increment)")
   map({ "n", "x" }, "<C-x>", "<Plug>(dial-decrement)")

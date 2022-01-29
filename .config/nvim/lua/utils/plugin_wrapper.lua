@@ -1,6 +1,6 @@
 local wrapper = {}
 
-function wrapper.bootstrap()
+local function bootstrap()
   local fn = vim.fn
   local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
   if fn.empty(fn.glob(install_path)) > 0 then
@@ -33,7 +33,7 @@ local function process_plugins(plugins)
 end
 
 function wrapper.setup(config, plugins)
-  wrapper.bootstrap()
+  bootstrap()
 
   local packer = require("packer")
   packer.init(config)

@@ -104,7 +104,10 @@ local plugins = {
   },
 
   -- Themes
-  "folke/tokyonight.nvim",
+  {
+    "folke/tokyonight.nvim",
+    config = "tokyonight",
+  },
   -- "ayu-theme/ayu-vim"
 
   -- Status Line

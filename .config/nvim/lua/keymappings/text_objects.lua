@@ -1,4 +1,4 @@
-local map = require("utils").map
+local map = require("utils.wrappers").map
 
 local chars = { "_", ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*", "+", "%", "-", "#" }
 

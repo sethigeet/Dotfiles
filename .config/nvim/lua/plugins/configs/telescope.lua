@@ -104,7 +104,7 @@ function plugin.setup()
 end
 
 function plugin.keymappings()
-  local map = require("utils").map
+  local map = require("utils.wrappers").map
 
   map("n", "<C-f>", plugin.grep_current_buf)
   map("n", "<C-b>", "<Cmd>Telescope buffers<CR>")

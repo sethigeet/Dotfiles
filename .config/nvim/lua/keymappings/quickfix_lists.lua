@@ -1,4 +1,4 @@
-local map = require("utils").map
+local map = require("utils.wrappers").map
 
 -- NOTE: These bindings are only for the global quickfix lists
 --       See the whichkey config for bindings realted to location lists

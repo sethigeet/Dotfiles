@@ -37,7 +37,7 @@ function plugin.setup()
 end
 
 function plugin.keymaps()
-  local map = require("utils").map
+  local map = require("utils.wrappers").map
 
   -- Goto any buffer instantly
   map("n", "<M-b>", "<Cmd>BufferLinePick<CR>")
