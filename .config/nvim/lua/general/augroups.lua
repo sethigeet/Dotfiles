@@ -1,4 +1,4 @@
-local define_augroups = require("utils").define_augroups
+local define_augroups = require("utils.wrappers").define_augroups
 
 local augroups = {
   general_settings = {

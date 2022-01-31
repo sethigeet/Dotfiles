@@ -1,3 +1,5 @@
+local Plugin = require("plugins.plugin")
+
 local function get_tab_stop()
   local label = "Tab Size: "
   if vim.api.nvim_buf_get_option(0, "expandtab") then
@@ -23,34 +25,32 @@ local function get_lsp_client()
   return msg
 end
 
-local plugin = {}
-
-function plugin.setup()
-  require("lualine").setup({
-    options = { theme = "tokyonight" },
-    sections = {
-      lualine_a = { "mode" },
-      lualine_b = { "branch" },
-      lualine_c = {
-        {
-          "diff",
-          colored = true,
-          symbols = { added = " ", modified = "柳", removed = " " },
+return Plugin:create({
+  configure = function()
+    require("lualine").setup({
+      options = { theme = "tokyonight" },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch" },
+        lualine_c = {
+          {
+            "diff",
+            colored = true,
+            symbols = { added = " ", modified = "柳", removed = " " },
+          },
+          {
+            "diagnostics",
+            sources = { "nvim_diagnostic" },
+            sections = { "error", "warn", "info" },
+            symbols = { error = " ", warn = " ", info = " " },
+          },
+          { "filename", symbols = { modified = "  ", readonly = "  " } },
         },
-        {
-          "diagnostics",
-          sources = { "nvim_diagnostic" },
-          sections = { "error", "warn", "info" },
-          symbols = { error = " ", warn = " ", info = " " },
-        },
-        { "filename", symbols = { modified = "  ", readonly = "  " } },
+        lualine_x = { { "filetype", colored = true }, get_lsp_client },
+        lualine_y = { get_tab_stop },
+        lualine_z = { "location", "progress" },
       },
-      lualine_x = { { "filetype", colored = true }, get_lsp_client },
-      lualine_y = { get_tab_stop },
-      lualine_z = { "location", "progress" },
-    },
-    extensions = { "nvim-tree", "quickfix", "toggleterm", "symbols-outline" },
-  })
-end
-
-return plugin
+      extensions = { "nvim-tree", "quickfix", "toggleterm", "symbols-outline" },
+    })
+  end,
+})

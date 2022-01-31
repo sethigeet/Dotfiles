@@ -1,14 +1,14 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  local notify = require("notify")
+return Plugin:create({
+  configure = function()
+    local notify = require("notify")
 
-  notify.setup({
-    -- Animation style
-    stages = "slide",
-  })
+    notify.setup({
+      -- Animation style
+      stages = "slide",
+    })
 
-  vim.notify = notify
-end
-
-return plugin
+    vim.notify = notify
+  end,
+})

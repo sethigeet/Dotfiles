@@ -12,7 +12,7 @@ end
 
 local function change_plugin_config(plugin)
   if plugin.config and type(plugin.config) == "string" then
-    plugin.config = 'require("plugins.configs.' .. plugin.config .. '").setup()'
+    plugin.config = 'require("plugins.configs.' .. plugin.config .. '"):setup()'
   end
 end
 

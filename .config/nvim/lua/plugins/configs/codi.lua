@@ -1,11 +1,12 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  vim.cmd("highlight CodiVirtualText guifg='#6495ed'")
+return Plugin:create({
+  configure = function()
+    vim.g["code#virtual_text_prefix"] = "❯ "
+    vim.g["code#aliases"] = { ["javascript.jsx"] = "javascript" }
+  end,
 
-  vim.cmd("let g:codi#virtual_text_prefix = '❯ '")
-
-  vim.cmd("let g:codi#aliases = { 'javascript.jsx': 'javascript' }")
-end
-
-return plugin
+  highlight_groups = {
+    { "CodiVirtualText", fg = "#6495ed" },
+  },
+})

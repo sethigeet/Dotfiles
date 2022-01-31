@@ -1,10 +1,10 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  require("numb").setup({
-    show_numbers = true, -- Enable 'number' for the window while peeking
-    show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-  })
-end
-
-return plugin
+return Plugin:create({
+  configure = function()
+    require("numb").setup({
+      show_numbers = true, -- Enable 'number' for the window while peeking
+      show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+    })
+  end,
+})

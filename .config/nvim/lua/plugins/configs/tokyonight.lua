@@ -1,8 +1,9 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  vim.g.tokyonight_style = "night"
-  vim.cmd("colorscheme tokyonight")
-end
-
-return plugin
+return Plugin:create({
+  configure = function()
+    vim.g.tokyonight_style = "night"
+    require("tokyonight").colorscheme()
+    -- vim.cmd("colorscheme tokyonight")
+  end,
+})

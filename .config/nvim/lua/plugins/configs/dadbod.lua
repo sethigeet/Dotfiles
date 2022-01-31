@@ -1,8 +1,8 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  vim.g.db_ui_save_location = DATA_PATH .. "/dadbod.db"
-  vim.g.db_ui_auto_execute_table_helpers = true
-end
-
-return plugin
+return Plugin:create({
+  configure = function()
+    vim.g.db_ui_save_location = DATA_PATH .. "/dadbod.db"
+    vim.g.db_ui_auto_execute_table_helpers = true
+  end,
+})

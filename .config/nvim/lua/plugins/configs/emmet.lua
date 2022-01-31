@@ -1,7 +1,7 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  vim.g.user_emmet_leader_key = "<M-e>"
-end
-
-return plugin
+return Plugin:create({
+  configure = function()
+    vim.g.user_emmet_leader_key = "<M-e>"
+  end,
+})

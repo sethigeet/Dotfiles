@@ -82,7 +82,7 @@ function M.setup_keybindings(bufnr)
 end
 
 function M.setup_inlay_hints()
-  require("utils").define_augroups({
+  require("utils.wrappers").define_augroups({
     lsp_inlay_hints = {
       { "TextChanged,TextChangedI", "<buffer>", "lua require('lsp_extensions').inlay_hints({ prefix = '  ' })" },
     },
@@ -93,7 +93,7 @@ function M.setup_inlay_hints()
 end
 
 function M.setup_codelens()
-  require("utils").define_augroups({
+  require("utils.wrappers").define_augroups({
     lsp_codelens = {
       { "TextChanged,TextChangedI", "<buffer>", "lua vim.lsp.codelens.refresh()" },
     },

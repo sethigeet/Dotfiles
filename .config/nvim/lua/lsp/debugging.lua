@@ -14,7 +14,7 @@ function debugging.setup()
     dapui.close()
   end
 
-  require("utils").define_augroups({
+  require("utils.wrappers").define_augroups({
     dap = {
       -- { "FileType", "dap-repl", "lua require('dap.ext.autocompl).attach()" },
     },

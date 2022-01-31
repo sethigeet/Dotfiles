@@ -1,7 +1,7 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  require("rest-nvim").setup()
-end
-
-return plugin
+return Plugin:create({
+  configure = function()
+    require("rest-nvim").setup()
+  end,
+})

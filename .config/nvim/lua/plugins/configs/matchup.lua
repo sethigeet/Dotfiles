@@ -1,7 +1,7 @@
-local plugin = {}
+local Plugin = require("plugins.plugin")
 
-function plugin.setup()
-  vim.g.matchup_matchparen_offscreen = { method = "popup" }
-end
-
-return plugin
+return Plugin:create({
+  configure = function()
+    vim.g.matchup_matchparen_offscreen = { method = "popup" }
+  end,
+})

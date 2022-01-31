@@ -228,6 +228,9 @@ local plugins = {
       -- "nvim-telescope/telescope-fzy-native.nvim",
       "nvim-telescope/telescope-symbols.nvim",
       { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
+
+      -- To setup highlights
+      "folke/tokyonight.nvim",
     },
     cmd = "Telescope",
     module = { "telescope", "telescope.*", "plugins.configs.telescope" },

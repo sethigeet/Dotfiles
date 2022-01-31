@@ -1,60 +1,5 @@
 local wk = require("which-key")
-
-local plugin = {}
-
-function plugin.setup()
-  wk.setup({
-    plugins = {
-      marks = true, -- shows a list of your marks on ' and `
-      registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-      -- No actual key bindings are created
-      spelling = {
-        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-        suggestions = 20, -- how many suggestions should be shown in the list?
-      },
-      presets = {
-        operators = false, -- adds help for operators like d, y, ...
-        motions = false, -- adds help for motions
-        text_objects = false, -- help for text objects triggered after entering an operator
-        windows = true, -- default bindings on <c-w>
-        nav = false, -- misc bindings to work with windows
-        z = true, -- bindings for folds, spelling and others prefixed with z
-        g = true, -- bindings for prefixed with g
-      },
-    },
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = " ", -- symbol prepended to a group
-    },
-    window = {
-      border = "none", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = { 1, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
-    },
-    layout = {
-      height = { min = 5, max = 15 }, -- min and max height of the columns
-      width = { min = 4, max = 50 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-    },
-    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", ":", ":", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-    show_help = true, -- show help message on the command line when the popup is visible
-    triggers = "auto", -- automatically setup triggers
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      c = { "j", "k" },
-      i = { "j", "k", "<Space>" },
-    },
-  })
-
-  plugin.keymaps()
-  plugin.define_augroups()
-end
+local Plugin = require("plugins.plugin")
 
 local function get_opts(mode, prefix)
   local actual_prefix
@@ -504,36 +449,91 @@ local visual_mappings = vim.deepcopy(mappings)
 visual_mappings["/"][1] = "<Esc><Cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>"
 visual_mappings["p"] = { '"_dP', "Paste without yank" }
 
-function plugin.keymaps()
-  -- Set leader
-  vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("v", "<Space>", "<NOP>", { noremap = true, silent = true })
-  vim.g.mapleader = " "
+return Plugin:create({
+  configure = function()
+    wk.setup({
+      plugins = {
+        marks = true, -- shows a list of your marks on ' and `
+        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+        -- No actual key bindings are created
+        spelling = {
+          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+          suggestions = 20, -- how many suggestions should be shown in the list?
+        },
+        presets = {
+          operators = false, -- adds help for operators like d, y, ...
+          motions = false, -- adds help for motions
+          text_objects = false, -- help for text objects triggered after entering an operator
+          windows = true, -- default bindings on <c-w>
+          nav = false, -- misc bindings to work with windows
+          z = true, -- bindings for folds, spelling and others prefixed with z
+          g = true, -- bindings for prefixed with g
+        },
+      },
+      icons = {
+        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+        separator = "➜", -- symbol used between a key and it's label
+        group = " ", -- symbol prepended to a group
+      },
+      window = {
+        border = "none", -- none, single, double, shadow
+        position = "bottom", -- bottom, top
+        margin = { 1, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
+        padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
+      },
+      layout = {
+        height = { min = 5, max = 15 }, -- min and max height of the columns
+        width = { min = 4, max = 50 }, -- min and max width of the columns
+        spacing = 3, -- spacing between columns
+      },
+      ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+      hidden = { "<silent>", ":", ":", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+      show_help = true, -- show help message on the command line when the popup is visible
+      triggers = "auto", -- automatically setup triggers
+      triggers_blacklist = {
+        -- list of mode / prefixes that should never be hooked by WhichKey
+        -- this is mostly relevant for key maps that start with a native binding
+        -- most people should not need to change this
+        c = { "j", "k" },
+        i = { "j", "k", "<Space>" },
+      },
+    })
 
-  -- `Leader` key
-  wk.register(normal_mappings, get_opts("n"))
-  wk.register(visual_mappings, get_opts("v"))
+    vim.g.mapleader = " "
 
-  -- bracket keys
-  wk.register(get_bracket_mappings(true, true), get_opts("n", "]"))
-  wk.register(get_bracket_mappings(true, false), get_opts("n", "]"))
-  wk.register(get_bracket_mappings(false, true), get_opts("n", "["))
-  wk.register(get_bracket_mappings(false, false), get_opts("n", "["))
-  wk.register(open_bracket_mappings, get_opts("n", "["))
-  wk.register(close_bracket_mappings, get_opts("n", "]"))
+    -- `Leader` key
+    wk.register(normal_mappings, get_opts("n"))
+    wk.register(visual_mappings, get_opts("v"))
 
-  -- `g` key
-  wk.register(g_mappings, get_opts("n", "g"))
-end
+    -- bracket keys
+    wk.register(get_bracket_mappings(true, true), get_opts("n", "]"))
+    wk.register(get_bracket_mappings(true, false), get_opts("n", "]"))
+    wk.register(get_bracket_mappings(false, true), get_opts("n", "["))
+    wk.register(get_bracket_mappings(false, false), get_opts("n", "["))
+    wk.register(open_bracket_mappings, get_opts("n", "["))
+    wk.register(close_bracket_mappings, get_opts("n", "]"))
 
-function plugin.define_augroups()
-  -- Hide the status line for the which-key window
-  require("utils").define_augroups({
+    -- `g` key
+    wk.register(g_mappings, get_opts("n", "g"))
+  end,
+
+  augroups = {
     which_key = {
+      -- Hide the status line for the which-key window
       { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
       { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },
     },
-  })
-end
+  },
 
-return plugin
+  keymaps = {
+    -- Set leader
+    n = {
+      { "<Space>", "<NOP>" },
+    },
+    v = {
+
+      { "<Space>", "<NOP>" },
+    },
+  },
+})
