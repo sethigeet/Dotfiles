@@ -158,7 +158,11 @@ return Plugin:create({
       -- { "FileType", "TelescopePrompt", "lua require('cmp').setup.buffer({ enabled = false })" },
 
       -- Turn on some sources in particular filetypes only
-      { "FileType", "lua", "lua require('plugins.configs.cmp').append_sources_to_buf({ { name = 'nvim_lua' } })" },
+      {
+        "FileType",
+        "lua",
+        "lua require('plugins.configs.cmp').utils.append_sources_to_buf({ { name = 'nvim_lua' } })",
+      },
       {
         "FileType",
         "sql,mysql,plsql",

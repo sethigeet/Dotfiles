@@ -33,15 +33,11 @@ end
 
 function M.highlight(group, color)
   if color.link then
-    vim.cmd("highlight! link " .. group .. " " .. color.link)
+    vim.api.nvim_set_hl(0, group, { link = color.link })
     return
   end
 
-  local style = color.gui and "gui=" .. color.style or "gui=NONE"
-  local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
-  local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
-  local sp = color.sp and "guisp=" .. color.sp or ""
-  vim.cmd(string.format("highlight %s %s %s %s %s", group, style, fg, bg, sp))
+  vim.api.nvim_set_hl(0, group, color)
 end
 
 function M.highlight_groups(groups)
