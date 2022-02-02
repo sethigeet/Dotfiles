@@ -1,0 +1,93 @@
+#!/bin/sh
+
+help_message="\
+usage: video-tools <subcommand>
+  subcommands:
+    help                                                                 Show this help message
+    info <filename>                                                      Get info about a video
+    record-screen out=<filename>                                         Record the screen
+    crop in=<filename> out=<filename> x=<x> y=<y> w=<width> h=<height>   Crop the video
+    cut in=<filename> out=<filename> start=<time> end=<time>             Cut the video
+"
+
+info() {
+  ffprobe -v quiet -print_format json -show_format -show_streams "$1"
+}
+
+record_screen() {
+  ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0 "$1"
+}
+
+crop() {
+  ffmpeg -i "$1" -filter:v "crop=$5:$6:$3:$4" -c:a copy "$2"
+}
+
+cut() {
+  ffmpeg -i "$1" -ss "$3" -to "$4" -c copy "$2"
+}
+
+case "$1" in
+  info)
+    shift
+    info "$1"
+    exit 0
+    ;;
+  record-screen)
+    shift
+
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        in=*) in="${1##*=}" ;;
+      esac
+
+      shift
+    done
+
+    record_screen "$in"
+    exit 0
+    ;;
+  crop)
+    shift
+
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        in=*) in="${1##*=}" ;;
+        out=*) out="${1##*=}" ;;
+        x=*) x="${1##*=}" ;;
+        y=*) y="${1##*=}" ;;
+        w=*) w="${1##*=}" ;;
+        h=*) h="${1##*=}" ;;
+      esac
+
+      shift
+    done
+
+    crop "$in" "$out" "$x" "$y" "$w" "$h"
+    exit 0
+    ;;
+  cut)
+    shift
+
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        in=*) in="${1##*=}" ;;
+        out=*) out="${1##*=}" ;;
+        start=*) s="${1##*=}" ;;
+        end=*) e="${1##*=}" ;;
+      esac
+
+      shift
+    done
+
+    cut "$in" "$out" "$s" "$e"
+    exit 0
+    ;;
+  help)
+    echo "$help_message"
+    exit 0
+    ;;
+  *)
+    echo "$help_message" >&2
+    exit 1
+    ;;
+esac

@@ -4,8 +4,8 @@
 # NOTE: This script requires notify-send.py to interact with the deadd-notification-center
 
 help_message="\
-usage: notification-ctl subcommand
-  options:
+usage: notification-ctl <subcommand>
+  subcommands:
     help                         Show this help message
     clear-incenter               Clear all the notification from the notification center
     clear-popups                 Clear all the popup notifications
