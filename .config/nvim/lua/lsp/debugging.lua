@@ -57,6 +57,18 @@ function debugging.setup()
 
   -- Setup DAP-Install
   require("dap-install").setup({})
+
+  -- Setup keymaps
+  debugging.keymaps()
+end
+
+function debugging.keymaps()
+  local map = require("utils.wrappers").map
+
+  map("n", "<F5>", require("dap").continue)
+  map("n", "<F6>", require("dap").step_over)
+  map("n", "<F7>", require("dap").step_into)
+  map("n", "<F8>", require("dap").disconnect)
 end
 
 return debugging
