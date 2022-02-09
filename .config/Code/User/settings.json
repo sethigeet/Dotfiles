@@ -235,6 +235,10 @@
       "after": ["y", "$"]
     },
     {
+      "before": ["yp"],
+      "after": ["y", "y", "p"]
+    },
+    {
       "before": ["<leader>", "s", "h"],
       "commands": ["workbench.action.splitEditorDown"]
     },
