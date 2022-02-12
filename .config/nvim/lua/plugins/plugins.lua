@@ -382,6 +382,7 @@ local plugins = {
     requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
     event = "BufRead",
     config = "spectre",
+    module = "spectre",
   },
 
   -- REST client in nvim
