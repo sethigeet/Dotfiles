@@ -12,6 +12,7 @@ local LanguageServer = {
   -- For null-ls
   formatters = {},
   linters = {},
+  code_actions = {},
 
   -- For asthetics
   virtual_text = {
@@ -130,7 +131,7 @@ local function formatForNullLS(builtins, customs)
   return customs
 end
 
-function LanguageServer:format()
+function LanguageServer:setup_formatters()
   local null_ls = require("null-ls")
 
   local formatters = formatForNullLS(null_ls.builtins.formatting, self.formatters)
@@ -138,12 +139,20 @@ function LanguageServer:format()
   null_ls.register(formatters)
 end
 
-function LanguageServer:lint()
+function LanguageServer:setup_linters()
   local null_ls = require("null-ls")
 
   local linters = formatForNullLS(null_ls.builtins.diagnostics, self.linters)
 
   null_ls.register(linters)
+end
+
+function LanguageServer:setup_code_actions()
+  local null_ls = require("null-ls")
+
+  local code_actions = formatForNullLS(null_ls.builtins.code_actions, self.code_actions)
+
+  null_ls.register(code_actions)
 end
 
 function LanguageServer:debug()
@@ -163,9 +172,10 @@ function LanguageServer:debug()
 end
 
 function LanguageServer:setup()
+  self:setup_code_actions()
   self:lsp()
-  self:lint()
-  self:format()
+  self:setup_linters()
+  self:setup_formatters()
   self:debug()
 end
 
