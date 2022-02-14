@@ -56,7 +56,7 @@ local mappings = {
   ["="] = { "<C-W>=", "balance windows" },
   [";"] = { get_cmd("Dashboard"), "show start screen" },
   e = { get_cmd("NvimTreeToggle"), "explorer" },
-  f = { get_cmd("Telescope find_files"), "find files" },
+  f = { require("plugins.configs.telescope").utils.find_files, "find files" },
   h = { "<C-W>s", "split below" },
   M = { get_cmd("MarkdownPreviewToggle"), "markdown preview" },
   u = { get_cmd("UndotreeToggle"), "undo tree" },
@@ -237,14 +237,14 @@ local mappings = {
   -- l is for LSP
   l = {
     name = "LSP",
-    a = { require("plugins.configs.telescope").code_actions, "code actions" },
+    a = { require("plugins.configs.telescope").utils.code_actions, "code actions" },
     A = {
       function()
         require("plugins.configs.telescope").code_actions(true)
       end,
       "range code actions",
     },
-    b = { require("plugins.configs.telescope").cur_buf_symbols, "cur buf symbols" },
+    b = { require("plugins.configs.telescope").utils.cur_buf_symbols, "cur buf symbols" },
     d = { get_cmd("Trouble document_diagnostics"), "document diagnostics" },
     D = { get_cmd("Trouble workspace_diagnostics"), "workspace diagnostics" },
     f = { vim.lsp.buf.formatting, "format" },
@@ -333,7 +333,7 @@ local mappings = {
     f = { get_cmd("Telescope find_files"), "files" },
     F = { get_cmd("Telescope git_files"), "git files" },
     g = { get_cmd("Telescope live_grep"), "text" },
-    G = { require("plugins.configs.telescope").grep_current_buf, "grep cur buf" },
+    G = { require("plugins.configs.telescope").utils.grep_current_buf, "grep cur buf" },
     i = { get_cmd("Telescope media_files"), "media files" },
     l = { get_cmd("Telescope loclist"), "loclist" },
     m = { get_cmd("Telescope marks"), "marks" },

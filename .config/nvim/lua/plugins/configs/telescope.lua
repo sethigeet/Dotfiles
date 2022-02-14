@@ -147,6 +147,20 @@ return Plugin:create({
       end
     end,
 
+    find_files = function()
+      local opts = require("telescope.themes").get_ivy({
+        winblend = 10,
+        border = true,
+        previewer = false,
+        shorten_path = false,
+      })
+
+      require("telescope.builtin").find_files({
+        hidden = true,
+        file_ignore_patterns = { ".git" },
+      })
+    end,
+
     grep_current_buf = function()
       local opts = require("telescope.themes").get_ivy({
         winblend = 10,
