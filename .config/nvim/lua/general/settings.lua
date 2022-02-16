@@ -42,6 +42,7 @@ local opts = {
   foldmethod = "manual", -- Set the method for folding
   foldexpr = "", -- Set the method for folding
   viminfo = "'20,<1000,s1000", -- Increase the max limit of the buffers so that we don't loose anything we yanked/deleted which is too large
+  shada = { "!", "'1000", "<50", "s10", "h" },
   completeopt = { "menuone", "preview", "noselect" },
   grepprg = "rg --vimgrep", -- Change `vimgrep` to use `rg`
   grepformat = "%f:%l:%c:%m",
@@ -57,8 +58,21 @@ end
 opt.iskeyword:append("-") -- treat dash separated words as a word text object
 opt.matchpairs:append("<:>")
 opt.shortmess:append("astc")
-opt.formatoptions:remove({ "c", "r", "o" })
 opt.wildignore:append({ "*.o", "*.a", "__pycache__", "*.pyc", "node_modules" })
+
+-- Helpful related items:
+--   1. :center, :left, :right
+--   2. gw{motion} - Put cursor back after formatting motion.
+opt.formatoptions = opt.formatoptions
+  - "a" -- Auto formatting is BAD.
+  - "t" -- Don't auto format my code. I got formatters for that.
+  + "c" -- In general, I like it when comments respect textwidth
+  + "q" -- Allow formatting comments w/ gq
+  - "o" -- O and o, don't continue comments
+  + "r" -- But do continue when pressing enter.
+  + "n" -- Indent past the formatlistpat, not underneath it.
+  + "j" -- Auto-remove comments if possible.
+  - "2" -- I'm not in gradeschool anymore
 
 -- Legacy stuff
 vim.cmd("set t_Co=256") -- Support 256 colors
