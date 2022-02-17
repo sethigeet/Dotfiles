@@ -81,6 +81,11 @@ return Plugin:create({
           },
         },
       },
+      pickers = {
+        find_files = {
+          find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+        },
+      },
       extensions = {
         media_files = {
           filetypes = { "png", "webp", "jpg", "jpeg" },
@@ -107,11 +112,15 @@ return Plugin:create({
     return {
       TelescopeBorder = { bg = bg_95, fg = bg_95 },
       TelescopePromptBorder = { bg = bg_85, fg = bg_85 },
+      TelescopeResultsBorder = { bg = bg_95, fg = bg_95 },
+      TelescopePreviewBorder = { bg = bg_95, fg = bg_95 },
 
       TelescopePromptNormal = { bg = bg_85, fg = colors.fg },
       TelescopePromptPrefix = { bg = bg_85, fg = colors.blue },
 
       TelescopeNormal = { bg = bg_95 },
+      TelescopeResultsNormal = { bg = bg_95 },
+      TelescopePreviewNormal = { bg = bg_95 },
 
       TelescopeTitle = { bg = colors.blue, fg = colors.bg_dark },
       TelescopePreviewTitle = { bg = colors.blue, fg = colors.bg_dark },
