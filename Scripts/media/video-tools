@@ -23,7 +23,13 @@ crop() {
 }
 
 cut() {
-  ffmpeg -i "$1" -ss "$3" -to "$4" -c copy "$2"
+  if [ -z "$3" ]; then
+    ffmpeg -i "$1" -to "$4" -c copy "$2"
+  elif [ -z "$4" ]; then
+    ffmpeg -i "$1" -ss "$3" -c copy "$2"
+  else
+    ffmpeg -i "$1" -ss "$3" -to "$4" -c copy "$2"
+  fi
 }
 
 case "$1" in
