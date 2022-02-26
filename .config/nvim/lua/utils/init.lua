@@ -25,18 +25,17 @@ function utils.has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- Why is this not a built-in Vim script function?
 function utils.get_visual_selection(allowCurrLine, join)
-  local start_coordinates = vim.fn.getpos("'<")
-  local line_start = start_coordinates[2]
+  local start_coordinates = vim.fn.getpos("v")
+  local line_start, col_start = start_coordinates[2], start_coordinates[3]
 
-  local end_coordinates = vim.fn.getpos("'>")
-  local line_end = end_coordinates[2]
+  local end_coordinates = vim.fn.getcurpos()
+  local line_end, col_end = end_coordinates[2], end_coordinates[3]
 
   local lines = vim.fn.getline(line_start, line_end)
-  if vim.fn.len(lines) == 0 then
+  if vim.fn.len(lines) == 1 then
     if allowCurrLine then
-      return vim.fn.getline(".")
+      return vim.fn.getline("."):sub(col_start, col_end)
     end
 
     return ""

@@ -341,6 +341,7 @@ local mappings = {
     p = { get_cmd("Telescope projects"), "projects" },
     r = { get_cmd("Telescope resume"), "resume last" },
     R = { get_cmd("Telescope registers"), "registers" },
+    s = { require("plugins.configs.telescope").utils.grep_selected_text, "grep selected text" },
     S = { get_cmd("Telescope git_status"), "git status" },
     t = { get_cmd("TodoTelescope"), "todos" },
   },
@@ -448,6 +449,12 @@ local normal_mappings = vim.deepcopy(mappings)
 local visual_mappings = vim.deepcopy(mappings)
 visual_mappings["/"][1] = "<Esc><Cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>"
 visual_mappings["p"] = { '"_dP', "Paste without yank" }
+visual_mappings["s"]["s"] = {
+  function()
+    require("plugins.configs.telescope").utils.grep_selected_text("v")
+  end,
+  "grep selected text",
+}
 
 return Plugin:create({
   configure = function()

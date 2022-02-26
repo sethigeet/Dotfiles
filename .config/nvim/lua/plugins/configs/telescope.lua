@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local Plugin = require("plugins.plugin")
 
 return Plugin:create({
@@ -157,17 +159,28 @@ return Plugin:create({
     end,
 
     find_files = function()
-      local opts = require("telescope.themes").get_ivy({
-        winblend = 10,
-        border = true,
-        previewer = false,
-        shorten_path = false,
-      })
-
       require("telescope.builtin").find_files({
         hidden = true,
         file_ignore_patterns = { ".git" },
       })
+    end,
+
+    grep_selected_text = function(mode)
+      local text
+      if mode == "v" then
+        text = utils.get_visual_selection(true, true)
+      else
+        text = vim.fn.expand("<cword>")
+      end
+
+      -- escape special characters
+      -- text = text:gsub("%(", "\\%(")
+      -- text = text:gsub("%)", "\\%)")
+      -- text = text:gsub("%[", "\\%[")
+      -- text = text:gsub("%]", "\\%]")
+      -- text = text:gsub('"', '\\"')
+
+      require("telescope.builtin").grep_string({ search = text })
     end,
 
     grep_current_buf = function()
