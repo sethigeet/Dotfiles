@@ -34,9 +34,9 @@ function M.setup_document_highlight(client)
     })
 
     wrappers.highlight_groups({
-      LspReferenceRead = { cterm = "bold", ctermbg = "red", bg = "#464646" },
-      LspReferenceText = { cterm = "bold", ctermbg = "red", bg = "#464646" },
-      LspReferenceWrite = { cterm = "bold", ctermbg = "red", bg = "#464646" },
+      LspReferenceRead = { ctermbg = "red", bg = "#464646" },
+      LspReferenceText = { ctermbg = "red", bg = "#464646" },
+      LspReferenceWrite = { ctermbg = "red", bg = "#464646" },
     })
   end
 end

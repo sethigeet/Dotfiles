@@ -31,13 +31,8 @@ function M.map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-function M.highlight(group, color)
-  if color.link then
-    vim.api.nvim_set_hl(0, group, { link = color.link })
-    return
-  end
-
-  vim.api.nvim_set_hl(0, group, color)
+function M.highlight(group, colors)
+  vim.api.nvim_set_hl(0, group, colors)
 end
 
 function M.highlight_groups(groups)
