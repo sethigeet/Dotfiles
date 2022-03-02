@@ -156,6 +156,9 @@
   "julia.symbolCacheDownload": true,
   "julia.enableTelemetry": false,
 
+  // Rust
+  "rust-analyzer.diagnostics.disabled": ["unresolved-macro-call"],
+
   //# Autocompletion
   // Kite
   "kite.showWelcomeNotificationOnStartup": false,
