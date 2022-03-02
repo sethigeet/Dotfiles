@@ -400,11 +400,13 @@ local mappings = {
 
 local open_bracket_mappings = {
   d = { vim.diagnostic.goto_prev, "Previous Diagnostic" },
+  q = { get_cmd("cprev"), "Previous Quickfix List Item" },
   r = "Goto previous usage", -- Defined in treesitter config
   g = { get_cmd("Gitsigns prev_hunk"), "Prev Hunk" },
 }
 local close_bracket_mappings = {
   d = { vim.diagnostic.goto_next, "Next  Diagnostic" },
+  q = { get_cmd("cnext"), "Next Quickfix List Item" },
   r = "Goto next usage", -- Defined in treesitter config
   g = { get_cmd("Gitsigns next_hunk"), "Next Hunk" },
 }

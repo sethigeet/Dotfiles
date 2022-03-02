@@ -2,8 +2,6 @@ local Plugin = require("plugins.plugin")
 
 return Plugin:create({
   configure = function()
-    vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" } -- empty by default
-    vim.g.nvim_tree_quit_on_open = 0 -- 0 by default, closes the tree when you open a file
     vim.g.nvim_tree_indent_markers = 1 -- 0 by default, this option shows indent markers when folders are open
     vim.g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
     vim.g.nvim_tree_respect_buf_cwd = 1 -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
@@ -21,6 +19,9 @@ return Plugin:create({
     require("nvim-tree").setup({
       -- disables netrw completely
       disable_netrw = true,
+      git = {
+        ignore = { ".git", "node_modules", ".cache" }, -- empty by default
+      },
       -- hijack netrw window on startup
       hijack_netrw = true,
       -- open the tree when running this setup function
@@ -62,6 +63,20 @@ return Plugin:create({
         cmd = nil,
         -- the command arguments as a list
         args = {},
+      },
+      actions = {
+        open_file = {
+          quit_on_open = false,
+          resize_window = false,
+          window_picker = {
+            enable = true,
+            chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+            exclude = {
+              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+              buftype = { "nofile", "terminal", "help" },
+            },
+          },
+        },
       },
       view = {
         -- width of the window, can be either a number (columns) or a string in `%`

@@ -10,6 +10,7 @@ return Plugin:create({
     local trouble = require("trouble.providers.telescope")
     local previewers = require("telescope.previewers")
     local sorters = require("telescope.sorters")
+    local load_extension = require("telescope").load_extension
 
     require("telescope").setup({
       defaults = {
@@ -106,6 +107,16 @@ return Plugin:create({
         },
       },
     })
+
+    local extensions = {
+      "media_files",
+      -- "fzy_native",
+      -- "projects",
+      "frecency",
+    }
+    for _, ext in ipairs(extensions) do
+      load_extension(ext)
+    end
   end,
 
   highlight_groups = function(_, colors, util)
@@ -144,20 +155,6 @@ return Plugin:create({
   end,
 
   utils = {
-    load_extensions = function()
-      local load_extension = require("telescope").load_extension
-
-      local extensions = {
-        "media_files",
-        -- "fzy_native",
-        -- "projects",
-        "frecency",
-      }
-      for _, ext in ipairs(extensions) do
-        load_extension(ext)
-      end
-    end,
-
     find_files = function()
       require("telescope.builtin").find_files({
         hidden = true,
