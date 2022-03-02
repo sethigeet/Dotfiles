@@ -161,12 +161,16 @@ return Plugin:create({
       {
         "FileType",
         "lua",
-        "lua require('plugins.configs.cmp').utils.append_sources_to_buf({ { name = 'nvim_lua' } })",
+        cb = function()
+          require("plugins.configs.cmp").utils.append_sources_to_buf({ { name = "nvim_lua" } })
+        end,
       },
       {
         "FileType",
         "sql,mysql,plsql",
-        "lua require('plugins.configs.cmp').append_sources_to_buf({ { name = 'vim-dadbod-completion' } })",
+        cb = function()
+          require("plugins.configs.cmp").append_sources_to_buf({ { name = "vim-dadbod-completion" } })
+        end,
       },
     },
   },

@@ -528,8 +528,8 @@ return Plugin:create({
   augroups = {
     which_key = {
       -- Hide the status line for the which-key window
-      { "FileType", "which_key", "set laststatus=0 noshowmode noruler" },
-      { "BufLeave", "<buffer>", "set laststatus=2 noshowmode ruler" },
+      { "FileType", "which_key", cmd = "set laststatus=0 noshowmode noruler" },
+      { "BufLeave", "<buffer>", cmd = "set laststatus=2 noshowmode ruler" },
     },
   },
 

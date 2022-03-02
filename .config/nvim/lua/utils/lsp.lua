@@ -28,8 +28,8 @@ function M.setup_document_highlight(client)
 
     wrappers.define_augroups({
       lsp_document_highlight = {
-        { "CursorHold", "<buffer>", "lua vim.lsp.buf.document_highlight()" },
-        { "CursorMoved", "<buffer>", "lua vim.lsp.buf.clear_references()" },
+        { "CursorHold", "<buffer>", cb = vim.lsp.buf.document_highlight },
+        { "CursorMoved", "<buffer>", cb = vim.lsp.buf.clear_references },
       },
     })
 
@@ -85,7 +85,13 @@ end
 function M.setup_inlay_hints()
   require("utils.wrappers").define_augroups({
     lsp_inlay_hints = {
-      { "TextChanged,TextChangedI", "<buffer>", "lua require('lsp_extensions').inlay_hints({ prefix = '  ' })" },
+      {
+        "TextChanged,TextChangedI",
+        "<buffer>",
+        cb = function()
+          require("lsp_extensions").inlay_hints({ prefix = "  " })
+        end,
+      },
     },
   })
 
@@ -96,7 +102,7 @@ end
 function M.setup_codelens()
   require("utils.wrappers").define_augroups({
     lsp_codelens = {
-      { "TextChanged,TextChangedI", "<buffer>", "lua vim.lsp.codelens.refresh()" },
+      { "TextChanged,TextChangedI", "<buffer>", cb = vim.lsp.codelens.refresh },
     },
   })
 

@@ -16,7 +16,7 @@ function debugging.setup()
 
   require("utils.wrappers").define_augroups({
     dap_repl = {
-      -- { "FileType", "dap-repl", "lua require('dap.ext.autocompl).attach()" },
+      -- { "FileType", "dap-repl", cb = require("dap.ext.autocompl").attach },
     },
   })
 

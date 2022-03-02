@@ -26,10 +26,16 @@ return Plugin:create({
 
   augroups = {
     dashboard = {
-      { "FileType", "dashboard", "set showtabline=0" },
-      { "WinLeave", "<buffer>", "set showtabline=2" },
-      { "FileType", "dashboard", "setlocal nocursorline" },
-      { "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
+      { "FileType", "dashboard", cmd = "set showtabline=0" },
+      { "WinLeave", "<buffer>", cmd = "set showtabline=2" },
+      { "FileType", "dashboard", cmd = "setlocal nocursorline" },
+      {
+        "FileType",
+        "dashboard",
+        cb = function()
+          vim.keymap("n", "q", ":q<CR>", { silent = true, buffer = true })
+        end,
+      },
     },
   },
 })
