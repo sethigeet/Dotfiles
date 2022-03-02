@@ -34,8 +34,8 @@ return Plugin:create({
         keymaps = {
           init_selection = "<A-a>",
           node_incremental = "<A-a>",
-          scope_incremental = "<A-s>",
-          node_decremental = "<A-d>",
+          scope_incremental = "<A-w>",
+          node_decremental = "<A-S-a>",
         },
       },
       refactor = {
