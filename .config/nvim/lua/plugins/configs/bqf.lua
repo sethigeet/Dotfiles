@@ -55,7 +55,7 @@ return Plugin:create({
           },
 
           -- "extra options for fzf",
-          extra_opts = { "--bind", "ctrl-o:toggle-all" },
+          extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│" },
         },
       },
     })
