@@ -48,7 +48,7 @@ return Plugin:create({
         },
         lualine_x = { { "filetype", colored = true }, get_lsp_client },
         lualine_y = { get_tab_stop },
-        lualine_z = { "location", "progress" },
+        lualine_z = { "location" },
       },
       extensions = { "nvim-tree", "quickfix", "toggleterm", "symbols-outline" },
     })

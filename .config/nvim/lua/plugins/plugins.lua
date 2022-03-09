@@ -232,7 +232,7 @@ local plugins = {
     cmd = "Telescope",
     module = { "telescope", "telescope.*", "plugins.configs.telescope" },
     config = "telescope",
-    after = { "lsp-trouble.nvim", "folke/tokyonight.nvim" },
+    after = { "lsp-trouble.nvim", "tokyonight.nvim" },
   },
 
   -- Intellisense
@@ -406,6 +406,19 @@ local plugins = {
 
   -- Easily create beautiful looking UI elements
   "MunifTanjim/nui.nvim",
+
+  -- Scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    config = "scrollbar",
+    after = { "tokyonight.nvim", "nvim-hlslens" },
+  },
+
+  -- Better searching
+  {
+    "kevinhwang91/nvim-hlslens",
+    config = "hlslens",
+  },
 }
 
 local config = {
