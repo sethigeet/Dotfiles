@@ -18,6 +18,7 @@ local LanguageServer = {
   virtual_text = {
     inlay_hints = false,
     code_lens = false,
+    dim_unused = true,
   },
 }
 
@@ -59,6 +60,10 @@ function LanguageServer:lsp()
 
       if self.virtual_text.code_lens then
         lsp_utils.setup_codelens()
+      end
+
+      if self.virtual_text.dim_unused then
+        lsp_utils.setup_dim_unused()
       end
     end,
     capabilities = capabilities,
