@@ -56,7 +56,7 @@ mkrepo() {
   git init
 }
 
-start_test_display() {
+start-test-display() {
   Xephyr -ac -br -screen 1920x1000 :1 &
   export DISPLAY=:1
 }
