@@ -6,5 +6,6 @@ highlight_groups({
   DiffChange = { bg = "#283B4D" },
   DiffDelete = { bg = "#3C2C3C", fg = "#725272", bold = true },
   DiffText = { bg = "#365069" },
+
   SelectNextKey = { fg = "#FF007C", bold = true },
 })
