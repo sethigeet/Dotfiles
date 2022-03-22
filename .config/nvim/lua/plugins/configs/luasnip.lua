@@ -32,7 +32,7 @@ return Plugin:create({
     })
 
     -- Load snippets from plugins
-    require("luasnip/loaders/from_vscode").lazy_load()
+    require("luasnip.loaders.from_vscode").lazy_load()
 
     -- Load custom snippets
     for _, file in ipairs(vim.api.nvim_get_runtime_file("lua/snippets/*.lua", true)) do
@@ -42,16 +42,10 @@ return Plugin:create({
       local fts, snips = contents["filetypes"], contents["snippets"]
       if type(fts) == "table" then
         for _, ft in ipairs(fts) do
-          luasnip.snippets[ft] = luasnip.snippets[ft] or {}
-          for _, snip in ipairs(make_snips(snips, luasnip)) do
-            table.insert(luasnip.snippets[ft], snip)
-          end
+          luasnip.add_snippets(ft, make_snips(snips, luasnip))
         end
       elseif type(fts) == "string" then
-        luasnip.snippets[fts] = luasnip.snippets[fts] or {}
-        for _, snip in ipairs(make_snips(snips, luasnip)) do
-          table.insert(luasnip.snippets[fts], snip)
-        end
+        luasnip.add_snippets(fts, make_snips(snips, luasnip))
       end
     end
   end,
