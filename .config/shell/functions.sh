@@ -30,8 +30,12 @@ ec() {
 }
 
 mkexe() {
-  touch "$1"
-  chmod +x "$1"
+  filename="$1"
+  shell="${2:-sh}"
+
+  touch "$filename"
+  chmod +x "$filename"
+  echo "#!/bin/$shell" >"$filename"
 }
 
 get-key-name() {
