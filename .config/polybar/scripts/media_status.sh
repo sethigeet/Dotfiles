@@ -30,8 +30,10 @@ status() {
     update_hooks "$PARENT_BAR_PID" 2
     echo "Paused"
   elif [[ $STATUS == *Stopped* ]]; then
+    update_hooks "$PARENT_BAR_PID" 2
     echo "Paused"
   elif [[ $STATUS == "No player is running" ]]; then
+    update_hooks "$PARENT_BAR_PID" 2
     echo "No player is running"
   fi
 }
@@ -43,7 +45,8 @@ main() {
     --match-command "$HOME/.config/polybar/scripts/media_status.sh --status" \
     --match-text "Playing" "--scroll 1" \
     --match-text "Paused" "--scroll 0" \
-    --update-check true "$HOME/.config/polybar/scripts/media_status.sh --update-check" &
+    --update-check true \
+    "$HOME/.config/polybar/scripts/media_status.sh --status" &
 
   wait
 }
