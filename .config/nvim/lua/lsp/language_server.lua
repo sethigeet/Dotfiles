@@ -74,9 +74,7 @@ function LanguageServer:lsp()
   end
 
   if self.custom then
-    for k, v in pairs(self.custom) do
-      options[k] = v
-    end
+    options = vim.tbl_deep_extend("force", options, self.custom)
   end
 
   if self.server_name == "null-ls" then

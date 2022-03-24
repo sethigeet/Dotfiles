@@ -5,6 +5,11 @@ local ls = LanguageServer:create({
   -- NOTE: The formatting is also handled by `clangd`
   formatters = "clang_format",
   cmd_args = { "--clang-tidy", "--cross-file-rename" },
+  custom = {
+    capabilities = {
+      offsetEncoding = "utf-8",
+    },
+  },
   on_attach = function(client, _)
     -- Disable formatting in the lsp server as `null-ls` handles formatting
     client.resolved_capabilities.document_formatting = false
