@@ -12,8 +12,8 @@ super + {b}
 super + {e,i,w}
 	{nautilus,vimiv,brave}
 
-super + shift + {e,w}
-	{code,brave --incognito}
+super + shift + {c,e,w}
+	{gnome-calculator,code,brave --incognito}
 
 # Manage Windows
 super + semicolon

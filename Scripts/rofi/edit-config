@@ -2,6 +2,7 @@
 
 declare -A options
 options[ alacritty]="$HOME/.config/alacritty/alacritty.yml"
+options[ awesome]="$HOME/.config/awesome/rc.lua"
 options[ bash]="$HOME/.config/bash/init.bash"
 options[ bashrc]="$HOME/.bashrc"
 options[ bash_profile]="$HOME/.bash_profile"

@@ -5,14 +5,13 @@ local opts = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
+        -- version = "LuaJIT",
       },
       diagnostics = {
         -- Get the language server to recognize the global vars
-        globals = { "xplr" },
+        globals = {},
       },
       workspace = {
-        -- Make the server aware of Neovim runtime files
         library = {},
         maxPreload = 100000,
         preloadFileSize = 100000,
@@ -33,6 +32,12 @@ if require("utils.lsp").get_root_dir() == os.getenv("HOME") .. "/.config/nvim" t
     -- pass any additional options that will be merged in the final lsp config
     lspconfig = opts,
   })
+elseif require("utils.lsp").get_root_dir() == os.getenv("HOME") .. "/.config/awesome" then
+  opts.settings.Lua.runtime.version = "Lua 5.3"
+  opts.settings.Lua.diagnostics.globals = { "awesome", "client", "mouse", "root", "screen" }
+  opts.settings.Lua.workspace.library = {
+    ["/usr/share/awesome/lib"] = true,
+  }
 end
 
 local ls = LanguageServer:create({
