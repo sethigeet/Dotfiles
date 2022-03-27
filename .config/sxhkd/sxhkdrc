@@ -58,3 +58,9 @@ Menu
 	xdotool click 3
 ctrl + Menu
 	xdotool click 2
+
+# Mouse Automation
+super + t
+  set-yt-player-settings theatre-mode 2x-speed
+super + alt + t
+  set-yt-player-settings 2x-speed

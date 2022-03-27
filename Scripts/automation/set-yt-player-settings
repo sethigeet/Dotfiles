@@ -1,0 +1,101 @@
+#!/bin/sh
+
+help_message="\
+usage: set-yt-player-settings [commands]
+  commands:
+    help                         Shows this help message
+    theatre-mode                 Sets the player mode to 'theatre'
+    2x-speed                     Sets the player spped to 2x
+"
+
+SLEEP_DUR="0.3"
+move() {
+  xdotool mousemove "$1" "$2"
+}
+click() {
+  xdotool click 1
+}
+
+set_theatre_mode() {
+  # let any other operation finish
+  sleep "$SLEEP_DUR"
+
+  # move the mouse to `theate mode` button
+  move 1297 915
+
+  sleep "$SLEEP_DUR"
+
+  # click the button
+  click
+
+  sleep "$SLEEP_DUR"
+
+  # move the mouse away from the timeline
+  move 1400 800
+}
+
+set_2x_speed() {
+  # let any other operation finish
+  sleep "$SLEEP_DUR"
+
+  # move to settings icon
+  move 1730 940
+
+  sleep "$SLEEP_DUR"
+
+  # click the settings icon
+  click
+
+  sleep "$SLEEP_DUR"
+
+  # move to the speed menu
+  move 1730 790
+
+  sleep "$SLEEP_DUR"
+
+  # click the speed menu to enter it
+  click
+
+  sleep "$SLEEP_DUR"
+
+  # move the mouse to x2.0
+  move 1730 870
+
+  sleep "$SLEEP_DUR"
+
+  # click it to set the speed
+  click
+
+  sleep "$SLEEP_DUR"
+
+  # move the mouse away from the timeline
+  move 1400 800
+
+  # hide the settings overlay
+  click
+}
+
+if [ -z "$1" ]; then
+  echo "$help_message" >&2 && exit 1
+fi
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    help)
+      echo "$help_message"
+      exit 0
+      ;;
+    theatre-mode)
+      shift
+      set_theatre_mode
+      ;;
+    2x-speed)
+      shift
+      set_2x_speed
+      ;;
+    *)
+      echo "$help_message" >&2
+      exit 1
+      ;;
+  esac
+done
