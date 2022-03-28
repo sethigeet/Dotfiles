@@ -61,7 +61,11 @@ return {
         widgets.separators.space(1),
         widgets_utils.component(widgets.notificationmenu()),
         widgets.separators.space(1),
-        wibox.widget.systray(),
+        {
+          wibox.widget.systray(),
+          margins = 3,
+          widget = wibox.container.margin,
+        },
       },
     })
   end,
