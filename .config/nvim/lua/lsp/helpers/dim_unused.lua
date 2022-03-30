@@ -100,8 +100,8 @@ function M.setup()
 
   require("utils.wrappers").define_augroups({
     dim_unused = {
-      { "TextChanged", "*", cb = M.highlight_unused },
-      { "InsertLeave", "*", cb = M.highlight_unused },
+      { "TextChanged", "<buffer>", cb = M.highlight_unused },
+      { "InsertLeave", "<buffer>", cb = M.highlight_unused },
     },
   })
 end
