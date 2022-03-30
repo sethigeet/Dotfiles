@@ -92,12 +92,12 @@ theme.taglist_shape = gears.shape.rectangle
 -- tasklist_[bg|fg]_[focus|urgent]
 theme.tasklist_fg_focus = theme.fg_normal
 -- TODO: set good icons here
-theme.tasklist_sticky = "▪"
-theme.tasklist_ontop = "⌃"
-theme.tasklist_above = "▴"
-theme.tasklist_below = "▾"
-theme.tasklist_floating = "✈"
-theme.tasklist_maximized = ""
+theme.tasklist_sticky = ""
+theme.tasklist_ontop = ""
+theme.tasklist_above = "禎"
+theme.tasklist_below = "穀"
+theme.tasklist_floating = ""
+theme.tasklist_maximized = ""
 
 -- Variables set for theming notifications:
 -- notification_font
