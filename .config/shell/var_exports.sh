@@ -33,9 +33,4 @@ fi
 # export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 # fi
 
-# Anaconda auto completion
-if command -v conda_auto_env &>/dev/null; then
-  export PROMPT_COMMAND="conda_auto_env;$PROMPT_COMMAND"
-fi
-
 export GITUSER="sethigeet"

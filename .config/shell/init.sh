@@ -10,7 +10,7 @@ elif [ -n "$ZSH_VERSION" ]; then
 fi
 
 # Load dotfiles:
-for file in ~/.config/shell/{var_exports,paths/init,var_exports,aliases/init,functions,autocompletion,keybindings}.sh; do
+for file in ~/.config/shell/{var_exports,paths/init,aliases/init,functions,autocompletion,keybindings}.sh; do
   source "$file"
 done
 
