@@ -21,7 +21,7 @@ local require_var = function(args, _)
 end
 
 return {
-  filetypes = "lua",
+  filetypes = { "lua" },
   snippets = {
     ignore = "--stylua: ignore",
 

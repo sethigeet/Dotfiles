@@ -40,12 +40,8 @@ return Plugin:create({
       local contents = require("snippets." .. name)
 
       local fts, snips = contents["filetypes"], contents["snippets"]
-      if type(fts) == "table" then
-        for _, ft in ipairs(fts) do
-          luasnip.add_snippets(ft, make_snips(snips, luasnip))
-        end
-      elseif type(fts) == "string" then
-        luasnip.add_snippets(fts, make_snips(snips, luasnip))
+      for _, ft in ipairs(fts) do
+        luasnip.add_snippets(ft, make_snips(snips, luasnip))
       end
     end
   end,

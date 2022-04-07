@@ -6,8 +6,8 @@ local function tab_complete(fallback)
 
   if cmp.visible() then
     cmp.select_next_item()
-  elseif utils.has_words_before() and require("luasnip").expand_or_jumpable() then
-    vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-expand-or-jump"), "", true)
+  elseif require("luasnip").jumpable(1) then
+    vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-next"), "", true)
   elseif utils.has_words_before() and not require("cmp").select_next_item() then
     vim.api.nvim_feedkeys(vim.fn["emmet#expandAbbrIntelligent"]("\\<Tab>"), "", true)
   else
