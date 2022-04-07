@@ -134,8 +134,8 @@
   //# Language Extensions
   // Python
   "python.languageServer": "Pylance",
-  "python.pythonPath": "/usr/bin/python",
-  "python.showStartPage": false,
+  "python.formatting.provider": "black",
+  "python.linting.pylintArgs": ["--generate-members"],
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
 
