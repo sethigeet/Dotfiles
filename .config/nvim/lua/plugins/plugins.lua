@@ -177,7 +177,7 @@ local plugins = {
 
   -- Better tabline
   {
-    "akinsho/nvim-bufferline.lua",
+    "akinsho/bufferline.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = "bufferline",
   },
