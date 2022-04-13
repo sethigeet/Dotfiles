@@ -1,6 +1,18 @@
 local utils = require("utils")
 local Plugin = require("plugins.plugin")
 
+local EMMET_ENABLED_FILETYPES = { "html", "css", "scss", "javascriptreact", "typescriptreact" }
+local function is_emmet_enabled()
+  local curr_ft = vim.opt.filetype:get()
+  for _, ft in ipairs(EMMET_ENABLED_FILETYPES) do
+    if curr_ft == ft then
+      return true
+    end
+  end
+
+  return false
+end
+
 local function tab_complete(fallback)
   local cmp = require("cmp")
 
@@ -8,7 +20,7 @@ local function tab_complete(fallback)
     cmp.select_next_item()
   elseif require("luasnip").jumpable(1) then
     vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-next"), "", true)
-  elseif utils.has_words_before() and not require("cmp").select_next_item() then
+  elseif is_emmet_enabled() and utils.has_words_before() and not require("cmp").select_next_item() then
     vim.api.nvim_feedkeys(vim.fn["emmet#expandAbbrIntelligent"]("\\<Tab>"), "", true)
   else
     fallback()
