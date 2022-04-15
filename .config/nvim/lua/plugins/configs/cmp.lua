@@ -135,9 +135,15 @@ return Plugin:create({
         { name = "luasnip" },
         { name = "buffer", options = { max_completion_items = 15, keyword_length = 5 } },
       },
-      documentation = {
-        border = "rounded",
-        winhighlight = "FloatBorder:FloatBorder",
+      window = {
+        documentation = cmp.config.window.bordered({
+          border = "rounded",
+          winhighlight = "FloatBorder:FloatBorder",
+        }),
+        -- completion = cmp.config.window.bordered(),
+      },
+      view = {
+        entries = "custom",
       },
       formatting = {
         format = function(_, vim_item)

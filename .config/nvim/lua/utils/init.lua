@@ -8,7 +8,7 @@ end
 ---@param keys string keys to feed
 --- Replace keys with termcodes and feed them
 function utils.feed(keys)
-  vim.api.nvim_feedkeys(utils.t(keys), "n", true)
+  vim.api.nvim_feedkeys(utils.t(keys), "n", false)
 end
 
 function utils.check_back_space()
