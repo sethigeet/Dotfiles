@@ -179,7 +179,8 @@ function LanguageServer:setup()
   self:lsp()
   self:setup_linters()
   self:setup_formatters()
-  self:debug()
+  -- TODO: Add this back when the plugin is working again
+  -- self:debug()
 end
 
 return LanguageServer

@@ -21,7 +21,7 @@ which could be renamed]],
     return
   end
 
-  local current_name = ts_utils.get_node_text(node_at_point)[1]
+  local current_name = vim.treesitter.query.get_node_text(node_at_point, 0)[1]
 
   return current_name
 end
@@ -89,7 +89,7 @@ being used to rename the variable]],
     table.insert(edits, text_edit)
   end
 
-  vim.lsp.util.apply_text_edits(edits, bufnr)
+  vim.lsp.util.apply_text_edits(edits, bufnr, "utf-8")
 end
 
 return function()

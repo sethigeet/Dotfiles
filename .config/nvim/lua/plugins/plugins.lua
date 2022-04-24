@@ -305,7 +305,7 @@ local plugins = {
   -- Debugging
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
-  "Pocco81/DAPInstall.nvim",
+  "Pocco81/dap-buddy.nvim",
 
   -- Markdown preview
   {
