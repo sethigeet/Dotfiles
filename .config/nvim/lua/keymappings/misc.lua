@@ -25,3 +25,6 @@ map("v", "<M-x>", ":s//g<Left><Left>")
 
 -- Delete wihthout yanking
 map({ "n", "x" }, "<M-d>", '"_d')
+
+-- Create new line from insert mode
+map("i", "<C-CR>", "<Esc>o")
