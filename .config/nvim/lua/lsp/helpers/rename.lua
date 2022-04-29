@@ -21,9 +21,7 @@ which could be renamed]],
     return
   end
 
-  local current_name = vim.treesitter.query.get_node_text(node_at_point, 0)[1]
-
-  return current_name
+  return vim.treesitter.query.get_node_text(node_at_point, 0)
 end
 
 local function lsp_handler(err, result, ctx, config)
