@@ -51,8 +51,13 @@ function LanguageServer:lsp()
       end
 
       lsp_utils.setup_document_highlight(client)
-      lsp_utils.setup_format_on_save(client)
       lsp_utils.setup_keybindings(bufnr)
+
+      if self.formatting == false then
+        client.server_capabilities.documentFormattingProvider = false
+      else
+        lsp_utils.setup_format_on_save(client)
+      end
 
       if self.virtual_text.inlay_hints then
         -- NOTE: This currently only supports `rust-analyzer`

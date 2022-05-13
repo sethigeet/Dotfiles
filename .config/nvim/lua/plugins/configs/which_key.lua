@@ -1,6 +1,8 @@
 local wk = require("which-key")
 local Plugin = require("plugins.plugin")
 
+local telescope_builtin = require("telescope.builtin")
+
 local function get_opts(mode, prefix)
   local actual_prefix
   if prefix then
@@ -81,7 +83,7 @@ local mappings = {
   b = {
     name = "Buffer",
     d = { get_cmd("Bdelete"), "delete buffer" },
-    f = { get_cmd("Telescope buffers"), "search buffers" },
+    f = { telescope_builtin.buffers, "search buffers" },
     j = { get_cmd("BufferLineCyclePrev"), "previous buffer" },
     k = { get_cmd("BufferLineCycleNext"), "next buffer" },
     h = { get_cmd("BufferLineCloseRight"), "close right buffer" },
@@ -206,12 +208,12 @@ local mappings = {
   -- g is for Git
   g = {
     name = "Git",
-    b = { get_cmd("Telescope git_branches"), "branches" },
+    b = { telescope_builtin.git_branches, "branches" },
     c = {
       name = "Commits",
       c = { get_cmd("Neogit commit"), "commit" },
-      o = { get_cmd("Telescope git_commits"), "checkout commit" },
-      u = { get_cmd("Telescope git_bcommits"), "checkout commit(for current file)" },
+      o = { telescope_builtin.git_commits, "checkout commit" },
+      u = { telescope_builtin.git_bcommits, "checkout commit(for current file)" },
     },
     d = { get_cmd("DiffviewOpen"), "diff" },
     D = { get_cmd("Gitsigns preview_hunk"), "inline diff" },
@@ -230,24 +232,24 @@ local mappings = {
       h = { get_cmd("Gitsigns stage_hunk"), "hunk" },
       u = { get_cmd("Gitsigns undo_stage_hunk"), "undo hunk" },
     },
-    S = { get_cmd("Telescope git_status"), "status" },
+    S = { telescope_builtin.git_status, "status" },
     t = { get_cmd("GitGutterSignsToggle"), "toggle signs" },
   },
 
   -- l is for LSP
   l = {
     name = "LSP",
-    a = { require("plugins.configs.telescope").utils.code_actions, "code actions" },
-    A = {
-      function()
-        require("plugins.configs.telescope").code_actions(true)
-      end,
-      "range code actions",
-    },
+    a = { vim.lsp.buf.code_action, "code actions" },
+    A = { vim.lsp.buf.range_code_action, "range code actions" },
     b = { require("plugins.configs.telescope").utils.cur_buf_symbols, "cur buf symbols" },
     d = { get_cmd("Trouble document_diagnostics"), "document diagnostics" },
     D = { get_cmd("Trouble workspace_diagnostics"), "workspace diagnostics" },
-    f = { vim.lsp.buf.formatting, "format" },
+    f = {
+      function()
+        vim.lsp.buf.format({ async = true })
+      end,
+      "format",
+    },
     h = { vim.lsp.buf.signature_help, "signature_help" },
     i = { get_cmd("LspInfo"), "lsp info" },
     I = { get_cmd("LspInstallInfo"), "lsp install info" },
@@ -261,8 +263,8 @@ local mappings = {
     r = { require("lsp.helpers.rename"), "rename" },
     t = { vim.lsp.buf.type_definition, "type defintion" },
     v = { get_cmd("DiagnosticVirtualTextToggle"), "toggle virtual text" },
-    s = { get_cmd("Telescope lsp_document_symbols"), "document symbols" },
-    S = { get_cmd("Telescope lsp_workspace_symbols"), "workspace symbols" },
+    s = { telescope_builtin.lsp_document_symbols, "document symbols" },
+    S = { telescope_builtin.lsp_workspace_symbols, "workspace symbols" },
   },
 
   -- m is for Mark
@@ -320,29 +322,33 @@ local mappings = {
   -- s is for Search
   s = {
     name = "Search",
-    ["."] = { get_cmd("Telescope filetypes"), "filetypes" },
-    [";"] = { get_cmd("Telescope commands"), "commands" },
-    a = { vim.lsp.buf.code_action, "code actions" },
-    A = { get_cmd("Telescope builtin"), "all" },
-    b = { get_cmd("Telescope buffers"), "buffers" },
-    B = { get_cmd("Telescope git_branches"), "git branches" },
-    c = { get_cmd("Telescope git_commits"), "git commits" },
-    d = { get_cmd("Telescope diagnostics bufnr=0"), "document diagnostics" },
-    D = { get_cmd("Telescope diagnostics"), "workspace diagnostics" },
-    e = { get_cmd("Telescope symbols"), "emojis" },
-    f = { get_cmd("Telescope find_files"), "files" },
-    F = { get_cmd("Telescope git_files"), "git files" },
-    g = { get_cmd("Telescope live_grep"), "text" },
+    ["."] = { telescope_builtin.filetypes, "filetypes" },
+    [";"] = { telescope_builtin.commands, "commands" },
+    A = { telescope_builtin.builtin, "all" },
+    b = { telescope_builtin.buffers, "buffers" },
+    B = { telescope_builtin.git_branches, "git branches" },
+    c = { telescope_builtin.git_commits, "git commits" },
+    d = {
+      function()
+        telescope_builtin.diagnostics({ bufnr = 0 })
+      end,
+      "document diagnostics",
+    },
+    D = { telescope_builtin.diagnostics, "workspace diagnostics" },
+    e = { telescope_builtin.symbols, "emojis" },
+    f = { telescope_builtin.find_files, "files" },
+    F = { telescope_builtin.git_files, "git files" },
+    g = { telescope_builtin.live_grep, "text" },
     G = { require("plugins.configs.telescope").utils.grep_current_buf, "grep cur buf" },
-    i = { get_cmd("Telescope media_files"), "media files" },
-    l = { get_cmd("Telescope loclist"), "loclist" },
-    m = { get_cmd("Telescope marks"), "marks" },
-    o = { get_cmd("Telescope oldfiles"), "oldfiles" },
-    p = { get_cmd("Telescope projects"), "projects" },
-    r = { get_cmd("Telescope resume"), "resume last" },
-    R = { get_cmd("Telescope registers"), "registers" },
+    -- i = { get_cmd("Telescope media_files"), "media files" },
+    l = { telescope_builtin.loclist, "loclist" },
+    m = { telescope_builtin.marks, "marks" },
+    o = { telescope_builtin.oldfiles, "oldfiles" },
+    -- p = { get_cmd("Telescope projects"), "projects" },
+    r = { telescope_builtin.resume, "resume last" },
+    R = { telescope_builtin.registers, "registers" },
     s = { require("plugins.configs.telescope").utils.grep_selected_text, "grep selected text" },
-    S = { get_cmd("Telescope git_status"), "git status" },
+    S = { telescope_builtin.git_status, "git status" },
     t = { get_cmd("TodoTelescope"), "todos" },
   },
 

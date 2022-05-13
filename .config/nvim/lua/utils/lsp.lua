@@ -23,7 +23,7 @@ end
 
 function M.setup_document_highlight(client)
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider then
     local wrappers = require("utils.wrappers")
 
     wrappers.define_augroups({
@@ -44,7 +44,7 @@ end
 local function save_file(format, force)
   -- Format the file
   if format then
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.format()
   end
 
   -- Save the file
@@ -56,7 +56,7 @@ local function save_file(format, force)
 end
 
 function M.setup_format_on_save(client)
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     map("n", "<C-s>", function()
       save_file(true)
     end, { buffer = true })

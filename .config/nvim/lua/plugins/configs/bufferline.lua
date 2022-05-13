@@ -4,6 +4,7 @@ return Plugin:create({
   configure = function()
     require("bufferline").setup({
       options = {
+        mode = "buffers", -- set to "tabs" to only show tabpages instead
         numbers = "none",
         close_command = "Bdelete %d",
         right_mouse_command = "Bdelete! %d",
@@ -30,7 +31,7 @@ return Plugin:create({
         show_buffer_close_icons = true,
         show_close_icon = true,
         show_tab_indicators = true,
-        separator_style = "thick",
+        separator_style = "thin",
       },
     })
   end,

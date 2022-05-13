@@ -46,8 +46,8 @@ vim.api.nvim_create_user_command("LspRangeCodeActions", function()
 end, { desc = "Show the available code actions in the selected range" })
 
 -- Formatting
-vim.api.nvim_create_user_command("LspFormatting", function()
-  vim.lsp.buf.formatting()
+vim.api.nvim_create_user_command("LspFormat", function()
+  vim.lsp.buf.format()
 end, { desc = "Format the document" })
 vim.api.nvim_create_user_command("LspRangeFormatting", function()
   vim.lsp.buf.range_formatting()

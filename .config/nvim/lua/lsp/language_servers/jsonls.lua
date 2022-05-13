@@ -14,10 +14,6 @@ local ls = LanguageServer:create({
   server_name = "jsonls",
   filetypes = { "json", "jsonc" },
   formatters = "prettierd",
-  on_attach = function(client, _)
-    -- Disable formatting in the lsp server as `null-ls` handles formatting
-    client.resolved_capabilities.document_formatting = false
-  end,
   custom = {
     commands = {
       Format = {
@@ -35,6 +31,8 @@ local ls = LanguageServer:create({
       },
     },
   },
+
+  formatting = false,
 })
 
 return ls

@@ -14,10 +14,8 @@ local ls = LanguageServer:create({
     end,
     prefer_local = "node_modules/.bin",
   },
-  on_attach = function(client, _)
-    -- Disable formatting in the lsp server as `null-ls` handles formatting
-    client.resolved_capabilities.document_formatting = false
-  end,
+
+  formatting = false,
 
   debugger_name = "jsnode",
   -- debugger_config = {

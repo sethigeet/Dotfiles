@@ -10,10 +10,8 @@ local ls = LanguageServer:create({
       offsetEncoding = "utf-8",
     },
   },
-  on_attach = function(client, _)
-    -- Disable formatting in the lsp server as `null-ls` handles formatting
-    client.resolved_capabilities.document_formatting = false
-  end,
+
+  formatting = false,
 
   debugger_name = "ccppr_vsc",
   -- debugger_config = {

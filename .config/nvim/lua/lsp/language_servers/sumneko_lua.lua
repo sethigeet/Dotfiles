@@ -29,9 +29,12 @@ if require("utils.lsp").get_root_dir() == os.getenv("HOME") .. "/.config/nvim" t
       plugins = true, -- installed opt or start plugins in packpath
     },
     runtime_path = false, -- enable this to get completion in require strings. Slow!
+
     -- pass any additional options that will be merged in the final lsp config
-    lspconfig = opts,
+    -- lspconfig = {},
   })
+  opts.settings.Lua.workspace.maxPreload = 100000
+  opts.settings.Lua.workspace.preloadFileSize = 100000
 elseif require("utils.lsp").get_root_dir() == os.getenv("HOME") .. "/.config/awesome" then
   opts.settings.Lua.runtime.version = "Lua 5.3"
   opts.settings.Lua.diagnostics.globals = { "awesome", "client", "mouse", "root", "screen" }
