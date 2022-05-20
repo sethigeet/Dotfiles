@@ -66,8 +66,8 @@ return Plugin:create({
 terminal first]],
           vim.log.levels.INFO,
           {
-            title = "No terminal is open!",
-          }
+          title = "No terminal is open!",
+        }
         )
 
         return
@@ -85,24 +85,26 @@ terminal first]],
     end
   end,
 
-  keymaps = {
-    n = {
-      { "`", TermToggle },
-      {
-        "<F1>",
-        function()
-          TermToggle("floating")
-        end,
+  keymaps = function()
+    return {
+      n = {
+        { "`", TermToggle },
+        {
+          "<F1>",
+          function()
+            TermToggle("floating")
+          end,
+        },
       },
-    },
-    t = {
-      { "`", TermToggle },
-      {
-        "<F1>",
-        function()
-          TermToggle("floating")
-        end,
+      t = {
+        { "`", TermToggle },
+        {
+          "<F1>",
+          function()
+            TermToggle("floating")
+          end,
+        },
       },
-    },
-  },
+    }
+  end,
 })

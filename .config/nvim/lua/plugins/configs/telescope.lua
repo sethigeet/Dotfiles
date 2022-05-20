@@ -94,7 +94,12 @@ return Plugin:create({
           filetypes = { "png", "webp", "jpg", "jpeg" },
           find_cmd = "fd",
         },
-        fzy_native = { override_generic_sorter = true, override_file_sorter = true },
+        fzf = {
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
+          case_mode = "smart_case", -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
+        },
         frecency = {
           show_scores = false,
           show_unindexed = true,
@@ -110,7 +115,7 @@ return Plugin:create({
 
     local extensions = {
       "media_files",
-      -- "fzy_native",
+      "fzf",
       -- "projects",
       "frecency",
     }

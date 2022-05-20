@@ -225,7 +225,10 @@ local plugins = {
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-media-files.nvim",
-      -- "nvim-telescope/telescope-fzy-native.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make",
+      },
       "nvim-telescope/telescope-symbols.nvim",
       { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
     },
