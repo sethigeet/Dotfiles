@@ -1,101 +1,85 @@
-#!/bin/sh
+#!/usr/bin/python
 
-help_message="\
-usage: set-yt-player-settings [commands]
-  commands:
-    help                         Shows this help message
-    theatre-mode                 Sets the player mode to 'theatre'
-    2x-speed                     Sets the player spped to 2x
-"
+import argparse
+from io import BytesIO
+from os import popen
+from subprocess import check_output
+from time import sleep
+from typing import Tuple
 
-SLEEP_DUR="0.3"
-move() {
-  xdotool mousemove "$1" "$2"
-}
-click() {
-  xdotool click 1
-}
+import cv2
+import numpy as np
+from PIL import Image
 
-set_theatre_mode() {
-  # let any other operation finish
-  sleep "$SLEEP_DUR"
+SCREENSHOT_FILEPATH = "/tmp/yt-settings-automation"
+IMGS_DIR = "/".join(__file__.split("/")[:-1]) + "/imgs"
+THEATRE_MODE_ICON = f"{IMGS_DIR}/theate-mode.png"
+SETTINGS_ICON = f"{IMGS_DIR}/settings.png"
+PLAYBACK_SPEED_ICON = f"{IMGS_DIR}/playback-speed.png"
+X2_SPEED_ICON = f"{IMGS_DIR}/x2-speed.png"
+PLAYER_COORDS = (450, 450)  # TODO: Try to automate this too!
+SLEEP_DURATION = 0.3
 
-  # move the mouse to `theate mode` button
-  move 1297 915
 
-  sleep "$SLEEP_DUR"
+def get_coords(img_path: str) -> Tuple[int, int]:
+    # take a screenshot
+    raw_scrot = check_output(["scrot", "-"])
+    buff = BytesIO()
+    buff.write(raw_scrot)
+    buff.seek(0)
+    scrot = Image.open(buff)
 
-  # click the button
-  click
+    # convert to opencv format
+    scrot = np.array(scrot)
+    scrot = cv2.cvtColor(scrot, cv2.COLOR_RGB2BGR)  # Convert RGB to BGR
 
-  sleep "$SLEEP_DUR"
+    settings_icon = cv2.imread(img_path)
+    result = cv2.matchTemplate(scrot, settings_icon, cv2.TM_CCOEFF_NORMED)
+    y, x = np.unravel_index(result.argmax(), result.shape)
+    y, x = y + 15, x + 15  # move to the center of the match
+    return (x, y)
 
-  # move the mouse away from the timeline
-  move 1400 800
-}
 
-set_2x_speed() {
-  # let any other operation finish
-  sleep "$SLEEP_DUR"
+def move_cursor(x: int, y: int) -> None:
+    popen(f"xdotool mousemove {x} {y}")
 
-  # move to settings icon
-  move 1730 940
 
-  sleep "$SLEEP_DUR"
+def click() -> None:
+    popen("xdotool click 1")
 
-  # click the settings icon
-  click
 
-  sleep "$SLEEP_DUR"
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "what",
+    help="What to set?",
+    type=str,
+    choices=["theatre-mode", "x2-speed"],
+)
+args = parser.parse_args()
 
-  # move to the speed menu
-  move 1730 790
+actions = []
+match args.what:
+    case "theatre-mode":
+        actions.append(THEATRE_MODE_ICON)
+    case "x2-speed":
+        actions.append(SETTINGS_ICON)
+        actions.append(PLAYBACK_SPEED_ICON)
+        actions.append(X2_SPEED_ICON)
 
-  sleep "$SLEEP_DUR"
+# move mouse to a location on the player
+move_cursor(*PLAYER_COORDS)
 
-  # click the speed menu to enter it
-  click
+for item in actions:
+    # Click the settings icon
+    sleep(SLEEP_DURATION)  # wait for the mouse to move
+    move_cursor(*get_coords(item))
+    sleep(SLEEP_DURATION)  # wait for the mouse to move
+    click()
+    sleep(SLEEP_DURATION)  # wait for the mouse to click
 
-  sleep "$SLEEP_DUR"
 
-  # move the mouse to x2.0
-  move 1730 870
-
-  sleep "$SLEEP_DUR"
-
-  # click it to set the speed
-  click
-
-  sleep "$SLEEP_DUR"
-
-  # move the mouse away from the timeline
-  move 1400 800
-
-  # hide the settings overlay
-  click
-}
-
-if [ -z "$1" ]; then
-  echo "$help_message" >&2 && exit 1
-fi
-
-while [ $# -gt 0 ]; do
-  case "$1" in
-    help)
-      echo "$help_message"
-      exit 0
-      ;;
-    theatre-mode)
-      shift
-      set_theatre_mode
-      ;;
-    2x-speed)
-      shift
-      set_2x_speed
-      ;;
-    *)
-      echo "$help_message" >&2
-      exit 1
-      ;;
-  esac
-done
+# Click anywhere else on the player to hide the settings menu
+if args.what != "theatre-mode":
+    move_cursor(*PLAYER_COORDS)
+    sleep(SLEEP_DURATION)  # wait for the mouse to move
+    click()
