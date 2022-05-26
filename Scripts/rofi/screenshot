@@ -45,7 +45,7 @@ notify() {
 take_area_screenshot() {
   # I prefer `flameshot` for area screenshots
   if check_for_program "flameshot"; then
-    flameshot gui -p "$IMG_DIR"
+    flameshot gui
   else
     file_name=$(scrot --select "$FILE_FORMAT" --exec 'echo $f')
     notify 'Screenshot of the selected area has been taken!' "$file_name"
@@ -68,7 +68,7 @@ take_window_screenshot() {
     file_name=$(scrot --focused "$FILE_FORMAT" --exec 'echo $f')
     notify 'Screenshot of the focued window has been taken!' "$file_name"
   else
-    flameshot gui -p "$IMG_DIR"
+    flameshot gui
   fi
 }
 

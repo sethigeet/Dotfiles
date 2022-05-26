@@ -23,7 +23,7 @@ end
 
 function M.setup_document_highlight(client)
   -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.documentHighlightProvider then
+  if client.supports_method("textDocument/documentHighlight") then
     local wrappers = require("utils.wrappers")
 
     wrappers.define_augroups({
@@ -56,7 +56,7 @@ local function save_file(format, force)
 end
 
 function M.setup_format_on_save(client)
-  if client.server_capabilities.documentFormattingProvider then
+  if client.supports_method("textDocument/formatting") then
     map("n", "<C-s>", function()
       save_file(true)
     end, { buffer = true })
