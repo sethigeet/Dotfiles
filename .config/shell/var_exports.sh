@@ -34,3 +34,6 @@ fi
 # fi
 
 export GITUSER="sethigeet"
+
+# Set the default diff program
+export DIFFPROG="nvim -d"
