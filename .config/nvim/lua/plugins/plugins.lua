@@ -89,10 +89,17 @@ local plugins = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     after = "nvim-treesitter",
   },
+  -- Extend vim's '%' functionality using `treesitter`
   {
-    "andymass/vim-matchup", -- Extend vim's '%' functionality using `treesitter`
+    "andymass/vim-matchup",
     event = "CursorMoved",
     config = "matchup",
+    after = "nvim-treesitter",
+  },
+  -- Show breadcrumbs according to the position in the file
+  {
+    "SmiteshP/nvim-gps",
+    config = "gps",
     after = "nvim-treesitter",
   },
 
@@ -157,10 +164,9 @@ local plugins = {
 
   -- Start Screen
   {
-    "glepnir/dashboard-nvim",
-    config = "dashboard",
+    "goolord/alpha-nvim",
+    config = "alpha",
   },
-  -- use { "mhinz/vim-startify", config = "startify" }
 
   -- See what keys do like in emacs
   {
@@ -267,7 +273,6 @@ local plugins = {
       { "hrsh7th/cmp-path", event = { "InsertEnter", "CmdlineEnter" }, after = "nvim-cmp" },
       { "hrsh7th/cmp-emoji", event = "InsertEnter", after = "nvim-cmp" },
       { "hrsh7th/cmp-calc", event = "InsertEnter", after = "nvim-cmp" },
-      { "hrsh7th/cmp-cmdline", event = "CmdlineEnter", after = "nvim-cmp" },
       { "f3fora/cmp-spell", event = "InsertEnter", after = "nvim-cmp" },
       { "ray-x/cmp-treesitter", event = "InsertEnter", after = "nvim-cmp" },
       { "saadparwaiz1/cmp_luasnip", event = "InsertEnter", after = "nvim-cmp" },
@@ -278,6 +283,10 @@ local plugins = {
         event = "InsertEnter",
       },
     },
+  },
+  {
+    "gelguy/wilder.nvim",
+    run = "vim.cmd('UpdateRemotePlugins')",
   },
 
   {

@@ -29,7 +29,9 @@
 
 -- VSCode Style (requires codicon font)
 local icons = {
+  Array = " ",
   Boolean = "",
+  Calendar = " ",
   Character = "",
   Class = "",
   Color = "",
@@ -47,6 +49,7 @@ local icons = {
   Method = "",
   Module = "",
   Number = "",
+  Object = " ",
   Operator = "",
   Parameter = "",
   Property = "",
@@ -54,11 +57,14 @@ local icons = {
   Snippet = "",
   String = "",
   Struct = "",
+  Table = "",
+  Tag = " ",
   Text = "",
   TypeParameter = "",
   Unit = "",
   Value = "",
   Variable = "",
+  Watch = " ",
 }
 
 return icons

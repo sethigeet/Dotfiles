@@ -6,7 +6,7 @@ function M.define_augroups(definitions)
     vim.api.nvim_create_augroup(group_name, { clear = true })
 
     -- create the commands
-    for _, def in pairs(definition) do
+    for _, def in ipairs(definition) do
       vim.api.nvim_create_autocmd(
         def[1],
         { group = group_name, pattern = def[2], callback = def.cb, command = def.cmd, once = def.once }

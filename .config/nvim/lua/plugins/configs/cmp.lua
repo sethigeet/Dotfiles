@@ -50,20 +50,13 @@ return Plugin:create({
         end,
       },
       mapping = {
-        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s", "c" }),
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s", "c" }),
-        ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s", "c" }),
-        ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s", "c" }),
+        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
+        ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+        ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
         ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
         ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
         ["<C-n>"] = cmp.mapping({
-          c = function()
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              vim.api.nvim_feedkeys(utils.t("<Down>"), "n", true)
-            end
-          end,
           i = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -73,13 +66,6 @@ return Plugin:create({
           end,
         }),
         ["<C-p>"] = cmp.mapping({
-          c = function()
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              vim.api.nvim_feedkeys(utils.t("<Up>"), "n", true)
-            end
-          end,
           i = function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -89,31 +75,17 @@ return Plugin:create({
           end,
         }),
         ["<Tab>"] = cmp.mapping({
-          c = function()
-            if cmp.visible() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-            else
-              cmp.complete()
-            end
-          end,
           i = tab_complete,
           s = tab_complete,
         }),
 
         ["<S-Tab>"] = cmp.mapping({
-          c = function()
-            if cmp.visible() then
-              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-            else
-              cmp.complete()
-            end
-          end,
           i = s_tab_complete,
           s = s_tab_complete,
         }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-q>"] = cmp.mapping(cmp.mapping.close(), { "i", "s", "c" }),
-        ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "s", "c" }),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i" }),
+        ["<C-q>"] = cmp.mapping(cmp.mapping.close(), { "i", "s" }),
+        ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "s" }),
         ["<CR>"] = cmp.mapping({
           i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
           c = function(fallback)
@@ -155,18 +127,6 @@ return Plugin:create({
       experimental = {
         ghost_text = true,
       },
-    })
-
-    -- Use buffer source for `/`.
-    cmp.setup.cmdline("/", {
-      sources = {
-        { name = "buffer" },
-      },
-    })
-
-    -- Use cmdline & path source for ':'.
-    cmp.setup.cmdline(":", {
-      sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
     })
   end,
 

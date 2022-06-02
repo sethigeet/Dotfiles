@@ -64,7 +64,7 @@ return Plugin:create({
       excluded_filetypes = {
         "prompt",
         "TelescopePrompt",
-        "dashboard",
+        "alpha",
       },
       autocmd = {
         render = {

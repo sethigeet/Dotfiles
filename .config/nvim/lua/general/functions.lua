@@ -1,5 +1,5 @@
 function LoadPlugins(doWhat, args)
-  local plugins = require("plugins.plugins")
+  local plugins = R("plugins.plugins")
   require("utils.plugin_wrapper").setup(plugins.config, plugins.plugins)
 
   if not doWhat then

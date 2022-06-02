@@ -56,7 +56,7 @@ local mappings = {
   ["/"] = { "<Cmd>lua require('Comment.api').call('toggle_current_linewise_op')<CR>g@$", "comment" },
   ["?"] = { get_cmd("NvimTreeFindFile"), "show file in tree" },
   ["="] = { "<C-W>=", "balance windows" },
-  [";"] = { get_cmd("Dashboard"), "show start screen" },
+  [";"] = { get_cmd("Alpha"), "show start screen" },
   e = { get_cmd("NvimTreeToggle"), "explorer" },
   f = { require("plugins.configs.telescope").utils.find_files, "find files" },
   h = { "<C-W>s", "split below" },
@@ -141,7 +141,7 @@ local mappings = {
       },
       L = {
         function()
-          require("dapui").float_element("breakpoints")
+          require("dapui").float_element("breakpoints", nil)
         end,
         "list breakpoints",
       },
@@ -162,7 +162,7 @@ local mappings = {
     },
     S = {
       function()
-        require("dapui").float_element("stacks")
+        require("dapui").float_element("stacks", nil)
       end,
       "show stacks",
     },
