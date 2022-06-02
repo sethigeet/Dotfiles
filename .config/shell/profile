@@ -41,6 +41,10 @@ export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/.config/asdf/config"
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$XDG_CONFIG_HOME/asdf/tools-versions"
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 export ASDF_DIR="/opt/asdf-vm"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export ANDROID_HOME="$XDG_DATA_HOME/android"
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export STACK_ROOT="$XDG_DATA_HOME/stack"
 
 # Set the QT Themes
 export QT_QPA_PLATFORMTHEME="gtk2"

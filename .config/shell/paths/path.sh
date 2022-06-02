@@ -1,7 +1,6 @@
 # ANDROID STUDIO
 if [ -d "$HOME/Android/Sdk" ]; then
   export ANDROID_SDK="$HOME/Android/Sdk"
-  export ANDROID_HOME="$HOME/Android/Sdk"
   PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 fi
 
