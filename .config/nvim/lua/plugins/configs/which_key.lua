@@ -267,19 +267,6 @@ local mappings = {
     S = { telescope_builtin.lsp_workspace_symbols, "workspace symbols" },
   },
 
-  -- m is for Mark
-  m = {
-    name = "Mark",
-    a = { get_cmd("BookmarkShowAll"), "show all" },
-    c = { get_cmd("BookmarkClear"), "clear" },
-    d = { get_cmd("BookmarkClearAll"), "clear all" },
-    j = { get_cmd("BookmarkNext"), "next mark" },
-    k = { get_cmd("BookmarkPrev"), "prev mark" },
-    l = { get_cmd("BookmarkLoad"), "load" },
-    s = { get_cmd("BookmarkSave"), "save" },
-    t = { get_cmd("BookmarkToggle"), "toggle" },
-  },
-
   p = {
     name = "Plugin Manager",
     c = { get_cmd("lua LoadPlugins('compile')"), "compile" },
@@ -340,7 +327,6 @@ local mappings = {
     F = { telescope_builtin.git_files, "git files" },
     g = { telescope_builtin.live_grep, "text" },
     G = { require("plugins.configs.telescope").utils.grep_current_buf, "grep cur buf" },
-    -- i = { get_cmd("Telescope media_files"), "media files" },
     l = { telescope_builtin.loclist, "loclist" },
     m = { telescope_builtin.marks, "marks" },
     o = { telescope_builtin.oldfiles, "oldfiles" },

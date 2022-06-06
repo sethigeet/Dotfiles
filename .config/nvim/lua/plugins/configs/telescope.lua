@@ -153,8 +153,8 @@ return Plugin:create({
     return {
       n = {
         { "<C-f>", self.utils.grep_current_buf },
-        { "<C-b>", "<Cmd>Telescope buffers<CR>" },
-        { "<C-p>", "<Cmd>Telescope find_files<CR>" },
+        { "<C-b>", require("telescope.builtin").buffers },
+        { "<C-p>", require("telescope.builtin").find_files },
       },
     }
   end,
