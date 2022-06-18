@@ -54,16 +54,7 @@ toggle() {
 }
 
 turn_off_screen() {
-  # set the timeout to 1s
-  turn_on 1
-
-  # wait for the screen to turn off
-  sleep 2
-
-  # set the timeout back to on
-  # NOTE: The timeout has to be turned on(only) again as if the timeout is turned off then the screen would turn on immediately
-  #       It cannot be turn off
-  turn_on
+  xset dpms force off
 }
 
 while [ $# -gt 0 ]; do
@@ -74,7 +65,8 @@ while [ $# -gt 0 ]; do
       ;;
     --on)
       echo "Turning on the power-saver"
-      turn_on
+      shift
+      turn_on "$1"
       exit 0
       ;;
     --off)
