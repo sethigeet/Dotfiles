@@ -26,7 +26,7 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
 
   //# Files
@@ -140,7 +140,6 @@
   "python.linting.enabled": true,
 
   // Dart
-  "dart.allowAnalytics": false,
   "dart.checkForSdkUpdates": false,
 
   // Lua
@@ -211,8 +210,8 @@
       "commands": ["editor.action.outdentLines"]
     },
     {
-      "before": ["p"],
-      "after": ["p", "g", "v", "y"]
+      "before": ["<leader>", "p"],
+      "after": ["\"_dP"]
     },
     {
       "before": ["$"],
@@ -238,7 +237,7 @@
       "after": ["y", "$"]
     },
     {
-      "before": ["yp"],
+      "before": ["y", "p"],
       "after": ["y", "y", "p"]
     },
     {
@@ -252,6 +251,15 @@
     {
       "before": ["<leader>", "s", "="],
       "commands": ["workbench.action.evenEditorWidths"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"],
+      "when": "editFocus"
     }
   ],
   "vim.handleKeys": {
