@@ -49,17 +49,4 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! all-the-icons-dired)
-(package! async)
-(package! dired-open)
-(package! dmenu)
-(package! emojify)
-(package! evil-tutor)
-(package! ivy-posframe)
-(package! org-bullets)
-(package! peep-dired)
-(package! rainbow-mode)
-(package! resize-window)
-(package! tldr)
-(package! wc-mode)
-(package! writeroom-mode)
+;; NOTE: All the external packages are being loaded in the custom plugins module!
