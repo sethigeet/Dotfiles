@@ -15,6 +15,9 @@ super + {e,i,w}
 super + shift + {c,e,w}
 	{gnome-calculator,code,brave --incognito}
 
+super + ctrl + {w}
+  {microsoft-edge-stable}
+
 # Manage Windows
 super + semicolon
 	skippy-xd
