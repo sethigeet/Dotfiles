@@ -52,4 +52,10 @@ if [ -d "/usr/lib/jvm/java-15-openjdk" ]; then
   PATH="$PATH:/usr/lib/jvm/java-15-openjdk/bin"
 fi
 
+# Bun
+if [ -d "$HOME/.local/share/bun" ]; then
+  export BUN_INSTALL="$XDG_DATA_HOME/bun"
+  PATH="$PATH:$BUN_INSTALL/bin"
+fi
+
 export PATH

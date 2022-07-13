@@ -22,3 +22,9 @@ enable_kitty_completion=true
 if "$enable_kitty_completion"; then
   kitty + complete setup "$shell" | source /dev/stdin
 fi
+
+# 'bun' completion
+enable_bun_completion=true
+if "$enable_bun_completion"; then
+  [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+fi
