@@ -6,7 +6,11 @@
   "editor.suggestSelection": "first",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
-  "editor.quickSuggestions": true,
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
   "editor.fontSize": 15,
   "editor.linkedEditing": true,
   "editor.lineNumbers": "relative",

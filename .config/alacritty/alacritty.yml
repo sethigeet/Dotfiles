@@ -30,6 +30,8 @@ window:
 
   # gtk_theme_variant: None
 
+  opacity: 0.85
+
 scrolling:
   history: 10000
 
@@ -104,8 +106,6 @@ colors:
 
 bell:
   duration: 0
-
-background_opacity: 0.85
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

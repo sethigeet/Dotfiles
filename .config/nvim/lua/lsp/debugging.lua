@@ -30,19 +30,22 @@ function debugging.setup()
       edit = "e",
       repl = "r",
     },
-    sidebar = {
-      elements = {
-        { id = "scopes", size = 0.5 },
-        { id = "breakpoints", size = 0.25 },
-        { id = "watches", size = 0.25 },
+    layout = {
+      {
+        elements = {
+          { id = "scopes", size = 0.5 },
+          { id = "breakpoints", size = 0.25 },
+          { id = "watches", size = 0.25 },
+        },
+        size = 40,
+        position = "left",
       },
-      size = 40,
-      position = "left",
-    },
-    tray = {
-      elements = { "repl" },
-      size = 10,
-      position = "bottom",
+
+      {
+        elements = { "repl" },
+        size = 10,
+        position = "bottom",
+      },
     },
     floating = {
       max_height = 15, -- These can be integers or a float between 0 and 1.
