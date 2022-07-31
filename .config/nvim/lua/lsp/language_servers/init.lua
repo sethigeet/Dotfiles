@@ -7,7 +7,16 @@ for _, file in ipairs(vim.api.nvim_get_runtime_file("lua/lsp/language_servers/*.
 end
 
 -- Setup lsp install
-require("nvim-lsp-installer").setup({ ensure_installed = lsps })
+require("mason").setup({
+  ui = {
+    icons = {
+      package_installed = "﫟",
+      package_pending = "ﳁ",
+      package_uninstalled = "",
+    },
+  },
+})
+require("mason-lspconfig").setup({ ensure_installed = lsps })
 
 -- Load all the language servers
 for _, lsp in ipairs(lsps) do

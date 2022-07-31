@@ -101,10 +101,12 @@ local mappings = {
 
   C = {
     name = "Convert Color",
-    c = { require("color-converter").cycle, "cycle" },
-    x = { require("color-converter").to_hex, "to HEX" },
-    r = { require("color-converter").to_rgb, "to RGB" },
-    h = { require("color-converter").to_hsl, "to HSL" },
+    p = { get_cmd("Colortils picker"), "open picker" },
+    l = { get_cmd("Colortils lighten"), "lighten" },
+    d = { get_cmd("Colortils darken"), "darken" },
+    g = { get_cmd("Colortils gradient"), "gradient" },
+    G = { get_cmd("Colortils greyscale"), "greyscale" },
+    c = { get_cmd("Colortils css list"), "list css colors" },
   },
 
   -- d is for Debugging
@@ -141,7 +143,7 @@ local mappings = {
       },
       L = {
         function()
-          require("dapui").float_element("breakpoints", nil)
+          require("dapui").float_element("breakpoints", {})
         end,
         "list breakpoints",
       },
@@ -162,7 +164,7 @@ local mappings = {
     },
     S = {
       function()
-        require("dapui").float_element("stacks", nil)
+        require("dapui").float_element("stacks", {})
       end,
       "show stacks",
     },
@@ -252,7 +254,7 @@ local mappings = {
     },
     h = { vim.lsp.buf.signature_help, "signature_help" },
     i = { get_cmd("LspInfo"), "lsp info" },
-    I = { get_cmd("LspInstallInfo"), "lsp install info" },
+    I = { get_cmd("Mason"), "lsp install info" },
     o = { get_cmd("SymbolsOutline"), "outline" },
     p = {
       name = "Peek",
@@ -288,11 +290,6 @@ local mappings = {
   -- r is for Run
   r = {
     name = "Run",
-    r = { get_cmd("SnipRun", true), "run the selected piece of code" },
-    s = { get_cmd("SnipReset", true), "stop the running code" },
-    c = { get_cmd("SnipClose", true), "clear the previous output" },
-    m = { get_cmd("SnipReplMemoryClean", true), "clean the repl memory" },
-
     -- NOTE: This keybinding is only for nvim development
     e = { get_cmd("lua SaveAndExec(false)"), "exec the current function (nvim devel only)" },
     E = { get_cmd("lua SaveAndExec(true)"), "save and exec the current function (nvim devel only)" },

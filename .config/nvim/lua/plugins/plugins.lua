@@ -248,7 +248,8 @@ local plugins = {
   "neovim/nvim-lspconfig",
   "nvim-lua/lsp_extensions.nvim",
   "j-hui/fidget.nvim",
-  "williamboman/nvim-lsp-installer",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
   {
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -317,7 +318,6 @@ local plugins = {
   -- Debugging
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
-  "Pocco81/dap-buddy.nvim",
 
   -- Markdown preview
   {
@@ -371,20 +371,6 @@ local plugins = {
     config = "emmet",
   },
 
-  -- Run selected blocks of code
-  {
-    "michaelb/sniprun",
-    run = "bash ./install.sh",
-    config = "sniprun",
-  },
-
-  -- Quickly align text by pattern
-  {
-    "godlygeek/tabular",
-    cmd = "Tabularize",
-    config = "tabular",
-  },
-
   -- Search and replace text interactively
   {
     "windwp/nvim-spectre",
@@ -406,8 +392,11 @@ local plugins = {
 
   -- Easily convert colors to different formats
   {
-    "NTBBloodbath/color-converter.nvim",
-    module = "color-converter",
+    "nvim-colortils/colortils.nvim",
+    cmd = { "Colortils" },
+    config = function()
+      require("colortils").setup({})
+    end,
   },
 
   -- Better notifications

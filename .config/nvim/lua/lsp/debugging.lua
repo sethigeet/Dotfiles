@@ -58,9 +58,6 @@ function debugging.setup()
     windows = { indent = 1 },
   })
 
-  -- Setup DAP Buddy
-  require("dap-buddy").setup({})
-
   -- Setup keymaps
   debugging.keymaps()
 end
