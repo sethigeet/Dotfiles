@@ -41,6 +41,7 @@ alias rm="rm -iv"
 
 # make direcotries
 alias mkd="mkdir -pv"
+alias cdtmp='cd $(mktemp -d)'
 
 # find the size of a dir
 alias hsize="du -hs"
