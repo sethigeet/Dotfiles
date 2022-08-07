@@ -5,9 +5,7 @@ local EMMET_ENABLED_FILETYPES = { "html", "css", "scss", "javascriptreact", "typ
 local function is_emmet_enabled()
   local curr_ft = vim.opt.filetype:get()
   for _, ft in ipairs(EMMET_ENABLED_FILETYPES) do
-    if curr_ft == ft then
-      return true
-    end
+    if curr_ft == ft then return true end
   end
 
   return false
@@ -45,9 +43,7 @@ return Plugin:create({
 
     cmp.setup({
       snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
+        expand = function(args) require("luasnip").lsp_expand(args.body) end,
       },
       mapping = {
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
@@ -139,16 +135,12 @@ return Plugin:create({
       {
         "FileType",
         "lua",
-        cb = function()
-          require("plugins.configs.cmp").utils.append_sources_to_buf({ { name = "nvim_lua" } })
-        end,
+        cb = function() require("plugins.configs.cmp").utils.append_sources_to_buf({ { name = "nvim_lua" } }) end,
       },
       {
         "FileType",
         "sql,mysql,plsql",
-        cb = function()
-          require("plugins.configs.cmp").append_sources_to_buf({ { name = "vim-dadbod-completion" } })
-        end,
+        cb = function() require("plugins.configs.cmp").append_sources_to_buf({ { name = "vim-dadbod-completion" } }) end,
       },
     },
   },

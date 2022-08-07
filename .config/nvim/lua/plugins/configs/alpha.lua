@@ -43,9 +43,7 @@ return Plugin:create({
       {
         "FileType",
         "alpha",
-        cb = function()
-          vim.keymap("n", "q", ":q<CR>", { silent = true, buffer = true })
-        end,
+        cb = function() vim.keymap("n", "q", ":q<CR>", { silent = true, buffer = true }) end,
       },
     },
   },

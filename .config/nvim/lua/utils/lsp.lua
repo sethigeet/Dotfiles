@@ -7,17 +7,13 @@ function M.check_lsp_client_active(name)
   -- Check if a particular client is active
   if name then
     for _, client in pairs(active_clients) do
-      if client.name == name then
-        return true
-      end
+      if client.name == name then return true end
     end
     return false
   end
 
   -- Just check if any client is active
-  if next(active_clients) == nil then
-    return false
-  end
+  if next(active_clients) == nil then return false end
   return true
 end
 
@@ -43,9 +39,7 @@ end
 
 local function save_file(format, force)
   -- Format the file
-  if format then
-    vim.lsp.buf.format()
-  end
+  if format then vim.lsp.buf.format() end
 
   -- Save the file
   if force then
@@ -57,19 +51,11 @@ end
 
 function M.setup_format_on_save(client)
   if client.supports_method("textDocument/formatting") then
-    map("n", "<C-s>", function()
-      save_file(true)
-    end, { buffer = true })
-    map("n", "<M-s>", function()
-      save_file(false)
-    end, { buffer = true })
+    map("n", "<C-s>", function() save_file(true) end, { buffer = true })
+    map("n", "<M-s>", function() save_file(false) end, { buffer = true })
 
-    map("v", "<C-s>", function()
-      save_file(true, true)
-    end, { buffer = true })
-    map("v", "<M-s>", function()
-      save_file(false, true)
-    end, { buffer = true })
+    map("v", "<C-s>", function() save_file(true, true) end, { buffer = true })
+    map("v", "<M-s>", function() save_file(false, true) end, { buffer = true })
   end
 end
 
@@ -78,9 +64,7 @@ function M.get_root_dir(filename)
   return vim.fn.getcwd()
 end
 
-function M.setup_keybindings(bufnr)
-  require("keymappings.lsp").setup(bufnr)
-end
+function M.setup_keybindings(bufnr) require("keymappings.lsp").setup(bufnr) end
 
 function M.setup_inlay_hints()
   require("utils.wrappers").define_augroups({
@@ -88,9 +72,7 @@ function M.setup_inlay_hints()
       {
         "TextChanged,TextChangedI",
         "<buffer>",
-        cb = function()
-          require("lsp_extensions").inlay_hints({ prefix = "  " })
-        end,
+        cb = function() require("lsp_extensions").inlay_hints({ prefix = "  " }) end,
       },
     },
   })
@@ -110,8 +92,6 @@ function M.setup_codelens()
   -- vim.lsp.codelens.refresh()
 end
 
-function M.setup_dim_unused()
-  require("lsp.helpers.dim_unused").setup()
-end
+function M.setup_dim_unused() require("lsp.helpers.dim_unused").setup() end
 
 return M

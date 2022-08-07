@@ -5,9 +5,7 @@ local augroups = {
     {
       "TextYankPost",
       "*",
-      cb = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
-      end,
+      cb = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 }) end,
     },
 
     -- Get back to the place from where you left the file

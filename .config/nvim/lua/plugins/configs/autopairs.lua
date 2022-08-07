@@ -37,12 +37,8 @@ return Plugin:create({
       table.insert(
         rules,
         Rule(paren[1] .. " ", " " .. paren[2])
-          :with_pair(function()
-            return false
-          end)
-          :with_move(function(opts)
-            return opts.prev_char:match(".%" .. paren[2]) ~= nil
-          end)
+          :with_pair(function() return false end)
+          :with_move(function(opts) return opts.prev_char:match(".%" .. paren[2]) ~= nil end)
           :use_key(paren[2])
       )
     end

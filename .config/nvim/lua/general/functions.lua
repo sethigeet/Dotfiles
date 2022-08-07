@@ -2,13 +2,9 @@ function LoadPlugins(doWhat, args)
   local plugins = R("plugins.plugins")
   require("utils.plugin_wrapper").setup(plugins.config, plugins.plugins)
 
-  if not doWhat then
-    return
-  end
+  if not doWhat then return end
 
-  if type(doWhat) ~= "string" then
-    error("The argument must be a string")
-  end
+  if type(doWhat) ~= "string" then error("The argument must be a string") end
 
   local doWhatSwitch = {
     sync = "PackerSync",
@@ -58,9 +54,7 @@ vim.treesitter.set_query(
 )
 
 function SaveAndExec(save)
-  if save then
-    ReloadFile()
-  end
+  if save then ReloadFile() end
 
   local ts_locals = require("nvim-treesitter.locals")
   local ts_utils = require("nvim-treesitter.ts_utils")

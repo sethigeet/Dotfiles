@@ -43,9 +43,7 @@ Please close all other selects first]],
     select_ui = nil
   end
 
-  local function on_close()
-    on_done(nil, nil)
-  end
+  local function on_close() on_done(nil, nil) end
 
   local kind = opts.kind or "unknown"
   local format_item = opts.format_item or tostring
@@ -103,20 +101,14 @@ Please close all other selects first]],
       focus_prev = { "k", "<Up>", "<S-Tab>", "<C-p>" },
       submit = { "<CR>", "<Space>" },
     },
-    on_close = function()
-      on_done(nil, nil)
-    end,
-    on_submit = function(item)
-      on_done(item, item.index)
-    end,
+    on_close = function() on_done(nil, nil) end,
+    on_submit = function(item) on_done(item, item.index) end,
   })
 
   select_ui:mount()
 
   -- cancel operation if cursor leaves select
-  select_ui:on(event.BufLeave, function()
-    on_done(nil, nil)
-  end, { once = true })
+  select_ui:on(event.BufLeave, function() on_done(nil, nil) end, { once = true })
 
   apply_default_keymaps(select_ui, on_close)
 end

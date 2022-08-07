@@ -40,12 +40,8 @@ return Plugin:create({
 
     function TermToggle(type)
       local terminals = {
-        default = function()
-          vim.cmd("ToggleTerm")
-        end,
-        floating = function()
-          floating:toggle()
-        end,
+        default = function() vim.cmd("ToggleTerm") end,
+        floating = function() floating:toggle() end,
       }
 
       type = type or "default"
@@ -89,18 +85,14 @@ terminal first]],
         { "`", TermToggle },
         {
           "<F1>",
-          function()
-            TermToggle("floating")
-          end,
+          function() TermToggle("floating") end,
         },
       },
       t = {
         { "`", TermToggle },
         {
           "<F1>",
-          function()
-            TermToggle("floating")
-          end,
+          function() TermToggle("floating") end,
         },
       },
     }

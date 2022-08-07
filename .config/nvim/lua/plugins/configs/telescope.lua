@@ -64,9 +64,7 @@ return Plugin:create({
             ["<C-p>"] = actions.cycle_history_prev,
             ["<C-y>"] = function(prompt_bufnr)
               local entry = actions_state.get_selected_entry()
-              if not entry or not type(entry) == "table" then
-                return
-              end
+              if not entry or not type(entry) == "table" then return end
 
               actions_state.get_current_picker(prompt_bufnr):reset_prompt(entry.ordinal)
             end,

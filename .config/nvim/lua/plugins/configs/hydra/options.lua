@@ -18,9 +18,7 @@ end
 
 local function get_icon_fn(key)
   return function()
-    if vim.o[key] then
-      return "﫟"
-    end
+    if vim.o[key] then return "﫟" end
 
     return " "
   end
@@ -28,9 +26,7 @@ end
 
 local function get_icon_cb_fn(cb)
   return function()
-    if cb() then
-      return "﫟"
-    end
+    if cb() then return "﫟" end
 
     return " "
   end
@@ -53,7 +49,7 @@ local options_menu_args = {
   $mkdp
   ^
        ^^^^                _<Esc>_  
-]] ,
+]],
   config = {
     color = "amaranth",
     hint = {
@@ -87,15 +83,9 @@ local options = {
 return {
   init = function()
     local vim_options = require("hydra.hint.vim_options")
-    vim_options.ve = get_icon_cb_fn(function()
-      return vim.tbl_contains(vim.opt.virtualedit:get(), "all")
-    end)
-    vim_options.mkdp = get_icon_cb_fn(function()
-      return vim.b.MarkdownPreviewToggleBool == 1
-    end)
-    vim_options.zen = get_icon_cb_fn(function()
-      return require("zen-mode.view").is_open()
-    end)
+    vim_options.ve = get_icon_cb_fn(function() return vim.tbl_contains(vim.opt.virtualedit:get(), "all") end)
+    vim_options.mkdp = get_icon_cb_fn(function() return vim.b.MarkdownPreviewToggleBool == 1 end)
+    vim_options.zen = get_icon_cb_fn(function() return require("zen-mode.view").is_open() end)
     for i, j in pairs(options) do
       vim_options[i] = get_icon_fn(j)
     end

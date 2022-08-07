@@ -98,9 +98,7 @@ return function()
     prompt = "New Name",
     default = old_name,
   }, function(new_name)
-    if not (new_name and #new_name > 0) or new_name == old_name then
-      return
-    end
+    if not (new_name and #new_name > 0) or new_name == old_name then return end
 
     -- Check whether a lsp is active or not
     local active = require("utils.lsp").check_lsp_client_active()
@@ -111,9 +109,7 @@ return function()
     end
 
     -- Try renaming using `lsp`
-    if do_rename_using_lsp(new_name) then
-      return
-    end
+    if do_rename_using_lsp(new_name) then return end
 
     -- Use treesitter to rename if lsp is unable to do so
     do_rename_using_treesitter(new_name)

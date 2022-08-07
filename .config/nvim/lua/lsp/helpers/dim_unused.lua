@@ -8,9 +8,7 @@ local UNUSED_DIAGS = { "never read", "unused" }
 
 local function string_contains_any(str, substrs)
   for _, substr in ipairs(substrs) do
-    if string.match(string.lower(str), substr) then
-      return true
-    end
+    if string.match(string.lower(str), substr) then return true end
   end
 
   return false
@@ -20,29 +18,21 @@ local function get_treesitter_hl(row, col)
   local buf = vim.api.nvim_get_current_buf()
 
   local self = highlighter.active[buf]
-  if not self then
-    return {}
-  end
+  if not self then return {} end
 
   local matches = {}
 
   self.tree:for_each_tree(function(tstree, tree)
-    if not tstree then
-      return
-    end
+    if not tstree then return end
 
     local root = tstree:root()
     local root_start_row, _, root_end_row, _ = root:range()
 
-    if root_start_row > row or root_end_row < row then
-      return
-    end
+    if root_start_row > row or root_end_row < row then return end
 
     local query = self:get_query(tree:lang())
 
-    if not query:query() then
-      return
-    end
+    if not query:query() then return end
 
     local iter = query:query():iter_captures(root, self.bufnr, row, row + 1)
 
@@ -64,14 +54,10 @@ end
 local function highlight_word(ns, line, from, to)
   local ts_hi = get_treesitter_hl(line, from)
   local final = #ts_hi >= 1 and ts_hi[#ts_hi]
-  if type(final) ~= "string" then
-    final = "Normal"
-  end
+  if type(final) ~= "string" then final = "Normal" end
   local hl = vim.api.nvim_get_hl_by_name(final, true)
   local color = string.format("#%x", hl["foreground"] or 0)
-  if #color ~= 7 then
-    color = "#ffffff"
-  end
+  if #color ~= 7 then color = "#ffffff" end
   vim.api.nvim_set_hl(
     0,
     string.format("%sDimmed", final),

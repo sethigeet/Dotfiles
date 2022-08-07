@@ -39,9 +39,7 @@ Please close all other inputs first]],
     input_ui = nil
   end
 
-  local function on_close()
-    on_done(nil)
-  end
+  local function on_close() on_done(nil) end
 
   input_ui = Input({
     relative = "cursor",
@@ -69,9 +67,7 @@ Please close all other inputs first]],
     prompt = prompt_prefix,
     default_value = opts.default,
     on_close = on_close,
-    on_submit = function(value)
-      on_done(value)
-    end,
+    on_submit = function(value) on_done(value) end,
   })
 
   input_ui:mount()

@@ -1,15 +1,11 @@
 local utils = {}
 local fn = vim.fn
 
-function utils.t(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+function utils.t(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
 
 ---@param keys string keys to feed
 --- Replace keys with termcodes and feed them
-function utils.feed(keys)
-  vim.api.nvim_feedkeys(utils.t(keys), "n", false)
-end
+function utils.feed(keys) vim.api.nvim_feedkeys(utils.t(keys), "n", false) end
 
 function utils.check_back_space()
   local col = vim.fn.col(".") - 1
@@ -34,9 +30,7 @@ function utils.get_visual_selection(allowCurrLine, join)
 
   local lines = vim.fn.getline(line_start, line_end)
   if vim.fn.len(lines) == 1 then
-    if allowCurrLine then
-      return vim.fn.getline("."):sub(col_start, col_end)
-    end
+    if allowCurrLine then return vim.fn.getline("."):sub(col_start, col_end) end
 
     return ""
   end
@@ -69,9 +63,7 @@ function utils.restore_last_place()
       vim.api.nvim_command([[normal! G'"<c-e>]])
     end
   end
-  if fn.foldclosed(".") ~= -1 then
-    vim.api.nvim_command([[normal! zvzz]])
-  end
+  if fn.foldclosed(".") ~= -1 then vim.api.nvim_command([[normal! zvzz]]) end
 end
 
 function utils.get_relative_path(path)
@@ -82,12 +74,8 @@ function utils.get_relative_path(path)
 
   local ok = false
   for _, dir in ipairs(split_path) do
-    if dir == curr_dir then
-      ok = true
-    end
-    if ok then
-      nice_path = nice_path .. "/" .. dir
-    end
+    if dir == curr_dir then ok = true end
+    if ok then nice_path = nice_path .. "/" .. dir end
   end
 
   return "." .. nice_path

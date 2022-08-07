@@ -16,9 +16,7 @@ local input_states = {}
 local function find_indices(tbl, elem)
   local ids = {}
   for i, val in ipairs(tbl) do
-    if elem == val then
-      table.insert(ids, i)
-    end
+    if elem == val then table.insert(ids, i) end
   end
   return ids
 end
@@ -26,13 +24,9 @@ end
 local function start_timer()
   waiting = true
 
-  if timer then
-    timer:stop()
-  end
+  if timer then timer:stop() end
 
-  timer = vim.defer_fn(function()
-    waiting = false
-  end, settings.timeout)
+  timer = vim.defer_fn(function() waiting = false end, settings.timeout)
 end
 
 local function check_timeout()
@@ -62,16 +56,12 @@ local function check_charaters()
 
     if matched then
       input_states = {}
-      vim.schedule(function()
-        vim.bo.modified = prev_state.modified
-      end)
+      vim.schedule(function() vim.bo.modified = prev_state.modified end)
     end
   end
 
   -- if can't find a match, and the typed char is first in a mapping, start the timeout
-  if not matched and vim.tbl_contains(first_chars, char) then
-    start_timer()
-  end
+  if not matched and vim.tbl_contains(first_chars, char) then start_timer() end
 end
 
 -- Setup:

@@ -380,9 +380,7 @@ local plugins = {
   {
     "nvim-colortils/colortils.nvim",
     cmd = { "Colortils" },
-    config = function()
-      require("colortils").setup({})
-    end,
+    config = function() require("colortils").setup({}) end,
   },
 
   -- Better notifications
@@ -411,9 +409,7 @@ local plugins = {
 local config = {
   git = { clone_timeout = 300 },
   display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-    end,
+    open_fn = function() return require("packer.util").float({ border = "rounded" }) end,
   },
   profile = {
     enable = true,

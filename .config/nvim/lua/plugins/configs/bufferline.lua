@@ -65,9 +65,7 @@ return Plugin:create({
     for i = 1, 9, 1 do
       table.insert(maps["n"], {
         string.format("<M-%d>", i),
-        function()
-          goto_buf(i)
-        end,
+        function() goto_buf(i) end,
       })
     end
 

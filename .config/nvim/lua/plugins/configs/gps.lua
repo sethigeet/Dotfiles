@@ -16,12 +16,10 @@ local function get_filename()
   local filename = vim.fn.expand("%:t")
   local extension = vim.fn.expand("%:e")
 
-  if filename == nil or filename == "" then
-    return ""
-  end
+  if filename == nil or filename == "" then return "" end
 
   local file_icon, file_icon_color =
-  require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+    require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
   local hl_group = "FileIconColor" .. extension
 
@@ -38,17 +36,11 @@ local function get_gps()
   local gps = require("nvim-gps")
 
   local status_ok, gps_location = pcall(gps.get_location, {})
-  if not status_ok then
-    return ""
-  end
+  if not status_ok then return "" end
 
-  if not gps.is_available() or gps_location == "error" then
-    return ""
-  end
+  if not gps.is_available() or gps_location == "error" then return "" end
 
-  if not gps_location or gps_location == "" then
-    return ""
-  end
+  if not gps_location or gps_location == "" then return "" end
 
   return "  " .. gps_location
 end
@@ -119,9 +111,7 @@ return Plugin:create({
       {
         { "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" },
         "*",
-        cb = function()
-          require("plugins.configs.gps").utils.set_winbar()
-        end,
+        cb = function() require("plugins.configs.gps").utils.set_winbar() end,
       },
     },
   },

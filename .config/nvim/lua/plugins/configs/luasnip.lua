@@ -8,9 +8,7 @@ local function make_snips(snips, ls)
       expansion = { ls.text_node({ exp }), ls.insert_node(0) }
     elseif type(exp) == "table" then
       for k, v in ipairs(exp) do
-        if type(v) == "string" then
-          exp[k] = ls.text_node({ v })
-        end
+        if type(v) == "string" then exp[k] = ls.text_node({ v }) end
       end
       expansion = exp
     end

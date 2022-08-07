@@ -34,9 +34,7 @@ function LanguageServer:create(o)
 end
 
 function LanguageServer:lsp()
-  if lsp_utils.check_lsp_client_active(self.server_name) then
-    return
-  end
+  if lsp_utils.check_lsp_client_active(self.server_name) then return end
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -46,9 +44,7 @@ function LanguageServer:lsp()
   local options = {
     root_dir = lsp_utils.get_root_dir,
     on_attach = function(client, bufnr)
-      if self.on_attach then
-        self.on_attach(client, bufnr)
-      end
+      if self.on_attach then self.on_attach(client, bufnr) end
 
       lsp_utils.setup_document_highlight(client)
       lsp_utils.setup_keybindings(bufnr)
@@ -64,24 +60,16 @@ function LanguageServer:lsp()
         lsp_utils.setup_inlay_hints()
       end
 
-      if self.virtual_text.code_lens then
-        lsp_utils.setup_codelens()
-      end
+      if self.virtual_text.code_lens then lsp_utils.setup_codelens() end
 
-      if self.virtual_text.dim_unused then
-        lsp_utils.setup_dim_unused()
-      end
+      if self.virtual_text.dim_unused then lsp_utils.setup_dim_unused() end
     end,
     capabilities = capabilities,
   }
 
-  if self.filetypes and #self.filetypes > 0 then
-    options.filetypes = self.filetypes
-  end
+  if self.filetypes and #self.filetypes > 0 then options.filetypes = self.filetypes end
 
-  if self.custom then
-    options = vim.tbl_deep_extend("force", options, self.custom)
-  end
+  if self.custom then options = vim.tbl_deep_extend("force", options, self.custom) end
 
   if self.server_name == "null-ls" then
     require("null-ls").setup(options)
@@ -117,9 +105,7 @@ local function formatForNullLS(builtins, customs)
       customs = { handleCustom(customs) }
     end
   elseif type(customs) == "string" and customs ~= "" then
-    if builtins[customs] then
-      customs = { builtins[customs] }
-    end
+    if builtins[customs] then customs = { builtins[customs] } end
   else
     customs = {}
   end
@@ -152,9 +138,7 @@ function LanguageServer:setup_code_actions()
 end
 
 function LanguageServer:debug()
-  if self.debugger_name == "" then
-    return
-  end
+  if self.debugger_name == "" then return end
 
   local dap_install = require("dap-install")
   local installed_debuggers = require("dap-install.api.debuggers").get_installed_debuggers()

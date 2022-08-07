@@ -25,9 +25,7 @@ function Plugin:set_augroups()
     augroups = self.augroups
   end
 
-  if vim.tbl_isempty(augroups) then
-    return
-  end
+  if vim.tbl_isempty(augroups) then return end
 
   require("utils.wrappers").define_augroups(augroups)
 end
@@ -42,9 +40,7 @@ function Plugin:set_highlights()
     hl_groups = self.highlight_groups
   end
 
-  if vim.tbl_isempty(hl_groups) then
-    return
-  end
+  if vim.tbl_isempty(hl_groups) then return end
 
   require("utils.wrappers").highlight_groups(hl_groups)
 end
@@ -57,9 +53,7 @@ function Plugin:set_keymaps()
     modewise_keymaps = self.keymaps
   end
 
-  if vim.tbl_isempty(modewise_keymaps) then
-    return
-  end
+  if vim.tbl_isempty(modewise_keymaps) then return end
 
   local map = require("utils.wrappers").map
   for mode, keymaps in pairs(modewise_keymaps) do

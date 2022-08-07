@@ -2,14 +2,10 @@ local Hydra = require("hydra")
 local ts_swap = require("nvim-treesitter.textobjects.swap")
 
 local swap_next = function(name)
-  return function()
-    ts_swap.swap_next(name)
-  end
+  return function() ts_swap.swap_next(name) end
 end
 local swap_prev = function(name)
-  return function()
-    ts_swap.swap_previous(name)
-  end
+  return function() ts_swap.swap_previous(name) end
 end
 
 --[[
@@ -36,7 +32,7 @@ local menu = Hydra({
   _p_: Next parameter     _P_: Prev parameter
  
   ^ ^              _<Esc>_
-]] ,
+]],
   config = {
     color = "pink",
     hint = {
@@ -65,7 +61,5 @@ local menu = Hydra({
 return {
   init = function() end,
 
-  menu = function()
-    menu:activate()
-  end,
+  menu = function() menu:activate() end,
 }

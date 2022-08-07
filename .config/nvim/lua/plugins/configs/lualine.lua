@@ -2,9 +2,7 @@ local Plugin = require("plugins.plugin")
 
 local function get_tab_stop()
   local label = "Tab Size: "
-  if vim.api.nvim_buf_get_option(0, "expandtab") then
-    label = "Spaces: "
-  end
+  if vim.api.nvim_buf_get_option(0, "expandtab") then label = "Spaces: " end
   return " " .. label .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
@@ -12,9 +10,7 @@ local function get_lsp_client()
   local msg = "  No Active Lsp"
   local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
   local clients = vim.lsp.get_active_clients()
-  if next(clients) == nil then
-    return msg
-  end
+  if next(clients) == nil then return msg end
 
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes

@@ -9,9 +9,7 @@ local ls = LanguageServer:create({
   code_actions = "eslint",
   linters = {
     "eslint",
-    condition = function(utils)
-      return utils.root_has_file(".eslintrc.json") or utils.root_has_file(".eslintrc.js")
-    end,
+    condition = function(utils) return utils.root_has_file(".eslintrc.json") or utils.root_has_file(".eslintrc.js") end,
     prefer_local = "node_modules/.bin",
   },
 

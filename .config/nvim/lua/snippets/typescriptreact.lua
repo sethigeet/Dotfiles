@@ -18,9 +18,7 @@ local rep = require("luasnip.extras").rep
 ---@return string[]
 local function get_prop_names(id_node)
   local object_type_node = id_node:child(2)
-  if object_type_node:type() ~= "object_type" then
-    return {}
-  end
+  if object_type_node:type() ~= "object_type" then return {} end
 
   local prop_names = {}
 
@@ -56,18 +54,19 @@ export const {}: FC<{}Props> = ({{ {} }}) => {{
 ]],
       {
         -- Initialize component name to file name
-        d(1, function(_, snip)
-          return sn(nil, {
-            i(1, vim.fn.substitute(snip.env.TM_FILENAME, "\\..*$", "", "g")),
-          })
-        end),
+        d(
+          1,
+          function(_, snip)
+            return sn(nil, {
+              i(1, vim.fn.substitute(snip.env.TM_FILENAME, "\\..*$", "", "g")),
+            })
+          end
+        ),
         i(2, "// props"),
         rep(1),
         rep(1),
         f(function(_, snip)
-          if not snip.nodes[6].mark then
-            return ""
-          end
+          if not snip.nodes[6].mark then return "" end
 
           local pos_begin = snip.nodes[6].mark:pos_begin()
           local pos_end = snip.nodes[6].mark:pos_end()
@@ -80,9 +79,7 @@ export const {}: FC<{}Props> = ({{ {} }}) => {{
             node = node:parent()
           end
 
-          if node == nil then
-            return ""
-          end
+          if node == nil then return "" end
 
           local prop_names = get_prop_names(node)
           return vim.fn.join(prop_names, ", ")

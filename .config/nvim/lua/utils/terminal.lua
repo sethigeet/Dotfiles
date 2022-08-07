@@ -15,9 +15,7 @@ function terminal.toggle_floating(force, cmd)
       terminal.float_term_bufnr = nil
     end
 
-    if terminal.cmd_pid then
-      vim.fn.jobstop(terminal.cmd_pid)
-    end
+    if terminal.cmd_pid then vim.fn.jobstop(terminal.cmd_pid) end
 
     return
   end

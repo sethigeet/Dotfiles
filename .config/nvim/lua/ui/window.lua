@@ -24,13 +24,9 @@ function window.create_floating_file(location, opts)
 
   -- location may be LocationLink or Location
   local uri = location.targetUri or location.uri
-  if uri == nil then
-    return
-  end
+  if uri == nil then return end
   local bufnr = vim.uri_to_bufnr(uri)
-  if not vim.api.nvim_buf_is_loaded(bufnr) then
-    vim.fn.bufload(bufnr)
-  end
+  if not vim.api.nvim_buf_is_loaded(bufnr) then vim.fn.bufload(bufnr) end
 
   local range = location.targetRange or location.range
 

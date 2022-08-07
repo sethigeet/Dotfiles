@@ -6,9 +6,7 @@ local namespaces = vim.lsp.codelens.__namespaces
 
 --- Display the lenses using virtual text
 function vim.lsp.codelens.display(lenses, bufnr, client_id)
-  if not lenses or not next(lenses) then
-    return
-  end
+  if not lenses or not next(lenses) then return end
 
   local lenses_by_lnum = {}
   for _, lens in pairs(lenses) do
@@ -31,17 +29,13 @@ function vim.lsp.codelens.display(lenses, bufnr, client_id)
     for j, lens in ipairs(line_lenses) do
       local text = lens.command and lens.command.title or "Unresolved lens ..."
       table.insert(chunks, { text, "LspCodeLens" })
-      if j < num_line_lenses then
-        table.insert(chunks, { " | ", "LspCodeLensSeparator" })
-      end
+      if j < num_line_lenses then table.insert(chunks, { " | ", "LspCodeLensSeparator" }) end
     end
 
     if #chunks > 0 then
       local line = vim.api.nvim_buf_get_lines(bufnr, i, i + 1, false)[1]
       local matched = string.match(line, [[^%s+%w]])
-      if matched ~= nil then
-        chunks[1][1] = string.rep(" ", #matched - 1) .. chunks[1][1]
-      end
+      if matched ~= nil then chunks[1][1] = string.rep(" ", #matched - 1) .. chunks[1][1] end
 
       vim.api.nvim_buf_set_extmark(bufnr, ns, i, 0, {
         virt_lines = { chunks },

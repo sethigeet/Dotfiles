@@ -104,9 +104,7 @@ local mappings = {
           vim.ui.input({
             prompt = "Log Message for Breakpoint",
           }, function(message)
-            if not (message and #message > 0) then
-              return
-            end
+            if not (message and #message > 0) then return end
             require("dap").set_breakpoint(nil, nil, message)
           end)
         end,
@@ -117,18 +115,14 @@ local mappings = {
           vim.ui.input({
             prompt = "Condition for Breakpoint",
           }, function(condition)
-            if not (condition and #condition > 0) then
-              return
-            end
+            if not (condition and #condition > 0) then return end
             require("dap").set_breakpoint(condition)
           end)
         end,
         "set conditional breakpoint",
       },
       L = {
-        function()
-          require("dapui").float_element("breakpoints", {})
-        end,
+        function() require("dapui").float_element("breakpoints", {}) end,
         "list breakpoints",
       },
     },
@@ -147,22 +141,16 @@ local mappings = {
       u = { require("dap").step_out, "step out" },
     },
     S = {
-      function()
-        require("dapui").float_element("stacks", {})
-      end,
+      function() require("dapui").float_element("stacks", {}) end,
       "show stacks",
     },
     d = {
-      function()
-        require("dap").disconnect({ terminateDebugee = false })
-      end,
+      function() require("dap").disconnect({ terminateDebugee = false }) end,
       "disconnect",
     },
     t = { require("dapui").toggle, "Toggle UI" },
     T = {
-      function()
-        require("dap").disconnect({ terminateDebugee = true })
-      end,
+      function() require("dap").disconnect({ terminateDebugee = true }) end,
       "terminate & disconnect",
     },
   },
@@ -216,9 +204,7 @@ local mappings = {
     d = { cmd("Trouble document_diagnostics"), "document diagnostics" },
     D = { cmd("Trouble workspace_diagnostics"), "workspace diagnostics" },
     f = {
-      function()
-        vim.lsp.buf.format({ async = true })
-      end,
+      function() vim.lsp.buf.format({ async = true }) end,
       "format",
     },
     h = { vim.lsp.buf.signature_help, "signature_help" },
@@ -275,9 +261,7 @@ local mappings = {
     B = { PICKERS.git_branches, "git branches" },
     c = { PICKERS.git_commits, "git commits" },
     d = {
-      function()
-        PICKERS.diagnostics({ bufnr = 0 })
-      end,
+      function() PICKERS.diagnostics({ bufnr = 0 }) end,
       "document diagnostics",
     },
     D = { PICKERS.diagnostics, "workspace diagnostics" },
@@ -388,9 +372,7 @@ local visual_mappings = vim.deepcopy(mappings)
 visual_mappings["/"][1] = "<Esc><Cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>"
 visual_mappings["p"] = { '"_dP', "Paste without yank" }
 visual_mappings["s"]["s"] = {
-  function()
-    CUSTOM_PICKERS.grep_selected_text("v")
-  end,
+  function() CUSTOM_PICKERS.grep_selected_text("v") end,
   "grep selected text",
 }
 
