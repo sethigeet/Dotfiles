@@ -53,7 +53,7 @@ export const {}: FC<{}Props> = ({{ {} }}) => {{
     </div>
   )
 }}
-]]     ,
+]],
       {
         -- Initialize component name to file name
         d(1, function(_, snip)

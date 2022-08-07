@@ -173,12 +173,9 @@ local plugins = {
     "folke/which-key.nvim",
     config = "which_key",
   },
-
-  -- Interactive code
   {
-    "metakirby5/codi.vim",
-    cmd = "Codi",
-    config = "codi",
+    "anuvyklack/hydra.nvim",
+    config = "hydra",
   },
 
   -- Better tabline
@@ -238,8 +235,6 @@ local plugins = {
       "nvim-telescope/telescope-symbols.nvim",
       { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
     },
-    cmd = "Telescope",
-    module = { "telescope", "telescope.*", "plugins.configs.telescope" },
     config = "telescope",
     after = { "lsp-trouble.nvim", "tokyonight.nvim" },
   },
@@ -362,6 +357,7 @@ local plugins = {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     config = "zen_mode",
+    module = "zen-mode",
   },
 
   -- The emmet plugin for vim
@@ -378,16 +374,6 @@ local plugins = {
     event = "BufRead",
     config = "spectre",
     module = "spectre",
-  },
-
-  -- REST client in nvim
-  {
-    "NTBBloodbath/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("rest-nvim").setup()
-    end,
-    event = "BufEnter",
   },
 
   -- Easily convert colors to different formats

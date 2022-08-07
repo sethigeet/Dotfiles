@@ -20,11 +20,8 @@ local function get_filename()
     return ""
   end
 
-  local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(
-    filename,
-    extension,
-    { default = true }
-  )
+  local file_icon, file_icon_color =
+  require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
   local hl_group = "FileIconColor" .. extension
 

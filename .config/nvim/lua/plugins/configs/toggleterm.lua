@@ -65,9 +65,7 @@ return Plugin:create({
           [[No terminal was found to be open. Pleas open a
 terminal first]],
           vim.log.levels.INFO,
-          {
-          title = "No terminal is open!",
-        }
+          { title = "No terminal is open!" }
         )
 
         return

@@ -36,7 +36,7 @@ function Plugin:set_highlights()
   local hl_groups
   if type(self.highlight_groups) == "function" then
     local util = require("tokyonight.util")
-    local colors = require("tokyonight.colors").setup(nil)
+    local colors = require("tokyonight.colors").setup({})
     hl_groups = self:highlight_groups(colors, util)
   else
     hl_groups = self.highlight_groups

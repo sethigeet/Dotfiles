@@ -59,6 +59,16 @@ opt.iskeyword:append("-") -- treat dash separated words as a word text object
 opt.matchpairs:append("<:>")
 opt.shortmess:append("astc")
 opt.wildignore:append({ "*.o", "*.a", "__pycache__", "*.pyc", "node_modules" })
+-- opt.listchars = ""
+opt.listchars:append({
+  eol = "",
+  tab = "» ",
+  trail = "·",
+  extends = "",
+  precedes = "",
+  conceal = "┊",
+  nbsp = "␣",
+})
 
 -- Helpful related items:
 --   1. :center, :left, :right

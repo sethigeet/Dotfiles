@@ -81,8 +81,9 @@ return Plugin:create({
         },
         swap = {
           enable = true,
-          swap_next = get_text_object_keymaps(treesitter_leader .. "s", false),
-          swap_previous = get_text_object_keymaps(treesitter_leader .. "s", true),
+          -- NOTE: These keybindings are defined in the `hydra` config
+          -- swap_next = get_text_object_keymaps(treesitter_leader .. "s", false),
+          -- swap_previous = get_text_object_keymaps(treesitter_leader .. "s", true),
         },
         move = {
           enable = true,
