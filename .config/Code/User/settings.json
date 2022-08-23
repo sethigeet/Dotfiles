@@ -24,6 +24,8 @@
   //# Window
   "window.zoomLevel": 1,
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}${separator}${appName}",
+  "window.titleBarStyle": "custom",
+  "window.commandCenter": true,
 
   //# Workbench
   "workbench.colorTheme": "Tokyo Night Storm",
@@ -85,6 +87,7 @@
   // "terminal.integrated.inheritEnv": false,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
+  "terminal.integrated.shellIntegration.enabled": true,
 
   //# Output
   "output.smartScroll.enabled": false,
