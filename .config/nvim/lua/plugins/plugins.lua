@@ -336,14 +336,12 @@ local plugins = {
   },
 
   -- Interact with databases
-  { "tpope/vim-dadbod", cmd = "DB" },
   {
     "kristijanhusak/vim-dadbod-ui",
     config = "dadbod",
     cmd = { "DBUI", "DBUIToggle" },
-    after = "vim-dadbod",
+    requires = { "tpope/vim-dadbod", cmd = "DB" },
   },
-  { "kristijanhusak/vim-dadbod-completion", after = "vim-dadbod-ui" },
 
   -- Jump to lines more interactively
   {

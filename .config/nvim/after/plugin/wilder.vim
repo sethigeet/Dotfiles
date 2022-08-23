@@ -20,33 +20,33 @@ call wilder#set_option('pipeline', [
 
 call wilder#set_option('renderer', wilder#renderer_mux({
       \ ':': wilder#popupmenu_renderer({
-      \   'highlighter': wilder#basic_highlighter(),
-      \   'highlights': {
-        \     'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
-        \   },
-        \   'left': [
-          \     ' ', wilder#popupmenu_devicons(),
-          \   ],
-          \   'right': [
-            \     ' ', wilder#popupmenu_scrollbar(),
-            \   ],
-            \ }),
-            \ '/': wilder#popupmenu_renderer({
-            \   'highlighter': wilder#basic_highlighter(),
-            \   'highlights': {
-              \     'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
-              \   },
-              \   'right': [
-                \     ' ', wilder#popupmenu_scrollbar(),
-                \   ],
-                \ }),
-                \ '?': wilder#popupmenu_renderer({
-                \   'highlighter': wilder#basic_highlighter(),
-                \   'highlights': {
-                  \     'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}]),
-                  \   },
-                  \   'right': [
-                    \     ' ', wilder#popupmenu_scrollbar(),
-                    \   ],
-                    \ }),
-                    \ }))
+        \ 'highlighter': wilder#basic_highlighter(),
+        \ 'highlights': {
+           \  'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#2ac3de'}]),
+        \ },
+        \ 'left': [
+          \  ' ', wilder#popupmenu_devicons(),
+        \ ],
+        \ 'right': [
+          \ ' ', wilder#popupmenu_scrollbar(),
+        \ ],
+      \ }),
+      \ '/': wilder#popupmenu_renderer({
+        \ 'highlighter': wilder#basic_highlighter(),
+        \ 'highlights': {
+          \ 'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#2ac3de'}]),
+        \ },
+        \ 'right': [
+          \ ' ', wilder#popupmenu_scrollbar(),
+        \ ],
+      \ }),
+      \ '?': wilder#popupmenu_renderer({
+        \ 'highlighter': wilder#basic_highlighter(),
+        \ 'highlights': {
+          \ 'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#2ac3de'}]),
+        \ },
+        \ 'right': [
+          \ ' ', wilder#popupmenu_scrollbar(),
+        \ ],
+      \ }),
+    \ }))
