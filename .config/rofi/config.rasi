@@ -99,7 +99,7 @@ configuration {
   kb-row-right: "Control+l";
   kb-row-up: "Up,Control+k";
   kb-row-down: "Down,Control+j";
-  kb-row-tab: "Tab";
+  // kb-row-tab: "Tab";
   kb-page-prev: "Page_Up";
   kb-page-next: "Page_Down";
   kb-row-first: "Control+Home,Control+KP_Home";

@@ -70,7 +70,7 @@ export const {}: FC<{}Props> = ({{ {} }}) => {{
 
           local pos_begin = snip.nodes[6].mark:pos_begin()
           local pos_end = snip.nodes[6].mark:pos_end()
-          local parser = vim.treesitter.get_parser(0, "tsx", nil)
+          local parser = vim.treesitter.get_parser(0, "tsx", {})
           local tstree = parser:parse()
 
           local node = tstree[1]:root():named_descendant_for_range(pos_begin[1], pos_begin[2], pos_end[1], pos_end[2])

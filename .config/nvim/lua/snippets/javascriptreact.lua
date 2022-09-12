@@ -4,7 +4,7 @@ local i = ls.insert_node
 local t = ls.text_node
 local d = ls.dynamic_node
 local c = ls.choice_node
-local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
 
 local set_state_setter = function(args, _)
   local text = args[1][1] or ""
@@ -18,10 +18,10 @@ end
 return {
   filetypes = { "javascriptreact", "typescriptreact" },
   snippets = {
-    useState = fmt([[const [{}, set{}] = useState({})]], {
-      i(1),
-      d(2, set_state_setter, { 1 }),
-      i(3),
+    useState = fmta([[const [<getter>, set<setter>] = useState(<val>)]], {
+      getter = i(1),
+      setter = d(2, set_state_setter, { 1 }),
+      val = i(3),
     }),
   },
 }

@@ -67,7 +67,7 @@ local function highlight_word(ns, line, from, to)
 end
 
 function M.highlight_unused()
-  vim.api.nvim__set_hl_ns(M.ns)
+  vim.api.nvim_set_hl_ns(M.ns)
 
   local lsp_data = vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   vim.api.nvim_buf_clear_namespace(0, M.ns, 0, -1)

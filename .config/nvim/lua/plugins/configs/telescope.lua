@@ -122,31 +122,6 @@ return Plugin:create({
     end
   end,
 
-  highlight_groups = function(_, colors, util)
-    local bg_95 = util.lighten(colors.bg, 0.95)
-    local bg_85 = util.lighten(colors.bg, 0.85)
-    return {
-      TelescopeBorder = { bg = bg_95, fg = bg_95 },
-      TelescopePromptBorder = { bg = bg_85, fg = bg_85 },
-      TelescopeResultsBorder = { bg = bg_95, fg = bg_95 },
-      TelescopePreviewBorder = { bg = bg_95, fg = bg_95 },
-
-      TelescopePromptNormal = { bg = bg_85, fg = colors.fg },
-      TelescopePromptPrefix = { bg = bg_85, fg = colors.blue },
-
-      TelescopeNormal = { bg = bg_95 },
-      TelescopeResultsNormal = { bg = bg_95 },
-      TelescopePreviewNormal = { bg = bg_95 },
-
-      TelescopeTitle = { bg = colors.blue, fg = colors.bg_dark },
-      TelescopePreviewTitle = { bg = colors.blue, fg = colors.bg_dark },
-      TelescopePromptTitle = { bg = colors.blue, fg = colors.bg_dark },
-      TelescopeResultsTitle = { bg = bg_95, fg = bg_95 },
-
-      TelescopeSelection = { bg = util.darken(colors.blue, 0.25) },
-    }
-  end,
-
   keymaps = function(self)
     return {
       n = {

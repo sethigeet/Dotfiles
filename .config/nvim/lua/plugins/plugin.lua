@@ -3,7 +3,6 @@ local Plugin = {
   apply_integrations = function() end,
 
   augroups = {},
-  highlight_groups = {},
   keymaps = {},
 
   utils = {},
@@ -30,21 +29,6 @@ function Plugin:set_augroups()
   require("utils.wrappers").define_augroups(augroups)
 end
 
-function Plugin:set_highlights()
-  local hl_groups
-  if type(self.highlight_groups) == "function" then
-    local util = require("tokyonight.util")
-    local colors = require("tokyonight.colors").setup({})
-    hl_groups = self:highlight_groups(colors, util)
-  else
-    hl_groups = self.highlight_groups
-  end
-
-  if vim.tbl_isempty(hl_groups) then return end
-
-  require("utils.wrappers").highlight_groups(hl_groups)
-end
-
 function Plugin:set_keymaps()
   local modewise_keymaps
   if type(self.keymaps) == "function" then
@@ -67,7 +51,6 @@ function Plugin:setup()
   self:apply_integrations()
   self:configure()
   self:set_augroups()
-  self:set_highlights()
   self:set_keymaps()
 end
 

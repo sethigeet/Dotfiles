@@ -4,7 +4,7 @@ local i = ls.insert_node
 local t = ls.text_node
 local d = ls.dynamic_node
 local c = ls.choice_node
-local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
 
 local require_var = function(args, _)
   local text = args[1][1] or ""
@@ -25,9 +25,9 @@ return {
   snippets = {
     ignore = "--stylua: ignore",
 
-    req = fmt([[local {} = require("{}")]], {
-      d(2, require_var, { 1 }),
-      i(1),
+    req = fmta([[local <var> = require("<mod>")]], {
+      var = d(2, require_var, { 1 }),
+      mod = i(1),
     }),
   },
 }

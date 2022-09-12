@@ -455,6 +455,9 @@ nnoremap s :shell<cr>
 " Display sorting dialog
 nnoremap S :sort<cr>
 
+" Permanent delete
+nnoremap <M-d> :delete!<cr>
+
 " Toggle visibility of preview window
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv

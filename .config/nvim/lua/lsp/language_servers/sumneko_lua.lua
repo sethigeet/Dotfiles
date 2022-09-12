@@ -24,14 +24,13 @@ local opts = {
 if require("utils.lsp").get_root_dir() == os.getenv("HOME") .. "/.config/nvim" then
   opts = require("lua-dev").setup({
     library = {
-      vimruntime = true, -- runtime path
+      enabled = true,
+      runtime = true, -- runtime path
       types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
       plugins = true, -- installed opt or start plugins in packpath
+      -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
     },
-    runtime_path = false, -- enable this to get completion in require strings. Slow!
-
-    -- pass any additional options that will be merged in the final lsp config
-    -- lspconfig = {},
+    override = function(root_dir, options) end,
   })
   opts.settings.Lua.workspace.maxPreload = 100000
   opts.settings.Lua.workspace.preloadFileSize = 100000

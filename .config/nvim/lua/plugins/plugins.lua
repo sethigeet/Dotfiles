@@ -181,7 +181,13 @@ local plugins = {
   -- Better tabline
   {
     "akinsho/bufferline.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    requires = {
+      "kyazdani42/nvim-web-devicons",
+      {
+        "tiagovla/scope.nvim",
+        config = function() require("scope").setup() end,
+      },
+    },
     config = "bufferline",
   },
 
@@ -280,10 +286,10 @@ local plugins = {
       },
     },
   },
-  {
-    "gelguy/wilder.nvim",
-    run = "vim.cmd('UpdateRemotePlugins')",
-  },
+  -- {
+  --   "gelguy/wilder.nvim",
+  --   run = "vim.cmd('UpdateRemotePlugins')",
+  -- },
 
   {
     "simrat39/symbols-outline.nvim",
