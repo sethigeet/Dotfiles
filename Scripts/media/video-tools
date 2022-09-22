@@ -43,13 +43,13 @@ case "$1" in
 
     while [ $# -gt 0 ]; do
       case "$1" in
-        in=*) in="${1##*=}" ;;
+        out=*) out="${1##*=}" ;;
       esac
 
       shift
     done
 
-    record_screen "$in"
+    record_screen "$out"
     exit 0
     ;;
   crop)
