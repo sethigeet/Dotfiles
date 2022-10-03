@@ -82,7 +82,7 @@ local options = {
 
 return {
   init = function()
-    local vim_options = require("hydra.hint.vim_options")
+    local vim_options = require("hydra.hint.vim-options")
     vim_options.ve = get_icon_cb_fn(function() return vim.tbl_contains(vim.opt.virtualedit:get(), "all") end)
     vim_options.mkdp = get_icon_cb_fn(function() return vim.b.MarkdownPreviewToggleBool == 1 end)
     vim_options.zen = get_icon_cb_fn(function() return require("zen-mode.view").is_open() end)
