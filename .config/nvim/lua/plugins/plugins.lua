@@ -98,9 +98,8 @@ local plugins = {
   },
   -- Show breadcrumbs according to the position in the file
   {
-    "SmiteshP/nvim-gps",
-    config = "gps",
-    after = "nvim-treesitter",
+    "SmiteshP/nvim-navic",
+    config = "navic",
   },
 
   -- Auto pairs for "(", "[", "{", etc
@@ -197,7 +196,7 @@ local plugins = {
     config = "bqf",
   },
   {
-    "folke/lsp-trouble.nvim",
+    "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     cmd = { "Trouble", "TroubleToggle" },
     keys = { "<C-q>" },
@@ -242,7 +241,7 @@ local plugins = {
       { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" },
     },
     config = "telescope",
-    after = { "lsp-trouble.nvim", "tokyonight.nvim" },
+    after = { "trouble.nvim", "tokyonight.nvim" },
   },
 
   -- Intellisense
@@ -258,8 +257,8 @@ local plugins = {
 
   -- For Nvim development
   {
-    "folke/lua-dev.nvim",
-    -- module = "lua-dev",
+    "folke/neodev.nvim",
+    -- module = "neodev",
   },
 
   -- Autocompletion

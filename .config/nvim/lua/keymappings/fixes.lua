@@ -14,20 +14,3 @@ map("n", "k", [[(v:count > 5 ? "m'" . v:count : "") . "k"]], { expr = true })
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
-
--- make * and # work in visual mode too!
-vim.api.nvim_exec(
-  [[
-  function! g:VSetSearch(cmdtype)
-    let temp = @s
-    norm! gv"sy
-    let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
-    let @s = temp
-  endfunction
-
-  " NOTE: Currently being handled in the `hlslens` plugin
-  " xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-  " xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-]],
-  false
-)

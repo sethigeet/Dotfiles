@@ -10,6 +10,14 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
+-- Schemas https://www.schemastore.org
+local schemas = require("schemastore").json.schemas()
+table.insert(schemas, {
+  name = "Sumneko Lua Settings",
+  url = "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  fileMatch = { ".luarc.json", ".luarc.jsonc" },
+})
+
 local ls = LanguageServer:create({
   server_name = "jsonls",
   filetypes = { "json", "jsonc" },
@@ -24,8 +32,7 @@ local ls = LanguageServer:create({
 
     settings = {
       json = {
-        -- Schemas https://www.schemastore.org
-        schemas = require("schemastore").json.schemas(),
+        schemas = schemas,
       },
     },
   },

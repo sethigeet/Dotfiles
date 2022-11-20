@@ -23,6 +23,7 @@ local LanguageServer = {
 }
 
 local lsp_config = require("lspconfig")
+local navic = require("nvim-navic")
 local lsp_utils = require("utils.lsp")
 
 function LanguageServer:create(o)
@@ -36,10 +37,9 @@ end
 function LanguageServer:lsp()
   if lsp_utils.check_lsp_client_active(self.server_name) then return end
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities = vim.tbl_deep_extend("force", capabilities, self.capabilities)
-  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
   local options = {
     root_dir = lsp_utils.get_root_dir,
@@ -63,6 +63,8 @@ function LanguageServer:lsp()
       if self.virtual_text.code_lens then lsp_utils.setup_codelens() end
 
       if self.virtual_text.dim_unused then lsp_utils.setup_dim_unused() end
+
+      if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
     end,
     capabilities = capabilities,
   }

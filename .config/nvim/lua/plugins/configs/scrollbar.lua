@@ -83,11 +83,16 @@ return Plugin:create({
         search = false, -- Handled manually in the `hlslens` plugin config
       },
     })
+  end,
 
+  apply_integrations = function()
     -- Integration with `nvim-hlslens` plugin
     require("scrollbar.handlers.search").setup({
       calm_down = true,
       nearest_only = true,
     })
+
+    -- Integration with `gitsigns.nvim` plugin
+    require("scrollbar.handlers.gitsigns").setup()
   end,
 })

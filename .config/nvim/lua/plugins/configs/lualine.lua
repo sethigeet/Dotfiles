@@ -23,6 +23,8 @@ end
 
 return Plugin:create({
   configure = function()
+    local navic = require("nvim-navic")
+
     require("lualine").setup({
       options = {
         theme = "tokyonight",
@@ -48,6 +50,9 @@ return Plugin:create({
         lualine_x = { { "filetype", colored = true }, get_lsp_client },
         lualine_y = { get_tab_stop },
         lualine_z = { "location" },
+      },
+      winbar = {
+        lualine_a = { { navic.get_location, cond = navic.is_available } },
       },
       extensions = { "nvim-tree", "quickfix", "toggleterm", "symbols-outline" },
     })
