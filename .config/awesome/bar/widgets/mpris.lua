@@ -13,10 +13,15 @@ local widgets_utils = require("utils.widgets")
 local text_format = "{{ title }} - {{ artist }}"
 
 local function update_text(widget, stdout)
-  if string.match(stdout, ".*(Playing).*") == "Playing" then
+  local statuses = utils.split(stdout, "\n")
+  statuses = utils.filter(statuses, "Stopped")
+
+  local playing_id = utils.find(statuses, "Playing")
+  if playing_id ~= -1 then
     widget:set_state(true)
-    spawn.easy_async("playerctl metadata --format '" .. text_format .. "'", function(text)
-      widget:set_text(text)
+    spawn.easy_async("playerctl metadata -a --format '" .. text_format .. "'", function(text)
+      local metadata = utils.split(text, "\n")[playing_id]
+      widget:set_text(metadata)
     end)
   elseif string.match(stdout, ".*(Paused).*") == "Paused" then
     widget:set_state(false)

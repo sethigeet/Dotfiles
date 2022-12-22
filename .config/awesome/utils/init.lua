@@ -48,4 +48,26 @@ function M.split(str, sep)
   return t
 end
 
+function M.find(list, val)
+  for i, v in ipairs(list) do
+    if v == val then
+      return i
+    end
+  end
+
+  return -1
+end
+
+function M.filter(list, val)
+  local filtered = {}
+
+  for _, v in ipairs(list) do
+    if v ~= val then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
 return M
