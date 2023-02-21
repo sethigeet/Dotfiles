@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get info
-IFACE="$(nmcli connection show | awk '!/docker|vpn/ && (NR>1) {print $NF}')"
+IFACE="$(nmcli connection show | awk '!/docker|vpn|lo/ && (NR>1) {print $NF}')"
 # IFACE="${IFACE##*: }"
 STATUS="$(nmcli radio wifi)"
 active=""
