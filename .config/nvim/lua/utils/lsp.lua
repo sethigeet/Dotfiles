@@ -92,6 +92,9 @@ function M.setup_codelens()
   -- vim.lsp.codelens.refresh()
 end
 
-function M.setup_dim_unused() require("lsp.helpers.dim_unused").setup() end
+function M.setup_dim_unused()
+  -- TODO: Figure out why is this not working?
+  -- require("lsp.helpers.dim_unused").setup()
+end
 
 return M

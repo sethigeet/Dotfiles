@@ -1,6 +1,3 @@
--- TODO: Remove this with the corresponding plugin after the PR is merged
-pcall(require, "impatient")
-
 -- Load the global variables
 require("globals")
 
@@ -9,9 +6,9 @@ require("general")
 require("keymappings")
 require("diagnostic")
 
--- Only load `ui` and `lsp` if plugins are available as they require some plugins right now
-if vim.fn.filereadable(CONFIG_PATH .. "/plugin/packer_compiled.lua") == 1 then
-  -- NOTE: Load `ui` before `lsp` as some of lsp features require `ui`
-  require("ui")
-  require("lsp")
-end
+-- Load plugins
+require("plugins").bootstrap_plugin_manager()
+
+-- NOTE: Load `ui` before `lsp` as some of lsp features require `ui`
+require("ui")
+require("lsp")

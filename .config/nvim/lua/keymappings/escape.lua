@@ -2,7 +2,7 @@ local map = require("utils.wrappers").map
 
 -- I hate escape more than anything else
 -- Map jk to <Esc>
--- map({ "i", "c" }, "jk", "<Esc>")
+map({ "i", "c" }, "jk", "<Esc>")
 
 -- Map kj to <Esc>
 -- map({ "i", "c" }, "kj", "<Esc>")

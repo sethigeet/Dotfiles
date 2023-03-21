@@ -1,27 +1,3 @@
-function LoadPlugins(doWhat, args)
-  local plugins = R("plugins.plugins")
-  require("utils.plugin_wrapper").setup(plugins.config, plugins.plugins)
-
-  if not doWhat then return end
-
-  if type(doWhat) ~= "string" then error("The argument must be a string") end
-
-  local doWhatSwitch = {
-    sync = "PackerSync",
-    compile = "PackerCompile",
-    install = "PackerInstall",
-    update = "PackerUpdate",
-    profile = "PackerProfile",
-    load = "PackerLoad " .. (args or ""),
-  }
-  if doWhatSwitch[doWhat] then
-    vim.cmd(doWhatSwitch[doWhat])
-    return
-  end
-
-  error("That action is not supported")
-end
-
 function ReloadFile()
   vim.notify(
     [[The current file will be sourced and will be

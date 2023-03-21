@@ -1,5 +1,4 @@
 require("keymappings.abbreviations")
-require("keymappings.better_escape")
 require("keymappings.escape")
 require("keymappings.fixes")
 require("keymappings.general")
