@@ -17,26 +17,6 @@ function M.check_lsp_client_active(name)
   return true
 end
 
-function M.setup_document_highlight(client)
-  -- Set autocommands conditional on server_capabilities
-  if client.supports_method("textDocument/documentHighlight") then
-    local wrappers = require("utils.wrappers")
-
-    wrappers.define_augroups({
-      lsp_document_highlight = {
-        { "CursorHold", "<buffer>", cb = vim.lsp.buf.document_highlight },
-        { "CursorMoved", "<buffer>", cb = vim.lsp.buf.clear_references },
-      },
-    })
-
-    wrappers.highlight_groups({
-      LspReferenceRead = { ctermbg = "red", bg = "#464646" },
-      LspReferenceText = { ctermbg = "red", bg = "#464646" },
-      LspReferenceWrite = { ctermbg = "red", bg = "#464646" },
-    })
-  end
-end
-
 local function save_file(format, force)
   -- Format the file
   if format then vim.lsp.buf.format() end
@@ -66,21 +46,6 @@ end
 
 function M.setup_keybindings(bufnr) require("keymappings.lsp").setup(bufnr) end
 
-function M.setup_inlay_hints()
-  require("utils.wrappers").define_augroups({
-    lsp_inlay_hints = {
-      {
-        "TextChanged,TextChangedI",
-        "<buffer>",
-        cb = function() require("lsp_extensions").inlay_hints({ prefix = "  " }) end,
-      },
-    },
-  })
-
-  -- TODO: Figure out a way to run this once the server has started
-  -- require("lsp_extensions").inlay_hints({ prefix = "  " })
-end
-
 function M.setup_codelens()
   require("utils.wrappers").define_augroups({
     lsp_codelens = {
@@ -90,11 +55,6 @@ function M.setup_codelens()
 
   -- TODO: Figure out a way to run this once the server has started
   -- vim.lsp.codelens.refresh()
-end
-
-function M.setup_dim_unused()
-  -- TODO: Figure out why is this not working?
-  -- require("lsp.helpers.dim_unused").setup()
 end
 
 return M

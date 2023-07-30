@@ -10,7 +10,7 @@ super + {b}
 	$TERMINAL -e {btop}
 
 super + {e,i,w}
-	{nautilus,vimiv,brave}
+	{pcmanfm,vimiv,brave}
 
 super + shift + {c,e,w}
 	{gnome-calculator,code,brave --incognito}

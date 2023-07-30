@@ -45,11 +45,3 @@ function vim.lsp.codelens.display(lenses, bufnr, client_id)
     end
   end
 end
-
--- Show a popup for displaying progress
-require("fidget").setup({
-  text = {
-    spinner = "dots_negative", -- animation shown when tasks are ongoing
-    done = "", -- character shown when all tasks are complete
-  },
-})

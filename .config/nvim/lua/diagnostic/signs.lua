@@ -6,7 +6,7 @@ vim.fn.sign_define("DiagnosticSignError", {
 })
 vim.fn.sign_define("DiagnosticSignWarn", {
   texthl = "DiagnosticWarn",
-  text = " ",
+  text = " ",
   numhl = "DiagnosticWarn",
 })
 vim.fn.sign_define("DiagnosticSignInfo", {

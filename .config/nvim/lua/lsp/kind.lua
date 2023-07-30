@@ -35,6 +35,7 @@ local icons = {
   Character = "",
   Class = "",
   Color = "",
+  Comment = "",
   Constant = "",
   Constructor = "",
   Enum = "",

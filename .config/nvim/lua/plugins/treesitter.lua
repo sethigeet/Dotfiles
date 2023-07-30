@@ -22,7 +22,6 @@ end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-
     -- build = ":TSUpdate",
 
     config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
@@ -62,10 +61,8 @@ return {
       textobjects = {
         select = {
           enable = true,
-
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
-
           keymaps = {
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
@@ -91,7 +88,6 @@ return {
         move = {
           enable = true,
           set_jumps = true, -- whether to set jumps in the jumplist
-
           goto_next_start = get_text_object_keymaps("]", false),
           goto_next_end = get_text_object_keymaps("]", true),
           goto_previous_start = get_text_object_keymaps("[", false),
@@ -109,16 +105,12 @@ return {
       },
       rainbow = {
         enable = true,
-        extended_mode = true,
-        max_file_lines = 1000,
-        -- colors = { "#B52A5B", "#FF4971", "#bd93f9", "#E9729D", "#F18FB0", "#8897F4", "#b488bf" },
-      }, -- Rainbow brackets
+      },
       context_commentstring = { enable = true }, -- Comment strings
       autotag = { enable = true },
       indent = { enable = true },
       autopairs = { enable = true },
       matchup = { enable = true }, -- Extend vim's '%' functionality
-
       playground = {
         enable = true,
         disable = {},
@@ -160,7 +152,7 @@ return {
 
   "nvim-treesitter/nvim-treesitter-textobjects",
   "windwp/nvim-ts-autotag",
-  "p00f/nvim-ts-rainbow",
+  "HiPhish/nvim-ts-rainbow2",
   "JoosepAlviste/nvim-ts-context-commentstring",
 
   {

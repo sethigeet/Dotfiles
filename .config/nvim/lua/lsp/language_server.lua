@@ -4,21 +4,16 @@ local LanguageServer = {
   cmd_args = {},
   capabilities = {},
   filetypes = {},
-
   -- For `nvim-dap`
   debugger_name = "",
   debugger_config = {},
-
   -- For null-ls
   formatters = {},
   linters = {},
   code_actions = {},
-
   -- For asthetics
   virtual_text = {
-    inlay_hints = false,
     code_lens = false,
-    dim_unused = true,
   },
 }
 
@@ -46,7 +41,6 @@ function LanguageServer:lsp()
     on_attach = function(client, bufnr)
       if self.on_attach then self.on_attach(client, bufnr) end
 
-      lsp_utils.setup_document_highlight(client)
       lsp_utils.setup_keybindings(bufnr)
 
       if self.formatting == false then
@@ -55,14 +49,7 @@ function LanguageServer:lsp()
         lsp_utils.setup_format_on_save(client)
       end
 
-      if self.virtual_text.inlay_hints then
-        -- NOTE: This currently only supports `rust-analyzer`
-        lsp_utils.setup_inlay_hints()
-      end
-
       if self.virtual_text.code_lens then lsp_utils.setup_codelens() end
-
-      if self.virtual_text.dim_unused then lsp_utils.setup_dim_unused() end
 
       if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
     end,

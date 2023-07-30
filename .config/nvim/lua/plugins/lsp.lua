@@ -41,19 +41,9 @@ return {
 
       require("lsp.language_servers.null_ls"):setup()
     end,
-
     keys = {
       { "<leader>lI", "<Cmd>Mason<CR>", desc = "Manage language servers" },
     },
-  },
-
-  "nvim-lua/lsp_extensions.nvim",
-  "j-hui/fidget.nvim",
-
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "InsertEnter",
-    config = true,
   },
 
   -- Language specific plugins
@@ -67,59 +57,26 @@ return {
   {
     "mattn/emmet-vim",
     event = "InsertEnter",
-
     config = function() vim.g.user_emmet_leader_key = "<M-e>" end,
   },
 
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = {
-      "SymbolsOutline",
-      "SymbolsOutlineOpen",
-      "SymbolsOutlineClose",
-    },
-
-    config = function(_, _)
-      vim.g.symbols_outline = {
-        highlight_hovered_item = true,
-        show_guides = true,
-        auto_preview = true,
-        position = "right",
-        keymaps = {
-          close = "<Esc>",
-          goto_location = "<CR>",
-          focus_location = "o",
-          hover_symbol = "K",
-          rename_symbol = "r",
-          code_actions = "a",
-        },
-        lsp_blacklist = {},
-      }
-    end,
-
-    keys = {
-      { "<leader>lo", "<Cmd>SymbolsOutline<CR>", desc = "Show outline" },
+    "utilyre/barbecue.nvim",
+    dependencies = { "SmiteshP/nvim-navic" },
+    opts = {
+      attach_navic = false, -- NOTE: This is done manually in lanugage_server setup
     },
   },
 
   {
-    "SmiteshP/nvim-navic",
-    lazy = true,
-
-    opts = function()
-      local icons = vim.deepcopy(require("lsp.kind"))
-      for name, icon in pairs(icons) do
-        icons[name] = icon .. " "
-      end
-
-      return {
-        icons = icons,
-        highlight = true,
-        separator = "  ",
-        depth_limit = 0,
-        depth_limit_indicator = "",
-        safe_output = true,
-      }
+    "tzachar/local-highlight.nvim",
+    config = function()
+      require("utils.wrappers").highlight("LocalHighlight", { bg = "#464646" })
+      require("local-highlight").setup({
+        disable_file_types = { "NvimTree" },
+        hlgroup = "LocalHighlight",
+        cw_hlgroup = "LocalHighlight",
+      })
     end,
   },
 }

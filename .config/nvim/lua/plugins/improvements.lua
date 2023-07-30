@@ -8,7 +8,7 @@ return {
     "famiu/bufdelete.nvim",
     cmd = "Bdelete",
     keys = {
-      { "<leader>bd", "<Cmd>Bdelete", desc = "Delete buffer" },
+      { "<leader>bd", "<Cmd>Bdelete<CR>", desc = "Delete buffer" },
       { "X", "<Cmd>Bdelete<CR>", desc = "Delete buffer" },
     },
   },
@@ -16,7 +16,6 @@ return {
   {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
-
     opts = {
       auto_resize_height = true,
     },
@@ -25,12 +24,10 @@ return {
   {
     "folke/trouble.nvim",
     cmd = { "Trouble", "TroubleToggle" },
-
     opts = {
       auto_preview = false, -- automatyically preview the location of the diagnostic. <esc> to close preview and go back to last window
       use_diagnostic_signs = true, -- use the signs defined in lsp client
     },
-
     keys = {
       { "<C-q>", "<Cmd>TroubleToggle quickfix<CR>", desc = "Show quickfix list" },
       -- {"<C-l>", "<Cmd>TroubleToggle loclist<CR>"}
@@ -42,7 +39,6 @@ return {
   {
     "karb94/neoscroll.nvim",
     event = "BufEnter",
-
     opts = {
       -- All these keys will be mapped to their corresponding default scrolling animation
       mappings = {
@@ -64,7 +60,6 @@ return {
   {
     "monaqa/dial.nvim",
     event = "BufRead",
-
     opts = function()
       local augend = require("dial.augend")
       return {
@@ -92,7 +87,6 @@ return {
       }
     end,
     config = function(_, opts) require("dial.config").augends:register_group(opts) end,
-
     init = function()
       local maps = require("dial.map")
       local map = require("utils.wrappers").map
@@ -106,7 +100,6 @@ return {
       map("v", "g<C-a>", maps.inc_gvisual())
       map("v", "g<C-x>", maps.dec_gvisual())
     end,
-
     -- TODO: Figure out why this won't work
     -- keys = function()
     --   local maps = require("dial.map")
@@ -126,7 +119,6 @@ return {
   {
     "nacro90/numb.nvim",
     event = "BufRead",
-
     opts = {
       show_numbers = true,
       show_cursorline = true,
@@ -135,20 +127,49 @@ return {
 
   {
     "kevinhwang91/nvim-hlslens",
-
     keys = {
       { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]] },
       { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]] },
-
       { "*", [[*<Cmd>lua require('hlslens').start()<CR>]] },
       { "#", [[#<Cmd>lua require('hlslens').start()<CR>]] },
       { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
       { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
+      {
+        mode = "x",
+        "*",
+        [[:<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR><Cmd>lua require('hlslens').start()<CR>]],
+      },
+      {
+        mode = "x",
+        "#",
+        [[:<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR><Cmd>lua require('hlslens').start()<CR>]],
+      },
+      {
+        mode = "x",
+        "g*",
+        [[g*<Cmd>lua require('hlslens').start()<CR>]],
+      },
+      {
+        mode = "x",
+        "g#",
+        [[g#<Cmd>lua require('hlslens').start()<CR>]],
+      },
+    },
+  },
 
-      { mode = "x", "*", [[:<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR><Cmd>lua require('hlslens').start()<CR>]] },
-      { mode = "x", "#", [[:<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR><Cmd>lua require('hlslens').start()<CR>]] },
-      { mode = "x", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
-      { mode = "x", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    init = function()
+      -- TODO: Show fold indicators in statuscol
+      vim.o.foldcolumn = "1"
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+    end,
+    config = true,
+    opts = {
+      provider_selector = function() return { "treesitter", "indent" } end,
     },
   },
 }

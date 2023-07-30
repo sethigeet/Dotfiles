@@ -6,15 +6,13 @@ local ls = LanguageServer:create({
     "prettierd",
     prefer_local = "node_modules/.bin",
   },
-  code_actions = "eslint",
+  code_actions = "eslint_d",
   linters = {
-    "eslint",
+    "eslint_d",
     condition = function(utils) return utils.root_has_file(".eslintrc.json") or utils.root_has_file(".eslintrc.js") end,
     prefer_local = "node_modules/.bin",
   },
-
   formatting = false,
-
   debugger_name = "jsnode",
   -- debugger_config = {
   -- adapters = {},

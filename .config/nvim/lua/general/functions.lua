@@ -18,12 +18,12 @@ loading in the runtime again]],
 end
 
 -- NOTE: The part ahead requires `nvim-treesitter` plugin to be installed!
-vim.treesitter.set_query(
+vim.treesitter.query.set(
   "lua",
   "SaveAndExec_Lua_Result",
   [[
 (
-  (function_declaration 
+  (function_declaration
     name: (identifier) @capture)
 )
 ]]
@@ -55,7 +55,7 @@ function SaveAndExec(save)
     return
   end
 
-  local query = vim.treesitter.get_query("lua", "SaveAndExec_Lua_Result")
+  local query = vim.treesitter.query.get("lua", "SaveAndExec_Lua_Result")
   for _, node in query:iter_captures(function_node, 0) do
     local fn_name = vim.treesitter.get_node_text(node, 0)
     vim.notify("Executing the global function found under the cursor: '" .. fn_name .. "'", vim.log.levels.INFO, {

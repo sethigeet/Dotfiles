@@ -1,16 +1,20 @@
 return {
   { "MunifTanjim/nui.nvim", lazy = true },
 
-  { "kyazdani42/nvim-web-devicons", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+
+  {
+    "tummetott/reticle.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
 
   {
     "rcarriga/nvim-notify",
-
     opts = {
       -- Animation style
       stages = "slide",
     },
-
     config = function(_, opts)
       local notify = require("notify")
 
@@ -22,7 +26,6 @@ return {
 
   {
     "petertriho/nvim-scrollbar",
-
     opts = function()
       local colors = require("tokyonight.colors").setup()
 
@@ -87,6 +90,7 @@ return {
           "prompt",
           "TelescopePrompt",
           "alpha",
+          "neo-tree",
         },
         autocmd = {
           render = {
@@ -106,7 +110,6 @@ return {
         },
       }
     end,
-
     config = function(_, opts)
       require("scrollbar").setup(opts)
 
@@ -124,17 +127,15 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-
     utils = {
       get_tab_stop = function()
         local label = "Tab Size: "
-        if vim.api.nvim_buf_get_option(0, "expandtab") then label = "Spaces: " end
-        return " " .. label .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+        if vim.api.nvim_get_option_value("expandtab", {}) then label = "Spaces: " end
+        return " " .. label .. vim.api.nvim_get_option_value("shiftwidth", {})
       end,
-
       get_lsp_client = function()
         local msg = "  No Active Lsp"
-        local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+        local buf_ft = vim.api.nvim_get_option_value("filetype", {})
         local clients = vim.lsp.get_active_clients()
         if next(clients) == nil then return msg end
 
@@ -147,10 +148,7 @@ return {
         return msg
       end,
     },
-
     opts = function(self)
-      local navic = require("nvim-navic")
-
       return {
         options = {
           theme = "tokyonight",
@@ -158,27 +156,34 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch" },
+          lualine_b = {
+            {
+              require("noice").api.status.command.get,
+              cond = require("noice").api.status.command.has,
+            },
+            {
+              require("noice").api.status.mode.get,
+              cond = require("noice").api.status.mode.has,
+            },
+            "branch",
+          },
           lualine_c = {
             {
               "diff",
               colored = true,
-              symbols = { added = " ", modified = "柳", removed = " " },
+              symbols = { added = " ", modified = " ", removed = " " },
             },
             {
               "diagnostics",
               sources = { "nvim_diagnostic" },
               sections = { "error", "warn", "info" },
-              symbols = { error = " ", warn = " ", info = " " },
+              symbols = { error = " ", warn = " ", info = " " },
             },
             { "filename", symbols = { modified = "  ", readonly = "  " } },
           },
           lualine_x = { { "filetype", colored = true }, self.utils.get_lsp_client },
           lualine_y = { self.utils.get_tab_stop },
           lualine_z = { "location" },
-        },
-        winbar = {
-          lualine_c = { { navic.get_location, cond = navic.is_available } },
         },
         extensions = { "nvim-tree", "quickfix", "toggleterm", "symbols-outline" },
       }
@@ -189,7 +194,6 @@ return {
     "akinsho/bufferline.nvim",
     dependencies = { { "tiagovla/scope.nvim", config = true } },
     event = "VeryLazy",
-
     opts = {
       options = {
         mode = "buffers", -- set to "tabs" to only show tabpages instead
@@ -204,7 +208,7 @@ return {
             if e == "error" then
               sym = " "
             elseif e == "warning" then
-              sym = " "
+              sym = " "
             elseif e == "info" then
               sym = " "
             else
@@ -214,7 +218,7 @@ return {
           end
           return s
         end,
-        offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "center" } },
+        offsets = { { filetype = "neo-tree", text = "File Explorer", highlight = "Directory", text_align = "center" } },
         show_buffer_icons = true,
         show_buffer_close_icons = true,
         show_close_icon = true,
@@ -222,7 +226,6 @@ return {
         separator_style = "thin",
       },
     },
-
     keys = function()
       local maps = {
         -- Goto any buffer instantly
@@ -243,12 +246,10 @@ return {
         -- Move buffers using Ctrl + Arrow Keys
         { "<C-Left>", "<Cmd>BufferLineMovePrev<CR>" },
         { "<C-Right>", "<Cmd>BufferLineMoveNext<CR>" },
-
         { "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close left" },
         { "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", desc = "Close right" },
         { "<leader>bH", "<Cmd>BufferLineMovePrev<CR>", desc = "Move to previous" },
         { "<leader>bL", "<Cmd>BufferLineMoveNext<CR>", desc = "Move to next" },
-
         { "<leader>bp", "<Cmd>BufferLinePick<CR>", desc = "Pick buffer" },
       }
 
@@ -267,107 +268,112 @@ return {
   },
 
   {
-    "kyazdani42/nvim-tree.lua",
+    "luukvbaal/statuscol.nvim",
+    event = "VeryLazy",
+    opts = function()
+      local builtin = require("statuscol.builtin")
+      return {
+        segments = {
+          {
+            sign = { name = { ".*" }, maxwidth = 1, colwidth = 1, auto = false },
+            click = "v:lua.ScSa",
+          },
+          {
+            sign = { name = { "Diagnostic" }, maxwidth = 1, auto = false },
+            click = "v:lua.ScSa",
+          },
+          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+        },
+      }
+    end,
+  },
 
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
     keys = {
-      { "<leader>?", "<Cmd>NvimTreeFindFile<CR>", desc = "Show file in tree" },
-      { "<leader>e", "<Cmd>NvimTreeToggle<CR>", desc = "Show file explorer" },
+      {
+        "<leader>e",
+        "<Cmd>Neotree toggle<CR>",
+        desc = "Show file explorer",
+      },
     },
-
+    deactivate = function() vim.cmd.Neotree("close") end,
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+      if vim.fn.argc() == 1 then
+        ---@diagnostic disable-next-line: param-type-mismatch
+        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        if stat and stat.type == "directory" then require("neo-tree") end
+      end
+    end,
     opts = {
-      -- disables netrw completely
-      disable_netrw = true,
-      -- hijack the cursor in the tree to put it at the start of the filename
-      hijack_cursor = true,
-      -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-      update_cwd = true,
-
-      respect_buf_cwd = true,
-
-      -- show lsp diagnostics in the signcolumn
-      diagnostics = {
-        enable = true,
-        icons = {
-          hint = "",
-          info = "",
-          warning = "",
-          error = "",
+      sources = { "filesystem", "git_status", "document_symbols" },
+      open_files_do_not_replace_types = { "terminal", "Trouble", "qf" },
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = { "node_modules", "target", "__pycache__" },
         },
+        follow_current_file = true,
+        use_libuv_file_watcher = true,
       },
-      -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
-      update_focused_file = {
-        enable = true,
-        ignore_list = { "dashboard", "startify" },
-      },
-      actions = {
-        open_file = {
-          resize_window = false,
-        },
-      },
-      renderer = {
-        highlight_git = true,
-        indent_markers = { enable = true },
-        icons = {
-          glyphs = {
-            default = "",
-            symlink = "",
-            folder = {
-              arrow_closed = "",
-              arrow_open = "",
-              default = "",
-              open = "",
-              empty = "",
-              empty_open = "",
-              symlink = "",
-              symlink_open = "",
-            },
-            git = {
-              unstaged = "",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "✗",
-              deleted = "",
-              ignored = "◌",
-            },
-          },
-        },
-      },
-      view = {
+      window = {
+        width = 30,
         mappings = {
-          custom_only = false,
-          list = {
-            { key = { "<CR>", "o", "l", "<2-LeftMouse>" }, action = "edit" },
-            { key = { "<2-RightMouse>", "<C-]>" }, action = "cd" },
-            { key = { "<C-v>", "v" }, action = "vsplit" },
-            { key = { "<C-x>", "s" }, action = "split" },
-            { key = "<C-t>", action = "tabnew" },
-            { key = "<", action = "prev_sibling" },
-            { key = ">", action = "next_sibling" },
-            { key = "P", action = "parent_node" },
-            { key = { "<BS>", "<S-CR>", "h" }, action = "close_node" },
-            { key = "<Tab>", action = "preview" },
-            { key = "K", action = "first_sibling" },
-            { key = "J", action = "last_sibling" },
-            { key = "I", action = "toggle_ignored" },
-            { key = "H", action = "toggle_dotfiles" },
-            { key = "R", action = "refresh" },
-            { key = "a", action = "create" },
-            { key = "d", action = "remove" },
-            { key = "r", action = "rename" },
-            { key = "<C-r>", action = "full_rename" },
-            { key = "x", action = "cut" },
-            { key = "c", action = "copy" },
-            { key = "p", action = "paste" },
-            { key = "y", action = "copy_name" },
-            { key = "Y", action = "copy_path" },
-            { key = "gy", action = "copy_absolute_path" },
-            { key = "[c", action = "prev_git_item" },
-            { key = "}c", action = "next_git_item" },
-            { key = "-", action = "dir_up" },
-            { key = "q", action = "close" },
-            { key = "g?", action = "toggle_help" },
+          ["<space>"] = "none",
+          ["l"] = "open",
+          ["h"] = "close_node",
+        },
+      },
+      default_component_configs = {
+        indent = {
+          with_expanders = true,
+          expander_collapsed = "",
+          expander_expanded = "",
+          expander_highlight = "NeoTreeExpander",
+        },
+        icon = {
+          folder_empty = "",
+          folder_empty_open = "",
+        },
+        git_status = {
+          symbols = {
+            renamed = "󰁕",
+            unstaged = "󰄱",
           },
+        },
+      },
+      document_symbols = {
+        kinds = {
+          File = { icon = "󰈙", hl = "Tag" },
+          Namespace = { icon = "󰌗", hl = "Include" },
+          Package = { icon = "󰏖", hl = "Label" },
+          Class = { icon = "󰌗", hl = "Include" },
+          Property = { icon = "󰆧", hl = "@property" },
+          Enum = { icon = "󰒻", hl = "@number" },
+          Function = { icon = "󰊕", hl = "Function" },
+          String = { icon = "󰀬", hl = "String" },
+          Number = { icon = "󰎠", hl = "Number" },
+          Array = { icon = "󰅪", hl = "Type" },
+          Object = { icon = "󰅩", hl = "Type" },
+          Key = { icon = "󰌋", hl = "" },
+          Struct = { icon = "󰌗", hl = "Type" },
+          Operator = { icon = "󰆕", hl = "Operator" },
+          TypeParameter = { icon = "󰊄", hl = "Type" },
+          StaticMethod = { icon = "󰠄 ", hl = "Function" },
+        },
+      },
+      source_selector = {
+        winbar = true,
+        -- statusline = false,
+        sources = {
+          { source = "filesystem", display_name = " 󰉓 Files " },
+          { source = "buffers", display_name = "  Files " },
+          { source = "document_symbols", display_name = "  Doc Symbols " },
+          { source = "git_status", display_name = " 󰊢 Git " },
         },
       },
     },
@@ -376,7 +382,6 @@ return {
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
-
     opts = {
       window = {
         width = 0.8,
@@ -400,7 +405,6 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
-
     opts = {
       buftype_exclude = { "help", "terminal" },
       bufname_exclude = { "vifm*" },
@@ -448,7 +452,6 @@ return {
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
-
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
 
@@ -489,7 +492,56 @@ return {
 
       return dashboard
     end,
-
     config = function(_, dashboard) require("alpha").setup(dashboard.opts) end,
+  },
+
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      cmdline = {
+        format = {
+          shell = { pattern = "^:!", icon = "", ft = "sh" },
+          filter = { pattern = "^:%s*!", icon = "", lang = "bash" },
+        },
+        view = "cmdline",
+      },
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            any = {
+              { find = "%d+L, %d+B" },
+              { find = "; after #%d+" },
+              { find = "; before #%d+" },
+              { find = "%d+ fewer lines" },
+              { find = "%d+ more lines" },
+            },
+          },
+          view = "mini",
+        },
+      },
+      presets = {
+        bottom_search = true,
+        -- command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+      },
+    },
+    keys = {
+      {
+        "<S-Enter>",
+        function() require("noice").redirect(vim.fn.getcmdline()) end,
+        mode = "c",
+        desc = "Redirect Cmdline",
+      },
+    },
   },
 }

@@ -15,11 +15,6 @@ local ls = LanguageServer:create({
       },
     },
   },
-
-  virtual_text = {
-    dim_unused = false,
-  },
-
   debugger_name = "python",
   -- debugger_config = {
   -- adapters = {},

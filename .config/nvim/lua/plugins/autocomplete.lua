@@ -116,7 +116,6 @@ return {
             i = tab_complete,
             s = tab_complete,
           }),
-
           ["<S-Tab>"] = cmp.mapping({
             i = s_tab_complete,
             s = s_tab_complete,
@@ -146,28 +145,32 @@ return {
           { name = "buffer", options = { max_completion_items = 15, keyword_length = 5 } },
         },
         window = {
+          completion = {
+            side_padding = 1,
+            winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+            scrollbar = false,
+          },
           documentation = cmp.config.window.bordered({
             border = "rounded",
-            winhighlight = "FloatBorder:FloatBorder",
+            winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder,CursorLine:Visual,Search:None",
+            scrollbar = false,
           }),
-          -- completion = cmp.config.window.bordered(),
         },
         view = {
           entries = "custom",
         },
         formatting = {
-          format = function(_, vim_item)
+          fields = { "kind", "abbr", "menu" },
+          format = function(_, item)
             local icons = require("lsp.kind")
-            vim_item.kind = " " .. icons[vim_item.kind] .. " "
-            return vim_item
+            local icon = icons[item.kind] or ""
+            item.kind = " " .. icon .. " "
+
+            return item
           end,
-        },
-        experimental = {
-          ghost_text = true,
         },
       }
     end,
-
     init = function()
       require("utils.wrappers").define_augroups({
         cmp_custom = {
@@ -188,13 +191,11 @@ return {
       "rafamadriz/friendly-snippets",
       config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
     },
-
     opts = {
       history = true,
       delete_check_events = "TextChanged",
       updateevents = "TextChanged,TextChangedI",
     },
-
     init = function()
       local luasnip = require("luasnip")
 
@@ -213,7 +214,6 @@ return {
 
   {
     "windwp/nvim-autopairs",
-
     config = function(_, _)
       local npairs = require("nvim-autopairs")
       local Rule = require("nvim-autopairs.rule")
@@ -225,7 +225,6 @@ return {
           lua = { "string" }, -- it will not add pair on that treesitter node
           javascript = { "template_string" },
         },
-
         fast_wrap = {
           map = "<M-f>",
           end_key = "f",

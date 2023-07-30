@@ -69,7 +69,8 @@ opt.listchars:append({
   conceal = "┊",
   nbsp = "␣",
 })
-opt.fillchars:append({ vert = "▏" })
+-- opt.fillchars:append({ "vert:▏", "eob:", "fold:", "foldopen:", "foldsep:", "foldclose:" })
+vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- TODO: Figure out why these options are not being set
 -- Helpful related items:
@@ -86,8 +87,7 @@ opt.formatoptions = opt.formatoptions
   + "j" -- Auto-remove comments if possible.
   - "2" -- I'm not in gradeschool anymore
 
-opt.listchars:append("space:⋅")
-opt.listchars:append("eol:↴")
+opt.listchars = opt.listchars + "space:⋅" + "eol:↴"
 
 -- Legacy stuff
 vim.cmd("set t_Co=256") -- Support 256 colors
