@@ -1,3 +1,9 @@
+enable_gh_completion=true
+# NOTE: this is automatically done by 'oh-my-zsh'. if not using oh-my-zsh, then set to true
+enable_pip_completion=false
+enable_kitty_completion=true
+enable_bun_completion=true
+
 if [ -n "$BASH_VERSION" ]; then
   shell="bash"
 elif [ -n "$ZSH_VERSION" ]; then
@@ -5,26 +11,27 @@ elif [ -n "$ZSH_VERSION" ]; then
 fi
 
 # 'gh' completion
-enable_gh_completion=true
 if "$enable_gh_completion"; then
-  eval "$(gh completion -s $shell)"
+  if command -v gh >/dev/null; then
+    eval "$(gh completion -s "$shell")"
+  fi
 fi
 
 # 'pip' completion
-# NOTE: this is automatically done by 'oh-my-zsh'. if not using oh-my-zsh, then set to true
-enable_pip_completion=false
 if "$enable_pip_completion"; then
-  eval "$(pip completion --$shell)"
+  eval "$(pip completion --"$shell")"
 fi
 
 # 'kitty' completion
-enable_kitty_completion=true
 if "$enable_kitty_completion"; then
-  kitty + complete setup "$shell" | source /dev/stdin
+  if command -v kitty >/dev/null; then
+    kitty + complete setup "$shell" | source /dev/stdin
+  fi
 fi
 
 # 'bun' completion
-enable_bun_completion=true
 if "$enable_bun_completion"; then
-  [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+  if command -v bun >/dev/null; then
+    [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+  fi
 fi

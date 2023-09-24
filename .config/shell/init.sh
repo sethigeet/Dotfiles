@@ -15,6 +15,3 @@ for file in ~/.config/shell/{var_exports,paths/init,aliases/init,functions,autoc
 done
 
 unset file
-
-# Load asdf-vm
-source /opt/asdf-vm/asdf.sh
