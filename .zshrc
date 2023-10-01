@@ -1,0 +1,1 @@
+/home/geet/.config/zsh/.zshrc
