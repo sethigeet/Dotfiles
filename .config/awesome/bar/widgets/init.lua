@@ -1,4 +1,5 @@
 local _widget_names = {
+  "battery",
   "launcher",
   "layoutbox",
   "mpris",

@@ -18,10 +18,6 @@ super + shift + {c,e,w}
 super + ctrl + {w}
   {microsoft-edge-stable}
 
-# Manage Windows
-super + semicolon
-	skippy-xd
-
 # Custom Scripts
 super + space
 	rofi -show drun
