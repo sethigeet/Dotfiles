@@ -19,8 +19,10 @@ local augroups = {
   auto_compile = {},
 
   filetypes = {
-    { "BufRead,BufNewFile", "*.{jsx,js}", cmd = "setlocal filetype=javascriptreact" },
-    { "BufRead,BufNewFile", "*.{tsx}", cmd = "setlocal filetype=typescriptreact" },
+    { "BufRead", "*.{jsx,js}", cmd = "setlocal filetype=javascriptreact" },
+    { "BufNewFile", "*.{jsx,js}", cmd = "setlocal filetype=javascriptreact" },
+    { "BufNewFile", "*.{tsx}", cmd = "setlocal filetype=typescriptreact" },
+    { "BufRead", "*.{tsx}", cmd = "setlocal filetype=typescriptreact" },
   },
 }
 define_augroups(augroups)

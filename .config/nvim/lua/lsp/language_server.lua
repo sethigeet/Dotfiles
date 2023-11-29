@@ -51,7 +51,7 @@ function LanguageServer:lsp()
 
       if self.virtual_text.code_lens then lsp_utils.setup_codelens() end
 
-      if client.server_capabilities.documentSymbolProvider then navic.attach(client, bufnr) end
+      if client.supports_method("documentSymbolProvider") then navic.attach(client, bufnr) end
     end,
     capabilities = capabilities,
   }

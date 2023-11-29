@@ -62,7 +62,7 @@ return {
         build = "make",
       },
       "nvim-telescope/telescope-symbols.nvim",
-      { "nvim-telescope/telescope-frecency.nvim", dependencies = "tami5/sql.nvim" },
+      "nvim-telescope/telescope-frecency.nvim",
     },
 
     opts = function()
@@ -194,17 +194,17 @@ return {
         { "<C-f>", CUSTOM_PICKERS.grep_current_buf, desc = "Search current file" },
         { "<C-b>", PICKERS.buffers, desc = "Search buffers" },
         { "<C-p>", CUSTOM_PICKERS.find_files, desc = "Find files" },
-
         { "<leader>f", CUSTOM_PICKERS.find_files, desc = "Find files" },
-
         { "<leader>gb", PICKERS.git_branches, desc = "Branches" },
         { "<leader>gco", PICKERS.git_commits, desc = "Checkout commit" },
-        { "<leader>gcu", PICKERS.git_commits, desc = "Checkout commit (for current file)" },
-
+        {
+          "<leader>gcu",
+          PICKERS.git_commits,
+          desc = "Checkout commit (for current file)",
+        },
         { "<leader>lb", CUSTOM_PICKERS.cur_buf_symbols, desc = "Search buffer symbols" },
         { "<leader>ls", PICKERS.lsp_document_symbols, desc = "Search document symbols" },
         { "<leader>lS", PICKERS.lsp_workspace_symbols, desc = "Search workspace symbols" },
-
         { "<leader>sA", PICKERS.builtin, desc = "Search builtin searchers" },
         { "<leader>sd", function() PICKERS.diagnostics({ bufnr = 0 }) end, desc = "Search document diagnostics" },
         { "<leader>sD", PICKERS.diagnostics, desc = "Search workspace diagnostics" },

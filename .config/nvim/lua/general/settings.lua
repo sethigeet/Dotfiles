@@ -7,6 +7,7 @@ local opts = {
   hidden = true, -- Required to keep multiple buffers open multiple buffers
   scrolloff = 4, -- Minimal number of lines to keep above and below the cursor
   sidescrolloff = 4, -- Minimal number of lines to keep on the right and the left side of the cursor
+  smoothscroll = true, -- Scroll by screen line rather than by text line when 'wrap' is set
   pumheight = 10, -- Makes popup menu smaller
   encoding = "utf-8", -- The encoding displayed
   fileencoding = "utf-8", -- The encoding written to file

@@ -3,6 +3,8 @@ return {
 
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
+  { "hiphish/rainbow-delimiters.nvim" },
+
   {
     "tummetott/reticle.nvim",
     event = "VeryLazy",
@@ -136,7 +138,7 @@ return {
       get_lsp_client = function()
         local msg = "  No Active Lsp"
         local buf_ft = vim.api.nvim_get_option_value("filetype", {})
-        local clients = vim.lsp.get_active_clients()
+        local clients = vim.lsp.get_clients()
         if next(clients) == nil then return msg end
 
         for _, client in ipairs(clients) do
@@ -317,7 +319,9 @@ return {
           hide_gitignored = false,
           hide_by_name = { "node_modules", "target", "__pycache__" },
         },
-        follow_current_file = true,
+        follow_current_file = {
+          enabled = true,
+        },
         use_libuv_file_watcher = true,
       },
       window = {
@@ -405,46 +409,24 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
+    main = "ibl",
     opts = {
-      buftype_exclude = { "help", "terminal" },
-      bufname_exclude = { "vifm*" },
-      filetype_exclude = {
-        "vimwiki",
-        "NvimTree",
-        "help",
-        "undotree",
-        "diff",
-        "git",
-        "alpha",
-        "neogitstatus",
-        "packer",
+      exclude = {
+        buftypes = { "help", "terminal" },
+        filetypes = {
+          "vimwiki",
+          "NvimTree",
+          "help",
+          "undotree",
+          "diff",
+          "git",
+          "alpha",
+          "neogitstatus",
+          "packer",
+        },
       },
-      char = "▏",
-      use_treesitter = true,
-      show_trailing_blankline_indent = false,
-      space_char_blankline = " ",
-      show_current_context = true,
-      show_current_context_start = true,
-      context_patterns = {
-        "class",
-        "return",
-        "function",
-        "method",
-        "^if",
-        "^while",
-        "jsx_element",
-        "^for",
-        "^object",
-        "^table",
-        "block",
-        "arguments",
-        "if_statement",
-        "else_clause",
-        "jsx_element",
-        "jsx_self_closing_element",
-        "try_statement",
-        "catch_clause",
-        "import_statement",
+      indent = {
+        char = "▏",
       },
     },
   },
