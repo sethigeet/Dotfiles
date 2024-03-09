@@ -1,10 +1,12 @@
 #!/bin/sh
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-picom --experimental-backends &
+gnome-keyring-daemon --start --components=secrets &
+picom &
 set-background -r &
-numlockx on &
+playerctld daemon &
 greenclip daemon &
 sxhkd &
+nm-applet --indicator & # Only for wifi enabled computers
 notification-ctl restart &
 power-saver --on &
