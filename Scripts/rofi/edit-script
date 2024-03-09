@@ -1,11 +1,12 @@
 #!/bin/sh
 
 edit_file() {
-  if [ -t 0 ]; then
-    exec nvim "$1"
-  else
-    exec $TERMINAL -e nvim "$1"
-  fi
+  # if [ -t 0 ]; then
+  #   exec nvim "$1"
+  # else
+  #   exec $TERMINAL -e nvim "$1"
+  # fi
+  exec $TERMINAL -e nvim "$1"
 }
 
 # if a name has been specified, directly edit it
@@ -18,11 +19,12 @@ fi
 available_scripts=$(find "$HOME/Scripts" -type f | sed "s+$HOME/Scripts/++g" | sort)
 
 # Let the user select the script through rofi
-if [ -t 0 ]; then
-  selected_script="$(echo "$available_scripts" | fzf --prompt 'Select a script: ' --preview 'bat --color=always --plain $HOME/Scripts/{}')"
-else
-  selected_script="$(echo "$available_scripts" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -p "Edit a script")"
-fi
+# if [ -t 0 ]; then
+#   selected_script="$(echo "$available_scripts" | fzf --prompt 'Select a script: ' --preview 'bat --color=always --plain $HOME/Scripts/{}')"
+# else
+#   selected_script="$(echo "$available_scripts" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -p "Edit a script")"
+# fi
+selected_script="$(echo "$available_scripts" | rofi -theme "$HOME/.config/rofi/themes/with-prompt.rasi" -dmenu -p "Edit a script")"
 
 # Check if the user selected any config
 [ -z "$selected_script" ] && exit 0

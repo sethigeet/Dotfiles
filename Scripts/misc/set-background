@@ -10,10 +10,10 @@ usage: set-background [options]
 "
 bg_color="#1A1B26"
 
-restore_script_dir="$XDG_DATA_HOME/feh"
-restore_script_path="$restore_script_dir/restore-bg"
+restore_image_dir="$XDG_DATA_HOME/set-background"
+restore_image_path="$restore_image_dir/restore-bg"
 
-[ -d "$restore_script_dir" ] || mkdir -p "$restore_script_dir"
+[ -d "$restore_image_dir" ] || mkdir -p "$restore_image_dir"
 
 with_pacwall() {
   # Generate an image with the solid background
@@ -32,13 +32,14 @@ with_pacwall() {
 }
 
 from_image() {
-  feh --bg-scale "$1"
-  mv ~/.fehbg "$restore_script_path"
+  # feh --bg-scale --no-fehbg "$1"
+  setwallpaper --mode scale "$1"
+  cp "$1" "$restore_image_path" 2>/dev/null
 }
 
 restore() {
-  if [ -f "$restore_script_path" ]; then
-    "$restore_script_path"
+  if [ -f "$restore_image_path" ]; then
+    from_image "$restore_image_path"
   else
     echo "Please set a background first before trying to restore!"
   fi
@@ -67,7 +68,6 @@ while [ $# -gt 0 ]; do
         echo "No image specified" >&2
         exit 1
       fi
-      shift
       ;;
     *)
       echo "$help_message" >&2
