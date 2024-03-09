@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Set the encodings
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Set the default applications
 export TERMINAL="kitty"
@@ -84,9 +84,6 @@ export PATH
 
 # Use my custom rofi script for asking for a password for sudo
 export SUDO_ASKPASS="$HOME/Scripts/rofi/rofi-pass"
-
-# Start the ssh-agent
-eval "$(ssh-agent -s)"
 
 # Set the profile loaded variable to use in other scripts
 export PROFILE_LOADED=true

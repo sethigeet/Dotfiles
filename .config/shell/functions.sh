@@ -64,3 +64,7 @@ start-test-display() {
   Xephyr -ac -br -screen 1920x1000 :1 &
   export DISPLAY=:1
 }
+
+copy-docker-image() {
+  docker save "$1" | bzip2 | pv | ssh "$2" docker load
+}
