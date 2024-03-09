@@ -72,7 +72,6 @@
   },
 
   //# Zen Mode
-  "zenMode.hideTabs": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
   "zenMode.hideActivityBar": false,
@@ -82,11 +81,10 @@
 
   //# Terminal
   "terminal.external.linuxExec": "/usr/bin/kitty",
-  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
   "terminal.integrated.fontSize": 16,
   // "terminal.integrated.inheritEnv": false,
   "terminal.integrated.scrollback": 10000,
-  "terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
   "terminal.integrated.shellIntegration.enabled": true,
 
   //# Output
@@ -135,16 +133,10 @@
     "django-html": "html"
   },
 
-  // VS Intellicode
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-
   //# Language Extensions
   // Python
   "python.languageServer": "Pylance",
-  "python.formatting.provider": "black",
-  "python.linting.pylintArgs": ["--generate-members"],
-  "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true,
+  "pylint.args": ["--generate-members"],
 
   // Dart
   "dart.checkForSdkUpdates": false,
@@ -164,14 +156,6 @@
 
   // Rust
   "rust-analyzer.diagnostics.disabled": ["unresolved-macro-call"],
-
-  //# Autocompletion
-  // Kite
-  "kite.showWelcomeNotificationOnStartup": false,
-  "kite.codefinder.enableLineDecoration": false,
-
-  // Tabnine
-  "tabnine.experimentalAutoImports": true,
 
   //# Running Code
   // Code Runner
