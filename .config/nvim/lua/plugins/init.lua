@@ -30,7 +30,7 @@ return {
   },
 
   -- Multiple Cursors
-  { "terryma/vim-multiple-cursors", event = "BufRead" },
+  { "mg979/vim-visual-multi", event = "BufRead" },
 
   -- Debugging
   "mfussenegger/nvim-dap",
@@ -101,10 +101,5 @@ return {
   --   keys = { "`", "<F1>", "<leader>T" },
   --   module = { "toggleterm", "toggleterm.terminal" },
   --   config = "toggleterm",
-  -- },
-
-  -- {
-  --   "gelguy/wilder.nvim",
-  --   run = "vim.cmd('UpdateRemotePlugins')",
   -- },
 }
