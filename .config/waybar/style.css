@@ -1,0 +1,118 @@
+/*
+bg: "#1F2335";
+bg_alt: "#1A1B26";
+bg_alt_2: "#292E42";
+fg: "#C0CAF5";
+
+gray: "#8C8C8C";
+red: "#F7768E";
+green: "#9ECE6A";
+yellow: "#E0AF68";
+blue: "#7DCFFF";
+purple: "#BB9AF7";
+cyan: "#73DACA";
+amber: "#E0AF68";
+orange: "#FF9E64";
+pink: "#F7768E";
+lime: "#D7DD91";
+indigo: "#7AA2F7";
+*/
+
+* {
+  border: none;
+  font-family: "Nunito Nerd Font";
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #1a1b26;
+  color: #c0caf5;
+}
+
+tooltip {
+  background: #1a1b26;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #292e42;
+}
+
+tooltip label {
+  color: #c0caf5;
+}
+
+#workspaces button {
+  padding: 5px;
+  color: #c0caf5;
+  margin-right: 5px;
+  font-family: "Iosevka Nerd Font";
+}
+
+#workspaces button.empty {
+  color: #8c8c8c;
+}
+
+#workspaces button.active {
+  color: #7aa2f7;
+}
+
+#workspaces button.focused {
+  color: #7aa2f7;
+}
+
+#workspaces button.urgent {
+  color: #f7768e;
+}
+
+#workspaces button:hover {
+  background: #11111b;
+  color: #cdd6f4;
+  border-radius: 10px;
+}
+
+#custom-app_launcher {
+  font-family: "Iosevka Nerd Font";
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+#custom-power_btn {
+  font-family: "Iosevka Nerd Font";
+  font-size: 12px;
+}
+
+#custom-app_launcher,
+#custom-notification,
+#custom-power_btn,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#tray,
+#workspaces,
+#backlight {
+  background: #1f2335;
+  border: 0px;
+  border-radius: 24px;
+  padding: 0px 10px;
+  margin: 5px 0px;
+}
+
+#custom-notification {
+  margin-right: 5px;
+}
+
+#custom-app_launcher {
+  margin-left: 5px;
+  color: #9ece6a;
+}
+
+#backlight.icon {
+  color: red;
+}
+
+#window {
+  font-weight: bold;
+}

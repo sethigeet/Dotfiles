@@ -1,0 +1,164 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 40,
+  "spacing": 5,
+
+  "modules-left": [
+    "custom/app_launcher",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "battery",
+    "backlight",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    "network",
+    "clock",
+    "custom/power_btn",
+    "tray",
+    "custom/notification"
+  ],
+
+  "hyprland/window": {
+    "format": "{}"
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "﬏",
+      "3": "",
+      "4": "",
+      "5": "漣",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": ""
+    },
+    "on-click": "activate",
+    "persistent_workspaces": { "*": 9 }
+  },
+
+  "custom/app_launcher": {
+    "format": "ﯨ",
+    // "on-click": "menu",
+    "tooltip": false
+  },
+
+  "custom/power_btn": {
+    "format": "<span foreground='#f7768e'></span>",
+    // "on-click": "power-menu",
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "<span foreground='#7DCFFF'>{icon}</span>  {capacity}%",
+    "format-charging": "<span foreground='#7DCFFF'></span>  {capacity}%",
+    "format-plugged": "<span foreground='#7DCFFF'></span>  {capacity}%",
+    "format-alt": "<span foreground='#7DCFFF'>{icon}</span>  {time}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "backlight": {
+    "format": "<span foreground='#E0AF68'>{icon}</span>   {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "tooltip": false,
+    "min-length": 6
+  },
+
+  "pulseaudio": {
+    "format": "<span foreground='#7AA2F7'>{icon}</span> {volume}%",
+    "format-muted": "",
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "<span foreground='#FF9E64'></span> {volume}%",
+    "format-source-muted": "",
+    "on-click": "pamixer --default-source -t",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+
+  "network": {
+    "interface": "wlo1",
+    "format": "<span foreground='#BB9AF7'> </span> {ifname}",
+    "format-wifi": "<span foreground='#BB9AF7'>{icon}</span>  {essid}",
+    "format-disconnected": "<span foreground='#BB9AF7'></span> Disconnected",
+    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "Signal Strength: {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "network"
+  },
+
+  "clock": {
+    "format": "<span foreground='#73DACA'>   </span>{:%I:%M %p   <span foreground='#73DACA'>   </span>%b %d, %Y} ",
+    "tooltip": true,
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "format": {
+        "today": "<span underline='single' weight='bold' foreground='#73DACA'>{}</span>"
+      }
+    }
+  },
+
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " ",
+      "none": " ",
+      "dnd-notification": " ",
+      "dnd-none": " ",
+      "inhibited-notification": " ",
+      "inhibited-none": " ",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  }
+}
