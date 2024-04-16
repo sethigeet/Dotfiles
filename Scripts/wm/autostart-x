@@ -8,5 +8,6 @@ playerctld daemon &
 greenclip daemon &
 sxhkd &
 nm-applet --indicator & # Only for wifi enabled computers
+blueman-applet &        # Only for bluetooth enabled computers
 notification-ctl restart &
 power-saver --on &
