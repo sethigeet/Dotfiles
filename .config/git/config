@@ -2,6 +2,13 @@
 	email = geetsethi05@gmail.com
 	name = Geet Sethi
 	username = sethigeet
+	signingkey = ~/.ssh/github_ed25519
+
+[gpg]
+	format = ssh
+
+[commit]
+  gpgsign = true
 
 [alias]
 	patch = !git --no-pager diff --no-color
