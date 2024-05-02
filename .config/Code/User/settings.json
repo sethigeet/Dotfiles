@@ -20,8 +20,6 @@
   "editor.inlineSuggest.enabled": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-
-  //# Window
   "window.zoomLevel": 1,
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}${separator}${appName}",
   "window.titleBarStyle": "custom",
@@ -255,6 +253,7 @@
   ],
   "vim.handleKeys": {
     "<C-b>": false,
+    "<C-p>": false,
     "<C-n>": false,
     "<C-w>": false,
     "<C-s>": false,
@@ -344,5 +343,5 @@
   },
 
   // RedHat
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
 }
