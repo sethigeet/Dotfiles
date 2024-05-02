@@ -146,4 +146,19 @@ return {
     config = function(_, _) vim.g.matchup_matchparen_offscreen = { method = "popup" } end,
     dependencies = { "nvim-treesitter" },
   },
+  --{
+  --  "Wansmer/treesj",
+  --  dependencies = { "nvim-treesitter/nvim-treesitter" },
+  --  config = function()
+  --    require("treesj").setup({
+  --      use_default_keymaps = false,
+  --    })
+  --  end,
+  --  keys = function()
+  --    return {
+  --      { "n", "<leader>j", require("treesj").toggle },
+  --      { "n", "<leader>J", function() require("treesj").toggle({ split = { recursive = true } }) end },
+  --    }
+  --  end,
+  --},
 }

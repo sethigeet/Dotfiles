@@ -172,4 +172,28 @@ return {
       provider_selector = function() return { "treesitter", "indent" } end,
     },
   },
+
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    lazy = false,
+    opts = {
+      useDefaultKeymaps = true,
+      disabledKeymaps = { "gc", "r" },
+    },
+    keys = {
+      {
+        "<M-P>",
+        function()
+          require("various-textobjs").lastChange()
+          local changeFound = vim.fn.mode():find("v")
+          if changeFound then vim.cmd.normal({ ">", bang = true }) end
+        end,
+      },
+    },
+  },
+
+  {
+    "chrisgrieser/nvim-puppeteer",
+    lazy = false, -- plugin lazy-loads itself
+  },
 }
