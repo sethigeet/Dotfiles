@@ -69,6 +69,7 @@ opt.listchars:append({
   precedes = "",
   conceal = "┊",
   nbsp = "␣",
+  space = "⋅",
 })
 -- opt.fillchars:append({ "vert:▏", "eob:", "fold:", "foldopen:", "foldsep:", "foldclose:" })
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -88,8 +89,6 @@ opt.formatoptions = opt.formatoptions
   + "j" -- Auto-remove comments if possible.
   - "2" -- I'm not in gradeschool anymore
 
-opt.listchars = opt.listchars + "space:⋅" + "eol:↴"
-
 -- Legacy stuff
 vim.cmd("set t_Co=256") -- Support 256 colors
 -- TODO: Figure out why does this not work with `vim.opt`
@@ -99,5 +98,3 @@ if vim.fn.has("persistent_undo") == 1 then
   opt.undodir = DATA_PATH .. "/undodir"
   opt.undofile = true
 end
-
-vim.cmd("syntax enable") -- Enables syntax highlighing

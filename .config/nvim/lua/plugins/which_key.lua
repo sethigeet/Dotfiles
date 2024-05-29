@@ -114,13 +114,7 @@ local mappings = {
     v = { cmd("DiagnosticVirtualTextToggle"), "toggle virtual text" },
   },
   q = { name = "Quickfix" },
-  r = {
-    name = "Run",
-    -- NOTE: This keybinding is only for nvim development
-    e = { cmd("lua SaveAndExec(false)"), "Exec the current function (nvim devel only)" },
-    E = { cmd("lua SaveAndExec(true)"), "Save and exec the current function (nvim devel only)" },
-    R = { cmd("lua ReloadFile()"), "Save and reload the current file (nvim devel only)" },
-  },
+  r = { name = "Run" },
   s = { name = "Search" },
   t = { name = "Treesitter" },
 }

@@ -3,7 +3,7 @@ local M = {}
 local map = require("utils.wrappers").map
 
 function M.check_lsp_client_active(name)
-  local active_clients = vim.lsp.get_active_clients()
+  local active_clients = vim.lsp.get_clients()
   -- Check if a particular client is active
   if name then
     for _, client in pairs(active_clients) do

@@ -86,7 +86,7 @@ local function formatForNullLS(builtins, customs)
   end
 
   if type(customs) == "table" and not vim.tbl_isempty(customs) then
-    if vim.tbl_islist(customs) then
+    if vim.islist(customs) then
       for i, custom in ipairs(customs) do
         customs[i] = handleCustom(custom)
       end

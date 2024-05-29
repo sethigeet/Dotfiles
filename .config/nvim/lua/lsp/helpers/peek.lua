@@ -25,7 +25,7 @@ LSP. No location was found.]],
     context = 10,
   }
 
-  if vim.tbl_islist(result) then
+  if vim.islist(result) then
     peek.prev_result = result[1]
     peek.floating_buf, peek.floating_win = window.create_floating_file(result[1], opts)
   else
