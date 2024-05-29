@@ -53,9 +53,14 @@ if [ -d "/usr/lib/jvm/java-15-openjdk" ]; then
 fi
 
 # Bun
-if [ -d "$HOME/.local/share/bun" ]; then
+if [ -d "$XDG_DATA_HOME/bun" ]; then
   export BUN_INSTALL="$XDG_DATA_HOME/bun"
   PATH="$PATH:$BUN_INSTALL/bin"
+fi
+
+if [ -d "$XDG_DATA_HOME/volta" ]; then
+  export VOLTA_HOME="$XDG_DATA_HOME/volta"
+  PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
 export PATH
