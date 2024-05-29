@@ -119,6 +119,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
@@ -344,4 +347,7 @@
 
   // RedHat
   "redhat.telemetry.enabled": false,
+
+  // GitLens
+  "gitlens.launchpad.indicator.enabled": false
 }
