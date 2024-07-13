@@ -4,12 +4,6 @@ enable_pip_completion=false
 enable_kitty_completion=true
 enable_bun_completion=true
 
-if [ -n "$BASH_VERSION" ]; then
-  shell="bash"
-elif [ -n "$ZSH_VERSION" ]; then
-  shell="zsh"
-fi
-
 # 'gh' completion
 if "$enable_gh_completion"; then
   if command -v gh >/dev/null; then

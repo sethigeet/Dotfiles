@@ -77,12 +77,12 @@ HISTORY_IGNORE="$HISTORY_IGNORE)"
 
 export HISTORY_IGNORE
 
-# Add Custom scripts to the path for easier access in other configs
+# Add custom scripts to the path for easier access in other configs
 PATH="$(find "$HOME/Scripts" -type d -printf "%p:")$PATH"
 PATH="$PATH:$HOME/.local/bin"
 export PATH
 
-# Use my custom rofi script for asking for a password for sudo
+# Use custom rofi script for asking for a password for sudo
 export SUDO_ASKPASS="$HOME/Scripts/rofi/rofi-pass"
 
 # Set the profile loaded variable to use in other scripts
