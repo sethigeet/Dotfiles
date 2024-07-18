@@ -68,3 +68,7 @@ start-test-display() {
 copy-docker-image() {
   docker save "$1" | bzip2 | pv | ssh "$2" docker load
 }
+
+forward-local-ips() {
+  sshuttle -NHr "$1" 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
+}
