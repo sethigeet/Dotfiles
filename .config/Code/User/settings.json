@@ -32,6 +32,10 @@
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/page.tsx": "${dirname} - Page",
+    "**/app/**/layout.tsx": "${dirname} - Layout"
+  },
 
   //# Files
   "files.exclude": {
@@ -137,6 +141,7 @@
   //# Language Extensions
   // Python
   "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "standard",
   "pylint.args": ["--generate-members"],
 
   // Dart
