@@ -75,6 +75,7 @@ return {
     config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
 
+  "nvim-treesitter/nvim-treesitter-context",
   "nvim-treesitter/nvim-treesitter-textobjects",
   { "nvim-treesitter/nvim-treesitter-context", opts = { mode = "cursor", max_lines = 3 } },
   "windwp/nvim-ts-autotag",

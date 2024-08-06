@@ -175,4 +175,15 @@ return {
       vim.g.mkdp_page_title = "${name} - Markdown Preview"
     end,
   },
+
+  {
+    "lervag/vimtex",
+    ft = "tex",
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.tex_flavor = "latex"
+      vim.g.tex_conceal = "abdmgs"
+      vim.g.vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" }
+    end,
+  },
 }

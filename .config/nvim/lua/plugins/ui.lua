@@ -377,6 +377,7 @@ return {
               { find = "%d+ fewer lines" },
               { find = "%d+ more lines" },
               { find = "%d+ lines" },
+              { find = "VimTeX" },
             },
           },
           view = "mini",
