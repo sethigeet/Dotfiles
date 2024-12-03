@@ -10,6 +10,7 @@ export KEYTIMEOUT=10
 #! Only uncomment one of these (bat or nvim or vim)!
 # Use "bat" as the man pager
 if command -v bat &>/dev/null; then
+  export MANROFFOPT="-c"
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 else
   man() {
