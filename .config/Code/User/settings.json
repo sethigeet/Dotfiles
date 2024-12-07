@@ -120,6 +120,9 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -335,24 +338,9 @@
   // Live Server
   "liveServer.settings.donotShowInfoMsg": true,
 
-  // Gitmoji
-  "gitmoji.showEmojiCode": true,
-
-  // Advanced New File
-  "advancedNewFile.exclude": {
-    "node_modules": true,
-    "node_modules_electron": true,
-    "dev": true,
-    "dist": true,
-    "build": true,
-    "env": true,
-    "venv": true,
-    ".git": true
-  },
-
   // RedHat
   "redhat.telemetry.enabled": false,
 
-  // GitLens
+  // Gitlens
   "gitlens.launchpad.indicator.enabled": false
 }
