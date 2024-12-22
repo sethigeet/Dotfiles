@@ -1,21 +1,3 @@
-local function get_opts(mode, prefix)
-  local actual_prefix
-  if prefix then
-    actual_prefix = prefix
-  else
-    actual_prefix = "<leader>"
-  end
-
-  return {
-    mode = mode,
-    prefix = actual_prefix,
-    buffer = nil,
-    silent = true,
-    noremap = true,
-    nowait = false,
-  }
-end
-
 local function cmd(c, isPlugin)
   local prefix = isPlugin and "<Plug>" or "<Cmd>"
   local suffix = isPlugin and "" or "<CR>"
@@ -23,8 +5,6 @@ local function cmd(c, isPlugin)
 end
 
 local mappings = {
-  b = { name = "Buffer" },
-  C = { name = "Colors" },
   d = {
     name = "Debugging",
     b = {
@@ -53,7 +33,7 @@ local mappings = {
         "set conditional breakpoint",
       },
       L = {
-        function() require("dapui").float_element("breakpoints", {}) end,
+        function() require("dapui").float_element("breakpoints") end,
         "list breakpoints",
       },
     },
@@ -72,7 +52,7 @@ local mappings = {
       u = { require("dap").step_out, "step out" },
     },
     S = {
-      function() require("dapui").float_element("stacks", {}) end,
+      function() require("dapui").float_element("stacks") end,
       "show stacks",
     },
     d = {
@@ -85,66 +65,7 @@ local mappings = {
       "terminate & disconnect",
     },
   },
-  D = { name = "Database" },
-  g = {
-    name = "Git",
-    d = { cmd("DiffviewOpen"), "diff" },
-    r = { name = "Reset" },
-    s = { name = "Stage" },
-  },
-  -- l is for LSP
-  l = {
-    name = "LSP",
-    a = { vim.lsp.buf.code_action, "code actions" },
-    A = { vim.lsp.buf.range_code_action, "range code actions" },
-    f = {
-      function() vim.lsp.buf.format({ async = true }) end,
-      "format",
-    },
-    h = { vim.lsp.buf.signature_help, "signature_help" },
-    i = { cmd("LspInfo"), "lsp info" },
-    p = {
-      name = "Peek",
-      d = { function() require("lsp.helpers.peek").peek("definition") end, "definition" },
-      t = { function() require("lsp.helpers.peek").peek("typeDefinition") end, "type definition" },
-      i = { function() require("lsp.helpers.peek").peek("implementation") end, "implementation" },
-    },
-    r = { require("lsp.helpers.rename"), "rename" },
-    t = { vim.lsp.buf.type_definition, "type defintion" },
-    v = { cmd("DiagnosticVirtualTextToggle"), "toggle virtual text" },
-  },
-  q = { name = "Quickfix" },
-  r = { name = "Run" },
-  s = { name = "Search" },
-  t = { name = "Treesitter" },
 }
-
-local open_bracket_mappings = {
-  d = { vim.diagnostic.goto_prev, "Previous diagnostic" },
-  q = { cmd("cprev"), "Previous quickfix list item" },
-}
-local close_bracket_mappings = {
-  d = { vim.diagnostic.goto_next, "Next diagnostic" },
-  q = { cmd("cnext"), "Next quickfix list item" },
-}
-
-local g_mappings = {
-  d = { vim.lsp.buf.definition, "Goto definition" },
-  D = { vim.lsp.buf.declaration, "Goto declaration" },
-  I = { vim.lsp.buf.implementation, "Goto implementation" },
-  l = {
-    function() vim.diagnostic.open_float({ scope = "line", header = "Line Diagnostics", source = true }) end,
-    "Show line diagnostics",
-  },
-  p = { function() require("lsp.helpers.peek").peek("definition") end, "Peek definition" },
-  s = { vim.lsp.buf.signature_help, "Goto references" },
-}
-
--- Mode specific changes
-local normal_mappings = vim.deepcopy(mappings)
-
-local visual_mappings = vim.deepcopy(mappings)
-visual_mappings["p"] = { '"_dP', "Paste without yank" }
 
 return {
   {
@@ -152,44 +73,87 @@ return {
     event = "VeryLazy",
     opts = {
       plugins = {
-        spelling = {
-          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-        },
         presets = {
-          operators = false, -- adds help for operators like d, y, ...
-          motions = false, -- adds help for motions
-          text_objects = false, -- help for text objects triggered after entering an operator
+          operators = false,
+          motions = false,
         },
       },
       icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "➜", -- symbol used between a key and it's label
-        group = " ", -- symbol prepended to a group
+        group = " ", -- symbol prepended to a group
       },
-      window = {
-        margin = { 1, 0, 0, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
-      },
-      layout = {
-        height = { min = 5, max = 15 }, -- min and max height of the columns
-        width = { min = 4, max = 50 }, -- min and max width of the columns
+
+      spec = {
+        {
+          mode = { "n", "v" },
+          -- Add icons and group names
+          { "<leader>u", icon = "󰕌" },
+          { "<leader>e", icon = "󰙅" },
+          { "<leader>s", group = "Search", icon = "" },
+          { "[", group = "Prev" },
+          { "]", group = "Next" },
+          { "g", group = "Goto" },
+          { "gs", group = "Surround" },
+          { "<leader>t", group = "Treesitter", icon = "" },
+          { "<leader>g", group = "Git" },
+          { "<leader>gr", group = "Reset" },
+          { "<leader>gs", group = "Stage" },
+
+          {
+            "<leader>b",
+            group = "Buffer",
+            expand = function() return require("which-key.extras").expand.buf() end,
+          },
+          {
+            "<leader>w",
+            group = "Windows",
+            proxy = "<c-w>",
+            expand = function() return require("which-key.extras").expand.win() end,
+          },
+
+          -- better descriptions
+          { "gx", desc = "Open with system app" },
+
+          -- Custom `g` mappings
+          {
+            "gl",
+            function() vim.diagnostic.open_float({ scope = "line", header = "Line Diagnostics", source = true }) end,
+            desc = "Show line diagnostics",
+          },
+          {
+            "gs",
+            function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
+            desc = "Show signature help",
+          },
+
+          -- Custom `]` and `[` mappings
+          { "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Previous diagnostic" },
+          { "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next diagnostic" },
+          { "[q", cmd("cprev"), desc = "Previous quickfix list item" },
+          { "]q", cmd("cnext"), desc = "Next quickfix list item" },
+          { "[l", cmd("lnext"), desc = "Previous loclist list item" },
+          { "]l", cmd("lnext"), desc = "Next loclist item" },
+
+          -- Other custom mappings
+          -- `l` is for LSP
+          { "<leader>l", group = "LSP", icon = { icon = "󰷫", color = "purple" } },
+          { "<leader>la", vim.lsp.buf.code_action, desc = "Code Actions" },
+          { "<leader>lh", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, desc = "Signature Help" },
+          { "<leader>li", cmd("LspInfo"), desc = "LSP Info" },
+          { "<leader>lr", require("lsp.helpers.rename"), desc = "Rename" },
+          { "<leader>lt", vim.lsp.buf.type_definition, desc = "Type Defintion" },
+          { "<leader>lv", cmd("DiagnosticVirtualTextToggle"), desc = "Toggle Virtual Text" },
+
+          -- `g` is for git
+          { "<leader>gd", cmd("DiffviewOpen"), desc = "Diff" },
+        },
+
+        {
+          mode = { "v" },
+          { "<leader>p", '"_dP', desc = "Paste without yank" },
+        },
       },
     },
-    init = function()
-      local wk = require("which-key")
-
-      vim.g.mapleader = " "
-
-      -- `Leader` key
-      wk.register(normal_mappings, get_opts("n"))
-      wk.register(visual_mappings, get_opts("v"))
-
-      -- bracket keys
-      wk.register(open_bracket_mappings, get_opts("n", "["))
-      wk.register(close_bracket_mappings, get_opts("n", "]"))
-
-      -- `g` key
-      wk.register(g_mappings, get_opts("n", "g"))
-    end,
   },
 }

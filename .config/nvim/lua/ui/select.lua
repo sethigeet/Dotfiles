@@ -54,6 +54,7 @@ Please close all other selects first]],
   if kind == "codeaction" then
     -- change position for codeaction selection
     relative = "cursor"
+    ---@diagnostic disable-next-line: cast-local-type
     position = {
       row = 1,
       col = 0,

@@ -1,7 +1,7 @@
 return {
   bootstrap_plugin_manager = function()
     local lazypath = DATA_PATH .. "/lazy/lazy.nvim"
-    if not vim.loop.fs_stat(lazypath) then
+    if not vim.uv.fs_stat(lazypath) then
       vim.fn.system({
         "git",
         "clone",
@@ -14,8 +14,12 @@ return {
 
     vim.opt.rtp:prepend(lazypath)
 
-    require("lazy").setup("plugins")
-    require("utils.wrappers").map("n", "<leader>P", "<Cmd>Lazy<CR>", { desc = "Open plugins manager" })
+    require("lazy").setup({
+      rocks = { enabled = false },
+      spec = {
+        { import = "plugins" },
+      },
+    })
   end,
 
   -- Common Utility packages
@@ -30,7 +34,79 @@ return {
   },
 
   -- Multiple Cursors
-  { "mg979/vim-visual-multi", event = "BufRead" },
+  {
+    "jake-stewart/multicursor.nvim",
+    branch = "1.0",
+    config = true,
+    init = function()
+      require("utils.wrappers").highlight_groups({
+        MultiCursorCursor = { link = "Cursor" },
+        MultiCursorVisual = { link = "Visual" },
+        MultiCursorSign = { link = "SignColumn" },
+        MultiCursorDisabledCursor = { link = "Visual" },
+        MultiCursorDisabledVisual = { link = "Visual" },
+        MultiCursorDisabledSign = { link = "SignColumn" },
+      })
+    end,
+    keys = function()
+      local mc = require("multicursor-nvim")
+      return {
+        -- Add or skip cursor above/below the main cursor.
+        { mode = { "n", "v" }, "<up>", function() mc.lineAddCursor(-1) end, desc = "Add a new cursor above" },
+        { mode = { "n", "v" }, "<down>", function() mc.lineAddCursor(1) end, desc = "Add a new cursor below" },
+
+        -- Add a new cursor by matching word/selection
+        {
+          mode = { "n", "v" },
+          "<C-n>",
+          function() mc.matchAddCursor(1) end,
+          desc = "Add a new cursor to the next match",
+        },
+
+        -- Add all matches in the document
+        { mode = { "n", "v" }, "<M-n>", mc.matchAllAddCursors, desc = "Add new cursors to all matches" },
+
+        -- Rotate the main cursor.
+        { mode = { "n", "v" }, "<Left>", mc.nextCursor, desc = "Move to the next cursor" },
+        { mode = { "n", "v" }, "<Right>", mc.prevCursor, desc = "Move to the previous cursor" },
+
+        -- Delete the main cursor.
+        { mode = { "n", "v" }, "<localleader>mx", mc.deleteCursor, desc = "Delete the current cursor" },
+
+        -- Add and remove cursors with control + left click.
+        { "<C-LeftMouse>", mc.handleMouse, desc = "Add a new cursor at the clicked location" },
+
+        -- Easy way to add and remove cursors using the main cursor.
+        { mode = { "n", "v" }, "<localleader>mq", mc.toggleCursor, desc = "Toggle the current cursor" },
+
+        {
+          "<esc>",
+          function()
+            if not mc.cursorsEnabled() then
+              mc.enableCursors()
+            elseif mc.hasCursors() then
+              mc.clearCursors()
+            else
+              -- Default <esc> handler.
+            end
+          end,
+        },
+
+        -- bring back cursors if you accidentally clear them
+        { "<localleader>mv", mc.restoreCursors, desc = "Restore all previous cursors" },
+
+        -- Align cursor columns.
+        { "<localleader>ma", mc.alignCursors, desc = "Align all the cursors" },
+
+        -- Append/insert for each line of visual selections.
+        { mode = "v", "I", mc.insertVisual, desc = "Add a new insert cursor" },
+        { mode = "v", "A", mc.appendVisual, desc = "Add a new append cursor" },
+
+        -- match new cursors within visual selections by regex.
+        { mode = "v", "<localleader>mm", mc.matchCursors, desc = "Add new cursors to all matching locations" },
+      }
+    end,
+  },
 
   -- Debugging
   "mfussenegger/nvim-dap",
@@ -43,27 +119,28 @@ return {
 
   -- Easily change surrounding elements
   {
-    "tpope/vim-surround",
-    event = "BufRead",
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {},
   },
 
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = { { "tpope/vim-dadbod", cmd = "DB" } },
-    cmd = { "DBUI", "DBUIToggle" },
-
-    config = function()
-      vim.g.db_ui_save_location = DATA_PATH .. "/dadbod.db"
-      vim.g.db_ui_auto_execute_table_helpers = true
-    end,
-
-    keys = {
-      { "<leader>Dt", "<Cmd>DBUIToggle<CR>", desc = "Toggle UI" },
-      { "<leader>Df", "<Cmd>DBUIFindBuffer<CR>", desc = "Find buffer" },
-      { "<leader>Dr", "<Cmd>DBUIRenameBuffer<CR>", desc = "Rename buffer" },
-      { "<leader>Di", "<Cmd>DBUILastQueryInfo<CR>", desc = "Last query info" },
-    },
-  },
+  -- {
+  --   "kristijanhusak/vim-dadbod-ui",
+  --   dependencies = { { "tpope/vim-dadbod", cmd = "DB" } },
+  --   cmd = { "DBUI", "DBUIToggle" },
+  --
+  --   config = function()
+  --     vim.g.db_ui_save_location = DATA_PATH .. "/dadbod.db"
+  --     vim.g.db_ui_auto_execute_table_helpers = true
+  --   end,
+  --
+  --   keys = {
+  --     { "<leader>Dt", "<Cmd>DBUIToggle<CR>", desc = "Toggle UI" },
+  --     { "<leader>Df", "<Cmd>DBUIFindBuffer<CR>", desc = "Find buffer" },
+  --     { "<leader>Dr", "<Cmd>DBUIRenameBuffer<CR>", desc = "Rename buffer" },
+  --     { "<leader>Di", "<Cmd>DBUILastQueryInfo<CR>", desc = "Last query info" },
+  --   },
+  -- },
 
   {
     "iamcco/markdown-preview.nvim",
@@ -98,13 +175,4 @@ return {
       vim.g.mkdp_page_title = "${name} - Markdown Preview"
     end,
   },
-
-  -- TODO: Migrate the configs of these plugins
-  -- Terminal
-  -- {
-  --   "akinsho/toggleterm.nvim",
-  --   keys = { "`", "<F1>", "<leader>T" },
-  --   module = { "toggleterm", "toggleterm.terminal" },
-  --   config = "toggleterm",
-  -- },
 }

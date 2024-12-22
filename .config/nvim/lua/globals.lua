@@ -3,10 +3,11 @@ DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
 -- For easy debugging
-function P(v)
-  print(vim.inspect(v))
-  return v
-end
+function DD(...) require("snacks.debug").inspect(...) end
+
+function BT(...) require("snacks.debug").backtrace(...) end
+
+function P(...) require("snacks.debug").profile(...) end
 
 function RELOAD(...) return require("plenary.reload").reload_module(...) end
 

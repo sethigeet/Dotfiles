@@ -12,25 +12,34 @@ return {
   },
 
   {
-    "rhysd/git-messenger.vim",
-    event = "BufRead",
-    config = function(_, _) vim.g.git_messenger_no_default_mappings = 1 end,
-    keys = {
-      { "<leader>gm", "<Cmd>GitMessenger<CR>", desc = "Show message" },
-    },
-  },
-
-  {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
+    init = function()
+      require("utils.wrappers").highlight_groups({
+        GitSignsAdd = { link = "GitSignsAdd" },
+        GitSignsAddLn = { link = "GitSignsAddLn" },
+        GitSignsAddNr = { link = "GitSignsAddNr" },
+        GitSignsChange = { link = "GitSignsChange" },
+        GitSignsChangeLn = { link = "GitSignsChangeLn" },
+        GitSignsChangeNr = { link = "GitSignsChangeNr" },
+        GitSignsChangedelete = { link = "GitSignsChange" },
+        GitSignsChangedeleteLn = { link = "GitSignsChangeLn" },
+        GitSignsChangedeleteNr = { link = "GitSignsChangeNr" },
+        GitSignsDelete = { link = "GitSignsDelete" },
+        GitSignsDeleteLn = { link = "GitSignsDeleteLn" },
+        GitSignsDeleteNr = { link = "GitSignsDeleteNr" },
+        GitSignsTopdelete = { link = "GitSignsDelete" },
+        GitSignsTopdeleteLn = { link = "GitSignsDeleteLn" },
+        GitSignsTopdeleteNr = { link = "GitSignsDeleteNr" },
+      })
+    end,
     opts = {
       signs = {
-        -- stylua: ignore
-        add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete = { hl = "GitSignsDelete", text = "契", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+        add = { text = "▎" },
+        change = { text = "▎" },
+        delete = { text = "契" },
+        topdelete = { text = "契" },
+        changedelete = { text = "▎" },
       },
     },
     keys = {

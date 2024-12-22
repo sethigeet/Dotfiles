@@ -162,7 +162,7 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(_, item)
-            local icons = require("lsp.kind")
+            local icons = require("ui.icons")
             local icon = icons[item.kind] or ""
             item.kind = " " .. icon .. " "
 
@@ -214,6 +214,7 @@ return {
 
   {
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
     config = function(_, _)
       local npairs = require("nvim-autopairs")
       local Rule = require("nvim-autopairs.rule")
@@ -288,11 +289,10 @@ return {
       -- Add all the rules
       npairs.add_rules(rules)
 
-      -- TODO: Enable this
       -- compe integration
-      -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      -- local cmp = require("cmp")
-      -- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 }

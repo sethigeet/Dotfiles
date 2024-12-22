@@ -8,11 +8,11 @@ function debugging.setup()
   dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
   dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
 
-  require("utils.wrappers").define_augroups({
-    dap_repl = {
-      -- { "FileType", "dap-repl", cb = require("dap.ext.autocompl").attach },
-    },
-  })
+  -- require("utils.wrappers").define_augroups({
+  --   dap_repl = {
+  --     { "FileType", "dap-repl", cb = require("dap.ext.autocompl").attach },
+  --   },
+  -- })
 
   -- Setup DAP-UI
   dapui.setup({

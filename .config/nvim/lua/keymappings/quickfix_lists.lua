@@ -1,13 +1,14 @@
 local map = require("utils.wrappers").map
 
--- NOTE: These bindings are only for the global quickfix lists
---       See the whichkey config for bindings realted to location lists
-
 -- Easily open the quickfix list
 map("n", "<C-q>", "<Cmd>copen<CR>")
 -- Easily open the location list
--- map("n", "<C-l>", "<Cmd>lopen<CR>")
+map("n", "<C-l>", "<Cmd>lopen<CR>")
 
--- Navigate through the global qf list
--- map("n", "<C-j>", "<Cmd>cprev<CR>zz")
--- map("n", "<C-k>", "<Cmd>cnext<CR>zz")
+-- Navigate through the quickfix list
+map("n", "[q", "<Cmd>cprev<CR>zz")
+map("n", "]q", "<Cmd>cnext<CR>zz")
+
+-- Navigate through the location list
+map("n", "[l", "<Cmd>lprev<CR>zz")
+map("n", "]l", "<Cmd>lnext<CR>zz")

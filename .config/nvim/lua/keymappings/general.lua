@@ -2,8 +2,9 @@ local map = require("utils.wrappers").map
 
 -- Global Leader key
 vim.g.mapleader = " "
--- let localLeader=" "
+vim.g.maplocalleader = "\\"
 map("n", "<Space>", "<NOP>")
+map("n", "\\", "<NOP>")
 
 -- Easily duplicate lines
 map("n", "yp", "yyp")
