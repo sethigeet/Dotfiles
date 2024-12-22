@@ -3,4 +3,3 @@
 
 require("lsp.handlers")
 require("lsp.signs")
-require("lsp.wrapper")

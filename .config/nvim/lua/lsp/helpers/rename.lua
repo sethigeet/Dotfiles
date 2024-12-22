@@ -24,7 +24,7 @@ which could be renamed]],
   return vim.treesitter.get_node_text(node_at_point, 0)
 end
 
-local function lsp_handler(err, result, ctx, config)
+local function lsp_handler(err, result, ctx)
   if err then
     vim.notify(("Error running LSP query '%s': %s"):format(ctx.method, err), vim.log.levels.ERROR)
     return
@@ -42,11 +42,12 @@ local function lsp_handler(err, result, ctx, config)
     vim.notify(msg, vim.log.levels.INFO)
   end
 
-  vim.lsp.handlers[ctx.method](err, result, ctx, config)
+  vim.lsp.handlers[ctx.method](err, result, ctx)
 end
 
 local function do_rename_using_lsp(new_name)
-  local params = vim.lsp.util.make_position_params()
+  ---@class lsp.TextDocumentPositionParams
+  local params = vim.lsp.util.make_position_params(0, "utf-8")
 
   params.newName = new_name
 
@@ -69,6 +70,11 @@ being used to rename the variable]],
 
   local bufnr = vim.api.nvim_get_current_buf()
   local node_at_point = ts_utils.get_node_at_cursor()
+
+  if node_at_point == nil then
+    -- NOTE: Should be unreachable!
+    return
+  end
 
   local definition, scope = locals.find_definition(node_at_point, bufnr)
   local nodes_to_rename = {}

@@ -69,7 +69,7 @@ return {
       local actions = require("telescope.actions")
       local actions_layout = require("telescope.actions.layout")
       local actions_state = require("telescope.actions.state")
-      local trouble = require("trouble.providers.telescope")
+      local trouble = require("trouble.sources.telescope")
       local previewers = require("telescope.previewers")
       local sorters = require("telescope.sorters")
 
@@ -120,7 +120,7 @@ return {
               ["<C-c>"] = actions.close,
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
-              ["<c-t>"] = trouble.open_with_trouble,
+              ["<c-t>"] = trouble.open,
               ["<C-n>"] = actions.cycle_history_next,
               ["<C-p>"] = actions.cycle_history_prev,
               ["<C-y>"] = function(prompt_bufnr)
@@ -197,11 +197,7 @@ return {
         { "<leader>f", CUSTOM_PICKERS.find_files, desc = "Find files" },
         { "<leader>gb", PICKERS.git_branches, desc = "Branches" },
         { "<leader>gco", PICKERS.git_commits, desc = "Checkout commit" },
-        {
-          "<leader>gcu",
-          PICKERS.git_commits,
-          desc = "Checkout commit (for current file)",
-        },
+        { "<leader>gcu", PICKERS.git_commits, desc = "Checkout commit (for current file)" },
         { "<leader>lb", CUSTOM_PICKERS.cur_buf_symbols, desc = "Search buffer symbols" },
         { "<leader>ls", PICKERS.lsp_document_symbols, desc = "Search document symbols" },
         { "<leader>lS", PICKERS.lsp_workspace_symbols, desc = "Search workspace symbols" },
@@ -215,7 +211,6 @@ return {
         { "<leader>sl", PICKERS.loclist, desc = "Search loclist" },
         { "<leader>sm", PICKERS.marks, desc = "Search marks" },
         { "<leader>sr", PICKERS.resume, desc = "Resume last search" },
-        { "<leader>sR", PICKERS.registers, desc = "Search registers" },
         { "<leader>ss", CUSTOM_PICKERS.grep_selected_text, desc = "Search for selected text" },
         {
           mode = "v",
