@@ -44,8 +44,8 @@ function utils.restore_last_place()
 
   -- Check if buffer should be ignored
   if
-    vim.tbl_contains(ignore_buftypes, vim.api.nvim_buf_get_option(0, "buftype"))
-    or vim.tbl_contains(ignore_filetypes, vim.api.nvim_buf_get_option(0, "filetype"))
+    vim.tbl_contains(ignore_buftypes, vim.api.nvim_get_option_value("buftype", { buf = 0 }))
+    or vim.tbl_contains(ignore_filetypes, vim.api.nvim_get_option_value("filetype", { buf = 0 }))
   then
     return
   end

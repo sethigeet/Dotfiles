@@ -12,21 +12,6 @@ return {
   },
 
   {
-    "rcarriga/nvim-notify",
-    opts = {
-      -- Animation style
-      stages = "slide",
-    },
-    config = function(_, opts)
-      local notify = require("notify")
-
-      notify.setup(opts)
-
-      vim.notify = notify
-    end,
-  },
-
-  {
     "petertriho/nvim-scrollbar",
     opts = function()
       local colors = require("tokyonight.colors").setup()
@@ -91,7 +76,7 @@ return {
         excluded_filetypes = {
           "prompt",
           "TelescopePrompt",
-          "alpha",
+          "snacks_daskboard",
           "neo-tree",
         },
         autocmd = {
@@ -200,8 +185,8 @@ return {
       options = {
         mode = "buffers", -- set to "tabs" to only show tabpages instead
         numbers = "none",
-        close_command = "Bdelete %d",
-        right_mouse_command = "Bdelete! %d",
+        close_command = function(buf) Snacks.bufdelete.delete({ buf = buf }) end,
+        right_mouse_command = function(buf) Snacks.bufdelete.delete({ buf = buf, force = true }) end,
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(_, _, diagnostics_dict)
           local s = " "
@@ -241,10 +226,6 @@ return {
         { "<S-Left>", "<Cmd>BufferLineCyclePrev<CR>" },
         { "<S-Right>", "<Cmd>BufferLineCycleNext<CR>" },
 
-        -- Move between buffers using Ctrl + h,l Keys
-        { "<C-h>", "<Cmd>BufferLineCyclePrev<CR>" },
-        { "<C-l>", "<Cmd>BufferLineCycleNext<CR>" },
-
         -- Move buffers using Ctrl + Arrow Keys
         { "<C-Left>", "<Cmd>BufferLineMovePrev<CR>" },
         { "<C-Right>", "<Cmd>BufferLineMoveNext<CR>" },
@@ -256,7 +237,7 @@ return {
       }
 
       -- Move to a buffer using Alt+number
-      local goto_buf = require("bufferline").go_to_buffer
+      local goto_buf = require("bufferline").go_to
       for i = 1, 9, 1 do
         table.insert(maps, {
           string.format("<M-%d>", i),
@@ -270,211 +251,100 @@ return {
   },
 
   {
-    "luukvbaal/statuscol.nvim",
-    event = "VeryLazy",
-    opts = function()
-      local builtin = require("statuscol.builtin")
-      return {
-        segments = {
-          {
-            sign = { name = { ".*" }, maxwidth = 1, colwidth = 1, auto = false },
-            click = "v:lua.ScSa",
-          },
-          {
-            sign = { name = { "Diagnostic" }, maxwidth = 1, auto = false },
-            click = "v:lua.ScSa",
-          },
-          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
-        },
-      }
-    end,
-  },
-
-  {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     keys = {
-      {
-        "<leader>e",
-        "<Cmd>Neotree toggle<CR>",
-        desc = "Show file explorer",
-      },
+      { "<leader>e", "<Cmd>Neotree toggle<CR>", desc = "Show file explorer" },
     },
     deactivate = function() vim.cmd.Neotree("close") end,
     init = function()
       vim.g.neo_tree_remove_legacy_commands = 1
       if vim.fn.argc() == 1 then
         ---@diagnostic disable-next-line: param-type-mismatch
-        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        local stat = vim.uv.fs_stat(vim.fn.argv(0))
         if stat and stat.type == "directory" then require("neo-tree") end
       end
     end,
-    opts = {
-      sources = { "filesystem", "git_status", "document_symbols" },
-      open_files_do_not_replace_types = { "terminal", "Trouble", "qf" },
-      filesystem = {
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_gitignored = false,
-          hide_by_name = { "node_modules", "target", "__pycache__" },
+    opts = function()
+      local events = require("neo-tree.events")
+      local function on_rename(data) Snacks.rename.on_rename_file(data.source, data.destination) end
+
+      return {
+        event_handlers = {
+          { event = events.FILE_MOVED, handler = on_rename },
+          { event = events.FILE_RENAMED, handler = on_rename },
         },
-        follow_current_file = {
-          enabled = true,
+        sources = { "filesystem", "git_status", "document_symbols" },
+        open_files_do_not_replace_types = { "terminal", "Trouble", "qf" },
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_by_name = { "node_modules", "target", "__pycache__" },
+          },
+          follow_current_file = {
+            enabled = true,
+          },
+          use_libuv_file_watcher = true,
         },
-        use_libuv_file_watcher = true,
-      },
-      window = {
-        width = 30,
-        mappings = {
-          ["<space>"] = "none",
-          ["l"] = "open",
-          ["h"] = "close_node",
-        },
-      },
-      default_component_configs = {
-        indent = {
-          with_expanders = true,
-          expander_collapsed = "",
-          expander_expanded = "",
-          expander_highlight = "NeoTreeExpander",
-        },
-        icon = {
-          folder_empty = "",
-          folder_empty_open = "",
-        },
-        git_status = {
-          symbols = {
-            renamed = "󰁕",
-            unstaged = "󰄱",
+        window = {
+          width = 30,
+          mappings = {
+            ["<space>"] = "none",
+            ["l"] = "open",
+            ["h"] = "close_node",
           },
         },
-      },
-      document_symbols = {
-        kinds = {
-          File = { icon = "󰈙", hl = "Tag" },
-          Namespace = { icon = "󰌗", hl = "Include" },
-          Package = { icon = "󰏖", hl = "Label" },
-          Class = { icon = "󰌗", hl = "Include" },
-          Property = { icon = "󰆧", hl = "@property" },
-          Enum = { icon = "󰒻", hl = "@number" },
-          Function = { icon = "󰊕", hl = "Function" },
-          String = { icon = "󰀬", hl = "String" },
-          Number = { icon = "󰎠", hl = "Number" },
-          Array = { icon = "󰅪", hl = "Type" },
-          Object = { icon = "󰅩", hl = "Type" },
-          Key = { icon = "󰌋", hl = "" },
-          Struct = { icon = "󰌗", hl = "Type" },
-          Operator = { icon = "󰆕", hl = "Operator" },
-          TypeParameter = { icon = "󰊄", hl = "Type" },
-          StaticMethod = { icon = "󰠄 ", hl = "Function" },
+        default_component_configs = {
+          indent = {
+            with_expanders = true,
+            expander_collapsed = "",
+            expander_expanded = "",
+            expander_highlight = "NeoTreeExpander",
+          },
+          icon = {
+            folder_empty = "",
+            folder_empty_open = "",
+          },
+          git_status = {
+            symbols = {
+              renamed = "󰁕",
+              unstaged = "󰄱",
+            },
+          },
         },
-      },
-      source_selector = {
-        winbar = true,
-        -- statusline = false,
-        sources = {
-          { source = "filesystem", display_name = " 󰉓 Files " },
-          { source = "buffers", display_name = "  Files " },
-          { source = "document_symbols", display_name = "  Doc Symbols " },
-          { source = "git_status", display_name = " 󰊢 Git " },
+        document_symbols = {
+          kinds = {
+            File = { icon = "󰈙", hl = "Tag" },
+            Namespace = { icon = "󰌗", hl = "Include" },
+            Package = { icon = "󰏖", hl = "Label" },
+            Class = { icon = "󰌗", hl = "Include" },
+            Property = { icon = "󰆧", hl = "@property" },
+            Enum = { icon = "󰒻", hl = "@number" },
+            Function = { icon = "󰊕", hl = "Function" },
+            String = { icon = "󰀬", hl = "String" },
+            Number = { icon = "󰎠", hl = "Number" },
+            Array = { icon = "󰅪", hl = "Type" },
+            Object = { icon = "󰅩", hl = "Type" },
+            Key = { icon = "󰌋", hl = "" },
+            Struct = { icon = "󰌗", hl = "Type" },
+            Operator = { icon = "󰆕", hl = "Operator" },
+            TypeParameter = { icon = "󰊄", hl = "Type" },
+            StaticMethod = { icon = "󰠄 ", hl = "Function" },
+          },
         },
-      },
-    },
-  },
-
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    opts = {
-      window = {
-        width = 0.8,
-        options = {
-          number = true,
-          relativenumber = true,
-          cursorline = true,
+        source_selector = {
+          winbar = true,
+          -- statusline = false,
+          sources = {
+            { source = "filesystem", display_name = " 󰉓 Files " },
+            { source = "buffers", display_name = "  Files " },
+            { source = "document_symbols", display_name = "  Doc Symbols " },
+            { source = "git_status", display_name = " 󰊢 Git " },
+          },
         },
-      },
-      plugins = {
-        options = {
-          enabled = true,
-          ruler = false,
-          showcmd = false,
-        },
-        twilight = { enabled = false },
-      },
-    },
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
-    main = "ibl",
-    opts = {
-      exclude = {
-        buftypes = { "help", "terminal" },
-        filetypes = {
-          "vimwiki",
-          "NvimTree",
-          "help",
-          "undotree",
-          "diff",
-          "git",
-          "alpha",
-          "neogitstatus",
-          "packer",
-        },
-      },
-      indent = {
-        char = "▏",
-      },
-    },
-  },
-
-  {
-    "goolord/alpha-nvim",
-    event = "VimEnter",
-    opts = function()
-      local dashboard = require("alpha.themes.dashboard")
-
-      -- Header
-      dashboard.section.header.val = {
-        "                                              ",
-        "       ███████████           █████      ██",
-        "      ███████████             █████ ",
-        "      ████████████████ ███████████ ███   ███████",
-        "     ████████████████ ████████████ █████ ██████████████",
-        "    █████████████████████████████ █████ █████ ████ █████",
-        "  ██████████████████████████████████ █████ █████ ████ █████",
-        " ██████  ███ █████████████████ ████ █████ █████ ████ ██████",
-        " ██████   ██  ███████████████   ██ █████████████████",
-        " ██████   ██  ███████████████   ██ █████████████████ ",
       }
-
-      -- Buttons
-      dashboard.section.buttons.val = {
-        dashboard.button("f", " Find File", ":Telescope find_files<CR>"),
-        dashboard.button("r", " Recently Used Files", ":Telescope oldfiles<CR>"),
-        dashboard.button("w", " Find Word", ":Telescope live_grep<CR>"),
-        dashboard.button("m", " Marks", ":Telescope marks<CR>"),
-        dashboard.button("c", " Nvim Config", "cd " .. CONFIG_PATH .. " | edit $MYVIMRC"),
-        dashboard.button("p", " Projects", ":Telescope projects<CR>"),
-      }
-
-      for _, button in ipairs(dashboard.section.buttons.val) do
-        button.opts.hl = "AlphaButtons"
-        button.opts.hl_shortcut = "AlphaShortcut"
-      end
-      dashboard.section.footer.opts.hl = "Type"
-      dashboard.section.header.opts.hl = "AlphaHeader"
-      dashboard.section.buttons.opts.hl = "AlphaButtons"
-      dashboard.opts.layout[1].val = 8
-
-      dashboard.section.footer.val = "by Geet Sethi (sethigeet)"
-
-      return dashboard
     end,
-    config = function(_, dashboard) require("alpha").setup(dashboard.opts) end,
   },
 
   {
@@ -506,6 +376,7 @@ return {
               { find = "; before #%d+" },
               { find = "%d+ fewer lines" },
               { find = "%d+ more lines" },
+              { find = "%d+ lines" },
             },
           },
           view = "mini",

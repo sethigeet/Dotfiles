@@ -69,7 +69,7 @@ return {
       local actions = require("telescope.actions")
       local actions_layout = require("telescope.actions.layout")
       local actions_state = require("telescope.actions.state")
-      local trouble = require("trouble.providers.telescope")
+      local trouble = require("trouble.sources.telescope")
       local previewers = require("telescope.previewers")
       local sorters = require("telescope.sorters")
 
@@ -120,7 +120,7 @@ return {
               ["<C-c>"] = actions.close,
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
-              ["<c-t>"] = trouble.open_with_trouble,
+              ["<c-t>"] = trouble.open,
               ["<C-n>"] = actions.cycle_history_next,
               ["<C-p>"] = actions.cycle_history_prev,
               ["<C-y>"] = function(prompt_bufnr)
