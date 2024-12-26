@@ -35,6 +35,12 @@
 [pull]
 	rebase = true
 
+[init]
+	defaultBranch = main
+
+[safe]
+	directory = /opt/flutter
+
 [github]
 	user = sethigeet
 
@@ -43,9 +49,17 @@
 
 [delta]
 	features = line-numbers decorations
-	syntax-theme = Dracula
-	plus-style = syntax "#4D5E49"
-	minus-style = syntax "#5C4945"
+  minus-style = syntax "#37222c"
+  minus-non-emph-style = syntax "#37222c"
+  minus-emph-style = syntax "#713137"
+  minus-empty-line-marker-style = syntax "#37222c"
+  line-numbers-minus-style = "#914c54"
+  plus-style = syntax "#20303b"
+  plus-non-emph-style = syntax "#20303b"
+  plus-emph-style = syntax "#2c5a66"
+  plus-empty-line-marker-style = syntax "#20303b"
+  line-numbers-plus-style = "#449dab"
+  line-numbers-zero-style = "#3b4261"
 
 [delta "decorations"]
 	commit-decoration-style = bold yellow box ul
@@ -62,7 +76,3 @@
 [credential "https://github.com"]
 	helper = !gh auth git-credential
 
-[init]
-	defaultBranch = main
-[safe]
-	directory = /opt/flutter
