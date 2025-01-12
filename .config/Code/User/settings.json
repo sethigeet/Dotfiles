@@ -37,6 +37,9 @@
     "**/app/**/layout.tsx": "${dirname} - Layout"
   },
 
+  //# Workbench
+  "keyboard.dispatch": "keyCode",
+
   //# Files
   "files.exclude": {
     "**/.git": true,
@@ -153,7 +156,6 @@
   // Lua
   "Lua.diagnostics.globals": ["vim"],
   "Lua.hint.enable": true,
-  "Lua.telemetry.enable": false,
   "Lua.window.statusBar": false,
 
   // CPP
@@ -253,17 +255,20 @@
       "commands": ["workbench.action.evenEditorWidths"]
     },
     {
-      "before": ["]", "e"],
-      "commands": ["editor.action.marker.next"]
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"],
+      "when": "editFocus"
     },
     {
-      "before": ["[", "e"],
+      "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"],
       "when": "editFocus"
     }
   ],
   "vim.handleKeys": {
     "<C-b>": false,
+    "<C-i>": false,
+    "<C-o>": false,
     "<C-p>": false,
     "<C-n>": false,
     "<C-w>": false,
