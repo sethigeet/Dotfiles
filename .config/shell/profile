@@ -58,8 +58,7 @@ export FZF_DEFAULT_OPTS="
 -i --layout=reverse
 --cycle --pointer='❯' --marker='❯'
 --history=$XDG_DATA_HOME/fzf/history
---color=fg:#c0caf5,bg:#1a1b26,hl:#7aa2f7 --color=fg+:#a9b1d6,bg+:#15161e,hl+:#7dcfff --color=info:#9ece6a,prompt:#f7768e,pointer:#bb9af7 --color=marker:#e0af68,spinner:#bb9af7,header:#99aaff
-"
+--highlight-line --info=inline-right --border=none --color=bg+:#283457 --color=bg:#16161e --color=border:#27a1b9 --color=fg:#c0caf5 --color=gutter:#16161e --color=header:#ff9e64 --color=hl+:#2ac3de --color=hl:#2ac3de --color=info:#545c7e --color=marker:#ff007c --color=pointer:#ff007c --color=prompt:#2ac3de --color=query:#c0caf5:regular --color=scrollbar:#27a1b9 --color=separator:#ff9e64 --color=spinner:#ff007c"
 
 # Ignore some commands from history
 HISTORY_IGNORE="("
