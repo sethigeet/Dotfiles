@@ -14,6 +14,12 @@ if [ -d "$HOME/.yarn" ]; then
   PATH="$PATH:$HOME/.yarn/bin"
 fi
 
+# PNPM
+if [ -d "$XDG_DATA_HOME/pnpm" ]; then
+  export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+  PATH="$PATH:$PNPM_HOME"
+fi
+
 # DENO
 if [ -d "$HOME/.deno" ]; then
   PATH="$PATH:$HOME/.deno/bin"
@@ -58,6 +64,7 @@ if [ -d "$XDG_DATA_HOME/bun" ]; then
   PATH="$PATH:$BUN_INSTALL/bin"
 fi
 
+# Volta
 if [ -d "$XDG_DATA_HOME/volta" ]; then
   export VOLTA_HOME="$XDG_DATA_HOME/volta"
   PATH="$VOLTA_HOME/bin:$PATH"

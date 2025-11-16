@@ -15,3 +15,5 @@ for file in ~/.config/shell/{var_exports,paths/init,aliases/init,functions,autoc
 done
 
 unset file
+
+source ~/.config/nvm/nvm.sh
