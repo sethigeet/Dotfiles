@@ -32,8 +32,23 @@
 [mergetool "nvimdiffview"]
 	cmd = nvim -f -c "DiffviewOpen" "$MERGED"
 
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[push]
+  autoSetupRemote = true
+
 [pull]
 	rebase = true
+
+[help]
+  autocorrect = prompt
 
 [init]
 	defaultBranch = main
