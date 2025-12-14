@@ -1,6 +1,6 @@
 {
-  //* VS Code ==>
-  //# Editor
+  //# VS Code
+  // Editor
   "editor.fontFamily": "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.fontLigatures": true,
   "editor.suggestSelection": "first",
@@ -15,18 +15,19 @@
   "editor.linkedEditing": true,
   "editor.lineNumbers": "relative",
   "editor.smoothScrolling": true,
-  "editor.rulers": [80],
+  "editor.rulers": [100],
   "editor.semanticHighlighting.enabled": true,
   "editor.inlineSuggest.enabled": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "window.zoomLevel": 1,
+
+  // Window
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}${separator}${appName}",
   "window.titleBarStyle": "custom",
   "window.commandCenter": true,
 
   //# Workbench
-  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.colorTheme": "Tokyo Night",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.smoothScrolling": true,
   "workbench.editorAssociations": {
@@ -34,11 +35,14 @@
   },
   "workbench.editor.customLabels.patterns": {
     "**/app/**/page.tsx": "${dirname} - Page",
-    "**/app/**/layout.tsx": "${dirname} - Layout"
+    "**/app/**/layout.tsx": "${dirname} - Layout",
+    "**/index.{ts,tsx}": "${dirname} - index",
+    "**/__init__.py": "${dirname} - init"
   },
 
   //# Workbench
   "keyboard.dispatch": "keyCode",
+  "keyboard.mapAltGrToCtrlAlt": true,
 
   //# Files
   "files.exclude": {
@@ -60,7 +64,6 @@
     "**/venv/**": true
   },
   "files.associations": {
-    "**/*.html": "html",
     "**/templates/**/*.html": "django-html",
     "**/templates/**/*": "django-txt",
     "**/requirements{/**,*}.{txt,in}": "pip-requirements"
@@ -100,7 +103,12 @@
 
   //# Language Specific settings
   "[python]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "[rust]": {
     "editor.tabSize": 4
@@ -123,60 +131,35 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  //* Extensions ==>
-  //# VS Code Extensions
+  //# Extensions ==>
+  // Copilot
+  "github.copilot.nextEditSuggestions.enabled": true,
+
   // Emmet
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "django-html": "html"
   },
 
-  //# Language Extensions
   // Python
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "standard",
-  "pylint.args": ["--generate-members"],
-
-  // Dart
-  "dart.checkForSdkUpdates": false,
-
-  // Lua
-  "Lua.diagnostics.globals": ["vim"],
-  "Lua.hint.enable": true,
-  "Lua.window.statusBar": false,
-
+  "python.analysis.autoImportCompletions": true,
+  "python.envFile": "",
   // CPP
   "C_Cpp.clang_format_fallbackStyle": "Google",
 
-  // Julia
-  "julia.symbolCacheDownload": true,
-  "julia.enableTelemetry": false,
-
-  // Rust
-  "rust-analyzer.diagnostics.disabled": ["unresolved-macro-call"],
-
-  //# Running Code
-  // Code Runner
-  "code-runner.clearPreviousOutput": true,
-  "code-runner.enableAppInsights": false,
-  "code-runner.executorMap": {
-    "go": "go run ."
-  },
-
-  //# Vim
+  // Vim
   "vim.useSystemClipboard": true,
   "vim.highlightedyank.enable": true,
   "vim.easymotion": true,
@@ -187,11 +170,11 @@
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "k"],
-      "after": ["<Esc>"]
+      "commands": ["extension.vim_escape"]
     },
     {
       "before": ["k", "j"],
-      "after": ["<Esc>"]
+      "commands": ["extension.vim_escape"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -218,6 +201,14 @@
     {
       "before": ["$"],
       "after": ["$", "h"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -263,6 +254,18 @@
       "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"],
       "when": "editFocus"
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["references-view.findReferences"]
     }
   ],
   "vim.handleKeys": {
@@ -337,15 +340,16 @@
     }
   ],
 
-  // Auto Close Tag
-  "auto-close-tag.disableOnLanguage": ["typescript"],
-
-  // Live Server
-  "liveServer.settings.donotShowInfoMsg": true,
-
-  // RedHat
-  "redhat.telemetry.enabled": false,
-
   // Gitlens
-  "gitlens.launchpad.indicator.enabled": false
+  "gitlens.telemetry.enabled": false,
+  "gitlens.launchpad.indicator.enabled": false,
+
+  // Tailwind
+  "tailwindCSS.classFunctions": ["cn", "cva"],
+
+  // Code Rabbit
+  "coderabbit.autoReviewMode": "disabled",
+
+  // Github
+  "githubPullRequests.pullBranch": "never"
 }

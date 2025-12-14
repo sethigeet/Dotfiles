@@ -203,18 +203,5 @@
   {
     "key": "f7",
     "command": "python.execInTerminal"
-  },
-
-  //* Extensions
-  //# Advanced New File
-  {
-    "key": "ctrl+n",
-    "command": "extension.advancedNewFile",
-    "when": "!terminalFocus"
-  },
-  {
-    "key": "ctrl+alt+n",
-    "command": "-extension.advancedNewFile",
-    "when": "!terminalFocus"
   }
 ]
