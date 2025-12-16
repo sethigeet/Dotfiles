@@ -207,10 +207,10 @@ return {
     end,
   },
 
-  {
-    "chrisgrieser/nvim-puppeteer",
-    lazy = false, -- plugin lazy-loads itself
-  },
+  -- {
+  --   "chrisgrieser/nvim-puppeteer",
+  --   lazy = false, -- plugin lazy-loads itself
+  -- },
 
   {
     "folke/flash.nvim",

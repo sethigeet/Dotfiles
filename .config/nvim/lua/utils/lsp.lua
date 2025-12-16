@@ -28,4 +28,6 @@ function M.setup_codelens(bufnr)
   -- vim.lsp.codelens.refresh()
 end
 
+function M.setup_inlay_hints(bufnr) vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
+
 return M

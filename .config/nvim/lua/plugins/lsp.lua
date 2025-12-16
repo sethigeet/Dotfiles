@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
           ui = {
             icons = {
@@ -18,12 +18,28 @@ return {
         },
       },
 
-      "williamboman/mason-lspconfig.nvim",
-
       "schemastore.nvim",
     },
 
-    opts = function()
+    opts = {
+      servers = {
+        "basedpyright",
+        "bashls",
+        "cssls",
+        "dockerls",
+        "gopls",
+        "html",
+        "jsonls",
+        "lua_ls",
+        "rust_analyzer",
+        "tailwindcss",
+        "ts_ls",
+        "yamlls",
+      },
+    },
+
+    config = function(_, opts)
+      -- Setup custom capabilities added via different plugins such as `snippetSupport`
       local defaultCapabilities = {
         textDocument = {
           completion = {
@@ -39,160 +55,33 @@ return {
           },
         },
       }
-      defaultCapabilities =
-        vim.tbl_deep_extend("force", require("cmp_nvim_lsp").default_capabilities(), defaultCapabilities)
-
-      return {
+      vim.lsp.config("*", {
         capabilities = defaultCapabilities,
+      })
 
-        servers = {
-          -- linters = { "shellcheck", extra_args = { "-e", "1090" } },
-          -- linters = "flake8",
-
-          bashls = {},
-          cssls = {},
-          dockerls = {},
-
-          gopls = {
-            settings = {
-              gopls = {
-                analyses = { unusedparams = true },
-                staticcheck = true,
-                codelenses = {
-                  generate = true, -- show the `go generate` lens.
-                  gc_details = true, -- Show a code lens toggling the display of gc's choices.
-                },
-                usePlaceholders = true,
-                completeUnimported = true,
-                matcher = "fuzzy",
-                symbolMatcher = "fuzzy",
-                gofumpt = false,
-              },
-            },
-          },
-
-          html = {},
-          jsonls = {
-            settings = {
-              json = {
-                schemas = require("schemastore").json.schemas(),
-                validate = { enable = true },
-              },
-            },
-          },
-
-          lua_ls = {
-            settings = {
-              Lua = {
-                type = {
-                  castNumberToInteger = true,
-                  inferParamType = true,
-                },
-                diagnostics = {
-                  -- Get the language server to recognize the global vars
-                  globals = {},
-                  unusedLocalExclude = { "_*" },
-                },
-                codeLens = {
-                  enable = true,
-                },
-                hint = {
-                  enable = true,
-                },
-                format = {
-                  enable = false,
-                },
-                workspace = {
-                  library = {},
-                  maxPreload = 100000,
-                  preloadFileSize = 100000,
-                },
-              },
-            },
-          },
-
-          pyright = {
-            settings = {
-              python = {
-                analysis = {
-                  autoSearchPaths = true,
-                  useLibraryCodeForTypes = true,
-                  diagnosticMode = "workspace",
-                },
-              },
-            },
-          },
-
-          rust_analyzer = {},
-          tailwindcss = {},
-
-          taplo = {
-            cmd_args = { "--default-schema-catalogs" },
-          },
-
-          ts_ls = {
-            formatting = false,
-          },
-
-          yamlls = {
-            settings = {
-              yaml = {
-                hover = true,
-                completion = true,
-                validate = true,
-                schemaStore = {
-                  enable = false,
-                  -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                  url = "",
-                },
-                schemas = require("schemastore").yaml.schemas(),
-              },
-            },
-          },
-        },
-      }
-    end,
-
-    config = function(_, opts)
       local lsp_utils = require("utils.lsp")
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(ev)
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if client == nil then return end
 
-      local function setup(server)
-        local _server_opts = opts.servers[server]
-        if _server_opts.enabled == false then return end
+          -- Setup custom keybinds
+          lsp_utils.setup_keybindings(ev.buf)
 
-        local server_opts = {
-          capabilities = vim.tbl_deep_extend("force", vim.deepcopy(opts.capabilities), _server_opts.capabilities or {}),
-          settings = _server_opts.settings,
-        }
+          lsp_utils.setup_inlay_hints(ev.buf)
 
-        server_opts.on_attach = function(client, bufnr)
-          lsp_utils.setup_keybindings(bufnr)
+          local customConfig = client.config.custom
+          if customConfig == nil then return end
 
-          if _server_opts.formatting == false then client.server_capabilities.documentFormattingProvider = false end
+          if customConfig.enable_codelens == true then lsp_utils.setup_codelens() end
 
-          if _server_opts.code_lens == true then lsp_utils.setup_codelens() end
-        end
-
-        -- Add custom args if specified
-        if _server_opts.cmd_args and not vim.tbl_isempty(_server_opts.cmd_args) then
-          local cmd = require("lspconfig.configs." .. server).default_config.cmd
-          for _, arg in ipairs(_server_opts.cmd_args) do
-            table.insert(cmd, arg)
+          if customConfig.enable_formatting == false then
+            client.server_capabilities.documentFormattingProvider = false
           end
-        end
+        end,
+      })
 
-        require("lspconfig")[server].setup(server_opts)
-      end
-
-      local ensure_installed = {}
-      for server, server_opts in pairs(opts.servers) do
-        if server_opts.enabled ~= false then
-          setup(server)
-          ensure_installed[#ensure_installed + 1] = server
-        end
-      end
-
-      require("mason-lspconfig").setup({ ensure_installed = ensure_installed, automatic_installation = false })
+      vim.lsp.enable(opts.servers)
     end,
   },
 
@@ -270,6 +159,7 @@ return {
       library = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },
@@ -279,11 +169,6 @@ return {
     build = ":GoUpdateBinaries",
   },
   "b0o/schemastore.nvim", -- JSON Schemas provider
-  {
-    "mattn/emmet-vim",
-    event = "InsertEnter",
-    config = function() vim.g.user_emmet_leader_key = "<M-e>" end,
-  },
 
   {
     "Bekaboo/dropbar.nvim",

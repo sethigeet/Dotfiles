@@ -1,51 +1,3 @@
-local utils = require("utils")
-
-local EMMET_ENABLED_FILETYPES = { "html", "css", "scss", "javascriptreact", "typescriptreact" }
-local function is_emmet_enabled()
-  local curr_ft = vim.opt.filetype:get()
-  for _, ft in ipairs(EMMET_ENABLED_FILETYPES) do
-    if curr_ft == ft then return true end
-  end
-
-  return false
-end
-
-local function tab_complete(fallback)
-  local cmp = require("cmp")
-
-  if cmp.visible() then
-    cmp.select_next_item()
-  elseif require("luasnip").jumpable(1) then
-    vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-next"), "", true)
-  elseif is_emmet_enabled() and utils.has_words_before() and not require("cmp").select_next_item() then
-    vim.api.nvim_feedkeys(vim.fn["emmet#expandAbbrIntelligent"]("\\<Tab>"), "", true)
-  else
-    fallback()
-  end
-end
-
-local function s_tab_complete(fallback)
-  local cmp = require("cmp")
-
-  if cmp.visible() then
-    cmp.select_prev_item()
-  elseif require("luasnip").jumpable(-1) then
-    vim.api.nvim_feedkeys(utils.t("<Plug>luasnip-jump-prev"), "", true)
-  else
-    fallback()
-  end
-end
-
-local function append_sources_to_buf(sources)
-  local config = require("cmp.config")
-  local temp_sources = vim.deepcopy(config.global.sources)
-  for _, source in ipairs(sources) do
-    table.insert(temp_sources, source)
-  end
-
-  require("cmp").setup.buffer({ sources = temp_sources })
-end
-
 local function make_snips(snips, ls)
   local result = {}
   for trig, exp in pairs(snips) do
@@ -59,7 +11,7 @@ local function make_snips(snips, ls)
       expansion = exp
     end
 
-    table.insert(result, ls.s({ trig = trig, desc = exp.desc }, expansion))
+    table.insert(result, ls.s(trig, expansion))
   end
 
   return result
@@ -67,122 +19,142 @@ end
 
 return {
   {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    "saghen/blink.cmp",
+    version = "1.*", -- Use a fixed version to be able to download pre-built binaries
     dependencies = {
-      "hrsh7th/cmp-buffer",
-      -- NOTE: The lsp plugin cannot be lazy loaded as `create_language_server` depends on it at startup
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-emoji",
-      "hrsh7th/cmp-calc",
-      "f3fora/cmp-spell",
-      "ray-x/cmp-treesitter",
-      "saadparwaiz1/cmp_luasnip",
+      "LuaSnip",
+
+      -- Extra sources
+      "moyiz/blink-emoji.nvim",
+      "ribru17/blink-cmp-spell",
     },
-    opts = function()
-      local cmp = require("cmp")
+    event = { "InsertEnter", "CmdlineEnter" },
+    ---@type blink.cmp.Config
+    opts = {
+      snippets = {
+        preset = "luasnip",
+      },
 
-      return {
-        snippet = {
-          expand = function(args) require("luasnip").lsp_expand(args.body) end,
-        },
-        mapping = {
-          ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "s" }),
-          ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "s" }),
-          ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-          ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
-          ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
-          ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
-          ["<C-n>"] = cmp.mapping({
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                fallback()
-              end
-            end,
-          }),
-          ["<C-p>"] = cmp.mapping({
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                fallback()
-              end
-            end,
-          }),
-          ["<Tab>"] = cmp.mapping({
-            i = tab_complete,
-            s = tab_complete,
-          }),
-          ["<S-Tab>"] = cmp.mapping({
-            i = s_tab_complete,
-            s = s_tab_complete,
-          }),
-          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i" }),
-          ["<C-q>"] = cmp.mapping(cmp.mapping.close(), { "i", "s" }),
-          ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "s" }),
-          ["<CR>"] = cmp.mapping({
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-            c = function(fallback)
-              if cmp.visible() then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-              else
-                fallback()
-              end
-            end,
-          }),
-        },
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "path" },
-          { name = "calc" },
-          { name = "emoji" },
-          { name = "treesitter" },
-          { name = "spell" },
-          { name = "luasnip" },
-          { name = "buffer", options = { max_completion_items = 15, keyword_length = 5 } },
-        },
-        window = {
-          completion = {
-            side_padding = 1,
-            winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-            scrollbar = false,
+      appearance = {
+        use_nvim_cmp_as_default = false,
+      },
+
+      completion = {
+        accept = {
+          -- experimental auto-brackets support
+          auto_brackets = {
+            enabled = true,
           },
-          documentation = cmp.config.window.bordered({
-            border = "rounded",
-            winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder,CursorLine:Visual,Search:None",
-            scrollbar = false,
-          }),
         },
-        view = {
-          entries = "custom",
+        menu = {
+          draw = {
+            treesitter = { "lsp" },
+          },
         },
-        formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = function(_, item)
-            local icons = require("ui.icons")
-            local icon = icons[item.kind] or ""
-            item.kind = " " .. icon .. " "
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
+      },
 
-            return item
+      keymap = {
+        preset = "none",
+
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<CR>"] = { "accept", "fallback" },
+
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+
+        ["<C-u>"] = { "scroll_documentation_up", "scroll_signature_up", "fallback" },
+        ["<C-d>"] = { "scroll_documentation_down", "scroll_signature_down", "fallback" },
+
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
           end,
+          "snippet_forward",
+          "fallback",
         },
-      }
-    end,
-    init = function()
-      require("utils.wrappers").define_augroups({
-        cmp_custom = {
-          -- Turn on some sources in particular filetypes only
-          {
-            "FileType",
-            "lua",
-            cb = function() append_sources_to_buf({ { name = "nvim_lua" } }) end,
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+        ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+      },
+
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer", "emoji", "spell" },
+
+        per_filetype = {
+          lua = { inherit_defaults = true, "lazydev" },
+        },
+
+        providers = {
+          emoji = {
+            module = "blink-emoji",
+            name = "Emoji",
+            score_offset = 15,
+            opts = {
+              insert = true, -- Insert emoji (default) or complete its name
+              ---@type string|table|fun():table
+              trigger = function() return { ":" } end,
+            },
+            should_show_items = function()
+              return vim.tbl_contains(
+                -- Enable emoji completion only for git commits and markdown.
+                -- By default, enabled for all file-types.
+                { "gitcommit", "markdown" },
+                vim.o.filetype
+              )
+            end,
+          },
+          spell = {
+            name = "Spell",
+            module = "blink-cmp-spell",
+            opts = {},
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100, -- show at a higher priority than lsp
           },
         },
-      })
-    end,
+      },
+
+      fuzzy = {
+        sorts = {
+          -- Use the `label` sorter for the `spell` entries
+          function(a, b)
+            local sort = require("blink.cmp.fuzzy.sort")
+            if a.source_id == "spell" and b.source_id == "spell" then return sort.label(a, b) end
+          end,
+          -- This is the normal default order, which we fall back to
+          "score",
+          "kind",
+          "label",
+        },
+      },
+      cmdline = {
+        enabled = true,
+        keymap = {
+          preset = "cmdline",
+          ["<Right>"] = false,
+          ["<Left>"] = false,
+        },
+        completion = {
+          list = { selection = { preselect = false } },
+          menu = {
+            auto_show = function(_ctx) return vim.fn.getcmdtype() == ":" end,
+          },
+          ghost_text = { enabled = true },
+        },
+      },
+    },
   },
 
   {
@@ -205,8 +177,9 @@ return {
         local contents = require("snippets." .. name)
 
         local fts, snips = contents["filetypes"], contents["snippets"]
+        local final_snips = make_snips(snips, luasnip)
         for _, ft in ipairs(fts) do
-          luasnip.add_snippets(ft, make_snips(snips, luasnip))
+          luasnip.add_snippets(ft, vim.deepcopy(final_snips))
         end
       end
     end,
@@ -288,11 +261,6 @@ return {
 
       -- Add all the rules
       npairs.add_rules(rules)
-
-      -- compe integration
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      local cmp = require("cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 }

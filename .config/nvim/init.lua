@@ -10,3 +10,6 @@ require("plugins").bootstrap_plugin_manager()
 
 require("ui")
 require("lsp")
+
+-- Setup Custom Commands
+require("commands")

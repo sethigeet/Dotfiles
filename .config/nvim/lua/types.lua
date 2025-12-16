@@ -1,0 +1,11 @@
+--- @class CustomLspConfig
+---
+--- Whether or not to automatically setup codelens for the given LSP and setup hooks to automatically refresh them
+--- NOTE: The LSP server should support codelens capability!
+--- @field enable_codelens? boolean
+---
+--- Whether or not to use the formatting provided by the LSP
+--- @field enable_formatting? boolean
+
+--- @class vim.lsp.ClientConfig
+--- @field custom? CustomLspConfig

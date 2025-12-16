@@ -59,8 +59,8 @@ return {
       vim.keymap.set({ "n", "x" }, "]r", function() Snacks.words.jump(1, true) end, { desc = "Goto next reference" })
     end,
     opts = {
-      bufdelete = { enabled = true },
       animate = { enabled = true },
+      bufdelete = { enabled = true },
       dashboard = {
         enabled = true,
         sections = {
@@ -90,6 +90,7 @@ return {
         },
       },
       indent = { enabled = true },
+      image = { enabled = true },
       input = { enabled = true },
       notify = { enabled = true },
       notifier = { enabled = true },
