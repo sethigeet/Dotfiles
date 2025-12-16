@@ -5,7 +5,7 @@
 
   //# VSCode Settings
   // Editor
-  "editor.fontFamily": "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'FiraCode Nerd Font', 'monospace', monospace",
   "editor.fontLigatures": true,
   "editor.suggestSelection": "first",
   "editor.formatOnSave": true,
