@@ -1,0 +1,50 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.34/schema.json",
+  "app_specific_configuration_path": "$Env:KOMOREBI_CONFIG_HOME/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "transparency": true,
+  "transparency_alpha": 250,
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 3,
+  "default_container_padding": 0,
+  "border": true,
+  "border_width": 3,
+  "border_offset": -1,
+  "theme": {
+    "palette": "Base16",
+    "name": "TokyoNightDark",
+    "unfocused_border": "Base03",
+    "bar_accent": "Base0D"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 100,
+    "style": "EaseInCubic"
+  },
+  "stackbar": {
+    "height": 40,
+    "mode": "Never",
+    "tabs": {
+      "width": 300
+    }
+  },
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "VerticalStack" },
+        { "name": "2", "layout": "VerticalStack" },
+        { "name": "3", "layout": "VerticalStack" },
+        { "name": "4", "layout": "VerticalStack" },
+        { "name": "5", "layout": "VerticalStack" },
+        { "name": "6", "layout": "VerticalStack" }
+      ]
+    }
+  ],
+  "ignore_rules": [
+    {
+      "kind": "Title",
+      "id": "Command Palette",
+      "matching_strategy": "Equals"
+    }
+  ]
+}
