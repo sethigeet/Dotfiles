@@ -77,7 +77,7 @@ HISTORY_IGNORE="$HISTORY_IGNORE)"
 export HISTORY_IGNORE
 
 # Add custom scripts to the path for easier access in other configs
-PATH="$(find "$HOME/Scripts" -type d -printf "%p:")$PATH"
+PATH="$(find "$HOME/Scripts" -type d -exec printf "%s:" {} +)$PATH"
 PATH="$PATH:$HOME/.local/bin"
 export PATH
 

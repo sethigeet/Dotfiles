@@ -1,1 +1,1 @@
-/home/geet/.config/shell/profile
+/Users/geet/.config/shell/profile

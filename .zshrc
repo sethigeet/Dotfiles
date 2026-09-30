@@ -1,1 +1,1 @@
-/home/geet/.config/zsh/.zshrc
+/Users/geet/.config/zsh/.zshrc
