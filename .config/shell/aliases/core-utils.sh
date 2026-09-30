@@ -1,11 +1,11 @@
-# Changing "ls" to "exa"
-if command -v exa &>/dev/null; then
-  alias ls="exa --icons --color=auto --group-directories-first"
-  alias la="exa -ah --icons --color=auto --group-directories-first"   # all files and dirs
-  alias ll="exa -lh --icons --color=auto --group-directories-first"   # long format
-  alias lla="exa -lah --icons --color=auto --group-directories-first" # all files and dirs in long format
-  alias l="exa -lah --icons --color=auto --group-directories-first"   # all files and dirs in long format
-  alias lt="exa -aT --icons --color=auto"                             # tree listing
+# Changing "ls" to "eza"
+if command -v eza &>/dev/null; then
+  alias ls="eza --icons --color=auto --group-directories-first"
+  alias la="eza -ah --icons --color=auto --group-directories-first"   # all files and dirs
+  alias ll="eza -lh --icons --color=auto --group-directories-first"   # long format
+  alias lla="eza -lah --icons --color=auto --group-directories-first" # all files and dirs in long format
+  alias l="eza -lah --icons --color=auto --group-directories-first"   # all files and dirs in long format
+  alias lt="eza -aT --icons --color=auto"                             # tree listing
 else
   alias ls="ls --color=auto --group-directories-first"       # visible files and dirs
   alias la="ls -ah --color=auto --group-directories-first"   # all files and dirs
